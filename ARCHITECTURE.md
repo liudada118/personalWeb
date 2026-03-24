@@ -1,7 +1,7 @@
 # Architecture
 
-Last updated: `2026-03-23 10:53`  
-Git branch: `N/A`
+Last updated: `2026-03-24 22:26`  
+Git branch: `main`
 
 ## 1. Overview
 
@@ -22,6 +22,7 @@ Legacy `/studio` traffic is redirected to `/cms/admin` so old bookmarks still wo
 - Public pages keep a demo-data fallback so the site can render even before the local CMS is populated.
 - Payload Admin is localized to built-in Simplified Chinese via `payload/i18n/zh`, with custom wording overrides for the sidebar and common editing actions.
 - The custom `/cms` route acts as a visual management hub: daily editing is steered toward the protected workbench, while native Payload Admin remains available only for advanced operations.
+- Day-to-day page editing now follows a WordPress-like visual-editing loop: editors work inside `/cms/admin/workbench`, click regions directly inside the preview, and let the left-side Payload editor jump to the matching page or collection.
 - The app now supports deployment under a subpath by using `NEXT_PUBLIC_BASE_PATH`, and client fetch / iframe / upload URL handling is normalized through a shared base-path helper.
 
 ## 3. Tech stack
@@ -91,10 +92,13 @@ app/
   (studio)/studio/[[...tool]]/
   api/
 components/
+  scroll-reveal-text.tsx
   studio/
+  visual-edit-region.tsx
 lib/
   payload/
   payload/admin-session.ts
+  visual-editing.ts
   server/
   demo-data.ts
   types.ts
@@ -182,6 +186,15 @@ middleware.ts
 5. A dedicated `/cms/admin/preview-fullscreen` page renders `components/studio/fullscreen-preview.tsx` for larger visual checks.
 6. `/cms/preview` now exists only as a compatibility redirect into the protected admin workbench.
 
+### Visual edit bridge
+
+1. `PreviewTool` appends `visualEditor=1` to preview URLs whenever the preview is running inside the protected workbench.
+2. Public pages, key homepage sections, and the shared site header/footer are wrapped by `components/visual-edit-region.tsx`.
+3. In visual-edit mode, hovering a region shows an “编辑此区域” handle, and the region body itself is also clickable so editors do not need to hunt for a separate sidebar action.
+4. Clicking a region posts a typed message defined in `lib/visual-editing.ts` from the preview iframe back to the parent workbench.
+5. `components/studio/preview-tool.tsx` receives that message, switches the preview route if needed, and tells `components/studio/live-workbench.tsx` to retarget the left-side Payload iframe to the matching global or collection.
+6. This keeps the editing model field-based and version-safe like Payload, while making the interaction feel closer to WordPress-style front-end visual editing.
+
 ### Seeding
 
 - `payload.config.ts` seeds demo content on init when tables already exist.
@@ -260,10 +273,16 @@ Interaction and visual behavior:
 - the home header now also changes its sticky state more aggressively: after a deeper scroll threshold it turns from a transparent overlay into a full-width, top-anchored brand bar with a flatter silhouette closer to the benchmark site
 - the homepage hero has been tightened to a single-story layout: the secondary proof card and raised evidence band were removed so the title can use much more horizontal space and behave more like the benchmark brand site
 - the homepage hero now overrides the shared balanced-heading behavior, widens the title block to roughly half the desktop viewport, and pulls the CTA back upward so the primary action remains inside the first screen instead of slipping below the fold
+- the homepage hero no longer leaves a light body-color strip between the first and second screens: the cinematic hero section now ends flush against the manifesto section, and the first-screen title / standfirst widths were widened again so the opening frame does not feel underfilled
+- the hero text block now keeps a single shared width rule: the `hero-story` children inherit the same width as the parent container, so the title and standfirst no longer shrink to separate internal measures
+- the hero opening is now reduced to a single H1-only statement: the eyebrow, standfirst, and hero CTA were removed from the first screen so `display-title hero-display` can occupy the full hero text column by itself
+- the homepage hero also now uses a more specific selector for `hero-story .display-title.hero-display`, preventing later shared `.display-title` rules from accidentally shrinking the first-screen H1 back down to a narrow max-width
 - the second homepage section now reads as a dark manifesto band rather than a light article block, so the site moves from first impression into a stronger editorial-style statement of method
 - the manifesto section now uses a wider two-column declaration layout with a dominant left thesis, larger staggered doctrine lines on the right, and restrained footnote copy underneath
-- the manifesto section is now implemented as a dedicated client component with scroll-driven behavior: the left column stays sticky, while the right-side doctrine lines progressively lift and brighten from grey to full emphasis as the viewer scrolls through the section before the next screen takes over
-- the manifesto highlight behavior now advances at the sentence-block level instead of a continuous per-line fade, so the right column reads as distinct statements activating one after another rather than characters appearing to glow individually
+- the manifesto section is implemented as a dedicated client component with scroll-driven behavior: the left column stays sticky while the right column remains fully rendered and advances with scroll-bound reading progress
+- the right-side manifesto copy now uses a reusable `ScrollRevealText` component that splits text into individual characters and drives each span from low-contrast grey to soft white as scroll progress sweeps through the line
+- the manifesto effect no longer relies on whole-block opacity or noticeable vertical motion; it is now primarily a restrained character-level color transition so the second screen feels closer to an editorial reading surface than a marketing animation
+- the manifesto timeline has been stretched so the same scroll distance reveals fewer characters: the section holds more vertical scroll height and the progress mapping now consumes a larger distance before reaching full reveal
 - the homepage body copy has been rewritten into clean Chinese editorial content, replacing the earlier garbled copy and aligning the narrative tone across hero, manifesto, services, credibility, resources, and contact closeout
 - the services section now presents capability items as numbered editorial entries beside a larger spotlight module, and the credibility section has been tightened with clearer publication proof, metric hierarchy, and case follow-through
 - the homepage now uses a dedicated wide container instead of the default inner-page content width, so the header, hero, and manifesto section sit much closer to the viewport edges like the reference brand site while ordinary text blocks still keep their own reading measure
@@ -314,6 +333,14 @@ Interaction and visual behavior:
 | 2026-03-22 16:42 | N/A | Hero width and above-the-fold CTA correction | Overrode the shared balanced title wrapping for the homepage hero, increased first-screen title occupancy toward the benchmark's roughly half-width composition, and tightened hero spacing so the primary CTA remains on the first screen |
 | 2026-03-22 16:48 | N/A | Manifesto activation refinement | Changed the second-screen manifesto from continuous opacity interpolation to sentence-block activation states, widened the right-side manifesto column, and kept the sticky left column / scroll-driven progression while revalidating compilation up to the same Windows `spawn EPERM` limit |
 | 2026-03-23 10:53 | N/A | Repository initialization prep | Added a root `.gitignore` so the project can be published without committing local build output, logs, or SQLite runtime data |
+| 2026-03-23 14:35 | N/A | Manifesto block-highlighting correction | Adjusted the manifesto typography and activation styling so the right-side statements light up as whole blocks with broader Chinese line length instead of appearing to brighten character by character |
+| 2026-03-23 18:46 | main | WordPress-style visual editing bridge | Added preview-side editable regions, click-to-edit messaging, and workbench retargeting so editors can jump from the front-end preview directly to the matching Payload editor |
+| 2026-03-24 21:24 | main | Homepage hero spacing correction | Removed the light gap below the cinematic hero and widened first-screen copy so the opening frame sits flush against the dark manifesto section |
+| 2026-03-24 21:41 | main | Character-level manifesto scroll reveal | Rebuilt the second-screen right column around a reusable character-splitting reveal component so manifesto copy now brightens letter-by-letter with scroll progress while the left column remains sticky |
+| 2026-03-24 21:51 | main | Manifesto scroll pacing adjustment | Slowed the second-screen reading cadence by increasing the section scroll span and stretching the scroll-to-progress mapping so character highlighting advances more gradually |
+| 2026-03-24 22:04 | main | Hero child-width alignment | Aligned the hero title and standfirst with the full width of the parent hero text column instead of letting them keep narrower internal max-width rules |
+| 2026-03-24 22:16 | main | Hero H1-only reduction | Reduced the first screen to only the H1 and made the hero display element occupy the full hero text column without eyebrow, intro, or hero CTA competition |
+| 2026-03-24 22:26 | main | Hero display width override fix | Added a stronger homepage-specific selector so later shared `.display-title` rules no longer override the hero H1 width |
 
 ## 13. Update log
 
@@ -349,3 +376,11 @@ Interaction and visual behavior:
 | 2026-03-22 16:42 | N/A | UX refinement | Corrected the benchmark mismatch where the homepage hero title only occupied a narrow column and pushed the CTA below the fold by widening the hero story measure, disabling balanced wrapping on desktop hero copy, and reducing vertical hero spacing while revalidating compilation up to the same Windows `spawn EPERM` limit |
 | 2026-03-22 16:48 | N/A | UX refinement | Refined the second-screen manifesto so the right-side statements now activate as whole sentence blocks with broader line width instead of reading like character-by-character illumination, while revalidating compilation up to the same Windows `spawn EPERM` limit |
 | 2026-03-23 10:53 | N/A | Repository setup | Added a root `.gitignore` to prepare the project for first-time publishing without checking in local runtime artifacts or database state |
+| 2026-03-23 14:35 | N/A | UX refinement | Corrected the manifesto right-column highlight behavior by broadening the sentence measure and shifting the activation effect to the entire statement block, then revalidated production compilation up to the same Windows `spawn EPERM` limit |
+| 2026-03-23 18:46 | main | Feature update | Added a WordPress-style visual editing bridge by wrapping public regions in click-to-edit overlays, appending a visual-editor preview flag inside the protected workbench, and routing preview clicks back into the matching Payload editor targets |
+| 2026-03-24 21:24 | main | UX refinement | Removed the light body-color band beneath the homepage hero by zeroing the cinematic hero bottom padding and widened the hero title / standfirst measures so the first screen reads fuller and closer to the benchmark layout |
+| 2026-03-24 21:41 | main | UX refinement | Replaced the manifesto right-column block-activation treatment with a reusable `ScrollRevealText` component that keeps all characters rendered up front, then binds each character's color transition to section scroll progress while preserving sticky left-column reading behavior |
+| 2026-03-24 21:51 | main | UX refinement | Slowed the manifesto character-reveal pacing by extending the section's sticky scroll height and widening the progress denominator so the right-column text now brightens more gradually relative to page scroll |
+| 2026-03-24 22:04 | main | UX refinement | Removed the separate hero title and standfirst max-width constraints so the children inside `hero-story` now follow the same column width as their parent container |
+| 2026-03-24 22:16 | main | UX refinement | Simplified the first screen to an H1-only hero statement and kept `display-title hero-display` at full parent width so the opening frame no longer competes with an eyebrow, standfirst, or in-hero CTA |
+| 2026-03-24 22:26 | main | Bug fix | Added a homepage-specific width override for `hero-story .display-title.hero-display` after the shared title scale block so the first-screen H1 no longer inherits the later `max-width: 9.5ch` constraint from `.display-title` |

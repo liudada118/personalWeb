@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { PreviewTool } from "@/components/studio/preview-tool";
+import type { VisualEditorTarget } from "@/lib/visual-editing";
 import { withBasePath } from "@/lib/site-paths";
 
-const workbenchTargets = [
+const workbenchTargets: VisualEditorTarget[] = [
   { label: "站点信息", adminHref: "/cms/admin/globals/siteSettings", previewHref: "/" },
   { label: "首页", adminHref: "/cms/admin/globals/homePage", previewHref: "/" },
-  { label: "个人介绍", adminHref: "/cms/admin/globals/aboutPage", previewHref: "/about" },
+  { label: "个人介绍页", adminHref: "/cms/admin/globals/aboutPage", previewHref: "/about" },
   { label: "媒体页", adminHref: "/cms/admin/globals/mediaPage", previewHref: "/media" },
   { label: "播客页", adminHref: "/cms/admin/globals/podcastPage", previewHref: "/podcast" },
   { label: "联系页", adminHref: "/cms/admin/globals/contactPage", previewHref: "/contact" },
@@ -18,29 +19,35 @@ const workbenchTargets = [
 ];
 
 export function LiveWorkbench() {
-  const [selectedTarget, setSelectedTarget] = useState(workbenchTargets[0]);
+  const [selectedTarget, setSelectedTarget] = useState<VisualEditorTarget>(workbenchTargets[0]);
   const [previewRoute, setPreviewRoute] = useState(workbenchTargets[0].previewHref);
+  const [editorSeed, setEditorSeed] = useState(() => Date.now());
 
   const fullscreenHref = useMemo(
     () => `/cms/admin/preview-fullscreen?target=${encodeURIComponent(previewRoute)}`,
     [previewRoute],
   );
 
-  function handleTargetChange(target: (typeof workbenchTargets)[number]) {
+  function handleTargetChange(target: VisualEditorTarget) {
     setSelectedTarget(target);
     setPreviewRoute(target.previewHref);
+    setEditorSeed(Date.now());
   }
+
+  function handleVisualTarget(target: VisualEditorTarget) {
+    handleTargetChange(target);
+  }
+
+  const editorFrameSrc = withBasePath(selectedTarget.adminHref);
 
   return (
     <div className="admin-workbench-shell">
       <div className="admin-workbench-topbar">
         <div className="admin-workbench-copy">
-          <p className="eyebrow">编辑预览台</p>
-          <h1 className="admin-workbench-title">在 admin 内完成编辑、草稿预览和全屏检查</h1>
+          <p className="eyebrow">可视化编辑台</p>
+          <h1 className="admin-workbench-title">像 WordPress 一样，在预览页面上点区域，再到左侧直接修改。</h1>
           <p className="section-description">
-            左侧保留 Payload 原生编辑器，右侧只显示草稿预览。未发布内容不会直接进入正式官网；只有点击
-            <code> Publish changes </code>
-            才会上线。
+            右侧预览里的区块本身就能直接点，悬浮时还会出现“编辑此区域”把手。点击后，左侧 Payload 编辑器会跳到对应页面或内容集合；仍然保留草稿、发布、版本和权限能力。
           </p>
         </div>
 
@@ -58,7 +65,7 @@ export function LiveWorkbench() {
         {workbenchTargets.map((target) => (
           <button
             className={target.adminHref === selectedTarget.adminHref ? "is-active" : ""}
-            key={target.adminHref}
+            key={`${target.adminHref}-${target.label}`}
             onClick={() => handleTargetChange(target)}
             type="button"
           >
@@ -67,9 +74,10 @@ export function LiveWorkbench() {
         ))}
       </div>
 
-      <div className="cms-toolbar">
+      <div className="cms-toolbar cms-toolbar-context">
+        <span className="admin-workbench-context">当前编辑目标：{selectedTarget.label}</span>
         <Link className="admin-workbench-link" href={selectedTarget.adminHref} target="_blank">
-          新标签打开当前编辑页
+          新标签打开编辑页
         </Link>
         <Link className="admin-workbench-link" href={fullscreenHref} target="_blank">
           新标签全屏预览
@@ -81,16 +89,26 @@ export function LiveWorkbench() {
           <div className="cms-workbench-heading">
             <p className="eyebrow">编辑区</p>
             <h3>{selectedTarget.label}</h3>
-            <p>这里嵌入的是受保护的 Payload 编辑页，保存、草稿、版本和发布操作都保持原生行为。</p>
+            <p>左侧保持 Payload 原生编辑器。你可以直接在右侧页面点区块或把手，再回到这里保存草稿或发布变更。</p>
           </div>
 
           <div className="cms-workbench-frame-shell">
-            <iframe className="cms-embed-frame" src={withBasePath(selectedTarget.adminHref)} title="Payload admin editor" />
+            <iframe
+              className="cms-embed-frame"
+              key={`${selectedTarget.adminHref}-${editorSeed}`}
+              src={editorFrameSrc}
+              title="Payload admin editor"
+            />
           </div>
         </section>
 
         <section className="cms-workbench-panel cms-workbench-panel-preview">
-          <PreviewTool activeRoute={previewRoute} compact onActiveRouteChange={setPreviewRoute} />
+          <PreviewTool
+            activeRoute={previewRoute}
+            compact
+            onActiveRouteChange={setPreviewRoute}
+            onSelectVisualTarget={handleVisualTarget}
+          />
         </section>
       </div>
     </div>

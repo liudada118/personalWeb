@@ -116,6 +116,10 @@
   gap: 12px;
 }
 
+.admin-workbench-shell .cms-toolbar-context {
+  align-items: center;
+}
+
 .admin-workbench-shell .cms-toolbar button {
   min-height: 44px;
   padding: 0 16px;
@@ -207,6 +211,24 @@
   border: 1px dashed rgba(32, 55, 49, 0.18);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.65);
+}
+
+.admin-workbench-context {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(32, 55, 49, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(29, 34, 31, 0.78);
+  font-size: 0.94rem;
+  line-height: 1.2;
+}
+
+.admin-workbench-shell .cms-visual-note {
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.74);
 }
 
 @media (max-width: 1080px) {

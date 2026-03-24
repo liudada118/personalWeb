@@ -5,6 +5,7 @@ import "../globals.css";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { VisualEditRegion } from "@/components/visual-edit-region";
 import { getSiteSettings } from "@/lib/payload/api";
 import { isPreviewRequestEnabled } from "@/lib/payload/preview";
 
@@ -30,9 +31,13 @@ export default async function SiteLayout({
         <div className="site-frame">
           <AnalyticsTracker />
           {isPreview ? <div className="site-preview-badge">草稿预览中</div> : null}
-          <SiteHeader settings={settings} />
+          <VisualEditRegion adminHref="/cms/admin/globals/siteSettings" label="站点导航与品牌信息">
+            <SiteHeader settings={settings} />
+          </VisualEditRegion>
           <main className="main-content">{children}</main>
-          <SiteFooter settings={settings} />
+          <VisualEditRegion adminHref="/cms/admin/globals/siteSettings" label="页脚与站点信息">
+            <SiteFooter settings={settings} />
+          </VisualEditRegion>
         </div>
       </body>
     </html>
