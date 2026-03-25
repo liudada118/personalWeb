@@ -12,7 +12,9 @@ export function SiteFooter({ settings }: SiteFooterProps) {
       <div className="container footer-lead">
         <div>
           <p className="eyebrow">Tiger Legal</p>
-          <h2 className="footer-title">把官网、内容、案例与联系动线组织成一套克制、沉稳、可长期维护的表达系统。</h2>
+          <h2 className="footer-title" style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}>
+            把官网、内容、案例与联系动线组织成一套克制、沉稳、可长期维护的表达系统。
+          </h2>
           <p className="footer-description">{settings.footerNote}</p>
         </div>
         <div className="footer-cta-group">
@@ -44,6 +46,11 @@ export function SiteFooter({ settings }: SiteFooterProps) {
             </a>
           ))}
         </div>
+      </div>
+      <div className="container footer-bottom">
+        <p style={{ margin: 0, fontSize: "0.82rem", color: "rgba(255,255,255,0.4)", paddingTop: "24px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+          &copy; {new Date().getFullYear()} Tiger Legal. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

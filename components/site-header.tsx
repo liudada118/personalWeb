@@ -34,13 +34,15 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
         <Link className="brand-lockup" href="/">
           {isHome ? null : <span className="brand-mark">{settings.logoText}</span>}
           <div className="brand-copy">
-            <strong>{brandTitle}</strong>
+            <strong style={{ fontFamily: "var(--font-display)", fontStyle: "normal", letterSpacing: "-0.02em" }}>
+              {brandTitle}
+            </strong>
             {isHome ? null : <small>{settings.siteTagline}</small>}
           </div>
         </Link>
         <nav aria-label="Primary navigation" className="site-nav">
-          {settings.navItems.map((item) => (
-            <Link href={item.href} key={`${item.label}-${item.href}`}>
+          {settings.navItems.map((item, index) => (
+            <Link href={item.href} key={`${item.label}-${item.href}`} style={{ paddingLeft: "18px", paddingRight: "18px" }}>
               {item.label}
             </Link>
           ))}
