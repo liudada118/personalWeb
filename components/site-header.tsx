@@ -10,44 +10,56 @@ type SiteHeaderProps = {
   settings: SiteSettings;
 };
 
+function isActive(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader({ settings }: SiteHeaderProps) {
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const brandTitle = isHome ? settings.shortTitle || settings.siteTitle : settings.siteTitle;
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      const threshold = isHome ? 88 : 24;
-      setScrolled(window.scrollY > threshold);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className={`site-header${isHome ? " is-home" : ""}${scrolled ? " is-scrolled" : ""}`}>
-      <div className="container header-inner">
-        <Link className="brand-lockup" href="/">
-          {isHome ? null : <span className="brand-mark">{settings.logoText}</span>}
-          <div className="brand-copy">
-            <strong>{brandTitle}</strong>
-            {isHome ? null : <small>{settings.siteTagline}</small>}
-          </div>
+    <header className={`editorial-header${scrolled ? " is-scrolled" : ""}`}>
+      <div className="container editorial-header-inner">
+        <Link className="editorial-brand" href="/">
+          <span className="editorial-brand-mark">{settings.logoText}</span>
+          <span className="editorial-brand-copy">
+            <strong>{settings.siteTitle}</strong>
+            <small>{settings.siteTagline}</small>
+          </span>
         </Link>
-        <nav aria-label="Primary navigation" className="site-nav">
-          {settings.navItems.map((item) => (
-            <Link href={item.href} key={`${item.label}-${item.href}`}>
-              {item.label}
-            </Link>
-          ))}
+
+        <nav aria-label="Primary navigation" className="editorial-nav">
+          {settings.navItems.map((item) => {
+            const active = isActive(pathname, item.href);
+
+            return (
+              <Link
+                className={`editorial-nav-link${active ? " is-active" : ""}`}
+                href={item.href}
+                key={`${item.label}-${item.href}`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
-        <div className="header-actions">
-          <Link className="header-cta" href="/contact">
-            联系
+
+        <div className="editorial-header-cta-wrap">
+          <Link className="editorial-button editorial-button-primary" href="/contact">
+            发起联系
           </Link>
         </div>
       </div>

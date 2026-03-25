@@ -1,4 +1,4 @@
-import { SectionTitle } from "@/components/section-title";
+import { EditorialPageHero } from "@/components/editorial-page-hero";
 import { VisualEditRegion } from "@/components/visual-edit-region";
 import { getMediaPageData } from "@/lib/payload/api";
 
@@ -19,46 +19,43 @@ export default async function MediaPage() {
 
   return (
     <>
-      <section className="section page-masthead">
-        <VisualEditRegion adminHref="/cms/admin/globals/mediaPage" label="媒体页首屏" previewHref="/media">
-          <div className="container">
-            <p className="eyebrow">媒体</p>
-            <h1 className="page-title">{mediaPage.heroTitle}</h1>
-            <p className="page-intro">{mediaPage.intro}</p>
+      <VisualEditRegion adminHref="/cms/admin/globals/mediaPage" label="媒体页首屏" previewHref="/media">
+        <EditorialPageHero
+          eyebrow="Media"
+          title={mediaPage.heroTitle}
+          intro={mediaPage.intro}
+          aside={
+            <div className="editorial-page-hero-note">
+              <span>Editorial archive</span>
+              <p>把媒体代表作做成清晰、可回看的长期档案，而不是一次性曝光列表。</p>
+            </div>
+          }
+        />
+      </VisualEditRegion>
+
+      <section className="editorial-section">
+        <VisualEditRegion adminHref="/cms/admin/collections/mediaArticles" label="媒体文章列表" previewHref="/media">
+          <div className="container editorial-article-stream">
+            {articles.map((article) => (
+              <article className="editorial-article-row" key={article._id}>
+                <div className="editorial-article-meta">
+                  <span>{article.publication}</span>
+                  <span>{formatDate(article.publishedAt)}</span>
+                  <span>{article.category}</span>
+                </div>
+                <div className="editorial-article-copy">
+                  <h2>{article.title}</h2>
+                  <p>{article.excerpt}</p>
+                </div>
+                <div className="editorial-article-action">
+                  <a href={article.url} rel="noreferrer" target="_blank">
+                    打开原文
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </VisualEditRegion>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <VisualEditRegion adminHref="/cms/admin/globals/mediaPage" label="媒体页说明区" previewHref="/media">
-            <SectionTitle
-              eyebrow="代表作品"
-              title="各大媒体的代表作统一沉淀到这一页，后台可以随时发布、编辑、删除和调整露出顺序。"
-            />
-          </VisualEditRegion>
-
-          <VisualEditRegion adminHref="/cms/admin/collections/mediaArticles" label="媒体文章列表" previewHref="/media">
-            <div className="media-grid">
-              {articles.map((article) => (
-                <article className="article-card" key={article._id}>
-                  <div className="article-meta">
-                    <span>{article.category}</span>
-                    <span>{formatDate(article.publishedAt)}</span>
-                  </div>
-                  <h3>{article.title}</h3>
-                  <p>{article.excerpt}</p>
-                  <div className="article-footer">
-                    <span>{article.publication}</span>
-                    <a href={article.url} rel="noreferrer" target="_blank">
-                      打开原文
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </VisualEditRegion>
-        </div>
       </section>
     </>
   );

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "虎诉 Tiger Legal",
     template: "%s | 虎诉 Tiger Legal",
   },
-  description: "Next.js + Payload CMS 构建的个人官网与内容运营后台。",
+  description: "以 Next.js 与 Payload CMS 构建的个人官网与内容管理系统。",
 };
 
 export default async function SiteLayout({
@@ -28,13 +28,13 @@ export default async function SiteLayout({
   return (
     <html lang="zh-CN">
       <body>
-        <div className="site-frame">
+        <div className="site-frame editorial-site">
           <AnalyticsTracker />
           {isPreview ? <div className="site-preview-badge">草稿预览中</div> : null}
           <VisualEditRegion adminHref="/cms/admin/globals/siteSettings" label="站点导航与品牌信息">
             <SiteHeader settings={settings} />
           </VisualEditRegion>
-          <main className="main-content">{children}</main>
+          <main className="main-content editorial-main">{children}</main>
           <VisualEditRegion adminHref="/cms/admin/globals/siteSettings" label="页脚与站点信息">
             <SiteFooter settings={settings} />
           </VisualEditRegion>
