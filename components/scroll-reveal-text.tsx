@@ -20,10 +20,10 @@ function clamp(value: number, min: number, max: number) {
 }
 
 export function ScrollRevealText({
-  activeAlpha = 0.95,
+  activeAlpha = 1.0,
   as = "p",
   className,
-  mutedAlpha = 0.16,
+  mutedAlpha = 0.15,
   progress,
   rangeEnd = 1,
   rangeStart = 0,
@@ -53,7 +53,7 @@ export function ScrollRevealText({
             key={`${character}-${index}`}
             style={
               {
-                "--char-alpha": alpha.toFixed(3),
+                "--char-opacity": alpha.toFixed(3),
                 "--char-transition": `${transitionMs}ms`,
               } as CSSProperties
             }

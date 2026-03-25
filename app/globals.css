@@ -1935,9 +1935,9 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: end;
-  gap: clamp(1.5rem, 2.8vw, 2.8rem);
-  padding-top: clamp(8rem, 11vw, 9rem);
-  padding-bottom: clamp(3.2rem, 4.4vw, 4.6rem);
+  gap: clamp(1rem, 2vw, 2rem);
+  padding-top: clamp(5rem, 8vw, 7rem);
+  padding-bottom: clamp(2.5rem, 3.5vw, 3.5rem);
 }
 
 .hero-story {
@@ -2409,11 +2409,11 @@ body {
 }
 
 .scroll-reveal-char {
-  display: inline;
-  color: rgba(255, 255, 255, var(--char-alpha, 0.16));
-  transition:
-    color var(--char-transition, 280ms) ease,
-    opacity var(--char-transition, 280ms) ease;
+  display: inline-block;
+  position: relative;
+  color: #ffffff;
+  opacity: var(--char-opacity, 0.15);
+  transition: opacity var(--char-transition, 280ms) ease;
 }
 
 .value-footnotes {
@@ -2938,8 +2938,8 @@ body {
   }
 
   .hero-stage {
-    padding-top: clamp(9rem, 20vw, 10rem);
-    padding-bottom: clamp(5.25rem, 13vw, 7rem);
+    padding-top: clamp(5rem, 14vw, 7rem);
+    padding-bottom: clamp(3rem, 8vw, 4.5rem);
   }
 
   .credibility-metric {
@@ -3045,8 +3045,8 @@ body {
   }
 
   .hero-stage {
-    padding-top: clamp(8rem, 23vw, 8.75rem);
-    padding-bottom: clamp(4.25rem, 14vw, 5.5rem);
+    padding-top: clamp(4rem, 16vw, 6rem);
+    padding-bottom: clamp(2.5rem, 8vw, 3.5rem);
   }
 
   .hero-proof-metrics,

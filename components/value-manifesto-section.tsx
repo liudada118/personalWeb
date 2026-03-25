@@ -101,10 +101,10 @@ export function ValueManifestoSection({
                 transitionMs={260}
               />
               <ScrollRevealText
-                activeAlpha={0.72}
+                activeAlpha={0.85}
                 as="p"
                 className="value-principle-body"
-                mutedAlpha={0.12}
+                mutedAlpha={0.15}
                 progress={progress}
                 rangeEnd={segmentEnd}
                 rangeStart={bodyStart}
