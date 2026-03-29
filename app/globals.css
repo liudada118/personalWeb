@@ -2400,7 +2400,7 @@ body {
 
 .scroll-reveal-char {
   display: inline;
-  color: rgba(255, 255, 255, var(--char-alpha, 0.16));
+  color: rgba(255, 255, 255, var(--char-alpha, 0));
   transition:
     color var(--char-transition, 280ms) ease,
     opacity var(--char-transition, 280ms) ease;
@@ -3498,8 +3498,8 @@ body {
 /* ===== Text Reveal Section ===== */
 .text-reveal-section {
   padding: clamp(80px, 12vw, 140px) 0;
-  background: linear-gradient(180deg, #171812 0%, #0a0c0d 50%, #161611 100%);
-  color: var(--color-primary-foreground);
+  background: var(--bg);
+  color: var(--ink);
 }
 
 .text-reveal-container {
