@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from "react";
 
+import { VisualEditableText } from "@/components/visual-editable-text";
 import type { ScheduleItem } from "@/lib/types";
 
+type ScheduleCarouselEditConfig = {
+  adminHref: string;
+  globalSlug: string;
+  previewHref: string;
+};
+
 type ScheduleCarouselProps = {
+  editConfig?: ScheduleCarouselEditConfig;
   items: ScheduleItem[];
 };
 
@@ -15,7 +23,7 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
-export function ScheduleCarousel({ items }: ScheduleCarouselProps) {
+export function ScheduleCarousel({ editConfig, items }: ScheduleCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -54,11 +62,54 @@ export function ScheduleCarousel({ items }: ScheduleCarouselProps) {
         <strong>{formatDate(activeItem.date)}</strong>
       </div>
       <div className="schedule-body">
-        <h3>{activeItem.title}</h3>
-        <p>{activeItem.description}</p>
+        <h3>
+          {editConfig ? (
+            <VisualEditableText
+              adminHref={editConfig.adminHref}
+              as="span"
+              fieldPath={`scheduleItems.${activeIndex}.title`}
+              globalSlug={editConfig.globalSlug}
+              label={`日程标题 ${activeIndex + 1}`}
+              previewHref={editConfig.previewHref}
+              value={activeItem.title}
+            />
+          ) : (
+            activeItem.title
+          )}
+        </h3>
+        <p>
+          {editConfig ? (
+            <VisualEditableText
+              adminHref={editConfig.adminHref}
+              as="span"
+              fieldPath={`scheduleItems.${activeIndex}.description`}
+              globalSlug={editConfig.globalSlug}
+              label={`日程说明 ${activeIndex + 1}`}
+              multiline
+              previewHref={editConfig.previewHref}
+              value={activeItem.description}
+            />
+          ) : (
+            activeItem.description
+          )}
+        </p>
       </div>
       <div className="schedule-meta">
-        <span>{activeItem.venue}</span>
+        <span>
+          {editConfig ? (
+            <VisualEditableText
+              adminHref={editConfig.adminHref}
+              as="span"
+              fieldPath={`scheduleItems.${activeIndex}.venue`}
+              globalSlug={editConfig.globalSlug}
+              label={`日程地点 ${activeIndex + 1}`}
+              previewHref={editConfig.previewHref}
+              value={activeItem.venue}
+            />
+          ) : (
+            activeItem.venue
+          )}
+        </span>
         <a href={activeItem.href} rel="noreferrer" target="_blank">
           查看安排
         </a>

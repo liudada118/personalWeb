@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { VisualEditableText } from "@/components/visual-editable-text";
 import type { CaseStudy } from "@/lib/types";
 
 type CaseCarouselProps = {
@@ -45,14 +46,70 @@ export function CaseCarousel({ items }: CaseCarouselProps) {
     >
       <div className="case-current">
         <div className="case-badge-row">
-          <span>{activeItem.category}</span>
-          <span>{activeItem.year}</span>
+          <span>
+            <VisualEditableText
+              adminHref="/cms/admin/collections/caseStudies"
+              as="span"
+              collectionSlug="caseStudies"
+              documentId={activeItem._id}
+              fieldPath="category"
+              label="案例分类"
+              previewHref="/"
+              value={activeItem.category}
+            />
+          </span>
+          <span>
+            <VisualEditableText
+              adminHref="/cms/admin/collections/caseStudies"
+              as="span"
+              collectionSlug="caseStudies"
+              documentId={activeItem._id}
+              fieldPath="year"
+              label="案例年份"
+              previewHref="/"
+              value={activeItem.year}
+            />
+          </span>
         </div>
-        <h3>{activeItem.title}</h3>
-        <p>{activeItem.summary}</p>
+        <h3>
+          <VisualEditableText
+            adminHref="/cms/admin/collections/caseStudies"
+            as="span"
+            collectionSlug="caseStudies"
+            documentId={activeItem._id}
+            fieldPath="title"
+            label="案例标题"
+            previewHref="/"
+            value={activeItem.title}
+          />
+        </h3>
+        <p>
+          <VisualEditableText
+            adminHref="/cms/admin/collections/caseStudies"
+            as="span"
+            collectionSlug="caseStudies"
+            documentId={activeItem._id}
+            fieldPath="summary"
+            label="案例摘要"
+            multiline
+            previewHref="/"
+            value={activeItem.summary}
+          />
+        </p>
         <ul className="simple-list compact-list">
-          {activeItem.highlights.map((item) => (
-            <li key={item}>{item}</li>
+          {activeItem.highlights.map((item, index) => (
+            <li key={item}>
+              <VisualEditableText
+                adminHref="/cms/admin/collections/caseStudies"
+                as="span"
+                collectionSlug="caseStudies"
+                documentId={activeItem._id}
+                fieldPath={`highlights.${index}.value`}
+                label={`案例亮点 ${index + 1}`}
+                previewHref="/"
+                value={item}
+              />
+            </li>
           ))}
         </ul>
         <Link href={`/cases/${activeItem.slug}`}>查看案例详情</Link>
@@ -66,7 +123,18 @@ export function CaseCarousel({ items }: CaseCarouselProps) {
             type="button"
           >
             <span>{item.year}</span>
-            <strong>{item.title}</strong>
+            <strong>
+              <VisualEditableText
+                adminHref="/cms/admin/collections/caseStudies"
+                as="span"
+                collectionSlug="caseStudies"
+                documentId={item._id}
+                fieldPath="title"
+                label="案例导航标题"
+                previewHref="/"
+                value={item.title}
+              />
+            </strong>
           </button>
         ))}
       </div>

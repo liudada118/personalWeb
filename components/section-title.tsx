@@ -1,7 +1,7 @@
 type SectionTitleProps = {
-  eyebrow: string;
-  title: string;
-  description?: string;
+  eyebrow: React.ReactNode;
+  title: React.ReactNode;
+  description?: React.ReactNode;
 };
 
 export function SectionTitle({ eyebrow, title, description }: SectionTitleProps) {

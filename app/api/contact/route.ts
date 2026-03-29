@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
   if (!payload?.name || !payload.email || !payload.reason || !payload.message) {
     return NextResponse.json(
-      { ok: false, message: "请填写姓名、邮箱、来意和详细说明。" },
+      { ok: false, message: "Please complete your name, email, enquiry type, and message." },
       { status: 400 },
     );
   }
@@ -31,6 +31,6 @@ export async function POST(request: Request) {
 
   return NextResponse.json({
     ok: true,
-    message: "提交成功，我们会尽快与你联系。",
+    message: "Message received. We will get back to you soon.",
   });
 }

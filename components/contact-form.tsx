@@ -9,8 +9,8 @@ type ContactFormProps = {
 };
 
 type FormState = {
-  name: string;
-  organization: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   reason: string;
@@ -18,8 +18,8 @@ type FormState = {
 };
 
 const initialState: FormState = {
-  name: "",
-  organization: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   reason: "",
@@ -48,13 +48,20 @@ export function ContactForm({ reasons }: ContactFormProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: `${form.firstName} ${form.lastName}`.trim(),
+          organization: "",
+          email: form.email,
+          phone: form.phone,
+          reason: form.reason,
+          message: form.message,
+        }),
       });
 
       const data = (await response.json()) as { ok: boolean; message: string };
 
       if (!response.ok || !data.ok) {
-        throw new Error(data.message || "提交失败");
+        throw new Error(data.message || "Submission failed.");
       }
 
       setForm({
@@ -65,7 +72,7 @@ export function ContactForm({ reasons }: ContactFormProps) {
     } catch (error) {
       setStatus({
         type: "error",
-        message: error instanceof Error ? error.message : "提交失败，请稍后再试。",
+        message: error instanceof Error ? error.message : "Submission failed. Please try again.",
       });
     } finally {
       setSubmitting(false);
@@ -73,28 +80,32 @@ export function ContactForm({ reasons }: ContactFormProps) {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form sidney-contact-form" onSubmit={handleSubmit}>
       <div className="form-grid">
         <label>
-          <span>姓名</span>
+          <span>First name</span>
           <input
-            onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+            autoComplete="given-name"
+            onChange={(event) => setForm((current) => ({ ...current, firstName: event.target.value }))}
             required
             type="text"
-            value={form.name}
+            value={form.firstName}
           />
         </label>
         <label>
-          <span>机构</span>
+          <span>Last name</span>
           <input
-            onChange={(event) => setForm((current) => ({ ...current, organization: event.target.value }))}
+            autoComplete="family-name"
+            onChange={(event) => setForm((current) => ({ ...current, lastName: event.target.value }))}
+            required
             type="text"
-            value={form.organization}
+            value={form.lastName}
           />
         </label>
         <label>
-          <span>邮箱</span>
+          <span>Email</span>
           <input
+            autoComplete="email"
             onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
             required
             type="email"
@@ -102,8 +113,9 @@ export function ContactForm({ reasons }: ContactFormProps) {
           />
         </label>
         <label>
-          <span>电话</span>
+          <span>Phone</span>
           <input
+            autoComplete="tel"
             onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
             type="tel"
             value={form.phone}
@@ -111,7 +123,7 @@ export function ContactForm({ reasons }: ContactFormProps) {
         </label>
       </div>
       <label>
-        <span>来意</span>
+        <span>Enquiry type</span>
         <select
           onChange={(event) => setForm((current) => ({ ...current, reason: event.target.value }))}
           value={form.reason}
@@ -124,16 +136,17 @@ export function ContactForm({ reasons }: ContactFormProps) {
         </select>
       </label>
       <label>
-        <span>详细说明</span>
+        <span>Message</span>
         <textarea
           onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
+          placeholder="Tell us a bit about your event, team or question."
           required
           rows={6}
           value={form.message}
         />
       </label>
       <button className="button-primary" disabled={submitting} type="submit">
-        {submitting ? "提交中..." : "提交信息"}
+        {submitting ? "Sending..." : "Send message"}
       </button>
       {status.message ? <p className={`form-status ${status.type}`}>{status.message}</p> : null}
     </form>

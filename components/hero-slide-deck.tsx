@@ -2,13 +2,21 @@
 
 import { useEffect, useState } from "react";
 
+import { VisualEditableText } from "@/components/visual-editable-text";
 import type { HeroSlide } from "@/lib/types";
 
+type HeroSlideDeckEditConfig = {
+  adminHref: string;
+  globalSlug: string;
+  previewHref: string;
+};
+
 type HeroSlideDeckProps = {
+  editConfig?: HeroSlideDeckEditConfig;
   slides: HeroSlide[];
 };
 
-export function HeroSlideDeck({ slides }: HeroSlideDeckProps) {
+export function HeroSlideDeck({ editConfig, slides }: HeroSlideDeckProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -48,13 +56,56 @@ export function HeroSlideDeck({ slides }: HeroSlideDeckProps) {
       />
       <div className="rotator-copy">
         <div className="rotator-head">
-          <span>{activeSlide.eyebrow}</span>
+          <span>
+            {editConfig ? (
+              <VisualEditableText
+                adminHref={editConfig.adminHref}
+                as="span"
+                fieldPath={`heroSlides.${activeIndex}.eyebrow`}
+                globalSlug={editConfig.globalSlug}
+                label={`轮播 Eyebrow ${activeIndex + 1}`}
+                previewHref={editConfig.previewHref}
+                value={activeSlide.eyebrow}
+              />
+            ) : (
+              activeSlide.eyebrow
+            )}
+          </span>
           <strong>
             {String(activeIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
           </strong>
         </div>
-        <h3>{activeSlide.title}</h3>
-        <p>{activeSlide.description}</p>
+        <h3>
+          {editConfig ? (
+            <VisualEditableText
+              adminHref={editConfig.adminHref}
+              as="span"
+              fieldPath={`heroSlides.${activeIndex}.title`}
+              globalSlug={editConfig.globalSlug}
+              label={`轮播标题 ${activeIndex + 1}`}
+              previewHref={editConfig.previewHref}
+              value={activeSlide.title}
+            />
+          ) : (
+            activeSlide.title
+          )}
+        </h3>
+        <p>
+          {editConfig ? (
+            <VisualEditableText
+              adminHref={editConfig.adminHref}
+              as="span"
+              fieldPath={`heroSlides.${activeIndex}.description`}
+              globalSlug={editConfig.globalSlug}
+              label={`轮播说明 ${activeIndex + 1}`}
+              multiline
+              previewHref={editConfig.previewHref}
+              value={activeSlide.description}
+            />
+          ) : (
+            activeSlide.description
+          )}
+        </p>
         <a href={activeSlide.href} rel="noreferrer" target="_blank">
           查看详情
         </a>

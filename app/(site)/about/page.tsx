@@ -1,103 +1,56 @@
-import Link from "next/link";
-
-import { SectionTitle } from "@/components/section-title";
-import { VisualEditRegion } from "@/components/visual-edit-region";
-import { getAboutPageData } from "@/lib/payload/api";
+import { RevealSection } from "@/components/reveal-section";
+import { SidneyInvitationBand, SidneyLogoBand, SidneyPageHero } from "@/components/sidney-site-sections";
+import { sidneySite } from "@/lib/sidney-site";
 
 export const metadata = {
-  title: "个人介绍",
+  title: "About",
 };
 
-export default async function AboutPage() {
-  const { aboutPage, caseStudies } = await getAboutPageData();
-
+export default function AboutPage() {
   return (
     <>
-      <section className="section page-masthead">
-        <VisualEditRegion adminHref="/cms/admin/globals/aboutPage" label="个人介绍页首屏" previewHref="/about">
-          <div className="container">
-            <p className="eyebrow">个人介绍</p>
-            <h1 className="page-title">{aboutPage.heroTitle}</h1>
-            <p className="page-intro">{aboutPage.intro}</p>
-          </div>
-        </VisualEditRegion>
-      </section>
+      <SidneyPageHero
+        actions={[{ label: "Work with Sidney", href: "/work-with-sidney" }]}
+        description={sidneySite.about.summary}
+        eyebrow="About"
+        title={sidneySite.about.title}
+      />
 
-      <section className="section">
-        <VisualEditRegion adminHref="/cms/admin/globals/aboutPage" label="简历信息模块" previewHref="/about">
-          <div className="container resume-grid">
-            {aboutPage.resumeBlocks.map((block) => (
-              <article className="content-panel" key={block.title}>
-                <h2>{block.title}</h2>
-                <ul className="simple-list">
-                  {block.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+      <section className="sidney-stats-section">
+        <div className="container">
+          <RevealSection className="sidney-stats-grid">
+            {sidneySite.about.stats.map((stat, index) => (
+              <article className={`sidney-stat-card reveal-item delay-${Math.min(index + 1, 4)}`} key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
               </article>
             ))}
-          </div>
-        </VisualEditRegion>
-      </section>
-
-      <section className="section">
-        <VisualEditRegion adminHref="/cms/admin/globals/aboutPage" label="虎诉与新媒体介绍" previewHref="/about">
-          <div className="container split-layout">
-            <div className="body-copy">
-              <SectionTitle eyebrow="虎诉介绍" title="官网与内容矩阵之间，需要一个中心叙事。" />
-              {aboutPage.husuIntro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="body-copy">
-              <SectionTitle eyebrow="新媒体简介" title="媒体平台是入口，官网负责沉淀和组织。" />
-              {aboutPage.mediaIntro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        </VisualEditRegion>
-      </section>
-
-      <section className="section">
-        <div className="container split-layout">
-          <VisualEditRegion adminHref="/cms/admin/globals/aboutPage" label="获奖介绍模块" previewHref="/about">
-            <div>
-              <SectionTitle eyebrow="获奖介绍" title="奖项信息以时间轴式卡片呈现，清晰但不过度炫示。" />
-              <div className="timeline-panel">
-                {aboutPage.awards.map((award) => (
-                  <article className="timeline-item timeline-wide" key={`${award.year}-${award.title}`}>
-                    <span>{award.year}</span>
-                    <div>
-                      <strong>{award.title}</strong>
-                      <p>{award.issuer}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </VisualEditRegion>
-
-          <VisualEditRegion adminHref="/cms/admin/globals/aboutPage" label="关于页代表案例模块" previewHref="/about">
-            <div>
-              <SectionTitle eyebrow="代表案例" title="个人介绍页顺带承接部分代表案例，帮助履历与项目形成连接。" />
-              <div className="stack-grid">
-                {caseStudies.slice(0, 3).map((item) => (
-                  <article className="list-card" key={item._id}>
-                    <div className="list-card-meta">
-                      <span>{item.category}</span>
-                      <span>{item.year}</span>
-                    </div>
-                    <h3>{item.title}</h3>
-                    <p>{item.summary}</p>
-                    <Link href={`/cases/${item.slug}`}>查看案例</Link>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </VisualEditRegion>
+          </RevealSection>
         </div>
       </section>
+
+      <section className="sidney-copy-section">
+        <div className="container">
+          <RevealSection className="sidney-two-column">
+            <div className="sidney-prose reveal-item delay-1">
+              {sidneySite.about.biography.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <aside className="sidney-side-panel reveal-item delay-3">
+              <p className="eyebrow">Highlights</p>
+              <ul className="simple-list">
+                {sidneySite.about.recognitions.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </aside>
+          </RevealSection>
+        </div>
+      </section>
+
+      <SidneyLogoBand />
+      <SidneyInvitationBand />
     </>
   );
 }

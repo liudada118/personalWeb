@@ -10,6 +10,7 @@ export { ScheduleCarousel } from "./schedule-carousel";
 export { SectionTitle } from "./section-title";
 export { ValueManifestoSection } from "./value-manifesto-section";
 export { VisualEditRegion } from "./visual-edit-region";
+export { VisualEditableText } from "./visual-editable-text";
 export { SiteHeader } from "./site-header";
 export { SiteFooter } from "./site-footer";
 export { ContactForm } from "./contact-form";
