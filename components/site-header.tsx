@@ -19,12 +19,16 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className={`sidney-header${scrolled ? " is-scrolled" : ""}`}>
-      <div className="container sidney-header-shell">
-        <Link aria-label="Sidney Dekker home" className="sidney-brand" href="/">
-          <img alt="Sidney Dekker" className="sidney-brand-logo" src={sidneySite.brand.logo} />
+    <header className={`site-header${pathname === "/" ? " is-home" : ""}${scrolled ? " is-scrolled" : ""}`}>
+      <div className="container header-inner">
+        <Link aria-label="Sidney Dekker home" className="brand-lockup" href="/">
+          <div className="brand-mark">SD</div>
+          <div className="brand-copy">
+            <strong>{sidneySite.brand.title}</strong>
+            <small>{sidneySite.brand.tagline}</small>
+          </div>
         </Link>
-        <nav aria-label="Primary navigation" className="sidney-nav">
+        <nav aria-label="Primary navigation" className="site-nav">
           {sidneySite.nav.map((item) => {
             const active = pathname === item.href;
 
@@ -35,7 +39,7 @@ export function SiteHeader() {
             );
           })}
         </nav>
-        <Link className="sidney-header-cta" href="/contact">
+        <Link className="header-cta" href="/contact">
           Contact
         </Link>
       </div>
