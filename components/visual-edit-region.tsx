@@ -36,27 +36,8 @@ export function VisualEditRegion({ adminHref, children, label, previewHref }: Vi
     );
   }
 
-  function handleRegionClick(event: React.MouseEvent<HTMLDivElement>) {
-    if (!visualEditorEnabled) {
-      return;
-    }
-
-    const target = event.target;
-
-    if (!(target instanceof HTMLElement) || target.closest(".visual-edit-handle")) {
-      return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-    handleEdit();
-  }
-
   return (
-    <div
-      className={`visual-edit-region${visualEditorEnabled ? " is-enabled" : ""}`}
-      onClickCapture={handleRegionClick}
-    >
+    <div className={`visual-edit-region${visualEditorEnabled ? " is-enabled" : ""}`}>
       {visualEditorEnabled ? (
         <button
           aria-label={`编辑${label}`}

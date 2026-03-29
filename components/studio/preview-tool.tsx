@@ -31,9 +31,10 @@ export function PreviewTool({
   onActiveRouteChange,
   onSelectVisualTarget,
 }: PreviewToolProps) {
-  const [autoRefresh, setAutoRefresh] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(() => !onSelectVisualTarget);
   const [error, setError] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
+  const [inlineEditingActive, setInlineEditingActive] = useState(false);
   const [internalRoute, setInternalRoute] = useState(previewRoutes[0].href);
   const [loading, setLoading] = useState(true);
   const [previewToken, setPreviewToken] = useState("");
@@ -68,7 +69,7 @@ export function PreviewTool({
         const payload = (await response.json().catch(() => null)) as PreviewSessionResponse | null;
 
         if (!response.ok || !payload?.previewToken) {
-          throw new Error(payload?.message || "无法开启草稿预览。");
+          throw new Error(payload?.message || "Unable to enable preview.");
         }
 
         if (!cancelled) {
@@ -80,7 +81,7 @@ export function PreviewTool({
         if (!cancelled) {
           setPreviewToken("");
           setExpiresAt("");
-          setError(issue instanceof Error ? issue.message : "无法开启草稿预览。");
+          setError(issue instanceof Error ? issue.message : "Unable to enable preview.");
         }
       } finally {
         if (!cancelled) {
@@ -97,7 +98,7 @@ export function PreviewTool({
   }, []);
 
   useEffect(() => {
-    if (!previewToken || !autoRefresh) {
+    if (!previewToken || !autoRefresh || inlineEditingActive) {
       return;
     }
 
@@ -106,7 +107,7 @@ export function PreviewTool({
     }, 2500);
 
     return () => window.clearInterval(timer);
-  }, [autoRefresh, previewToken]);
+  }, [autoRefresh, inlineEditingActive, previewToken]);
 
   useEffect(() => {
     if (!visualEditingEnabled) {
@@ -115,6 +116,17 @@ export function PreviewTool({
 
     function handleMessage(event: MessageEvent) {
       if (event.origin !== window.location.origin || !isVisualEditorMessage(event.data)) {
+        return;
+      }
+
+      if (event.data.type === "editing-state") {
+        setInlineEditingActive(event.data.active);
+
+        if (event.data.active && event.data.target) {
+          handleRouteChange(event.data.target.previewHref);
+          onSelectVisualTarget?.(event.data.target);
+        }
+
         return;
       }
 
@@ -163,39 +175,36 @@ export function PreviewTool({
   return (
     <div className={`cms-tool${compact ? " cms-tool-compact" : ""}`}>
       <div className="section-heading">
-        <p className="eyebrow">{compact ? "前台预览" : "页面预览"}</p>
-        <h2>
-          {compact
-            ? "在右侧页面上直接点区块，就能切回左侧对应编辑位。"
-            : "在后台编辑时，单独查看草稿页面，并通过前台区块把手直接跳转编辑。"}
-        </h2>
+        <p className="eyebrow">{compact ? "Preview" : "Page Preview"}</p>
+        <h2>{compact ? "Click and type inside the live preview." : "Draft preview with inline visual editing."}</h2>
         <p className="section-description">
-          {compact
-            ? "右侧是草稿预览，点“编辑此区域”后，左侧 Payload 编辑器会切到对应页面或内容集合。正式官网仍只显示已发布内容。"
-            : "这不是重型 page builder，而是更合理的 WordPress 风格可视化编辑：前台点选区域，后台继续负责字段、版本、草稿和发布。"}
+          The preview runs against Payload draft data. Inline edits save through the visual editing API and the left panel can still jump to the matching Payload screen.
         </p>
       </div>
 
       <div className="cms-toolbar">
         <button className={previewToken ? "is-active" : ""} disabled={loading} onClick={() => setRefreshSeed(Date.now())} type="button">
-          {loading ? "正在连接预览" : previewToken ? "草稿预览已连接" : "预览未连接"}
+          {loading ? "Connecting preview" : previewToken ? "Preview connected" : "Preview offline"}
         </button>
         <button className={autoRefresh ? "is-active" : ""} disabled={!previewToken || loading} onClick={() => setAutoRefresh((value) => !value)} type="button">
-          {autoRefresh ? "自动刷新：开" : "自动刷新：关"}
+          {autoRefresh ? "Auto refresh on" : "Auto refresh off"}
         </button>
         <button disabled={!previewToken || loading} onClick={() => setRefreshSeed(Date.now())} type="button">
-          立即刷新
+          Refresh now
         </button>
         <button disabled={!previewToken || loading} onClick={() => disablePreview().catch(() => setLoading(false))} type="button">
-          关闭预览
+          Stop preview
         </button>
       </div>
 
       {visualEditingEnabled ? (
-        <div className="cms-empty cms-visual-note">提示：预览页里的区块本身可以直接点，悬浮时还会出现“编辑此区域”把手。</div>
+        <div className="cms-empty cms-visual-note">
+          Click text to edit directly in preview. Hover a section to reveal the admin handle.
+          {inlineEditingActive ? " Auto refresh is paused while you type." : ""}
+        </div>
       ) : null}
 
-      {expiresAt ? <p className="section-description">本次预览有效期至：{new Date(expiresAt).toLocaleString("zh-CN")}</p> : null}
+      {expiresAt ? <p className="section-description">Preview session expires at {new Date(expiresAt).toLocaleString("zh-CN")}.</p> : null}
 
       {error ? <div className="cms-tool cms-empty">{error}</div> : null}
 
@@ -222,7 +231,7 @@ export function PreviewTool({
           />
         </div>
       ) : (
-        <div className="cms-tool cms-empty">登录后台后，这里会建立一个独立的草稿预览窗口。</div>
+        <div className="cms-tool cms-empty">Preview will appear here after the Payload admin session is detected.</div>
       )}
     </div>
   );

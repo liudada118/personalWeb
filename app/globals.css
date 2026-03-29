@@ -3165,14 +3165,14 @@ body {
 }
 
 .visual-edit-region.is-enabled {
-  cursor: pointer;
+  cursor: default;
 }
 
 .visual-edit-region.is-enabled::after {
   content: "";
   position: absolute;
-  inset: 8px;
-  border: 1px dashed transparent;
+  inset: 0;
+  border: 1px solid transparent;
   border-radius: calc(var(--radius-lg) + 2px);
   pointer-events: none;
   transition:
@@ -3183,15 +3183,15 @@ body {
 
 .visual-edit-region.is-enabled:hover::after,
 .visual-edit-region.is-enabled:focus-within::after {
-  border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
-  background: color-mix(in srgb, var(--color-primary) 3%, transparent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 7%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 36%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 7%, transparent);
 }
 
 .visual-edit-handle {
   position: absolute;
-  top: 24px;
-  left: 24px;
+  top: 18px;
+  left: 18px;
   z-index: 70;
   display: inline-flex;
   align-items: center;
@@ -3234,10 +3234,135 @@ body {
   background: color-mix(in srgb, white 92%, var(--color-surface) 8%);
 }
 
+.visual-editable-shell {
+  position: relative;
+  display: inline;
+  border-radius: 10px;
+}
+
+.visual-editable-shell.is-multiline {
+  line-height: inherit;
+}
+
+.visual-editable-text {
+  position: relative;
+  display: inline;
+  border-radius: 10px;
+  outline: none;
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.visual-editable-shell::after {
+  content: "";
+  position: absolute;
+  inset: -0.16em -0.18em;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  pointer-events: none;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.visual-editable-shell:hover::after,
+.visual-editable-shell:focus-within::after {
+  border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 9%, transparent);
+}
+
+.visual-editable-shell.is-editing::after {
+  border-color: color-mix(in srgb, var(--color-primary) 54%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.visual-editable-handle {
+  position: absolute;
+  top: -26px;
+  left: 0;
+  z-index: 85;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, white 95%, var(--color-surface) 5%);
+  color: var(--color-muted);
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.visual-editable-shell:hover > .visual-editable-handle,
+.visual-editable-shell:focus-within > .visual-editable-handle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.visual-editable-handle-saving {
+  color: var(--color-primary);
+}
+
+.visual-editable-handle-error {
+  color: #9f3d35;
+}
+
+.visual-edit-toolbar {
+  position: fixed;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(31, 31, 27, 0.08);
+  border-radius: 14px;
+  background: rgba(22, 27, 24, 0.94);
+  box-shadow: 0 18px 40px rgba(10, 12, 13, 0.18);
+  transform: translate(-50%, -100%);
+  backdrop-filter: blur(16px);
+}
+
+.visual-edit-toolbar button {
+  min-width: 40px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #f7f5f0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.visual-edit-toolbar button:hover {
+  background: rgba(247, 245, 240, 0.14);
+}
+
 @media (max-width: 860px) {
   .visual-edit-handle {
     top: 16px;
     left: 16px;
+  }
+
+  .visual-edit-toolbar {
+    max-width: calc(100vw - 24px);
   }
 }
 

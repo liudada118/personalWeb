@@ -588,5 +588,5 @@ export function getBookBySlug(slug: string) {
 export function getFeaturedBooks() {
   return sidneySite.home.featuredBookSlugs
     .map((slug) => getBookBySlug(slug))
-    .filter((book): book is BookEntry => Boolean(book));
+    .filter((book): book is NonNullable<ReturnType<typeof getBookBySlug>> => book !== null);
 }

@@ -4,6 +4,7 @@ import { RevealSection } from "@/components/reveal-section";
 import { SidneyInvitationBand, SidneyLogoBand } from "@/components/sidney-site-sections";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
 import { TextRevealSection } from "@/components/text-reveal-section";
+import { VideoHeroSection } from "@/components/video-hero-section";
 import { sidneySite, getFeaturedBooks } from "@/lib/sidney-site";
 
 export default function HomePage() {
@@ -11,27 +12,19 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="sidney-home-hero">
-        <div className="sidney-home-hero-media">
-          <img alt="Sidney Dekker speaking" src={sidneySite.home.heroImage} />
-          <div className="sidney-home-hero-overlay" />
-        </div>
-        <div className="container sidney-home-hero-shell">
-          <RevealSection className="sidney-home-hero-content">
-            <p className="eyebrow reveal-item delay-1">Safety, resilience and just culture</p>
-            <h1 className="sidney-home-title reveal-item delay-2">{sidneySite.home.heroTitle}</h1>
-            <p className="sidney-home-summary reveal-item delay-3">{sidneySite.home.heroSummary}</p>
-            <div className="sidney-inline-actions reveal-item delay-4">
-              <Link className="button-primary" href={sidneySite.home.heroCta.href}>
-                {sidneySite.home.heroCta.label}
-              </Link>
-              <Link className="button-secondary" href="/books">
-                Explore books
-              </Link>
-            </div>
-          </RevealSection>
-        </div>
-      </section>
+      <VideoHeroSection
+        align="left"
+        className="sidney-home-hero"
+        ctaHref={sidneySite.home.heroCta.href}
+        ctaLabel={sidneySite.home.heroCta.label}
+        eyebrow="Safety, resilience and just culture"
+        posterUrl={sidneySite.home.heroImage}
+        secondaryCtaHref="/books"
+        secondaryCtaLabel="Explore books"
+        subtitle={sidneySite.home.heroSummary}
+        title={sidneySite.home.heroTitle}
+        titleTag="h1"
+      />
 
       <section className="sidney-stats-section">
         <div className="container">

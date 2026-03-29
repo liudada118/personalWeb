@@ -1,5 +1,6 @@
 import { SectionTitle } from "@/components/section-title";
 import { VisualEditRegion } from "@/components/visual-edit-region";
+import { VisualEditableText } from "@/components/visual-editable-text";
 import { getMediaPageData } from "@/lib/payload/api";
 
 export const metadata = {
@@ -23,8 +24,28 @@ export default async function MediaPage() {
         <VisualEditRegion adminHref="/cms/admin/globals/mediaPage" label="媒体页首屏" previewHref="/media">
           <div className="container">
             <p className="eyebrow">媒体</p>
-            <h1 className="page-title">{mediaPage.heroTitle}</h1>
-            <p className="page-intro">{mediaPage.intro}</p>
+            <h1 className="page-title">
+              <VisualEditableText
+                adminHref="/cms/admin/globals/mediaPage"
+                fieldPath="heroTitle"
+                globalSlug="mediaPage"
+                label="Media hero title"
+                multiline
+                previewHref="/media"
+                value={mediaPage.heroTitle}
+              />
+            </h1>
+            <p className="page-intro">
+              <VisualEditableText
+                adminHref="/cms/admin/globals/mediaPage"
+                fieldPath="intro"
+                globalSlug="mediaPage"
+                label="Media intro"
+                multiline
+                previewHref="/media"
+                value={mediaPage.intro}
+              />
+            </p>
           </div>
         </VisualEditRegion>
       </section>
@@ -34,7 +55,7 @@ export default async function MediaPage() {
           <VisualEditRegion adminHref="/cms/admin/globals/mediaPage" label="媒体页说明区" previewHref="/media">
             <SectionTitle
               eyebrow="代表作品"
-              title="各大媒体的代表作统一沉淀到这一页，后台可以随时发布、编辑、删除和调整露出顺序。"
+              title="各个平台的媒体露出都集中在这里，支持直接在预览中改标题和摘要。"
             />
           </VisualEditRegion>
 
@@ -43,13 +64,54 @@ export default async function MediaPage() {
               {articles.map((article) => (
                 <article className="article-card" key={article._id}>
                   <div className="article-meta">
-                    <span>{article.category}</span>
+                    <span>
+                      <VisualEditableText
+                        adminHref="/cms/admin/collections/mediaArticles"
+                        collectionSlug="mediaArticles"
+                        documentId={article._id}
+                        fieldPath="category"
+                        label="Media article category"
+                        previewHref="/media"
+                        value={article.category}
+                      />
+                    </span>
                     <span>{formatDate(article.publishedAt)}</span>
                   </div>
-                  <h3>{article.title}</h3>
-                  <p>{article.excerpt}</p>
+                  <h3>
+                    <VisualEditableText
+                      adminHref="/cms/admin/collections/mediaArticles"
+                      collectionSlug="mediaArticles"
+                      documentId={article._id}
+                      fieldPath="title"
+                      label="Media article title"
+                      previewHref="/media"
+                      value={article.title}
+                    />
+                  </h3>
+                  <p>
+                    <VisualEditableText
+                      adminHref="/cms/admin/collections/mediaArticles"
+                      collectionSlug="mediaArticles"
+                      documentId={article._id}
+                      fieldPath="excerpt"
+                      label="Media article excerpt"
+                      multiline
+                      previewHref="/media"
+                      value={article.excerpt}
+                    />
+                  </p>
                   <div className="article-footer">
-                    <span>{article.publication}</span>
+                    <span>
+                      <VisualEditableText
+                        adminHref="/cms/admin/collections/mediaArticles"
+                        collectionSlug="mediaArticles"
+                        documentId={article._id}
+                        fieldPath="publication"
+                        label="Media article publication"
+                        previewHref="/media"
+                        value={article.publication}
+                      />
+                    </span>
                     <a href={article.url} rel="noreferrer" target="_blank">
                       打开原文
                     </a>

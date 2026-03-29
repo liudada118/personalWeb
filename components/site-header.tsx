@@ -9,6 +9,7 @@ import { sidneySite } from "@/lib/sidney-site";
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -19,7 +20,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className={`sidney-header${scrolled ? " is-scrolled" : ""}`}>
+    <header className={`sidney-header${isHome ? " is-home" : ""}${scrolled ? " is-scrolled" : ""}`}>
       <div className="container sidney-header-shell">
         <Link aria-label="Sidney Dekker home" className="sidney-brand" href="/">
           <img alt="Sidney Dekker" className="sidney-brand-logo" src={sidneySite.brand.logo} />
@@ -29,7 +30,12 @@ export function SiteHeader() {
             const active = pathname === item.href;
 
             return (
-              <Link className={active ? "is-active" : undefined} href={item.href} key={item.href}>
+              <Link
+                aria-current={active ? "page" : undefined}
+                className={active ? "is-active" : undefined}
+                href={item.href}
+                key={item.href}
+              >
                 {item.label}
               </Link>
             );

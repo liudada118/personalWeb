@@ -120,6 +120,25 @@
   align-items: center;
 }
 
+.admin-workbench-shell .admin-workbench-toggle {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(32, 55, 49, 0.14);
+  border-radius: 999px;
+  background: #203731;
+  color: #f7f5f0;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.admin-workbench-shell .admin-workbench-toggle:hover {
+  border-color: rgba(32, 55, 49, 0.3);
+  transform: translateY(-1px);
+}
+
 .admin-workbench-shell .cms-toolbar button {
   min-height: 44px;
   padding: 0 16px;
@@ -159,6 +178,10 @@
   align-items: start;
 }
 
+.admin-workbench-shell .cms-workbench.is-editor-collapsed {
+  grid-template-columns: minmax(108px, 128px) minmax(0, 1fr);
+}
+
 .admin-workbench-shell .cms-workbench-panel {
   display: grid;
   gap: 18px;
@@ -173,6 +196,48 @@
 .admin-workbench-shell .cms-workbench-panel-preview {
   position: sticky;
   top: 24px;
+}
+
+.admin-workbench-shell .cms-workbench-panel-editor.is-collapsed {
+  align-content: start;
+  gap: 14px;
+  padding: 16px;
+}
+
+.admin-workbench-shell .cms-workbench-panel-editor.is-collapsed .cms-workbench-heading {
+  gap: 10px;
+}
+
+.admin-workbench-shell .cms-workbench-panel-editor.is-collapsed .cms-workbench-heading h3,
+.admin-workbench-shell .cms-workbench-panel-editor.is-collapsed .cms-workbench-heading p {
+  display: none;
+}
+
+.admin-workbench-shell .cms-editor-collapsed-rail {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  padding: 16px 8px 8px;
+}
+
+.admin-workbench-shell .cms-editor-collapsed-rail p {
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(29, 34, 31, 0.62);
+}
+
+.admin-workbench-shell .cms-editor-collapsed-rail button {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid rgba(32, 55, 49, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1d221f;
+  cursor: pointer;
 }
 
 .admin-workbench-shell .cms-workbench-frame-shell,
@@ -243,6 +308,31 @@
 
   .admin-workbench-shell .cms-workbench-panel-preview {
     position: static;
+  }
+
+  .admin-workbench-shell .cms-workbench.is-editor-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-workbench-shell .cms-workbench-panel-editor.is-collapsed .cms-workbench-heading h3,
+  .admin-workbench-shell .cms-workbench-panel-editor.is-collapsed .cms-workbench-heading p {
+    display: block;
+  }
+
+  .admin-workbench-shell .cms-editor-collapsed-rail {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    justify-items: start;
+  }
+
+  .admin-workbench-shell .cms-editor-collapsed-rail p {
+    writing-mode: initial;
+    transform: none;
+  }
+
+  .admin-workbench-shell .cms-editor-collapsed-rail button {
+    width: auto;
+    padding: 0 18px;
   }
 }
 

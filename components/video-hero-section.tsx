@@ -1,14 +1,21 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 type VideoHeroSectionProps = {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
   videoUrl?: string;
   posterUrl?: string;
-  ctaLabel: string;
-  ctaHref: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  className?: string;
+  titleTag?: "h1" | "h2";
+  align?: "left" | "center";
 };
 
 /**
@@ -16,16 +23,23 @@ type VideoHeroSectionProps = {
  * Full-screen video background with overlay text and CTA
  */
 export function VideoHeroSection({
+  eyebrow,
   title,
   subtitle,
   videoUrl,
   posterUrl,
   ctaLabel,
   ctaHref,
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  className,
+  titleTag = "h2",
+  align = "center",
 }: VideoHeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const TitleTag = titleTag;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,8 +58,16 @@ export function VideoHeroSection({
     }
   }, []);
 
+  const rootClassName = [
+    "video-hero-section",
+    align === "left" ? "is-left-aligned" : "is-centered",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <section className="video-hero-section">
+    <section className={rootClassName}>
       {/* Video Background */}
       <div className="video-hero-background">
         {videoUrl ? (
@@ -63,7 +85,7 @@ export function VideoHeroSection({
           </video>
         ) : (
           <div
-            className="video-hero-fallback"
+            className="video-hero-fallback is-loaded"
             style={posterUrl ? { backgroundImage: `url(${posterUrl})` } : undefined}
           />
         )}
@@ -75,11 +97,23 @@ export function VideoHeroSection({
       {/* Content */}
       <div className="video-hero-content">
         <div className="video-hero-stage">
-          <h2 className="video-hero-title">{title}</h2>
+          {eyebrow ? <p className="video-hero-eyebrow">{eyebrow}</p> : null}
+          <TitleTag className="video-hero-title">{title}</TitleTag>
           {subtitle && <p className="video-hero-subtitle">{subtitle}</p>}
-          <a className="video-hero-cta" href={ctaHref}>
-            {ctaLabel}
-          </a>
+          {(ctaLabel && ctaHref) || (secondaryCtaLabel && secondaryCtaHref) ? (
+            <div className="video-hero-actions">
+              {ctaLabel && ctaHref ? (
+                <Link className="video-hero-cta" href={ctaHref}>
+                  {ctaLabel}
+                </Link>
+              ) : null}
+              {secondaryCtaLabel && secondaryCtaHref ? (
+                <Link className="video-hero-cta video-hero-cta-secondary" href={secondaryCtaHref}>
+                  {secondaryCtaLabel}
+                </Link>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       </div>
 

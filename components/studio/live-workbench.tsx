@@ -8,17 +8,18 @@ import type { VisualEditorTarget } from "@/lib/visual-editing";
 import { withBasePath } from "@/lib/site-paths";
 
 const workbenchTargets: VisualEditorTarget[] = [
-  { label: "站点信息", adminHref: "/cms/admin/globals/siteSettings", previewHref: "/" },
-  { label: "首页", adminHref: "/cms/admin/globals/homePage", previewHref: "/" },
-  { label: "个人介绍页", adminHref: "/cms/admin/globals/aboutPage", previewHref: "/about" },
-  { label: "媒体页", adminHref: "/cms/admin/globals/mediaPage", previewHref: "/media" },
-  { label: "播客页", adminHref: "/cms/admin/globals/podcastPage", previewHref: "/podcast" },
-  { label: "联系页", adminHref: "/cms/admin/globals/contactPage", previewHref: "/contact" },
-  { label: "媒体文章", adminHref: "/cms/admin/collections/mediaArticles", previewHref: "/media" },
-  { label: "播客单集", adminHref: "/cms/admin/collections/podcastEpisodes", previewHref: "/podcast" },
+  { label: "Site Settings", adminHref: "/cms/admin/globals/siteSettings", previewHref: "/" },
+  { label: "Home Page", adminHref: "/cms/admin/globals/homePage", previewHref: "/" },
+  { label: "About Page", adminHref: "/cms/admin/globals/aboutPage", previewHref: "/about" },
+  { label: "Media Page", adminHref: "/cms/admin/globals/mediaPage", previewHref: "/media" },
+  { label: "Podcast Page", adminHref: "/cms/admin/globals/podcastPage", previewHref: "/podcast" },
+  { label: "Contact Page", adminHref: "/cms/admin/globals/contactPage", previewHref: "/contact" },
+  { label: "Media Articles", adminHref: "/cms/admin/collections/mediaArticles", previewHref: "/media" },
+  { label: "Podcast Episodes", adminHref: "/cms/admin/collections/podcastEpisodes", previewHref: "/podcast" },
 ];
 
 export function LiveWorkbench() {
+  const [isEditorPanelCollapsed, setIsEditorPanelCollapsed] = useState(true);
   const [selectedTarget, setSelectedTarget] = useState<VisualEditorTarget>(workbenchTargets[0]);
   const [previewRoute, setPreviewRoute] = useState(workbenchTargets[0].previewHref);
   const [editorSeed, setEditorSeed] = useState(() => Date.now());
@@ -34,29 +35,25 @@ export function LiveWorkbench() {
     setEditorSeed(Date.now());
   }
 
-  function handleVisualTarget(target: VisualEditorTarget) {
-    handleTargetChange(target);
-  }
-
   const editorFrameSrc = withBasePath(selectedTarget.adminHref);
 
   return (
     <div className="admin-workbench-shell">
       <div className="admin-workbench-topbar">
         <div className="admin-workbench-copy">
-          <p className="eyebrow">可视化编辑台</p>
-          <h1 className="admin-workbench-title">像 WordPress 一样，在预览页面上点区域，再到左侧直接修改。</h1>
+          <p className="eyebrow">Visual Editing</p>
+          <h1 className="admin-workbench-title">Inline Payload editing inside the live preview.</h1>
           <p className="section-description">
-            右侧预览里的区块本身就能直接点，悬浮时还会出现“编辑此区域”把手。点击后，左侧 Payload 编辑器会跳到对应页面或内容集合；仍然保留草稿、发布、版本和权限能力。
+            Click text on the right to type directly in place. The left Payload panel starts minimized and can be opened anytime for field-level admin access, draft review, and publishing.
           </p>
         </div>
 
         <div className="admin-workbench-actions">
           <Link className="admin-workbench-link" href="/cms/admin">
-            返回后台首页
+            Admin home
           </Link>
           <Link className="admin-workbench-link" href={fullscreenHref}>
-            全屏预览
+            Fullscreen preview
           </Link>
         </div>
       </div>
@@ -75,31 +72,49 @@ export function LiveWorkbench() {
       </div>
 
       <div className="cms-toolbar cms-toolbar-context">
-        <span className="admin-workbench-context">当前编辑目标：{selectedTarget.label}</span>
+        <span className="admin-workbench-context">Current target: {selectedTarget.label}</span>
+        <button
+          className={`admin-workbench-toggle${isEditorPanelCollapsed ? " is-collapsed" : ""}`}
+          onClick={() => setIsEditorPanelCollapsed((value) => !value)}
+          type="button"
+        >
+          {isEditorPanelCollapsed ? "Open Payload panel" : "Collapse Payload panel"}
+        </button>
         <Link className="admin-workbench-link" href={selectedTarget.adminHref} target="_blank">
-          新标签打开编辑页
+          Open Payload in new tab
         </Link>
         <Link className="admin-workbench-link" href={fullscreenHref} target="_blank">
-          新标签全屏预览
+          Open fullscreen preview
         </Link>
       </div>
 
-      <div className="cms-workbench">
-        <section className="cms-workbench-panel">
+      <div className={`cms-workbench${isEditorPanelCollapsed ? " is-editor-collapsed" : ""}`}>
+        <section className={`cms-workbench-panel cms-workbench-panel-editor${isEditorPanelCollapsed ? " is-collapsed" : ""}`}>
           <div className="cms-workbench-heading">
-            <p className="eyebrow">编辑区</p>
+            <p className="eyebrow">Payload</p>
             <h3>{selectedTarget.label}</h3>
-            <p>左侧保持 Payload 原生编辑器。你可以直接在右侧页面点区块或把手，再回到这里保存草稿或发布变更。</p>
+            <p>
+              Keep the panel collapsed for a document-like editing flow, or expand it when you need the full Payload form.
+            </p>
           </div>
 
-          <div className="cms-workbench-frame-shell">
-            <iframe
-              className="cms-embed-frame"
-              key={`${selectedTarget.adminHref}-${editorSeed}`}
-              src={editorFrameSrc}
-              title="Payload admin editor"
-            />
-          </div>
+          {isEditorPanelCollapsed ? (
+            <div className="cms-editor-collapsed-rail">
+              <p>{selectedTarget.label}</p>
+              <button onClick={() => setIsEditorPanelCollapsed(false)} type="button">
+                Expand
+              </button>
+            </div>
+          ) : (
+            <div className="cms-workbench-frame-shell">
+              <iframe
+                className="cms-embed-frame"
+                key={`${selectedTarget.adminHref}-${editorSeed}`}
+                src={editorFrameSrc}
+                title="Payload admin editor"
+              />
+            </div>
+          )}
         </section>
 
         <section className="cms-workbench-panel cms-workbench-panel-preview">
@@ -107,7 +122,7 @@ export function LiveWorkbench() {
             activeRoute={previewRoute}
             compact
             onActiveRouteChange={setPreviewRoute}
-            onSelectVisualTarget={handleVisualTarget}
+            onSelectVisualTarget={handleTargetChange}
           />
         </section>
       </div>
