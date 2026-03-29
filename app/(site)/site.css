@@ -1,0 +1,67 @@
+/* Dark theme overrides for sidney-site */
+
+/* Make sure body/background is dark */
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+/* Section backgrounds */
+.section-dark {
+  background: #0a0a0a;
+}
+
+.section-darker {
+  background: #050508;
+}
+
+.section-white {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+
+/* Text on dark bg */
+.on-dark h1,
+.on-dark h2,
+.on-dark h3,
+.on-dark h4,
+.on-dark p {
+  color: #ffffff;
+}
+
+.on-dark-soft h1,
+.on-dark-soft h2,
+.on-dark-soft h3,
+.on-dark-soft h4,
+.on-dark-soft p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Cards on dark bg */
+.card-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.card-dark:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons on dark */
+.btn-on-dark {
+  background: #ffffff;
+  color: #0a0a0a;
+  border-color: #ffffff;
+}
+
+.btn-on-dark:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a0a0a;
+}
+
+/* Logo/brand on dark */
+.brand-on-dark {
+  filter: brightness(0) invert(1);
+}
