@@ -13,7 +13,8 @@ import {
 } from "@/lib/visual-editing";
 
 type VisualEditableTextProps = VisualEditorField & {
-  as?: keyof ReactJSX.IntrinsicElements;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  as?: any;
   value: string;
 };
 

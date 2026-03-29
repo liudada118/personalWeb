@@ -585,8 +585,8 @@ export function getBookBySlug(slug: string) {
   return sidneySite.books.find((book) => book.slug === slug) ?? null;
 }
 
-export function getFeaturedBooks() {
+export function getFeaturedBooks(): BookEntry[] {
   return sidneySite.home.featuredBookSlugs
     .map((slug) => getBookBySlug(slug))
-    .filter((book): book is NonNullable<ReturnType<typeof getBookBySlug>> => book !== null);
+    .filter((book) => book !== null) as BookEntry[];
 }
