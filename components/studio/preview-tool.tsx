@@ -7,7 +7,7 @@ import { previewRoutes } from "@/lib/payload/preview-routes";
 import { withBasePath } from "@/lib/site-paths";
 import {
   isVisualEditorMessage,
-  type VisualEditorTarget,
+  type VisualEditorSelectionTarget,
   VISUAL_EDITOR_QUERY_PARAM,
 } from "@/lib/visual-editing";
 
@@ -21,13 +21,15 @@ type PreviewSessionResponse = {
 type PreviewToolProps = {
   activeRoute?: string;
   compact?: boolean;
+  mode?: "canvas" | "default";
   onActiveRouteChange?: (href: string) => void;
-  onSelectVisualTarget?: (target: VisualEditorTarget) => void;
+  onSelectVisualTarget?: (target: VisualEditorSelectionTarget) => void;
 };
 
 export function PreviewTool({
   activeRoute,
   compact = false,
+  mode = "default",
   onActiveRouteChange,
   onSelectVisualTarget,
 }: PreviewToolProps) {
@@ -41,6 +43,7 @@ export function PreviewTool({
 
   const resolvedRoute = activeRoute ?? internalRoute;
   const visualEditingEnabled = Boolean(onSelectVisualTarget);
+  const isCanvasMode = mode === "canvas";
 
   const handleRouteChange = useCallback(
     (href: string) => {
@@ -118,6 +121,11 @@ export function PreviewTool({
         return;
       }
 
+      if (event.data.type === "refresh-preview") {
+        setRefreshSeed(Date.now());
+        return;
+      }
+
       handleRouteChange(event.data.target.previewHref);
       onSelectVisualTarget?.(event.data.target);
     }
@@ -160,6 +168,79 @@ export function PreviewTool({
     }
   }
 
+  const toolbar = (
+    <>
+      <div className={`cms-toolbar${isCanvasMode ? " cms-toolbar-canvas" : ""}`}>
+        <button
+          className={previewToken ? "is-active" : ""}
+          disabled={loading}
+          onClick={() => setRefreshSeed(Date.now())}
+          type="button"
+        >
+          {loading ? "正在连接预览" : previewToken ? "草稿预览已连接" : "预览未连接"}
+        </button>
+        <button
+          className={autoRefresh ? "is-active" : ""}
+          disabled={!previewToken || loading}
+          onClick={() => setAutoRefresh((value) => !value)}
+          type="button"
+        >
+          {autoRefresh ? "自动刷新：开" : "自动刷新：关"}
+        </button>
+        <button disabled={!previewToken || loading} onClick={() => setRefreshSeed(Date.now())} type="button">
+          立即刷新
+        </button>
+        <button
+          disabled={!previewToken || loading}
+          onClick={() => disablePreview().catch(() => setLoading(false))}
+          type="button"
+        >
+          关闭预览
+        </button>
+      </div>
+
+      <div className={`cms-toolbar${isCanvasMode ? " cms-toolbar-canvas" : ""}`}>
+        {previewRoutes.map((route) => (
+          <button
+            className={route.href === resolvedRoute ? "is-active" : ""}
+            key={route.href}
+            onClick={() => handleRouteChange(route.href)}
+            type="button"
+          >
+            {route.label}
+          </button>
+        ))}
+      </div>
+    </>
+  );
+
+  if (isCanvasMode) {
+    return (
+      <div className="preview-canvas-shell">
+        <div className="preview-canvas-overlay">
+          {toolbar}
+          {visualEditingEnabled ? (
+            <div className="preview-canvas-note">直接点文字即可原位编辑，拖选文字会出现浮动工具条。</div>
+          ) : null}
+          {expiresAt ? (
+            <div className="preview-canvas-note preview-canvas-note-muted">
+              本次预览有效期至：{new Date(expiresAt).toLocaleString("zh-CN")}
+            </div>
+          ) : null}
+          {error ? <div className="preview-canvas-error">{error}</div> : null}
+        </div>
+
+        {frameSrc ? (
+          <div className="preview-canvas-frame-shell">
+            <iframe className="preview-canvas-frame" key={frameSrc} src={frameSrc} title="Site preview" />
+          </div>
+        ) : (
+          <div className="preview-canvas-empty">登录后台后，这里会建立一个独立的草稿预览窗口。</div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className={`cms-tool${compact ? " cms-tool-compact" : ""}`}>
       <div className="section-heading">
@@ -176,20 +257,7 @@ export function PreviewTool({
         </p>
       </div>
 
-      <div className="cms-toolbar">
-        <button className={previewToken ? "is-active" : ""} disabled={loading} onClick={() => setRefreshSeed(Date.now())} type="button">
-          {loading ? "正在连接预览" : previewToken ? "草稿预览已连接" : "预览未连接"}
-        </button>
-        <button className={autoRefresh ? "is-active" : ""} disabled={!previewToken || loading} onClick={() => setAutoRefresh((value) => !value)} type="button">
-          {autoRefresh ? "自动刷新：开" : "自动刷新：关"}
-        </button>
-        <button disabled={!previewToken || loading} onClick={() => setRefreshSeed(Date.now())} type="button">
-          立即刷新
-        </button>
-        <button disabled={!previewToken || loading} onClick={() => disablePreview().catch(() => setLoading(false))} type="button">
-          关闭预览
-        </button>
-      </div>
+      {toolbar}
 
       {visualEditingEnabled ? (
         <div className="cms-empty cms-visual-note">提示：预览页里的区块本身可以直接点，悬浮时还会出现“编辑此区域”把手。</div>
@@ -198,19 +266,6 @@ export function PreviewTool({
       {expiresAt ? <p className="section-description">本次预览有效期至：{new Date(expiresAt).toLocaleString("zh-CN")}</p> : null}
 
       {error ? <div className="cms-tool cms-empty">{error}</div> : null}
-
-      <div className="cms-toolbar">
-        {previewRoutes.map((route) => (
-          <button
-            className={route.href === resolvedRoute ? "is-active" : ""}
-            key={route.href}
-            onClick={() => handleRouteChange(route.href)}
-            type="button"
-          >
-            {route.label}
-          </button>
-        ))}
-      </div>
 
       {frameSrc ? (
         <div className={`cms-frame${compact ? " cms-frame-compact" : ""}`}>

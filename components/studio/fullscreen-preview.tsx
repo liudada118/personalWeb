@@ -31,7 +31,7 @@ export function FullscreenPreview({ initialRoute }: FullscreenPreviewProps) {
         </div>
       </div>
 
-      <PreviewTool activeRoute={activeRoute} onActiveRouteChange={setActiveRoute} />
+      <PreviewTool activeRoute={activeRoute} mode="canvas" onActiveRouteChange={setActiveRoute} />
     </div>
   );
 }

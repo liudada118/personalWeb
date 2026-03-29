@@ -15,22 +15,26 @@ export function VisualEditRegion({ adminHref, children, label, previewHref }: Vi
   const searchParams = useSearchParams();
   const visualEditorEnabled = searchParams.get(VISUAL_EDITOR_QUERY_PARAM) === "1";
 
-  function handleEdit() {
+  function resolveTarget() {
+    const resolvedPreviewHref = previewHref || (typeof window === "undefined" ? "/" : window.location.pathname);
+
+    return {
+      adminHref,
+      label,
+      previewHref: resolvedPreviewHref,
+    };
+  }
+
+  function postTarget(type: "open-target" | "select-field") {
     if (!visualEditorEnabled || typeof window === "undefined") {
       return;
     }
 
-    const resolvedPreviewHref = previewHref || window.location.pathname;
-
     window.parent?.postMessage(
       {
         source: VISUAL_EDITOR_MESSAGE_SOURCE,
-        target: {
-          adminHref,
-          label,
-          previewHref: resolvedPreviewHref,
-        },
-        type: "open-target",
+        target: resolveTarget(),
+        type,
       },
       window.location.origin,
     );
@@ -43,13 +47,24 @@ export function VisualEditRegion({ adminHref, children, label, previewHref }: Vi
 
     const target = event.target;
 
-    if (!(target instanceof HTMLElement) || target.closest(".visual-edit-handle")) {
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    if (target.closest("[data-inline-editable='true']")) {
+      event.preventDefault();
+      event.stopPropagation();
+      postTarget("select-field");
+      return;
+    }
+
+    if (target.closest(".visual-edit-handle")) {
       return;
     }
 
     event.preventDefault();
     event.stopPropagation();
-    handleEdit();
+    postTarget("open-target");
   }
 
   return (
@@ -61,10 +76,10 @@ export function VisualEditRegion({ adminHref, children, label, previewHref }: Vi
         <button
           aria-label={`编辑${label}`}
           className="visual-edit-handle"
-          onClick={handleEdit}
+          onClick={() => postTarget("open-target")}
           type="button"
         >
-          编辑此区域
+          编辑区域
           <span>{label}</span>
         </button>
       ) : null}

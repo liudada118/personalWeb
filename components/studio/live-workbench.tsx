@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { PreviewTool } from "@/components/studio/preview-tool";
-import type { VisualEditorTarget } from "@/lib/visual-editing";
+import type { VisualEditorSelectionTarget, VisualEditorTarget } from "@/lib/visual-editing";
 import { withBasePath } from "@/lib/site-paths";
 
 const workbenchTargets: VisualEditorTarget[] = [
@@ -16,10 +16,12 @@ const workbenchTargets: VisualEditorTarget[] = [
   { label: "联系页", adminHref: "/cms/admin/globals/contactPage", previewHref: "/contact" },
   { label: "媒体文章", adminHref: "/cms/admin/collections/mediaArticles", previewHref: "/media" },
   { label: "播客单集", adminHref: "/cms/admin/collections/podcastEpisodes", previewHref: "/podcast" },
+  { label: "案例库", adminHref: "/cms/admin/collections/caseStudies", previewHref: "/" },
 ];
 
 export function LiveWorkbench() {
-  const [selectedTarget, setSelectedTarget] = useState<VisualEditorTarget>(workbenchTargets[0]);
+  const [panelOpen, setPanelOpen] = useState(true);
+  const [selectedTarget, setSelectedTarget] = useState<VisualEditorSelectionTarget>(workbenchTargets[0]);
   const [previewRoute, setPreviewRoute] = useState(workbenchTargets[0].previewHref);
   const [editorSeed, setEditorSeed] = useState(() => Date.now());
 
@@ -28,40 +30,41 @@ export function LiveWorkbench() {
     [previewRoute],
   );
 
-  function handleTargetChange(target: VisualEditorTarget) {
+  function handleTargetChange(target: VisualEditorSelectionTarget) {
     setSelectedTarget(target);
     setPreviewRoute(target.previewHref);
     setEditorSeed(Date.now());
   }
 
-  function handleVisualTarget(target: VisualEditorTarget) {
+  function handleVisualTarget(target: VisualEditorSelectionTarget) {
+    setPanelOpen(true);
     handleTargetChange(target);
   }
 
   const editorFrameSrc = withBasePath(selectedTarget.adminHref);
 
   return (
-    <div className="admin-workbench-shell">
-      <div className="admin-workbench-topbar">
-        <div className="admin-workbench-copy">
-          <p className="eyebrow">可视化编辑台</p>
-          <h1 className="admin-workbench-title">像 WordPress 一样，在预览页面上点区域，再到左侧直接修改。</h1>
-          <p className="section-description">
-            右侧预览里的区块本身就能直接点，悬浮时还会出现“编辑此区域”把手。点击后，左侧 Payload 编辑器会跳到对应页面或内容集合；仍然保留草稿、发布、版本和权限能力。
+    <div className="live-workbench-shell">
+      <header className="live-workbench-topbar">
+        <div className="live-workbench-copy">
+          <p className="eyebrow">Inline CMS Workbench</p>
+          <h1 className="live-workbench-title">直接在预览画布上编辑，用 Payload 继续负责存储、草稿和发布。</h1>
+          <p className="live-workbench-description">
+            现在的主视图是整页预览。左侧 Payload 面板收成抽屉，仅在需要结构化表单或媒体管理时展开。
           </p>
         </div>
 
-        <div className="admin-workbench-actions">
+        <div className="live-workbench-actions">
           <Link className="admin-workbench-link" href="/cms/admin">
             返回后台首页
           </Link>
-          <Link className="admin-workbench-link" href={fullscreenHref}>
-            全屏预览
+          <Link className="admin-workbench-link" href={fullscreenHref} target="_blank">
+            独立预览
           </Link>
         </div>
-      </div>
+      </header>
 
-      <div className="cms-toolbar">
+      <div className="live-workbench-targets">
         {workbenchTargets.map((target) => (
           <button
             className={target.adminHref === selectedTarget.adminHref ? "is-active" : ""}
@@ -74,42 +77,65 @@ export function LiveWorkbench() {
         ))}
       </div>
 
-      <div className="cms-toolbar cms-toolbar-context">
-        <span className="admin-workbench-context">当前编辑目标：{selectedTarget.label}</span>
-        <Link className="admin-workbench-link" href={selectedTarget.adminHref} target="_blank">
-          新标签打开编辑页
-        </Link>
-        <Link className="admin-workbench-link" href={fullscreenHref} target="_blank">
-          新标签全屏预览
-        </Link>
-      </div>
-
-      <div className="cms-workbench">
-        <section className="cms-workbench-panel">
-          <div className="cms-workbench-heading">
-            <p className="eyebrow">编辑区</p>
-            <h3>{selectedTarget.label}</h3>
-            <p>左侧保持 Payload 原生编辑器。你可以直接在右侧页面点区块或把手，再回到这里保存草稿或发布变更。</p>
+      <div className={`live-workbench-stage${panelOpen ? " is-panel-open" : " is-panel-collapsed"}`}>
+        <aside className="live-workbench-panel">
+          <div className="live-workbench-panel-head">
+            <div>
+              <p className="eyebrow">Payload Panel</p>
+              <h2>{selectedTarget.label}</h2>
+            </div>
+            <button
+              aria-label={panelOpen ? "收起 Payload 面板" : "展开 Payload 面板"}
+              className="live-workbench-panel-toggle"
+              onClick={() => setPanelOpen((value) => !value)}
+              type="button"
+            >
+              {panelOpen ? "收起" : "展开"}
+            </button>
           </div>
 
-          <div className="cms-workbench-frame-shell">
+          <div className="live-workbench-panel-meta">
+            <span>当前预览：{previewRoute}</span>
+            {"fieldPath" in selectedTarget ? (
+              <span>字段：{selectedTarget.fieldPath}</span>
+            ) : (
+              <span>点击文本可直接原位编辑</span>
+            )}
+          </div>
+
+          <div className="live-workbench-panel-actions">
+            <Link className="admin-workbench-link" href={selectedTarget.adminHref} target="_blank">
+              新标签打开编辑页
+            </Link>
+          </div>
+
+          <div className="live-workbench-frame-shell">
             <iframe
-              className="cms-embed-frame"
+              className="live-workbench-embed-frame"
               key={`${selectedTarget.adminHref}-${editorSeed}`}
               src={editorFrameSrc}
               title="Payload admin editor"
             />
           </div>
-        </section>
+        </aside>
 
-        <section className="cms-workbench-panel cms-workbench-panel-preview">
+        <button
+          aria-label={panelOpen ? "最小化左侧面板" : "展开左侧面板"}
+          className="live-workbench-rail-toggle"
+          onClick={() => setPanelOpen((value) => !value)}
+          type="button"
+        >
+          <span>{panelOpen ? "隐藏表单" : "打开 Payload"}</span>
+        </button>
+
+        <div className="live-workbench-canvas">
           <PreviewTool
             activeRoute={previewRoute}
-            compact
+            mode="canvas"
             onActiveRouteChange={setPreviewRoute}
             onSelectVisualTarget={handleVisualTarget}
           />
-        </section>
+        </div>
       </div>
     </div>
   );
