@@ -13,7 +13,7 @@ import {
 
 type VisualEditableBaseProps = {
   adminHref: string;
-  as?: keyof React.JSX.IntrinsicElements;
+  as?: "span" | "p" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "li" | "td" | "th" | "blockquote" | "figcaption";
   className?: string;
   fieldPath: string;
   label: string;
@@ -100,7 +100,8 @@ export function VisualEditableText(props: VisualEditableTextProps) {
   const [toolbarPosition, setToolbarPosition] = useState<ToolbarPosition>(hiddenToolbar);
   const ref = useRef<HTMLElement | null>(null);
   const latestValueRef = useRef(value);
-  const Tag = as;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Tag = (as ?? "span") as any;
 
   useEffect(() => {
     latestValueRef.current = value;
@@ -399,7 +400,7 @@ export function VisualEditableText(props: VisualEditableTextProps) {
         onFocus={handleFocus}
         onInput={handleInput}
         onKeyDown={handleKeyDown}
-        ref={ref as never}
+        ref={ref as React.LegacyRef<HTMLElement>}
         role={visualEditorEnabled ? "textbox" : undefined}
         spellCheck={visualEditorEnabled}
         suppressContentEditableWarning
