@@ -75,7 +75,7 @@ function TextRevealParagraph({ paragraph, progress, rangeStart, rangeEnd }: Text
       {characters.map((char, index) => {
         const threshold = characters.length <= 1 ? 0 : index / (characters.length - 1);
         const charProgress = Math.max(0, Math.min(1, (localProgress - threshold + 0.1) / 0.1));
-        const opacity = 0.16 + 0.84 * charProgress;
+        const opacity = charProgress;
 
         return (
           <span
