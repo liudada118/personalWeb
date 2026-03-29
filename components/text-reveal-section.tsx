@@ -74,7 +74,8 @@ function TextRevealParagraph({ paragraph, progress, rangeStart, rangeEnd }: Text
     <p className="text-reveal-paragraph">
       {characters.map((char, index) => {
         const threshold = characters.length <= 1 ? 0 : index / (characters.length - 1);
-        const charProgress = Math.max(0, Math.min(1, (localProgress - threshold + 0.1) / 0.1));
+        // Each character needs 25% of scroll range to fully reveal — slower, more dramatic
+        const charProgress = Math.max(0, Math.min(1, (localProgress - threshold + 0.15) / 0.25));
         const opacity = charProgress;
 
         return (
