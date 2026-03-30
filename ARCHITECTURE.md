@@ -1,7 +1,7 @@
 # Architecture
 
-Last updated: `2026-03-24 22:26`  
-Git branch: `main`
+Last updated: `2026-03-26 23:15`  
+Git branch: `manus`
 
 ## 1. Overview
 
@@ -38,7 +38,9 @@ Legacy `/studio` traffic is redirected to `/cms/admin` so old bookmarks still wo
 | Package manager | pnpm 10 | Dependency management |
 
 Development note:
-- Local development uses plain `next dev` on this project version.
+- Local development now uses `node scripts/dev-entry.cjs` through `pnpm dev`.
+- On non-Windows platforms the launcher delegates to the normal `next dev` CLI.
+- On Windows the launcher starts Next's development server in-process through `next/dist/server/lib/start-server`, bypassing the default fork-based bootstrap path that was failing with `spawn EPERM`.
 - This local Next.js CLI only exposes `--turbo` / `--turbopack` as opt-in dev flags, so forcing `--webpack` breaks startup with an unknown-option error.
 - Production deployment can use `output: "standalone"` and run the generated `server.js` behind Nginx.
 
@@ -107,6 +109,8 @@ public/
   media/
 payload.config.ts
 middleware.ts
+scripts/
+  dev-entry.cjs
 ```
 
 ## 6. Content model
@@ -296,7 +300,8 @@ Interaction and visual behavior:
 - responsive tuning now keeps the homepage metrics, inline CTA panels, and contact closeout readable across tablet and mobile breakpoints, with narrower cards, balanced headings, and single-column fallbacks only where needed
 - obsolete homepage template selectors from earlier layout iterations have been removed from `app/globals.css`, reducing redundant visual rules that no longer map to the live homepage structure
 - shared CSS now defines the previously missing `primary-foreground-muted` and `primary-border-soft` tokens, and older hardcoded public / CMS colors have been pulled back onto the same semantic palette so headers, buttons, footer surfaces, dashboard highlights, and fallback screens no longer drift between separate green / beige schemes
-- local validation on Windows currently passes via `pnpm exec next dev`, while `pnpm build` still hits OS-level `EPERM` issues during standalone symlink tracing rather than page-code compilation failures
+- local validation on Windows now relies on `pnpm dev`, which routes through `scripts/dev-entry.cjs` and keeps Next dev in a single process so the app can start without the previous fork-time `spawn EPERM` failure
+- `pnpm build` still hits OS-level `EPERM` issues during standalone symlink tracing rather than page-code compilation failures
 - `pnpm typecheck` can still fail on this machine when stale `.next/types` references exist before a fresh Next runtime regenerates them; the homepage rebuild itself compiled successfully through the webpack production compile stage
 
 ## 12. Project status
@@ -341,6 +346,7 @@ Interaction and visual behavior:
 | 2026-03-24 22:04 | main | Hero child-width alignment | Aligned the hero title and standfirst with the full width of the parent hero text column instead of letting them keep narrower internal max-width rules |
 | 2026-03-24 22:16 | main | Hero H1-only reduction | Reduced the first screen to only the H1 and made the hero display element occupy the full hero text column without eyebrow, intro, or hero CTA competition |
 | 2026-03-24 22:26 | main | Hero display width override fix | Added a stronger homepage-specific selector so later shared `.display-title` rules no longer override the hero H1 width |
+| 2026-03-26 23:15 | manus | Windows-safe local dev launcher | Replaced the package `dev` entry with a cross-platform script that falls back to a single-process Next dev startup on Windows so the project can run locally without the previous `spawn EPERM` failure |
 
 ## 13. Update log
 
@@ -384,3 +390,4 @@ Interaction and visual behavior:
 | 2026-03-24 22:04 | main | UX refinement | Removed the separate hero title and standfirst max-width constraints so the children inside `hero-story` now follow the same column width as their parent container |
 | 2026-03-24 22:16 | main | UX refinement | Simplified the first screen to an H1-only hero statement and kept `display-title hero-display` at full parent width so the opening frame no longer competes with an eyebrow, standfirst, or in-hero CTA |
 | 2026-03-24 22:26 | main | Bug fix | Added a homepage-specific width override for `hero-story .display-title.hero-display` after the shared title scale block so the first-screen H1 no longer inherits the later `max-width: 9.5ch` constraint from `.display-title` |
+| 2026-03-26 23:15 | manus | Bug fix | Replaced the package `dev` command with a Windows-safe launcher that starts Next dev in-process on Win32, avoiding the local `child_process.fork` `spawn EPERM` failure while keeping normal CLI delegation on other platforms |
