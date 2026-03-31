@@ -1,4 +1,4 @@
-# Tiger Legal Personal Site
+﻿# Tiger Legal Personal Site
 
 Self-hosted personal brand site built with `Next.js + Payload CMS`.
 
@@ -38,7 +38,7 @@ Operations / CMS:
 
 ## Content model
 
-Globals:
+Globals (legacy fixed-page transition layer):
 - `siteSettings`
 - `homePage`
 - `aboutPage`
@@ -48,10 +48,12 @@ Globals:
 
 Collections:
 - `users`
-- `mediaAssets`
+- `media`
 - `caseStudies`
-- `mediaArticles`
+- `mediaPosts`
 - `podcastEpisodes`
+- `articles`
+- `pageContent`
 - `contactSubmissions`
 
 ## Local development
@@ -110,3 +112,4 @@ pnpm build
 ## Docs
 
 - Architecture: [ARCHITECTURE.md](./ARCHITECTURE.md)
+

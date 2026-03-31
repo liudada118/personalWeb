@@ -1,4 +1,4 @@
-export type LinkItem = {
+﻿export type LinkItem = {
   label: string;
   href: string;
 };
@@ -70,6 +70,45 @@ export type MediaArticle = {
   url: string;
   featured: boolean;
   imageUrl?: string;
+};
+
+export type Article = {
+  _id: string;
+  title: string;
+  slug: string;
+  publishedAt: string;
+  excerpt: string;
+  category: string;
+  authorName?: string;
+  readTime?: string;
+  featured: boolean;
+  imageUrl?: string;
+};
+
+export type PageContentFieldType = "text" | "textarea" | "richtext" | "image" | "link" | "boolean";
+
+export type PageContentLinkValue = LinkItem;
+
+export type PageContentImageValue = {
+  mediaId: number | string;
+  alt?: string;
+};
+
+export type PageContentValue =
+  | string
+  | boolean
+  | Record<string, unknown>
+  | unknown[]
+  | PageContentLinkValue
+  | PageContentImageValue;
+
+export type PageContentEntry = {
+  page: string;
+  fieldKey: string;
+  type: PageContentFieldType;
+  value: PageContentValue;
+  locale: string;
+  updatedAt?: string;
 };
 
 export type PodcastEpisode = {
@@ -185,3 +224,4 @@ export type DashboardStats = {
   cacheSize: string;
   serverStorageUsed: string;
 };
+

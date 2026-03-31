@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -10,11 +10,11 @@ import { withBasePath } from "@/lib/site-paths";
 const workbenchTargets: VisualEditorTarget[] = [
   { label: "站点信息", adminHref: "/cms/admin/globals/siteSettings", previewHref: "/" },
   { label: "首页", adminHref: "/cms/admin/globals/homePage", previewHref: "/" },
-  { label: "个人介绍页", adminHref: "/cms/admin/globals/aboutPage", previewHref: "/about" },
+  { label: "关于页", adminHref: "/cms/admin/globals/aboutPage", previewHref: "/about" },
   { label: "媒体页", adminHref: "/cms/admin/globals/mediaPage", previewHref: "/media" },
   { label: "播客页", adminHref: "/cms/admin/globals/podcastPage", previewHref: "/podcast" },
   { label: "联系页", adminHref: "/cms/admin/globals/contactPage", previewHref: "/contact" },
-  { label: "媒体文章", adminHref: "/cms/admin/collections/mediaArticles", previewHref: "/media" },
+  { label: "媒体内容", adminHref: "/cms/admin/collections/mediaPosts", previewHref: "/media" },
   { label: "播客单集", adminHref: "/cms/admin/collections/podcastEpisodes", previewHref: "/podcast" },
 ];
 
@@ -45,9 +45,9 @@ export function LiveWorkbench() {
       <div className="admin-workbench-topbar">
         <div className="admin-workbench-copy">
           <p className="eyebrow">可视化编辑台</p>
-          <h1 className="admin-workbench-title">像 WordPress 一样，在预览页面上点区域，再到左侧直接修改。</h1>
+          <h1 className="admin-workbench-title">在预览里选中区域，在左侧继续使用 Payload 原生编辑器。</h1>
           <p className="section-description">
-            右侧预览里的区块本身就能直接点，悬浮时还会出现“编辑此区域”把手。点击后，左侧 Payload 编辑器会跳到对应页面或内容集合；仍然保留草稿、发布、版本和权限能力。
+            这个工作台保留 Payload 的版本、草稿和权限模型，同时把站点预览放到同一屏里，便于在页面和后台之间来回校对。
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export function LiveWorkbench() {
           新标签打开编辑页
         </Link>
         <Link className="admin-workbench-link" href={fullscreenHref} target="_blank">
-          新标签全屏预览
+          新标签打开预览
         </Link>
       </div>
 
@@ -89,7 +89,7 @@ export function LiveWorkbench() {
           <div className="cms-workbench-heading">
             <p className="eyebrow">编辑区</p>
             <h3>{selectedTarget.label}</h3>
-            <p>左侧保持 Payload 原生编辑器。你可以直接在右侧页面点区块或把手，再回到这里保存草稿或发布变更。</p>
+            <p>左侧继续使用 Payload 原生编辑器。右侧预览保持在当前页面，便于边改边看。</p>
           </div>
 
           <div className="cms-workbench-frame-shell">

@@ -1,4 +1,4 @@
-import { mkdir, readdir, rm, stat } from "node:fs/promises";
+﻿import { mkdir, readdir, rm, stat } from "node:fs/promises";
 import path from "node:path";
 
 import { demoDashboardStats } from "@/lib/demo-data";
@@ -129,11 +129,11 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 
   try {
     const [articles, cases, podcasts, contacts, assets] = await Promise.all([
-      payload.find({ collection: "mediaArticles", depth: 0, limit: 1, overrideAccess: true }),
+      payload.find({ collection: "mediaPosts", depth: 0, limit: 1, overrideAccess: true }),
       payload.find({ collection: "caseStudies", depth: 0, limit: 1, overrideAccess: true }),
       payload.find({ collection: "podcastEpisodes", depth: 0, limit: 1, overrideAccess: true }),
       payload.find({ collection: "contactSubmissions", depth: 0, limit: 1, overrideAccess: true }),
-      payload.find({ collection: "mediaAssets", depth: 0, limit: 1, overrideAccess: true }),
+      payload.find({ collection: "media", depth: 0, limit: 1, overrideAccess: true }),
     ]);
 
     return {
@@ -184,7 +184,7 @@ export async function getAssetList() {
 
   try {
     const assets = await payload.find({
-      collection: "mediaAssets",
+      collection: "media",
       depth: 0,
       limit: 50,
       overrideAccess: true,
@@ -227,3 +227,4 @@ export async function createContactSubmissionInPayload(submission: ContactSubmis
 export function formatFileSize(size?: number) {
   return formatBytes(size ?? 0);
 }
+

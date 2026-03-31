@@ -1,4 +1,4 @@
-# Technical Overview
+﻿# Technical Overview
 
 ## Summary
 
@@ -53,7 +53,7 @@ It is not the primary editor. Actual content editing happens in Payload Admin.
 
 ## Content model
 
-Globals:
+Globals (legacy fixed-page transition layer):
 - `siteSettings`
 - `homePage`
 - `aboutPage`
@@ -63,10 +63,12 @@ Globals:
 
 Collections:
 - `users`
-- `mediaAssets`
+- `media`
 - `caseStudies`
-- `mediaArticles`
+- `mediaPosts`
 - `podcastEpisodes`
+- `articles`
+- `pageContent`
 - `contactSubmissions`
 
 ## Admin and versioning
@@ -87,3 +89,4 @@ Required:
 - Contact submissions prefer Payload and fall back locally
 - Uploaded files are listed in `/cms/files`
 - Dashboard metrics combine local analytics with Payload collection counts
+

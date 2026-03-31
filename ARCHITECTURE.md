@@ -1,6 +1,6 @@
-# Architecture
+﻿# Architecture
 
-Last updated: `2026-03-24 22:26`  
+Last updated: `2026-03-31 09:16`  
 Git branch: `main`
 
 ## 1. Overview
@@ -98,17 +98,21 @@ components/
 lib/
   payload/
   payload/admin-session.ts
-  visual-editing.ts
   server/
+  visual-editing.ts
   demo-data.ts
   types.ts
+payload/
+  collections/
+  globals/
+  seed.ts
+  shared.ts
 data/
 public/
   media/
 payload.config.ts
 middleware.ts
 ```
-
 ## 6. Content model
 
 ### Globals
@@ -120,28 +124,44 @@ middleware.ts
 - `podcastPage`
 - `contactPage`
 
+These page globals are intentionally kept as a transition layer. Public page rendering still reads them today, while the new `pageContent` collection is being introduced for the upcoming custom Visual Editor.
+
 ### Collections
 
 - `users`
-- `mediaAssets`
+- `media`
 - `caseStudies`
-- `mediaArticles`
+- `mediaPosts`
+- `articles`
 - `podcastEpisodes`
+- `pageContent`
 - `contactSubmissions`
+
+### Fixed page content strategy
+
+- `pageContent` stores one editable fixed-page field per document.
+- Each record carries `page`, `fieldKey`, `type`, `locale`, `value`, and computed `docKey`.
+- Stable keys such as `home.hero.title` or `mediaPage.header.title` make the model reusable across future fixed pages.
+- The collection is generic enough for the future `/admin/visual-editor` route, but it still lives entirely inside Payload.
+
+### Structured content strategy
+
+- `mediaPosts`, `podcastEpisodes`, `caseStudies`, and `articles` remain standard Payload collections for repeatable content.
+- `media` is the shared upload bucket referenced by page sections, podcast episodes, case studies, and future visual-editor image fields.
+- This keeps layout-aware page editing and repeatable content management separate without introducing a second persistence layer.
 
 ### Admin-facing labels
 
-- collections and globals now use Chinese labels in the sidebar
-- editor-facing collection descriptions explain what each menu item is for
-- collections are grouped into Chinese admin sections such as system access, content assets, and inquiry leads
+- collections and globals use grouped admin descriptions so editors can tell legacy page globals apart from structured collections and the new visual-editor storage collection
+- `pageContent` is grouped separately so the future visual editor can target a dedicated Payload area without changing Payload's role as the source of truth
 
 ### Versioning
 
 - collection content uses Payload drafts / versions
 - global content uses Payload versions
-- collection and global drafts now both use autosave for faster preview feedback
+- collection and global drafts both use autosave for faster preview feedback
+- `pageContent` also uses collection drafts, so fixed-page field edits can later participate in the same draft workflow as structured content
 - code rollback remains a deployment / Git concern, not a CMS concern
-
 ## 7. Runtime data flow
 
 ### Public page reads
@@ -149,8 +169,9 @@ middleware.ts
 1. Public pages call functions in `lib/payload/api.ts`.
 2. Those functions use the local Payload client from `lib/payload/client.ts`.
 3. If the request carries a valid preview token, the same queries are executed with `draft: true` so pages resolve the latest Payload draft versions.
-4. If Payload content is readable, they map Payload documents into the shared `lib/types.ts` shapes.
-5. If Payload is unavailable or empty, they fall back to `lib/demo-data.ts`.
+4. Structured media content now reads from `mediaPosts`, `podcastEpisodes`, and `caseStudies`.
+5. Fixed page sections still resolve through the legacy globals during the transition period, with `pageContent` now seeded and ready for the future custom Visual Editor integration.
+6. If Payload is unavailable or empty, they fall back to `lib/demo-data.ts`.
 
 ### Contact submissions
 
@@ -163,9 +184,9 @@ middleware.ts
 1. Frontend tracking posts to `/api/analytics`.
 2. Metrics are stored in `data/analytics.json`.
 3. `/cms` reads local analytics plus Payload collection counts.
-4. Asset listings come from the `mediaAssets` Payload collection.
-5. The dashboard now exposes separate counts for articles, case studies, and podcast episodes so the management UI can render a clearer content breakdown instead of a single opaque "updates" number.
-
+4. Asset listings come from the `media` Payload collection.
+5. The current dashboard article KPI is still sourced from `mediaPosts`, matching the existing public media page.
+6. The `articles` collection is already modeled and seeded inside Payload, but it is not yet surfaced on the public site or in the custom dashboard.
 ### Draft preview flow
 
 1. `/cms/admin/workbench` and `/cms/admin/preview-fullscreen` use `components/studio/preview-tool.tsx`.
@@ -190,7 +211,7 @@ middleware.ts
 
 1. `PreviewTool` appends `visualEditor=1` to preview URLs whenever the preview is running inside the protected workbench.
 2. Public pages, key homepage sections, and the shared site header/footer are wrapped by `components/visual-edit-region.tsx`.
-3. In visual-edit mode, hovering a region shows an “编辑此区域” handle, and the region body itself is also clickable so editors do not need to hunt for a separate sidebar action.
+3. In visual-edit mode, hovering a region shows an 鈥滅紪杈戞鍖哄煙鈥?handle, and the region body itself is also clickable so editors do not need to hunt for a separate sidebar action.
 4. Clicking a region posts a typed message defined in `lib/visual-editing.ts` from the preview iframe back to the parent workbench.
 5. `components/studio/preview-tool.tsx` receives that message, switches the preview route if needed, and tells `components/studio/live-workbench.tsx` to retarget the left-side Payload iframe to the matching global or collection.
 6. This keeps the editing model field-based and version-safe like Payload, while making the interaction feel closer to WordPress-style front-end visual editing.
@@ -199,13 +220,14 @@ middleware.ts
 
 - `payload.config.ts` seeds demo content on init when tables already exist.
 - On the very first boot, seed may be skipped until the local SQLite schema exists.
+- Payload startup now also patches the legacy SQLite `payload_locked_documents_rels` table when renamed collection slugs introduce new relation columns such as `media_id` or `media_posts_id`.
 - Public rendering still works because demo data remains available as a fallback.
 
 ### Drafting and autosave
 
 - Collection documents use `versions.drafts.autosave`.
 - Global page documents now also use `versions.drafts.autosave`, so homepage and other singleton page edits can surface in preview without a manual save loop.
-- `app/(site)/layout.tsx` adds a visible "草稿预览中" badge when a request is being rendered through the preview token path.
+- `app/(site)/layout.tsx` adds a visible "鑽夌棰勮涓? badge when a request is being rendered through the preview token path.
 
 ### Admin routing nuance
 
@@ -341,6 +363,8 @@ Interaction and visual behavior:
 | 2026-03-24 22:04 | main | Hero child-width alignment | Aligned the hero title and standfirst with the full width of the parent hero text column instead of letting them keep narrower internal max-width rules |
 | 2026-03-24 22:16 | main | Hero H1-only reduction | Reduced the first screen to only the H1 and made the hero display element occupy the full hero text column without eyebrow, intro, or hero CTA competition |
 | 2026-03-24 22:26 | main | Hero display width override fix | Added a stronger homepage-specific selector so later shared `.display-title` rules no longer override the hero H1 width |
+| 2026-03-31 08:59 | main | Hybrid Payload content model foundation | Modularized Payload collections/globals, introduced `media`, `mediaPosts`, `articles`, and `pageContent`, and kept legacy page globals as the fixed-page transition layer for the upcoming visual editor |
+| 2026-03-31 09:16 | main | SQLite compatibility patch for renamed Payload slugs | Added startup repair for legacy `payload_locked_documents_rels` metadata and patched the local database so Payload Admin can query lock state after the `mediaAssets/mediaArticles` to `media/mediaPosts` transition |
 
 ## 13. Update log
 
@@ -384,3 +408,10 @@ Interaction and visual behavior:
 | 2026-03-24 22:04 | main | UX refinement | Removed the separate hero title and standfirst max-width constraints so the children inside `hero-story` now follow the same column width as their parent container |
 | 2026-03-24 22:16 | main | UX refinement | Simplified the first screen to an H1-only hero statement and kept `display-title hero-display` at full parent width so the opening frame no longer competes with an eyebrow, standfirst, or in-hero CTA |
 | 2026-03-24 22:26 | main | Bug fix | Added a homepage-specific width override for `hero-story .display-title.hero-display` after the shared title scale block so the first-screen H1 no longer inherits the later `max-width: 9.5ch` constraint from `.display-title` |
+| 2026-03-31 08:59 | main | Refactor | Split the monolithic Payload config into modular collection/global files, renamed structured content collections to `media`, `mediaPosts`, and `articles`, added the generic `pageContent` collection plus seed data, and updated legacy admin links and data readers to match the new Payload model |
+| 2026-03-31 09:16 | main | Bug fix | Added a SQLite compatibility helper that backfills new locked-document relation columns for renamed Payload collections and repaired the local `data/payload.db` so `/cms/admin` no longer fails on missing `media_id` metadata columns |
+
+
+
+
+

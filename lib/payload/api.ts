@@ -1,4 +1,4 @@
-import {
+﻿import {
   demoAboutPageData,
   demoCaseStudies,
   demoContactPageData,
@@ -312,7 +312,7 @@ export async function getHomePageData(): Promise<HomePageData> {
       payload.findGlobal({ slug: "siteSettings", depth: 1, draft, overrideAccess: true }) as Promise<PayloadDoc>,
       payload.findGlobal({ slug: "homePage", depth: 2, draft, overrideAccess: true }) as Promise<PayloadDoc>,
       payload.find({
-        collection: "mediaArticles",
+        collection: "mediaPosts",
         depth: 1,
         draft,
         limit: 3,
@@ -480,7 +480,7 @@ export async function getMediaPageData(): Promise<MediaPageData> {
       getSiteSettings(),
       payload.findGlobal({ slug: "mediaPage", depth: 1, draft, overrideAccess: true }) as Promise<PayloadDoc>,
       payload.find({
-        collection: "mediaArticles",
+        collection: "mediaPosts",
         depth: 1,
         draft,
         limit: 50,
@@ -610,3 +610,4 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null
     return fallback;
   }
 }
+

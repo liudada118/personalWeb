@@ -1,4 +1,4 @@
-import { SectionTitle } from "@/components/section-title";
+﻿import { SectionTitle } from "@/components/section-title";
 import { VisualEditRegion } from "@/components/visual-edit-region";
 import { getMediaPageData } from "@/lib/payload/api";
 
@@ -33,12 +33,12 @@ export default async function MediaPage() {
         <div className="container">
           <VisualEditRegion adminHref="/cms/admin/globals/mediaPage" label="媒体页说明区" previewHref="/media">
             <SectionTitle
-              eyebrow="代表作品"
-              title="各大媒体的代表作统一沉淀到这一页，后台可以随时发布、编辑、删除和调整露出顺序。"
+              eyebrow="代表内容"
+              title="媒体内容通过 Payload 集合统一管理，页面只负责呈现精选结果。"
             />
           </VisualEditRegion>
 
-          <VisualEditRegion adminHref="/cms/admin/collections/mediaArticles" label="媒体文章列表" previewHref="/media">
+          <VisualEditRegion adminHref="/cms/admin/collections/mediaPosts" label="媒体内容列表" previewHref="/media">
             <div className="media-grid">
               {articles.map((article) => (
                 <article className="article-card" key={article._id}>
