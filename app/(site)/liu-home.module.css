@@ -264,78 +264,108 @@
     linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.08));
 }
 
-/* Screen 2: Quote + Intro + Video
- * Upper: left manifesto quote (heavy) + right intro (light)
- * Lower: large centered video panel
- * Clear vertical rhythm between upper and lower
- */
 .statementSection {
-  padding: 0 0 2rem;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5.4rem, 9vw, 7.4rem) 0 clamp(5.6rem, 10vw, 8.4rem);
   background:
-    radial-gradient(ellipse 60% 40% at 15% 80%, rgba(38, 137, 255, 0.1) 0%, transparent 55%),
-    linear-gradient(180deg, #050705 0%, #040404 100%);
+    radial-gradient(circle at 22% 18%, rgba(193, 226, 73, 0.08), transparent 28%),
+    radial-gradient(circle at 78% 74%, rgba(112, 154, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, #040705 0%, #060905 42%, #050605 100%);
 }
 
-/* Upper layer: manifesto quote + intro */
-.statementGrid {
+.statementSection::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 14rem;
+  background: linear-gradient(180deg, rgba(236, 240, 225, 0.04) 0%, rgba(236, 240, 225, 0) 100%);
+  pointer-events: none;
+}
+
+.statementFrame {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 4rem;
-  align-items: start;
-  padding: 4rem 5rem 3rem;
+  gap: clamp(4rem, 7vw, 6.6rem);
 }
 
-/* Left: Manifesto quote - editorial, declaration feel */
+.statementTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+  gap: clamp(2.8rem, 5vw, 6rem);
+  align-items: start;
+}
+
 .quoteBlock {
   position: relative;
   display: grid;
-  justify-items: start;
-  gap: 0.8rem;
-  padding-left: 0.5rem;
+  gap: 1.2rem;
+  padding: 0 0 0 2.2rem;
 }
 
-/* Large decorative quotation mark */
+.quoteBlock::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  left: 0;
+  bottom: 0.45rem;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(203, 255, 31, 0.52) 0%, rgba(203, 255, 31, 0.06) 100%);
+}
+
 .quoteMark {
-  color: rgba(203, 255, 31, 0.4);
+  position: absolute;
+  top: -0.8rem;
+  left: 0.95rem;
+  color: rgba(203, 255, 31, 0.34);
   font-family: var(--font-display);
-  font-size: 5rem;
-  line-height: 0.6;
+  font-size: clamp(4.8rem, 7vw, 7rem);
+  line-height: 1;
   font-weight: 300;
-  letter-spacing: -0.02em;
-}
-
-.quoteMarkRight {
-  display: none;
+  letter-spacing: -0.05em;
 }
 
 .quoteBlock p {
   margin: 0;
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-size: clamp(2rem, 3.9vw, 3.2rem);
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 0.98;
   white-space: pre-line;
+  text-wrap: balance;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.035em;
 }
 
-/* Right: brief intro - light, restrained */
 .statementCopy {
   display: grid;
-  justify-items: start;
+  justify-self: end;
   align-content: start;
-  gap: 1.5rem;
-  padding-top: 1.5rem;
+  gap: 1.35rem;
+  max-width: 21rem;
+  padding-top: clamp(1.4rem, 4vw, 3.4rem);
 }
 
-.statementCopy p {
+.statementEyebrow {
   margin: 0;
-  max-width: 30ch;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  line-height: 1.85;
+  color: rgba(198, 226, 112, 0.66);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.statementCopy > p:last-of-type {
+  margin: 0;
+  color: rgba(239, 241, 232, 0.7);
+  font-size: 0.98rem;
+  line-height: 1.9;
   letter-spacing: 0.01em;
+}
+
+.statementLink {
+  min-height: 2rem;
+  color: rgba(203, 255, 31, 0.88);
 }
 
 .inlineLink,
@@ -357,38 +387,117 @@
   color: #111713;
 }
 
-/* Lower layer: large centered video - visual anchor of this screen */
-.videoPanel {
+.videoStage {
   display: grid;
-  place-items: center;
-  gap: 1.2rem;
-  min-height: 22rem;
-  margin: 1.5rem auto 2.5rem;
-  width: min(72%, 52rem);
-  background:
-    radial-gradient(ellipse 50% 40% at 60% 30%, rgba(180, 160, 80, 0.3), transparent 60%),
-    #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  justify-items: center;
 }
 
-.videoPanel p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
+.videoPanel {
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 57rem);
+  min-height: clamp(24rem, 44vw, 31rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 3.6vw, 2.8rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.8rem;
+  background:
+    radial-gradient(circle at 68% 30%, rgba(208, 191, 116, 0.28), transparent 22%),
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.1), transparent 24%),
+    linear-gradient(135deg, rgba(31, 40, 34, 0.9) 0%, rgba(18, 23, 20, 0.96) 42%, rgba(8, 11, 9, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.videoPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 24%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 44%);
+  pointer-events: none;
+}
+
+.videoPanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0%, transparent 24%),
+    linear-gradient(0deg, rgba(5, 7, 5, 0.08) 0%, rgba(5, 7, 5, 0.46) 100%);
+  pointer-events: none;
+}
+
+.videoPanelInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5.5rem;
+}
+
+.videoAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.videoActionLabel {
+  color: rgba(239, 241, 232, 0.56);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
 }
 
-/* Restrained play icon */
+.videoText {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 30rem;
+}
+
+.videoEyebrow {
+  margin: 0;
+  color: rgba(239, 241, 232, 0.46);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.videoTitle {
+  margin: 0;
+  color: #f5f7ef;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.1vw, 3.65rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.videoSummary {
+  margin: 0;
+  max-width: 33ch;
+  color: rgba(239, 241, 232, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.78;
+}
+
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border: 1px solid rgba(203, 255, 31, 0.55);
+  width: 4.15rem;
+  height: 4.15rem;
+  border: 1px solid rgba(203, 255, 31, 0.34);
   border-radius: 999px;
-  color: rgba(203, 255, 31, 0.85);
-  font-size: 1.1rem;
+  background: rgba(5, 8, 5, 0.22);
+  color: rgba(203, 255, 31, 0.84);
+  font-size: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 /* Screen 3: Podcast Carousel
@@ -892,11 +1001,23 @@
     margin: 0 auto;
   }
 
-  /* Statement section: stack on tablet */
-  .statementGrid {
+  .statementSection {
+    padding: 4.8rem 0 5.4rem;
+  }
+
+  .statementFrame {
+    gap: 3.25rem;
+  }
+
+  .statementTop {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 3rem 1.5rem 2rem;
+  }
+
+  .statementCopy {
+    justify-self: start;
+    max-width: 30rem;
+    padding-top: 0;
   }
 
   .heroCopy {
@@ -929,8 +1050,9 @@
   }
 
   .videoPanel {
-    width: calc(100% - 3rem);
-    min-height: 16rem;
+    width: 100%;
+    min-height: 21rem;
+    border-radius: 1.45rem;
   }
 
   .episodeGrid {
@@ -988,13 +1110,32 @@
     inset: 1rem -6rem -8rem -2rem;
   }
 
-  .statementGrid {
-    padding: 2.5rem 1.1rem 1.5rem;
-    gap: 1.5rem;
+  .statementSection {
+    padding: 4rem 0 4.5rem;
+  }
+
+  .statementFrame {
+    gap: 2.5rem;
+  }
+
+  .statementTop {
+    gap: 1.4rem;
   }
 
   .quoteBlock p {
-    font-size: clamp(1.1rem, 5vw, 1.4rem);
+    font-size: clamp(1.45rem, 7.4vw, 2.15rem);
+  }
+
+  .statementCopy {
+    max-width: 100%;
+  }
+
+  .statementCopy > p:last-of-type {
+    font-size: 0.92rem;
+  }
+
+  .videoPanelInner {
+    gap: 4rem;
   }
 
   .episodeFeatureIntro {
@@ -1003,9 +1144,23 @@
   }
 
   .videoPanel {
-    width: calc(100% - 2.2rem);
-    min-height: 14rem;
-    margin: 1rem auto 2rem;
+    min-height: 18.5rem;
+    padding: 1.4rem;
+    border-radius: 1.2rem;
+  }
+
+  .videoIcon {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+
+  .videoTitle {
+    font-size: clamp(1.85rem, 9vw, 2.55rem);
+  }
+
+  .videoSummary {
+    max-width: 100%;
+    font-size: 0.88rem;
   }
 
   .episodeFeatureIntro,

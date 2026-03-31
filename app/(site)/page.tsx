@@ -14,6 +14,14 @@ export const metadata: Metadata = {
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
 
+const statementIntro =
+  "I build a personal platform around law, narrative, and public-facing expression, turning sharp ideas into work people can enter through story, conversation, and point of view.";
+
+const statementVideoTitle = "A statement on law, media, and the work behind the voice.";
+
+const statementVideoSummary =
+  "A restrained entry point into the broader body of interviews, podcast clips, and perspective-led content.";
+
 const fallbackEpisodes: PodcastEpisode[] = [
   {
     _id: "liu-episode-01",
@@ -126,27 +134,37 @@ export default async function HomePage() {
 
       <section className={styles.statementSection}>
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage intro" previewHref="/">
-          {/* Upper: full-width manifesto + intro */}
           <div className={styles.shell}>
-            <div className={styles.statementGrid}>
-              {/* Left: declaration manifesto quote */}
-              <div className={styles.quoteBlock}>
-                <span className={styles.quoteMark}>"</span>
-                <p>{manifestoQuote}</p>
+            <div className={styles.statementFrame}>
+              <div className={styles.statementTop}>
+                <div className={styles.quoteBlock}>
+                  <span className={styles.quoteMark}>“</span>
+                  <p>{manifestoQuote}</p>
+                </div>
+                <div className={styles.statementCopy}>
+                  <p className={styles.statementEyebrow}>Brand Narrative</p>
+                  <p>{statementIntro}</p>
+                  <Link className={`${styles.inlineLink} ${styles.statementLink}`} href="/about">
+                    More
+                  </Link>
+                </div>
               </div>
-              {/* Right: brief intro - light and restrained */}
-              <div className={styles.statementCopy}>
-                <p>Some short self-introduction.</p>
-                <Link className={styles.inlineLink} href="/about">
-                  More
-                </Link>
+              <div className={styles.videoStage}>
+                <div className={styles.videoPanel}>
+                  <div className={styles.videoPanelInner}>
+                    <div className={styles.videoAction}>
+                      <div className={styles.videoIcon}>▶</div>
+                      <span className={styles.videoActionLabel}>Statement Film</span>
+                    </div>
+                    <div className={styles.videoText}>
+                      <p className={styles.videoEyebrow}>Selected Entry</p>
+                      <h2 className={styles.videoTitle}>{statementVideoTitle}</h2>
+                      <p className={styles.videoSummary}>{statementVideoSummary}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          {/* Lower: centered video panel - visual anchor */}
-          <div className={styles.videoPanel}>
-            <div className={styles.videoIcon}>▶</div>
-            <p>Video topic</p>
           </div>
         </VisualEditRegion>
       </section>
