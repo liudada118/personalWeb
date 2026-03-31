@@ -762,71 +762,114 @@
   letter-spacing: 0.01em;
 }
 
+/* Screen 6: Featured Works
+ * Editorial / publishing showcase - asymmetric left-large grid
+ */
 .worksSection {
-  padding: 4.5rem 0 5rem;
-  background: #f3f5f1;
+  padding: 5rem 0 5.5rem;
+  background: #f0f2ed;
 }
 
+/* Module header - clean editorial title */
 .worksHeader {
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.1);
+  margin-bottom: 2.5rem;
+}
+
+.worksHeader h2 {
+  margin: 0;
+  color: #111713;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .worksHeader span {
-  color: rgba(17, 23, 19, 0.5);
+  color: rgba(17, 23, 19, 0.35);
 }
 
+/* Asymmetric grid: left large card, right two smaller cards */
 .worksGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.72fr));
-  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.7fr));
+  gap: 1.5rem;
   align-items: start;
 }
 
 .workCard {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.8rem;
 }
 
+/* Large card spans two rows - editorial feature */
 .workCardLarge {
   grid-row: span 2;
 }
 
 .workCardSmall {
-  padding-top: 0.1rem;
+  padding-top: 0.2rem;
 }
 
+/* Work card thumbnail - clean white with subtle shadow */
 .workThumb {
   background: #ffffff;
-  box-shadow: inset 0 0 0 1px rgba(17, 23, 19, 0.04);
+  box-shadow: 0 2px 8px rgba(17, 23, 19, 0.06);
 }
 
 .workCardLarge .workThumb {
-  aspect-ratio: 0.76;
+  aspect-ratio: 0.72;
 }
 
 .workCardSmall .workThumb {
   aspect-ratio: 1;
 }
 
-.workCard span,
-.workCard p {
-  color: rgba(17, 23, 19, 0.68);
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
+/* Work card text - restrained hierarchy */
+.workCard span {
+  color: rgba(17, 23, 19, 0.5);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .workCard strong {
+  display: block;
   color: #111713;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-top: 0.2rem;
 }
 
 .workCard p {
   margin: 0;
+  color: rgba(17, 23, 19, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.6;
 }
 
+/* Explore link with bottom border - closing gesture */
 .exploreLink {
-  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.3);
+  color: rgba(17, 23, 19, 0.75);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 160ms ease;
+}
+
+.exploreLink:hover {
   color: #111713;
+  border-bottom-color: #111713;
 }
 
 @media (max-width: 960px) {
@@ -905,6 +948,11 @@
 
   .workCardLarge {
     grid-row: auto;
+  }
+
+  .workCardLarge .workThumb,
+  .workCardSmall .workThumb {
+    aspect-ratio: 4 / 3;
   }
 }
 
