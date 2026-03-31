@@ -1,4 +1,9 @@
+﻿"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import styles from "./site-chrome.module.css";
 
 import type { SiteSettings } from "@/lib/types";
 
@@ -7,29 +12,56 @@ type SiteFooterProps = {
 };
 
 export function SiteFooter({ settings }: SiteFooterProps) {
+  const pathname = usePathname();
+
+  if (pathname === "/") {
+    return (
+      <footer className={styles.homeFooter}>
+        <div className={styles.homeFooterInner}>
+          <div>
+            <Link className={styles.homeFooterBrand} href="/">
+              <span>DENNIS</span>
+              <span className={styles.homeFooterSlash}>/ yuxuan /</span>
+              <span>LIU</span>
+            </Link>
+            <div className={styles.homeFooterMeta}>
+              <p>Brand videos</p>
+              <p>Case studies and podcast system</p>
+              <a href={`mailto:${settings.contactEmail}`}>{settings.contactEmail}</a>
+            </div>
+          </div>
+          <div className={styles.homeFooterAction}>
+            <Link href="/contact">Telephone English CN</Link>
+            <p className={styles.homeFooterNote}>Liu branch homepage for the Dennis site direction.</p>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="site-footer">
       <div className="container footer-lead">
         <div>
           <p className="eyebrow">Tiger Legal</p>
-          <h2 className="footer-title">把官网、内容、案例与联系动线组织成一套克制、沉稳、可长期维护的表达系统。</h2>
+          <h2 className="footer-title">Build the website, content, cases, and contact flow into one steady long-term expression system.</h2>
           <p className="footer-description">{settings.footerNote}</p>
         </div>
         <div className="footer-cta-group">
           <Link className="footer-cta" href="/contact">
-            发起联系
+            Contact
           </Link>
         </div>
       </div>
       <div className="container footer-grid">
         <div className="footer-column">
-          <span className="footer-label">联系</span>
+          <span className="footer-label">Contact</span>
           <a href={`mailto:${settings.contactEmail}`}>{settings.contactEmail}</a>
           <a href={`tel:${settings.contactPhone}`}>{settings.contactPhone}</a>
           <p>{settings.address}</p>
         </div>
         <div className="footer-column">
-          <span className="footer-label">导航</span>
+          <span className="footer-label">Navigation</span>
           {settings.navItems.map((item) => (
             <Link href={item.href} key={`${item.label}-${item.href}`}>
               {item.label}
@@ -37,7 +69,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
           ))}
         </div>
         <div className="footer-column">
-          <span className="footer-label">订阅</span>
+          <span className="footer-label">Subscribe</span>
           {settings.socialLinks.map((item) => (
             <a href={item.href} key={item.platform} rel="noreferrer" target="_blank">
               {item.label}

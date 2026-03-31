@@ -1,11 +1,11 @@
 ﻿# Architecture
 
-Last updated: `2026-03-31 11:15`  
-Git branch: `main`
+Last updated: `2026-03-31 23:49`  
+Git branch: `liu`
 
 ## 1. Overview
 
-This project is a self-hosted personal brand website built with `Next.js + Payload CMS`.
+This project is a self-hosted personal brand website built with `Next.js + Payload CMS`. The active `liu` branch now carries an alternate Dennis Yuxuan Liu homepage direction while the main branch remains the Tiger Legal baseline.
 
 It has three layers:
 - public site for brand presentation and lead capture
@@ -24,6 +24,7 @@ Legacy `/studio` traffic is redirected to `/cms/admin` so old bookmarks still wo
 - The custom `/cms` route acts as a visual management hub: daily editing is steered toward the protected workbench, while native Payload Admin remains available only for advanced operations.
 - Day-to-day page editing now follows a WordPress-like visual-editing loop: editors work inside `/cms/admin/workbench`, click regions directly inside the preview, and let the left-side Payload editor jump to the matching page or collection.
 - The app now supports deployment under a subpath by using `NEXT_PUBLIC_BASE_PATH`, and client fetch / iframe / upload URL handling is normalized through a shared base-path helper.
+- The `liu` branch is now allowed to diverge at the homepage and site chrome level so a Dennis/Liu front page can coexist with the existing Tiger Legal CMS and inner-page stack without forcing that redesign onto `main`.
 
 ## 3. Tech stack
 
@@ -87,6 +88,7 @@ Development note:
 ```text
 app/
   (site)/
+  (site)/liu-home.module.css
   (cms)/
   (payload)/
   (payload)/cms/admin/
@@ -95,6 +97,7 @@ app/
   api/
 components/
   scroll-reveal-text.tsx
+  site-chrome.module.css
   studio/
   visual-edit-region.tsx
 lib/
@@ -287,50 +290,40 @@ These page globals are intentionally kept as a transition layer. Public page ren
 
 ## 11. Current homepage system
 
-The homepage is structured as:
+The active `liu` branch now intentionally splits the homepage from the older Tiger Legal public-site direction.
 
-1. `Header`
-2. `Hero`
-3. `Value`
-4. `Services`
-5. `Credibility`
-6. `Resources`
-7. `Contact CTA`
-8. `Footer`
+Current homepage structure on `/`:
 
-Interaction and visual behavior:
-- sticky header state change on scroll
-- the homepage now opens with a full-bleed cinematic hero instead of an editorial text-first opening, using one primary headline, one primary CTA, and one short supporting line
-- the homepage header stays transparent over the hero at the top of the page and only condenses into a surfaced navigation bar after scroll
-- the home header now drops the circular brand-mark treatment at the top of the homepage and behaves more like a reference-style wordmark + nav + outlined contact control
-- the home header now also changes its sticky state more aggressively: after a deeper scroll threshold it turns from a transparent overlay into a full-width, top-anchored brand bar with a flatter silhouette closer to the benchmark site
-- the homepage hero has been tightened to a single-story layout: the secondary proof card and raised evidence band were removed so the title can use much more horizontal space and behave more like the benchmark brand site
-- the homepage hero now overrides the shared balanced-heading behavior, widens the title block to roughly half the desktop viewport, and pulls the CTA back upward so the primary action remains inside the first screen instead of slipping below the fold
-- the homepage hero no longer leaves a light body-color strip between the first and second screens: the cinematic hero section now ends flush against the manifesto section, and the first-screen title / standfirst widths were widened again so the opening frame does not feel underfilled
-- the hero text block now keeps a single shared width rule: the `hero-story` children inherit the same width as the parent container, so the title and standfirst no longer shrink to separate internal measures
-- the hero opening is now reduced to a single H1-only statement: the eyebrow, standfirst, and hero CTA were removed from the first screen so `display-title hero-display` can occupy the full hero text column by itself
-- the homepage hero also now uses a more specific selector for `hero-story .display-title.hero-display`, preventing later shared `.display-title` rules from accidentally shrinking the first-screen H1 back down to a narrow max-width
-- the second homepage section now reads as a dark manifesto band rather than a light article block, so the site moves from first impression into a stronger editorial-style statement of method
-- the manifesto section now uses a wider two-column declaration layout with a dominant left thesis, larger staggered doctrine lines on the right, and restrained footnote copy underneath
-- the manifesto section is implemented as a dedicated client component with scroll-driven behavior: the left column stays sticky while the right column remains fully rendered and advances with scroll-bound reading progress
-- the right-side manifesto copy now uses a reusable `ScrollRevealText` component that splits text into individual characters and drives each span from low-contrast grey to soft white as scroll progress sweeps through the line
-- the manifesto effect no longer relies on whole-block opacity or noticeable vertical motion; it is now primarily a restrained character-level color transition so the second screen feels closer to an editorial reading surface than a marketing animation
-- the manifesto timeline has been stretched so the same scroll distance reveals fewer characters: the section holds more vertical scroll height and the progress mapping now consumes a larger distance before reaching full reveal
-- the homepage body copy has been rewritten into clean Chinese editorial content, replacing the earlier garbled copy and aligning the narrative tone across hero, manifesto, services, credibility, resources, and contact closeout
-- the services section now presents capability items as numbered editorial entries beside a larger spotlight module, and the credibility section has been tightened with clearer publication proof, metric hierarchy, and case follow-through
-- the homepage now uses a dedicated wide container instead of the default inner-page content width, so the header, hero, and manifesto section sit much closer to the viewport edges like the reference brand site while ordinary text blocks still keep their own reading measure
-- homepage sections now separate narrative roles more clearly: value framing, service capability, credibility proof, resource assets, final contact
-- CTA rhythm now returns mid-page through inline section callouts before the final contact banner
-- section reveal is now layered: the section shell enters first, then internal items reveal with light stagger
-- rotating homepage panels pause on hover / focus so motion supports reading instead of interrupting it
-- homepage color usage is now driven by semantic design tokens in `app/globals.css`, centered on `background / surface / foreground / muted / border / primary / primary-foreground / accent / accent-foreground`
-- the public-facing homepage now uses one warm neutral base with a single deep brand color and a restrained secondary accent, instead of mixing multiple unrelated greens / whites in component-level hardcoded values
-- low-density layout with a controlled typography scale, larger section spacing, and restrained hover states for CTA, links, and interactive content surfaces
-- responsive tuning now keeps the homepage metrics, inline CTA panels, and contact closeout readable across tablet and mobile breakpoints, with narrower cards, balanced headings, and single-column fallbacks only where needed
-- obsolete homepage template selectors from earlier layout iterations have been removed from `app/globals.css`, reducing redundant visual rules that no longer map to the live homepage structure
-- shared CSS now defines the previously missing `primary-foreground-muted` and `primary-border-soft` tokens, and older hardcoded public / CMS colors have been pulled back onto the same semantic palette so headers, buttons, footer surfaces, dashboard highlights, and fallback screens no longer drift between separate green / beige schemes
-- local validation on Windows currently passes via `pnpm exec next dev`, while `pnpm build` still hits OS-level `EPERM` issues during standalone symlink tracing rather than page-code compilation failures
-- `pnpm typecheck` can still fail on this machine when stale `.next/types` references exist before a fresh Next runtime regenerates them; the homepage rebuild itself compiled successfully through the webpack production compile stage
+1. `Dennis/Liu sticky wordmark header`
+2. `Split-screen neon hero`
+3. `Quote + intro + video statement band`
+4. `Podcast rail`
+5. `Featured episode block`
+6. `Profile strip`
+7. `Featured works grid`
+8. `Dennis/Liu dark footer`
+
+Branch-specific behavior:
+- `app/(site)/page.tsx` is now a dedicated Dennis/Liu homepage instead of the former Tiger Legal editorial homepage.
+- `app/(site)/liu-home.module.css` owns the homepage visual system so the large redesign is isolated from the shared legacy stylesheet.
+- `components/site-header.tsx` now branches on `pathname === "/"`: the homepage uses a Dennis/Liu wordmark and compact uppercase nav, while inner pages still use the existing shared Tiger Legal header.
+- `components/site-footer.tsx` follows the same split: `/` gets a dedicated Dennis/Liu dark footer, while non-home pages keep the previous shared footer.
+- The homepage keeps `VisualEditRegion` wrappers around the major fixed sections so the new design still participates in the visual-editing flow.
+- The podcast rail and featured episode block still read from `podcastEpisodes` through `getHomePageData()`, with local fallback content when Payload is empty.
+- The featured-works block is currently a design-faithful static placeholder layer for the Liu homepage direction; it can later be connected to `mediaPosts` or `pageContent` without changing the page shell.
+- This means `liu` can evolve as a second website direction without overwriting the Tiger Legal homepage behavior documented on `main`.
+
+Visual behavior:
+- the homepage now uses a black / deep-green / neon-lime palette with light gradient accents instead of the warm neutral Tiger Legal system
+- the first screen is a two-column hero with a typography-first left side and a stylized portrait placeholder panel on the right
+- the second screen compresses quote, short introduction, and video callout into a tighter editorial band closer to the provided Dennis/Liu reference image
+- lower sections alternate dark and light surfaces to mirror the screenshot's rhythm: dark podcast rail, light featured episode, dark profile strip, light featured works, dark footer
+- responsive behavior now collapses the split hero, quote band, podcast cards, and works grid into stacked mobile layouts without changing the section order
+- the homepage first screen was then refined again toward the Dennis/Liu reference: the header now floats as a transparent overlay, the left copy sits inside a continuous black-green space instead of a hard panel, and the right portrait zone behaves more like a full hero visual than a card module
+- a second first-screen refinement pass pushed the hero closer to the reference by turning the headline into a single-line declaration, reducing nav/logo weight, and enlarging the right portrait zone so the visual center sits more decisively on the right side
+- the hero utility links were then converted from decorative placeholders into actual outbound social links, with dedicated non-overlapping pill geometry so the homepage top-right social cluster stays readable and clickable
+- the hero social pills now intentionally render short platform tags rather than long backend labels, preventing the first-screen utility row from colliding with the main navigation when Chinese labels are verbose
+
 
 ## 12. Project status
 
@@ -378,6 +371,14 @@ Interaction and visual behavior:
 | 2026-03-31 09:16 | main | SQLite compatibility patch for renamed Payload slugs | Added startup repair for legacy `payload_locked_documents_rels` metadata and patched the local database so Payload Admin can query lock state after the `mediaAssets/mediaArticles` to `media/mediaPosts` transition |
 | 2026-03-31 11:15 | main | Visual Editor shell scaffold | Added the protected `/admin/visual-editor` route, schema-driven page registry, three-column editor shell, real iframe page preview, and local placeholder actions for Save / Reset / Publish |
 
+| 2026-03-31 22:11 | liu | Dennis/Liu homepage split | Replaced the old Tiger Legal homepage on the `liu` branch with a separate Dennis/Liu one-page direction, added homepage-specific site chrome, and kept inner pages plus CMS infrastructure on the existing shared stack |
+
+| 2026-03-31 23:13 | liu | Hero fidelity refinement | Reworked only the Dennis/Liu homepage first screen by lightening the overlay header, rebuilding the editorial left-title composition, and turning the right side into a stronger integrated hero visual zone |
+
+| 2026-03-31 23:32 | liu | Hero second-pass alignment | Further tightened only the first screen by making the title a single-line statement, thinning the overlay navigation, and pushing the right portrait composition closer to the supplied reference balance |
+
+| 2026-03-31 23:45 | liu | Homepage social-link overlap fix | Replaced the decorative top-right hero placeholders with real outbound social links and widened their geometry so ??? / B? / LinkedIn no longer overlap |
+
 ## 13. Update log
 
 | Time | Branch | Change type | Description |
@@ -423,10 +424,8 @@ Interaction and visual behavior:
 | 2026-03-31 08:59 | main | Refactor | Split the monolithic Payload config into modular collection/global files, renamed structured content collections to `media`, `mediaPosts`, and `articles`, added the generic `pageContent` collection plus seed data, and updated legacy admin links and data readers to match the new Payload model |
 | 2026-03-31 09:16 | main | Bug fix | Added a SQLite compatibility helper that backfills new locked-document relation columns for renamed Payload collections and repaired the local `data/payload.db` so `/cms/admin` no longer fails on missing `media_id` metadata columns |
 | 2026-03-31 11:15 | main | Feature update | Implemented STEP 3 of the hybrid CMS by adding a protected `/admin/visual-editor` shell, schema-driven editable page registry, a real-route iframe preview, and modular left/center/right editor panels while intentionally leaving live iframe messaging and Payload writeback for later steps |
-
-
-
-
-
-
-
+| 2026-03-31 22:11 | liu | UX refinement | Split the `liu` branch homepage away from the Tiger Legal design by rebuilding `/` into a Dennis/Liu reference-style landing page, adding dedicated homepage header/footer variants, and isolating the new visuals in `liu-home.module.css` plus `site-chrome.module.css` while keeping the rest of the site/CMS intact |
+| 2026-03-31 23:13 | liu | UX refinement | Tightened the Dennis/Liu homepage first screen toward the supplied reference by converting the top navigation into a transparent overlay, reducing the left-side panel feeling, re-spacing the headline block, and rebuilding the right-side portrait area as a fuller hero visual composition |
+| 2026-03-31 23:32 | liu | UX refinement | Performed a second Dennis/Liu first-screen fidelity pass by reducing the logo/nav weight, increasing the headline?s horizontal statement feel, and enlarging the right-side figure so the hero reads less like a split module and more like an editorial portrait-led opening |
+| 2026-03-31 23:45 | liu | Bug fix | Fixed the Dennis/Liu homepage hero utility cluster by wiring the social pills to real site settings links and giving the top-right social icons enough width / no-wrap layout so they no longer overlap |
+| 2026-03-31 23:49 | liu | Bug fix | Fixed the remaining homepage hero social overlap by rendering shortened platform tags like ??? / B? / in instead of full backend link labels, and by shifting the utility row farther right within the portrait panel |

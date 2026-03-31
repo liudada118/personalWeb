@@ -1,105 +1,162 @@
-import Link from "next/link";
+﻿import Link from "next/link";
+import type { Metadata } from "next";
 
-import { CaseCarousel } from "@/components/case-carousel";
-import { HeroSlideDeck } from "@/components/hero-slide-deck";
-import { RevealSection } from "@/components/reveal-section";
-import { ScheduleCarousel } from "@/components/schedule-carousel";
-import { SectionTitle } from "@/components/section-title";
-import { ValueManifestoSection } from "@/components/value-manifesto-section";
+import styles from "./liu-home.module.css";
+
 import { VisualEditRegion } from "@/components/visual-edit-region";
 import { getHomePageData } from "@/lib/payload/api";
+import type { PodcastEpisode } from "@/lib/types";
 
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("zh-CN", {
-    year: "numeric",
+export const metadata: Metadata = {
+  title: "Dennis Yuxuan Liu",
+  description: "Dennis Yuxuan Liu personal website homepage on the liu branch.",
+};
+
+const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
+
+const fallbackEpisodes: PodcastEpisode[] = [
+  {
+    _id: "liu-episode-01",
+    title: "Episode One",
+    slug: "episode-one",
+    episodeCode: "EP01",
+    releasedAt: "2026-03-01",
+    duration: "45 min",
+    summary: "Short summary text.",
+    featured: true,
+    platformLinks: [],
+  },
+  {
+    _id: "liu-episode-02",
+    title: "Episode Two",
+    slug: "episode-two",
+    episodeCode: "EP02",
+    releasedAt: "2026-02-16",
+    duration: "42 min",
+    summary: "Short summary text.",
+    featured: true,
+    platformLinks: [],
+  },
+  {
+    _id: "liu-episode-03",
+    title: "Episode Three",
+    slug: "episode-three",
+    episodeCode: "EP03",
+    releasedAt: "2026-01-30",
+    duration: "39 min",
+    summary: "Short summary text.",
+    featured: false,
+    platformLinks: [],
+  },
+];
+
+const heroSocialFallbacks = [
+  { platform: "???", label: "???", href: "https://example.com/rednote" },
+  { platform: "Bilibili", label: "????", href: "https://example.com/bilibili" },
+  { platform: "LinkedIn", label: "LinkedIn", href: "https://example.com/linkedin" },
+];
+
+const featuredWorks = [
+  {
+    kind: "BOOK",
+    title: "BOOK TITLE",
+    subtitle: "BOOK SUBLINE",
+    size: "large",
+  },
+  {
+    kind: "KIND",
+    title: "BOOK TITLE",
+    subtitle: "BOOK SUBLINE",
+    size: "small",
+  },
+  {
+    kind: "KIND",
+    title: "BOOK TITLE",
+    subtitle: "BOOK SUBLINE",
+    size: "small",
+  },
+];
+
+function formatEpisodeDate(value: string) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en", {
     month: "short",
-    day: "numeric",
-  }).format(new Date(value));
+    day: "2-digit",
+    year: "numeric",
+  }).format(date);
 }
 
-function formatCount(value: number) {
-  return String(value).padStart(2, "0");
+function getHeroSocialLabel(platform: string, label: string) {
+  const source = `${platform} ${label}`.toLowerCase();
+
+  if (source.includes("linkedin")) {
+    return "in";
+  }
+
+  if (source.includes("bilibili") || source.includes("??") || source.includes("b?")) {
+    return "B?";
+  }
+
+  if (source.includes("???") || source.includes("rednote") || source.includes("xiaohongshu")) {
+    return "???";
+  }
+
+  return platform || label;
 }
-
-const capabilityItems = [
-  {
-    title: "复杂议题翻译",
-    body: "把法律、商业、品牌和舆论语境整理成一条能被公众理解的表达路径，让复杂问题可以被准确讨论。",
-  },
-  {
-    title: "内容矩阵运营",
-    body: "围绕官网、媒体矩阵和播客栏目组织持续输出，不依赖高频营销动作，而依赖稳定、可信的内容系统。",
-  },
-  {
-    title: "高压场景表达",
-    body: "在公开沟通、代表发声、事件回应和重要节点中，提供更稳、更克制、更具判断力的表达支持。",
-  },
-];
-
-const valuePrinciples = [
-  {
-    title: "先判断，再表达。",
-    body: "先建立问题框架和事实秩序，再决定对外怎么说，让官网体现判断力，而不是即时反应。",
-  },
-  {
-    title: "先内容，再传播。",
-    body: "把官网、媒体与播客当成一套长期内容系统，不靠密集营销堆量，而是持续建立可阅读的资产。",
-  },
-  {
-    title: "先沉淀，再扩散。",
-    body: "先把立场、案例与方法论沉淀成稳定文本，再交给平台和媒体做传播，降低表达噪音。",
-  },
-];
-
-const resourcePrinciples = [
-  "官网负责统一叙事与归档。",
-  "播客负责持续而完整的思想输出。",
-  "媒体与平台负责外部触达与公共存在。",
-];
 
 export default async function HomePage() {
-  const { settings, homePage, mediaHighlights, podcastHighlights } = await getHomePageData();
-
-  const trustMetrics = [
-    {
-      label: "精选媒体",
-      value: formatCount(mediaHighlights.length),
-    },
-    {
-      label: "代表案例",
-      value: formatCount(homePage.featuredCases.length),
-    },
-    {
-      label: "公开平台",
-      value: formatCount(settings.socialLinks.length + 1),
-    },
-  ];
-
-  const featuredPublications = mediaHighlights.slice(0, 3);
-  const featuredEpisodes = podcastHighlights.slice(0, 2);
-  const heroVisual =
-    homePage.heroSlides.find((item) => item.imageUrl)?.imageUrl ??
-    homePage.featuredCases.find((item) => item.imageUrl)?.imageUrl ??
-    featuredPublications.find((item) => item.imageUrl)?.imageUrl ??
-    featuredEpisodes.find((item) => item.imageUrl)?.imageUrl;
+  const { settings, podcastHighlights } = await getHomePageData();
+  const episodes = (podcastHighlights.length ? podcastHighlights : fallbackEpisodes).slice(0, 3);
+  const leadEpisode = episodes[0] ?? fallbackEpisodes[0];
+  const heroSocialLinks = (settings.socialLinks.length ? settings.socialLinks : heroSocialFallbacks).slice(0, 3);
 
   return (
-    <div className="home-page">
-      <section className="hero-section hero-cinematic">
-        <VisualEditRegion adminHref="/cms/admin/globals/homePage" label="首页首屏" previewHref="/">
-          <div className="hero-media-shell">
-            <div
-              className={`hero-media${heroVisual ? " has-image" : ""}`}
-              style={heroVisual ? { backgroundImage: `url(${heroVisual})` } : undefined}
-            />
-            <div className="hero-media-scrim" />
-            <div className="container hero-stage">
-              <div className="hero-story hero-enter">
-                <h1 className="display-title hero-display">{homePage.heroTitle}</h1>
-                <div className="hero-primary-actions">
-                  <a className="button-primary button-hero" href={homePage.tigerLegalLink.href} rel="noreferrer" target="_blank">
-                    {homePage.tigerLegalLink.label}
+    <div className={styles.page}>
+      <section className={styles.heroSection}>
+        <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage hero" previewHref="/">
+          <div className={styles.heroShell}>
+            <div className={styles.heroGrid}>
+              <div className={styles.heroCopy}>
+                <p className={styles.kicker}>Dennis / Yuxuan / Liu</p>
+                <h1 className={styles.heroTitle}>“MAIN TITLE COPY”</h1>
+              </div>
+              <div className={styles.heroVisual}>
+                <div className={styles.heroUtilityRow}>
+                  <div className={styles.heroSignals}>
+                    {heroSocialLinks.map((item) => (
+                      <a
+                        className={styles.heroSignalLink}
+                        href={item.href}
+                        key={`${item.platform}-${item.href}`}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {getHeroSocialLabel(item.platform, item.label)}
+                      </a>
+                    ))}
+                  </div>
+                  <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
+                    Tigerpartners.cn
                   </a>
+                </div>
+                <div className={styles.heroPortraitScene}>
+                  <div className={styles.heroPortraitGlow} />
+                  <div className={styles.heroFigure} aria-hidden="true">
+                    <div className={styles.heroFigureHead} />
+                    <div className={styles.heroFigureHair} />
+                    <div className={styles.heroFigureEar} />
+                    <div className={styles.heroFigureNeck} />
+                    <div className={styles.heroFigureJacket}>
+                      <div className={styles.heroFigureShirt} />
+                      <div className={styles.heroFigureTie} />
+                      <div className={styles.heroFigureLapels} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -107,201 +164,150 @@ export default async function HomePage() {
         </VisualEditRegion>
       </section>
 
-      <section className="section value-section">
-        <VisualEditRegion adminHref="/cms/admin/globals/homePage" label="首页理念区" previewHref="/">
-          <ValueManifestoSection
-            eyebrow="理念解释"
-            footnotes={[
-              "官网不是营销页面，也不该是一堆信息的堆叠。它更像一个稳定的思想界面，用来组织立场、作品、方法与可信度。",
-              "视觉目标不是“抓眼球”，而是让访问者快速理解你是谁、你做什么、你如何判断问题，以及为什么值得信任。",
-            ]}
-            principles={valuePrinciples}
-            title="官网不是一页名片。它是一套公开判断。"
-          />
-        </VisualEditRegion>
-      </section>
-
-      <section className="section services-section">
-        <VisualEditRegion adminHref="/cms/admin/globals/homePage" label="首页服务能力区" previewHref="/">
-          <RevealSection className="container services-stage">
-            <div className="services-heading-row">
-              <SectionTitle
-                eyebrow="服务能力"
-                title="把法律判断、内容组织与公开表达，收束成一条持续工作的能力线。"
-                description="这里不再堆砌功能项，而是让访问者先理解真正能被交付的核心能力，再进入具体内容与案例。"
-              />
-
-              <div className="section-cta-inline reveal-item delay-1">
-                <p>如果你已经有明确议题，沟通入口不必等到页面结尾才出现。</p>
-                <Link className="button-secondary" href="/contact">
-                  发起沟通
+      <section className={styles.statementSection}>
+        <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage intro" previewHref="/">
+          <div className={styles.shell}>
+            <div className={styles.statementGrid}>
+              <div className={styles.quoteBlock}>
+                <span className={styles.quoteMark}>“</span>
+                <p>{manifestoQuote}</p>
+                <span className={styles.quoteMarkRight}>”</span>
+              </div>
+              <div className={styles.statementCopy}>
+                <p>Some short self-introduction.</p>
+                <Link className={styles.inlineLink} href="/about">
+                  More
                 </Link>
               </div>
             </div>
-
-            <div className="services-layout">
-              <div className="capability-grid">
-                {capabilityItems.map((item, index) => (
-                  <article className={`capability-card reveal-item delay-${index + 1}`} key={item.title}>
-                    <span className="capability-index">{formatCount(index + 1)}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </article>
-                ))}
-              </div>
-
-              <div className="services-spotlight reveal-item delay-2">
-                <HeroSlideDeck slides={homePage.heroSlides} />
-              </div>
+            <div className={styles.videoPanel}>
+              <div className={styles.videoIcon}>▶</div>
+              <p>Video topic</p>
             </div>
-          </RevealSection>
+          </div>
         </VisualEditRegion>
       </section>
 
-      <section className="section credibility-section">
-        <VisualEditRegion adminHref="/cms/admin/globals/homePage" label="首页背书与案例区" previewHref="/">
-          <RevealSection className="container credibility-editorial">
-            <div className="credibility-heading-row">
-              <div className="credibility-copy">
-                <p className="eyebrow">权威背书</p>
-                <h2>公开表达、代表作品与案例，不靠头衔堆砌，而靠长期可验证的输出。</h2>
-                <p className="section-description">
-                  媒体文章、公开日程与案例共同构成可信度。它们不是并列装饰，而是对官网主张的现实证明。
-                </p>
-              </div>
-
-              <div className="credibility-ledger" aria-label="权威背书概览">
-                {trustMetrics.map((item, index) => (
-                  <div className={`credibility-metric reveal-item delay-${index + 1}`} key={item.label}>
-                    <span>{item.label}</span>
-                    <strong>{item.value}</strong>
-                  </div>
-                ))}
-              </div>
+      <section className={styles.podcastRailSection}>
+        <VisualEditRegion adminHref="/cms/admin/collections/podcastEpisodes" label="Liu homepage podcast rail" previewHref="/podcast">
+          <div className={styles.shell}>
+            <div className={styles.sectionHeaderCenter}>
+              <h2>LAW, DISRUPTED PODCAST</h2>
             </div>
-
-            <div className="credibility-proof-grid">
-              <div className="authority-list-grid">
-                {featuredPublications.map((article, index) => (
-                  <article className={`list-card reveal-item delay-${index + 1}`} key={article._id}>
-                    <div className="list-card-meta">
-                      <span>{article.publication}</span>
-                      <span>{formatDate(article.publishedAt)}</span>
-                    </div>
-                    <h3>{article.title}</h3>
-                    <p>{article.excerpt}</p>
-                    <a href={article.url} rel="noreferrer" target="_blank">
-                      打开文章
-                    </a>
+            <div className={styles.podcastRail}>
+              <button aria-label="Previous episode" className={styles.railArrow} type="button">
+                ‹
+              </button>
+              <div className={styles.episodeGrid}>
+                {episodes.map((episode) => (
+                  <article className={styles.episodeCard} key={episode._id}>
+                    <div className={styles.episodeThumb} />
+                    <strong>{episode.title}</strong>
+                    <span>{episode.summary}</span>
                   </article>
                 ))}
               </div>
-
-              <div className="credibility-side-stack">
-                <div className="reveal-item delay-2">
-                  <ScheduleCarousel items={homePage.scheduleItems} />
-                </div>
-
-                <div className="section-cta-inline reveal-item delay-3">
-                  <p>如果你想先看完整的公开内容，可以从媒体页面继续往下读。</p>
-                  <Link className="button-secondary" href="/media">
-                    查看媒体页
-                  </Link>
-                </div>
-              </div>
+              <button aria-label="Next episode" className={styles.railArrow} type="button">
+                ›
+              </button>
             </div>
-
-            <div className="credibility-case-block">
-              <div className="section-heading">
-                <p className="eyebrow">案例证明</p>
-                <h2>案例不是展示数量，而是展示判断方法如何真正落地。</h2>
-              </div>
-              <div className="reveal-item delay-2">
-                <CaseCarousel items={homePage.featuredCases} />
-              </div>
+            <div className={styles.carouselDots} aria-hidden="true">
+              <span className={styles.dotActive} />
+              <span />
+              <span />
+              <span />
+              <span />
             </div>
-          </RevealSection>
+          </div>
         </VisualEditRegion>
       </section>
 
-      <section className="section resources-section">
-        <VisualEditRegion adminHref="/cms/admin/globals/homePage" label="首页内容资产区" previewHref="/">
-          <RevealSection className="container resources-editorial">
-            <div className="resources-lead">
-              <div className="resources-copy">
-                <p className="eyebrow">内容资产</p>
-                <h2>官网、媒体与播客不是分散入口，而是一套持续工作的内容资产。</h2>
-                <p className="section-description">
-                  内容资产的价值不在数量，而在它们是否形成清晰分工、稳定节奏和持续输出的界面。
-                </p>
-                <ul className="simple-list resource-list">
-                  {resourcePrinciples.map((item, index) => (
-                    <li className={`reveal-item delay-${index + 1}`} key={item}>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+      <section className={styles.episodeFeatureSection}>
+        <VisualEditRegion adminHref="/cms/admin/collections/podcastEpisodes" label="Liu homepage featured episode" previewHref="/podcast">
+          <div className={styles.shell}>
+            <div className={styles.episodeFeatureIntro}>
+              <div>
+                <h2>LAW, DISRUPTED PODCAST</h2>
+                <p>Representative Program Activity</p>
               </div>
-
-              <div className="resources-support">
-                <div className="platform-ribbon reveal-item delay-2">
-                  <span className="platform-label">媒体与平台</span>
-                  <div className="platform-ribbon-track">
-                    {settings.socialLinks.map((item) => (
-                      <a className="platform-pill" href={item.href} key={item.platform} rel="noreferrer" target="_blank">
-                        {item.label}
-                      </a>
-                    ))}
-                    <a className="platform-pill" href={homePage.tigerLegalLink.href} rel="noreferrer" target="_blank">
-                      {homePage.tigerLegalLink.label}
-                    </a>
-                  </div>
+              <Link className={styles.inlineLinkDark} href="/podcast">
+                More
+              </Link>
+            </div>
+            <div className={styles.episodeFeatureCard}>
+              <div className={styles.episodeMetaRows}>
+                <div>
+                  <span>{leadEpisode.episodeCode}</span>
+                  <strong>{leadEpisode.title}</strong>
                 </div>
-
-                <div className="resources-callout reveal-item delay-3">
-                  <p className="eyebrow">继续阅读</p>
-                  <h3>Tiger Legal Talks 承接更完整、更连续的思想输出。</h3>
-                  <Link className="button-secondary" href="/podcast">
-                    查看播客栏目
-                  </Link>
+                <span>{leadEpisode.duration}</span>
+              </div>
+              <div className={styles.episodeHeroThumb}>
+                <div className={styles.episodeHeroBadge}>▶</div>
+                <div className={styles.episodeHeroStats}>
+                  <span>203k</span>
+                  <span>2932</span>
+                  <span>01:45:06</span>
                 </div>
+              </div>
+              <div className={styles.episodeFeatureFooter}>
+                <strong>{leadEpisode.title}</strong>
+                <span>{formatEpisodeDate(leadEpisode.releasedAt)}</span>
               </div>
             </div>
+          </div>
+        </VisualEditRegion>
+      </section>
 
-            <div className="stack-grid resources-podcast-list">
-              {featuredEpisodes.map((episode, index) => (
-                <article className={`list-card reveal-item delay-${index + 1}`} key={episode._id}>
-                  <div className="list-card-meta">
-                    <span>{episode.episodeCode}</span>
-                    <span>{formatDate(episode.releasedAt)}</span>
-                  </div>
-                  <h3>{episode.title}</h3>
-                  <p>{episode.summary}</p>
-                  <Link href="/podcast">查看播客栏目</Link>
+      <section className={styles.profileSection}>
+        <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage profile block" previewHref="/about">
+          <div className={styles.shell}>
+            <div className={styles.profileGrid}>
+              <div className={styles.profilePortrait}>
+                <div className={styles.profilePortraitInner}>
+                  <span>Dennis</span>
+                </div>
+              </div>
+              <div className={styles.profileCopy}>
+                <h2>Self introduction</h2>
+                <p>
+                  Short professional summary text appears here. Keep the block compact, direct,
+                  and aligned with the editorial tone from the reference layout.
+                </p>
+                <Link className={styles.inlineLink} href="/about">
+                  More
+                </Link>
+              </div>
+            </div>
+          </div>
+        </VisualEditRegion>
+      </section>
+
+      <section className={styles.worksSection}>
+        <VisualEditRegion adminHref="/cms/admin/collections/mediaPosts" label="Liu homepage featured works" previewHref="/media">
+          <div className={styles.shell}>
+            <div className={styles.worksHeader}>
+              <h2>
+                FEATURED <span>WORKS</span>
+              </h2>
+            </div>
+            <div className={styles.worksGrid}>
+              {featuredWorks.map((work, index) => (
+                <article
+                  className={`${styles.workCard} ${work.size === "large" ? styles.workCardLarge : styles.workCardSmall}`}
+                  key={`${work.title}-${index}`}
+                >
+                  <div className={styles.workThumb} />
+                  <span>{work.kind}</span>
+                  <strong>{work.title}</strong>
+                  <p>{work.subtitle}</p>
                 </article>
               ))}
             </div>
-          </RevealSection>
-        </VisualEditRegion>
-      </section>
-
-      <section className="section contact-section">
-        <VisualEditRegion adminHref="/cms/admin/globals/homePage" label="首页联系收束区" previewHref="/">
-          <RevealSection className="container tail-banner contact-surface">
-            <SectionTitle eyebrow="联系转化" title={homePage.footerBannerTitle} description={homePage.footerBannerText} />
-            <div className="tail-actions">
-              <Link className="button-primary" href="/contact">
-                发起联系
-              </Link>
-              <div className="tail-meta-links">
-                {homePage.footerBannerLinks.map((item) => (
-                  <a href={item.href} key={item.label} rel="noreferrer" target="_blank">
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </RevealSection>
+            <Link className={styles.exploreLink} href="/media">
+              Explore all books
+            </Link>
+          </div>
         </VisualEditRegion>
       </section>
     </div>

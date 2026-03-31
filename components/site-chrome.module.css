@@ -1,0 +1,183 @@
+﻿.homeHeader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 60;
+  padding-top: 0.78rem;
+  pointer-events: none;
+}
+
+.homeHeaderInner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.55rem;
+  width: min(1452px, calc(100vw - 2px));
+  margin: 0 auto;
+  padding: 0 2.8rem 0 12.7rem;
+  pointer-events: auto;
+}
+
+.homeHeaderScrolled .homeHeaderInner {
+  padding-top: 0.28rem;
+  padding-bottom: 0.28rem;
+  background: linear-gradient(180deg, rgba(3, 8, 4, 0.68) 0%, rgba(3, 8, 4, 0.56) 100%);
+  backdrop-filter: blur(8px);
+}
+
+.homeBrand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.16rem;
+  color: #a7d500;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.homeBrandPrimary {
+  font-size: clamp(1.82rem, 2vw, 2.2rem);
+  line-height: 1;
+}
+
+.homeBrandSlash {
+  margin: 0 0.18rem 0 0.08rem;
+  color: rgba(197, 230, 57, 0.76);
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.homeNav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.55rem;
+  padding-top: 0.12rem;
+}
+
+.homeNavLink {
+  position: relative;
+  color: rgba(187, 204, 182, 0.68);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.homeNavLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.24rem;
+  height: 1px;
+  background: rgba(166, 212, 0, 0.82);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+
+.homeNavLink:hover::after,
+.homeNavLink:focus-visible::after,
+.homeNavLinkActive::after {
+  transform: scaleX(1);
+}
+
+.homeNavLinkActive {
+  color: rgba(226, 235, 223, 0.92);
+}
+
+.homeFooter {
+  padding: 3rem 0 2rem;
+  background:
+    radial-gradient(circle at 12% 76%, rgba(184, 255, 0, 0.14), transparent 24%),
+    radial-gradient(circle at 88% 24%, rgba(63, 115, 255, 0.14), transparent 22%),
+    #061009;
+  color: #eff1e8;
+}
+
+.homeFooterInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: end;
+  width: min(1040px, calc(100vw - 48px));
+  margin: 0 auto;
+}
+
+.homeFooterBrand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: #cbff1f;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.homeFooterSlash {
+  color: rgba(203, 255, 31, 0.78);
+  font-size: 0.84rem;
+  font-style: italic;
+  letter-spacing: 0.1em;
+}
+
+.homeFooterMeta {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+}
+
+.homeFooterMeta p,
+.homeFooterMeta a,
+.homeFooterAction a,
+.homeFooterNote {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.homeFooterAction {
+  display: grid;
+  justify-items: end;
+  gap: 0.9rem;
+}
+
+.homeFooterAction a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #cbff1f;
+  color: #cbff1f;
+}
+
+.homeFooterNote {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+@media (max-width: 860px) {
+  .homeHeaderInner,
+  .homeFooterInner {
+    width: min(100vw - 28px, 100%);
+  }
+
+  .homeHeaderInner,
+  .homeFooterInner {
+    grid-template-columns: 1fr;
+  }
+
+  .homeNav,
+  .homeFooterAction {
+    justify-content: flex-start;
+    justify-items: start;
+  }
+}

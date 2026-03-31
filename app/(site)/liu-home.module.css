@@ -1,0 +1,776 @@
+﻿.page {
+  background:
+    radial-gradient(circle at 79% 12%, rgba(83, 111, 96, 0.18), transparent 18%),
+    radial-gradient(circle at 12% 86%, rgba(116, 151, 18, 0.14), transparent 20%),
+    linear-gradient(180deg, #020503 0%, #040806 100%);
+  color: #eff1e8;
+}
+
+.shell {
+  width: min(1040px, calc(100vw - 48px));
+  margin: 0 auto;
+}
+
+.heroShell {
+  width: min(1452px, calc(100vw - 2px));
+  margin: 0 auto;
+}
+
+.kicker {
+  margin: 0;
+  color: rgba(178, 206, 92, 0.46);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.heroSection {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.heroGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(0, 0.87fr);
+  min-height: 46.5rem;
+  background:
+    linear-gradient(90deg, rgba(4, 8, 5, 1) 0%, rgba(4, 8, 5, 0.998) 53.6%, rgba(35, 45, 34, 0.985) 53.75%, rgba(35, 45, 34, 0.985) 100%);
+}
+
+.heroGrid::before {
+  content: "";
+  position: absolute;
+  inset: 0 48% 0 0;
+  background:
+    linear-gradient(180deg, rgba(4, 8, 6, 0.22) 0%, rgba(4, 8, 6, 0) 26%),
+    radial-gradient(circle at 0% 100%, rgba(129, 164, 16, 0.24), transparent 25%),
+    radial-gradient(circle at 32% 56%, rgba(16, 38, 24, 0.11), transparent 22%);
+  pointer-events: none;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  align-items: start;
+  gap: 1.35rem;
+  padding: 11.9rem 3.4rem 8rem 12.7rem;
+}
+
+.heroTitle {
+  max-width: none;
+  margin: 0;
+  color: #a7d500;
+  font-family: var(--font-display);
+  font-size: clamp(4.35rem, 5.35vw, 5.38rem);
+  font-weight: 600;
+  line-height: 0.93;
+  letter-spacing: -0.075em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.heroVisual {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(50, 62, 48, 0.99) 0%, rgba(43, 52, 42, 0.99) 100%);
+}
+
+.heroUtilityRow {
+  position: absolute;
+  top: 1.28rem;
+  left: 3.2rem;
+  right: 1.85rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.heroSignals {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+  flex-wrap: nowrap;
+}
+
+.heroSignalLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.92rem;
+  height: 1.58rem;
+  padding: 0 0.36rem;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.46rem;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  clip-path: polygon(18% 0%, 82% 0%, 100% 50%, 82% 100%, 18% 100%, 0% 50%);
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.heroSignalLink:hover,
+.heroSignalLink:focus-visible {
+  border-color: rgba(203, 255, 31, 0.68);
+  color: #edf5df;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.heroUtilityBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.78rem;
+  padding: 0 0.82rem;
+  border: 1px solid rgba(203, 255, 31, 0.54);
+  color: #b6db1f;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroPortraitScene {
+  position: relative;
+  min-height: 100%;
+}
+
+.heroPortraitGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 34% 10%, rgba(255, 255, 255, 0.28), transparent 10%),
+    radial-gradient(circle at 52% 52%, rgba(255, 255, 255, 0.04), transparent 16%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 30%);
+}
+
+.heroFigure {
+  position: absolute;
+  inset: 0.55rem -4.8rem -1.8rem -0.6rem;
+  z-index: 2;
+}
+
+.heroFigureHead {
+  position: absolute;
+  top: 3.5rem;
+  left: 14.4%;
+  width: 31.8%;
+  height: 24.8%;
+  border-radius: 48% 48% 42% 44%;
+  background:
+    radial-gradient(circle at 57% 38%, rgba(255, 242, 230, 0.92), transparent 17%),
+    radial-gradient(circle at 46% 49%, rgba(242, 206, 182, 0.98), transparent 49%),
+    linear-gradient(180deg, #f4d6ba 0%, #dab59a 44%, #b78768 100%);
+  box-shadow: inset -12px -20px 26px rgba(120, 82, 58, 0.16);
+}
+
+.heroFigureHair {
+  position: absolute;
+  top: 1.48rem;
+  left: 12.5%;
+  width: 33.5%;
+  height: 16.8%;
+  border-radius: 48% 52% 26% 38%;
+  background:
+    radial-gradient(circle at 66% 22%, rgba(255, 255, 255, 0.32), transparent 13%),
+    linear-gradient(180deg, #2a2d2f 0%, #535c61 46%, #2d3336 100%);
+}
+
+.heroFigureEar {
+  position: absolute;
+  top: 11.3rem;
+  left: 12.5%;
+  width: 3.1%;
+  height: 5.1%;
+  border-radius: 50%;
+  background: #d2a485;
+}
+
+.heroFigureNeck {
+  position: absolute;
+  top: 15.8rem;
+  left: 25.2%;
+  width: 9.2%;
+  height: 8.2%;
+  background: linear-gradient(180deg, #dbb496 0%, #b98968 100%);
+  clip-path: polygon(26% 0%, 76% 0%, 92% 100%, 8% 100%);
+}
+
+.heroFigureJacket {
+  position: absolute;
+  bottom: -7.8rem;
+  left: 1.4%;
+  width: 69.2%;
+  height: 77%;
+  border-radius: 22% 20% 0 0;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.38), transparent 18%),
+    linear-gradient(180deg, #d6d6d5 0%, #a3a5a6 28%, #7c7f81 56%, #66696b 100%);
+  transform: skewX(-6deg);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.heroFigureShirt {
+  position: absolute;
+  top: 0;
+  left: 36.2%;
+  width: 20.8%;
+  height: 52%;
+  background:
+    repeating-linear-gradient(90deg, rgba(208, 220, 234, 0.92) 0 2px, rgba(244, 247, 250, 0.96) 2px 8px);
+  clip-path: polygon(30% 0%, 72% 0%, 100% 100%, 0% 100%);
+}
+
+.heroFigureTie {
+  position: absolute;
+  top: 8%;
+  left: 43.5%;
+  width: 7.6%;
+  height: 56%;
+  background:
+    linear-gradient(180deg, #cfd3d7 0%, #8d8f92 100%);
+  clip-path: polygon(50% 0%, 100% 12%, 72% 100%, 28% 100%, 0% 12%);
+  box-shadow: inset 0 0 0 1px rgba(64, 66, 67, 0.28);
+}
+
+.heroFigureLapels {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(132deg, transparent 0 29%, rgba(84, 86, 89, 0.76) 29.3% 43%, transparent 43.3%),
+    linear-gradient(48deg, transparent 0 57%, rgba(76, 78, 81, 0.8) 57.3% 71%, transparent 71.3%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.08));
+}
+
+.statementSection {
+  padding: 0 0 1.75rem;
+  background:
+    radial-gradient(circle at left bottom, rgba(38, 137, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, #050705 0%, #040404 100%);
+}
+
+.statementGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 3.5rem;
+  align-items: start;
+  padding: 3.75rem 4rem 2.75rem;
+}
+
+.quoteBlock {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+}
+
+.quoteBlock p {
+  margin: 0;
+  text-align: center;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.34;
+  white-space: pre-line;
+  text-transform: uppercase;
+}
+
+.quoteMark,
+.quoteMarkRight {
+  color: #ffffff;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.quoteMarkRight {
+  justify-self: end;
+}
+
+.statementCopy {
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: 1.75rem;
+  padding-top: 1.2rem;
+}
+
+.statementCopy p {
+  margin: 0;
+  max-width: 26ch;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.inlineLink,
+.inlineLinkDark,
+.exploreLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0 0 0.22rem;
+  border-bottom: 1px solid currentColor;
+  color: #cbff1f;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.inlineLinkDark {
+  color: #111713;
+}
+
+.videoPanel {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  min-height: 19rem;
+  margin: 0 auto 2.25rem;
+  width: min(76%, 44rem);
+  background: #959990;
+}
+
+.videoPanel p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.65rem;
+}
+
+.videoIcon {
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid #cbff1f;
+  border-radius: 999px;
+  color: #cbff1f;
+  font-size: 1.1rem;
+}
+
+.podcastRailSection {
+  padding: 2rem 0 0;
+  background: #081008;
+}
+
+.sectionHeaderCenter {
+  display: grid;
+  justify-items: center;
+  padding: 1.4rem 0 2.6rem;
+}
+
+.sectionHeaderCenter h2,
+.episodeFeatureIntro h2,
+.profileCopy h2,
+.worksHeader h2 {
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.podcastRail {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.railArrow {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(203, 255, 31, 0.6);
+  border-radius: 999px;
+  background: transparent;
+  color: #cbff1f;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.episodeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.episodeCard {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.episodeThumb {
+  aspect-ratio: 0.86;
+  background:
+    linear-gradient(180deg, rgba(153, 158, 148, 0.76) 0%, rgba(102, 108, 98, 0.9) 100%);
+}
+
+.episodeCard strong,
+.workCard strong,
+.episodeFeatureFooter strong {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.episodeCard span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1.7rem 0 2.4rem;
+}
+
+.carouselDots span {
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.carouselDots .dotActive {
+  width: 0.42rem;
+  height: 0.42rem;
+  background: #cbff1f;
+}
+
+.episodeFeatureSection {
+  padding: 3.8rem 0 4rem;
+  background: #f7f7f2;
+}
+
+.episodeFeatureIntro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.8rem;
+}
+
+.episodeFeatureIntro h2,
+.worksHeader h2 {
+  color: #121612;
+}
+
+.episodeFeatureIntro p {
+  margin: 0.4rem 0 0;
+  color: #2b2f2a;
+  font-size: 1rem;
+}
+
+.episodeFeatureCard {
+  display: grid;
+  gap: 1rem;
+  width: min(100%, 44rem);
+}
+
+.episodeMetaRows,
+.episodeFeatureFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #181d18;
+}
+
+.episodeMetaRows span,
+.episodeFeatureFooter span {
+  color: rgba(24, 29, 24, 0.78);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.episodeMetaRows strong,
+.episodeFeatureFooter strong {
+  display: block;
+  margin-top: 0.3rem;
+  color: #111713;
+}
+
+.episodeHeroThumb {
+  position: relative;
+  aspect-ratio: 1.72;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 64% 12%, rgba(255, 211, 92, 0.5), transparent 18%),
+    linear-gradient(135deg, #0a0a0a 0%, #4b3010 38%, #9b6b18 100%);
+}
+
+.episodeHeroThumb::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  bottom: -8%;
+  width: 34%;
+  height: 92%;
+  border-radius: 36% 36% 12% 12%;
+  background: rgba(17, 17, 17, 0.82);
+}
+
+.episodeHeroThumb::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  top: 10%;
+  width: 20%;
+  height: 26%;
+  border-radius: 50%;
+  background: rgba(46, 33, 19, 0.88);
+}
+
+.episodeHeroBadge {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+
+.episodeHeroStats {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  display: flex;
+  gap: 1rem;
+  color: #ffffff;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+}
+
+.profileSection {
+  padding: 3.8rem 0 3.6rem;
+  background:
+    radial-gradient(circle at left bottom, rgba(38, 137, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 84% 20%, rgba(184, 255, 0, 0.16), transparent 20%),
+    #06110b;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.profilePortrait {
+  width: 100%;
+}
+
+.profilePortraitInner {
+  aspect-ratio: 0.72;
+  background:
+    linear-gradient(180deg, rgba(47, 37, 23, 0.9) 0%, rgba(21, 28, 23, 0.95) 100%);
+}
+
+.profilePortraitInner::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 54% 22%, rgba(255, 235, 180, 0.28), transparent 12%),
+    radial-gradient(circle at 34% 56%, rgba(0, 0, 0, 0.22), transparent 18%);
+}
+
+.profilePortraitInner span {
+  position: relative;
+  top: -2rem;
+  left: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.profileCopy {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.profileCopy p {
+  margin: 0;
+  max-width: 42ch;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1rem;
+  line-height: 1.82;
+}
+
+.worksSection {
+  padding: 4.5rem 0 5rem;
+  background: #f3f5f1;
+}
+
+.worksHeader {
+  padding-bottom: 2rem;
+}
+
+.worksHeader span {
+  color: rgba(17, 23, 19, 0.5);
+}
+
+.worksGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.72fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.workCard {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.workCardLarge {
+  grid-row: span 2;
+}
+
+.workCardSmall {
+  padding-top: 0.1rem;
+}
+
+.workThumb {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(17, 23, 19, 0.04);
+}
+
+.workCardLarge .workThumb {
+  aspect-ratio: 0.76;
+}
+
+.workCardSmall .workThumb {
+  aspect-ratio: 1;
+}
+
+.workCard span,
+.workCard p {
+  color: rgba(17, 23, 19, 0.68);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workCard strong {
+  color: #111713;
+}
+
+.workCard p {
+  margin: 0;
+}
+
+.exploreLink {
+  margin-top: 2rem;
+  color: #111713;
+}
+
+@media (max-width: 960px) {
+  .shell {
+    width: min(100vw - 28px, 100%);
+  }
+
+  .heroGrid,
+  .statementGrid,
+  .profileGrid,
+  .worksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCopy,
+  .statementGrid,
+  .episodeFeatureCard {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .heroPortrait {
+    min-height: 28rem;
+  }
+
+  .videoPanel {
+    width: calc(100% - 3rem);
+  }
+
+  .episodeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .podcastRail {
+    grid-template-columns: 1fr;
+  }
+
+  .railArrow {
+    display: none;
+  }
+
+  .worksGrid {
+    gap: 2rem;
+  }
+
+  .workCardLarge {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroCopy {
+    padding-top: 5.6rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(3rem, 16vw, 4.8rem);
+  }
+
+  .statementGrid,
+  .episodeFeatureIntro {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  .videoPanel {
+    width: calc(100% - 2.2rem);
+    min-height: 14rem;
+  }
+
+  .episodeFeatureIntro,
+  .episodeMetaRows,
+  .episodeFeatureFooter {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .profilePortrait {
+    max-width: 11rem;
+  }
+}
