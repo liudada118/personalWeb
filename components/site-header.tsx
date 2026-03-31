@@ -50,7 +50,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
           </Link>
           <nav aria-label="Primary navigation" className={styles.homeNav}>
             {homeNavItems.map((item) => {
-              const isActive = item.href !== "#" && pathname === item.href;
+              const isActive = pathname === item.href;
               const linkClassName = isActive ? `${styles.homeNavLink} ${styles.homeNavLinkActive}` : styles.homeNavLink;
 
               return (

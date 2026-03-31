@@ -4,7 +4,7 @@
   right: 0;
   left: 0;
   z-index: 50;
-  padding-top: 1.2rem;
+  padding-top: 0.95rem;
   pointer-events: none;
 }
 
@@ -12,60 +12,60 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 2rem;
-  width: min(1452px, calc(100vw - 2px));
+  gap: clamp(1.25rem, 3vw, 3rem);
+  width: min(1540px, calc(100vw - 2px));
   margin: 0 auto;
-  padding: 0 2.5rem 0 10rem;
+  padding: 0 clamp(1.5rem, 4vw, 3rem) 0 clamp(4.5rem, 8vw, 10rem);
   pointer-events: auto;
 }
 
 /* Lighter header when scrolled - still subtle */
 .homeHeaderScrolled .homeHeaderInner {
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
-  background: linear-gradient(180deg, rgba(3, 8, 4, 0.72) 0%, rgba(3, 8, 4, 0.6) 100%);
-  backdrop-filter: blur(6px);
+  padding-top: 0.18rem;
+  padding-bottom: 0.18rem;
+  background: linear-gradient(180deg, rgba(5, 10, 8, 0.44) 0%, rgba(5, 10, 8, 0.18) 100%);
+  backdrop-filter: blur(10px);
 }
 
 .homeBrand {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.16rem;
-  color: #a7d500;
+  gap: 0.22rem;
+  color: rgba(190, 222, 92, 0.88);
   font-family: var(--font-display);
   font-weight: 500;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .homeBrandPrimary {
-  font-size: clamp(1.82rem, 2vw, 2.2rem);
+  font-size: clamp(1.5rem, 1.75vw, 1.88rem);
   line-height: 1;
 }
 
 .homeBrandSlash {
-  margin: 0 0.18rem 0 0.08rem;
-  color: rgba(197, 230, 57, 0.76);
-  font-size: 0.9rem;
+  margin: 0 0.1rem 0 0;
+  color: rgba(211, 229, 150, 0.66);
+  font-size: 0.72rem;
   font-style: italic;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.06em;
   text-transform: none;
 }
 
 .homeNav {
   display: flex;
-  justify-content: flex-start;
-  gap: 1.8rem;
+  justify-content: flex-end;
+  gap: clamp(0.85rem, 2vw, 1.55rem);
   padding-top: 0.08rem;
 }
 
 .homeNavLink {
   position: relative;
-  color: rgba(187, 204, 182, 0.6);
-  font-size: 0.72rem;
+  color: rgba(218, 226, 210, 0.54);
+  font-size: 0.64rem;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -206,10 +206,20 @@
     grid-template-columns: 1fr;
   }
 
+  .homeHeaderInner {
+    gap: 0.9rem;
+    padding: 0 1rem;
+  }
+
   .homeNav,
   .homeFooterAction {
     justify-content: flex-start;
     justify-items: start;
+  }
+
+  .homeNav {
+    flex-wrap: wrap;
+    gap: 0.7rem 1rem;
   }
 
   .homeFooterInner {
