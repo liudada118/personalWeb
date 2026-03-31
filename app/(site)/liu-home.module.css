@@ -402,15 +402,19 @@
   font-size: 1.1rem;
 }
 
+/* Screen 3: Podcast Carousel
+ * Deep dark media rail - editorial podcast carousel
+ */
 .podcastRailSection {
-  padding: 2rem 0 0;
-  background: #081008;
+  padding: 2.5rem 0 0;
+  background: #060806;
 }
 
+/* Centered section title - media editorial feel */
 .sectionHeaderCenter {
   display: grid;
   justify-items: center;
-  padding: 1.4rem 0 2.6rem;
+  padding: 1.2rem 0 2.8rem;
 }
 
 .sectionHeaderCenter h2,
@@ -418,83 +422,103 @@
 .profileCopy h2,
 .worksHeader h2 {
   margin: 0;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
+/* Three-column podcast rail with flanking arrows */
 .podcastRail {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
+/* Restrained arrow buttons - positioned outside content */
 .railArrow {
-  width: 2.4rem;
-  height: 2.4rem;
-  border: 1px solid rgba(203, 255, 31, 0.6);
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid rgba(203, 255, 31, 0.35);
   border-radius: 999px;
   background: transparent;
-  color: #cbff1f;
-  font-size: 1.4rem;
+  color: rgba(203, 255, 31, 0.7);
+  font-size: 1.5rem;
+  line-height: 1;
   cursor: pointer;
+  transition: all 160ms ease;
 }
 
+.railArrow:hover {
+  border-color: rgba(203, 255, 31, 0.7);
+  color: #cbff1f;
+  background: rgba(203, 255, 31, 0.06);
+}
+
+/* Three podcast content cards */
 .episodeGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.2rem;
+  gap: 1.5rem;
 }
 
+/* Podcast card: media editorial style */
 .episodeCard {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.9rem;
   align-content: start;
 }
 
+/* Thumbnail - podcast cover art feel */
 .episodeThumb {
-  aspect-ratio: 0.86;
+  aspect-ratio: 1;
   background:
-    linear-gradient(180deg, rgba(153, 158, 148, 0.76) 0%, rgba(102, 108, 98, 0.9) 100%);
+    radial-gradient(ellipse 60% 40% at 50% 30%, rgba(180, 160, 80, 0.25), transparent 65%),
+    linear-gradient(180deg, rgba(80, 90, 75, 0.9) 0%, rgba(50, 58, 48, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .episodeCard strong,
 .workCard strong,
 .episodeFeatureFooter strong {
-  color: #ffffff;
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .episodeCard span {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.88rem;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
+/* Minimal pagination dots */
 .carouselDots {
   display: flex;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 1.7rem 0 2.4rem;
+  gap: 0.6rem;
+  padding: 2rem 0 2.5rem;
 }
 
 .carouselDots span {
-  width: 0.32rem;
-  height: 0.32rem;
+  width: 0.28rem;
+  height: 0.28rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 200ms ease;
 }
 
 .carouselDots .dotActive {
-  width: 0.42rem;
-  height: 0.42rem;
-  background: #cbff1f;
+  width: 0.36rem;
+  height: 0.36rem;
+  background: rgba(203, 255, 31, 0.75);
 }
 
 .episodeFeatureSection {
@@ -782,10 +806,15 @@
 
   .podcastRail {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .railArrow {
     display: none;
+  }
+
+  .carouselDots {
+    padding: 1.5rem 0 2rem;
   }
 
   .worksGrid {
