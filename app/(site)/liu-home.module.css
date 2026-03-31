@@ -521,38 +521,66 @@
   background: rgba(203, 255, 31, 0.75);
 }
 
+/* Screen 4: Representative Podcast / Events
+ * Light background switch - media content index + featured video
+ */
 .episodeFeatureSection {
-  padding: 3.8rem 0 4rem;
-  background: #f7f7f2;
+  padding: 4rem 0 4.5rem;
+  background: #f4f5f0;
 }
 
+/* Top: title + platform tag on the right */
 .episodeFeatureIntro {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding-bottom: 1.8rem;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.1);
 }
 
 .episodeFeatureIntro h2,
 .worksHeader h2 {
-  color: #121612;
+  color: #111713;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .episodeFeatureIntro p {
-  margin: 0.4rem 0 0;
-  color: #2b2f2a;
-  font-size: 1rem;
+  margin: 0.5rem 0 0;
+  color: rgba(43, 47, 42, 0.65);
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
+/* Platform tag - small accent top right */
+.episodeFeatureIntro a {
+  color: rgba(17, 23, 19, 0.5);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.2);
+}
+
+.episodeFeatureIntro a:hover {
+  color: #111713;
+}
+
+/* Featured video card - visual anchor of this screen */
 .episodeFeatureCard {
   display: grid;
-  gap: 1rem;
-  width: min(100%, 44rem);
+  gap: 1.2rem;
+  width: min(100%, 50rem);
+  margin-top: 0.5rem;
 }
 
-.episodeMetaRows,
-.episodeFeatureFooter {
+.episodeMetaRows {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -560,19 +588,19 @@
   color: #181d18;
 }
 
-.episodeMetaRows span,
-.episodeFeatureFooter span {
-  color: rgba(24, 29, 24, 0.78);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+.episodeMetaRows span {
+  color: rgba(24, 29, 24, 0.65);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.episodeMetaRows strong,
-.episodeFeatureFooter strong {
+.episodeMetaRows strong {
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
   color: #111713;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .episodeHeroThumb {
@@ -580,56 +608,78 @@
   aspect-ratio: 1.72;
   overflow: hidden;
   background:
-    radial-gradient(circle at 64% 12%, rgba(255, 211, 92, 0.5), transparent 18%),
-    linear-gradient(135deg, #0a0a0a 0%, #4b3010 38%, #9b6b18 100%);
+    radial-gradient(ellipse 50% 40% at 65% 25%, rgba(255, 200, 80, 0.35), transparent 55%),
+    linear-gradient(160deg, #141414 0%, #2a1f0e 40%, #7a5a18 100%);
 }
 
 .episodeHeroThumb::before {
   content: "";
   position: absolute;
-  left: 6%;
-  bottom: -8%;
-  width: 34%;
-  height: 92%;
-  border-radius: 36% 36% 12% 12%;
-  background: rgba(17, 17, 17, 0.82);
+  left: 5%;
+  bottom: -10%;
+  width: 36%;
+  height: 95%;
+  border-radius: 38% 38% 12% 12%;
+  background: rgba(12, 12, 12, 0.85);
 }
 
 .episodeHeroThumb::after {
   content: "";
   position: absolute;
-  left: 12%;
-  top: 10%;
-  width: 20%;
-  height: 26%;
+  left: 11%;
+  top: 8%;
+  width: 22%;
+  height: 28%;
   border-radius: 50%;
-  background: rgba(46, 33, 19, 0.88);
+  background: rgba(38, 28, 15, 0.9);
 }
 
 .episodeHeroBadge {
   position: absolute;
-  left: 1rem;
-  bottom: 1rem;
+  left: 1.2rem;
+  bottom: 1.2rem;
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 .episodeHeroStats {
   position: absolute;
-  right: 1rem;
-  bottom: 0.9rem;
+  right: 1.2rem;
+  bottom: 1.1rem;
   display: flex;
+  gap: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.episodeFeatureFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  color: #ffffff;
-  font-size: 0.86rem;
+  padding-top: 0.5rem;
+}
+
+.episodeFeatureFooter strong {
+  color: rgba(17, 23, 19, 0.88);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.episodeFeatureFooter span {
+  color: rgba(24, 29, 24, 0.6);
+  font-size: 0.78rem;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .profileSection {
