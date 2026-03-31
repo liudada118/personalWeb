@@ -14,8 +14,6 @@ type SiteHeaderProps = {
 
 const homeNavItems = [
   { href: "/about", label: "About" },
-  { href: "#", label: "Awards" },
-  { href: "#", label: "Event" },
   { href: "/media", label: "Media" },
   { href: "/podcast", label: "Podcast" },
   { href: "/contact", label: "Contact" },
@@ -47,7 +45,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
         <div className={styles.homeHeaderInner}>
           <Link className={styles.homeBrand} href="/">
             <span className={styles.homeBrandPrimary}>DENNIS</span>
-            <span className={styles.homeBrandSlash}>yuxuan</span>
+            <span className={styles.homeBrandSlash}>/ yuxuan</span>
             <span className={styles.homeBrandPrimary}>LIU</span>
           </Link>
           <nav aria-label="Primary navigation" className={styles.homeNav}>

@@ -50,12 +50,6 @@ const fallbackEpisodes: PodcastEpisode[] = [
   },
 ];
 
-const heroSocialFallbacks = [
-  { platform: "???", label: "???", href: "https://example.com/rednote" },
-  { platform: "Bilibili", label: "????", href: "https://example.com/bilibili" },
-  { platform: "LinkedIn", label: "LinkedIn", href: "https://example.com/linkedin" },
-];
-
 const featuredWorks = [
   {
     kind: "BOOK",
@@ -91,60 +85,25 @@ function formatEpisodeDate(value: string) {
   }).format(date);
 }
 
-function getHeroSocialLabel(platform: string, label: string) {
-  const source = `${platform} ${label}`.toLowerCase();
-
-  if (source.includes("linkedin")) {
-    return "in";
-  }
-
-  if (source.includes("bilibili") || source.includes("??") || source.includes("b?")) {
-    return "B?";
-  }
-
-  if (source.includes("???") || source.includes("rednote") || source.includes("xiaohongshu")) {
-    return "???";
-  }
-
-  return platform || label;
-}
-
 export default async function HomePage() {
-  const { settings, podcastHighlights } = await getHomePageData();
+  const { homePage, podcastHighlights } = await getHomePageData();
   const episodes = (podcastHighlights.length ? podcastHighlights : fallbackEpisodes).slice(0, 3);
   const leadEpisode = episodes[0] ?? fallbackEpisodes[0];
-  const heroSocialLinks = (settings.socialLinks.length ? settings.socialLinks : heroSocialFallbacks).slice(0, 3);
 
   return (
     <div className={styles.page}>
       <section className={styles.heroSection}>
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage hero" previewHref="/">
-          {/* Utility row - integrated at top of hero, not floating card */}
-          <div className={styles.heroUtilityRow}>
-            <div className={styles.heroSignals}>
-              {heroSocialLinks.map((item) => (
-                <a
-                  className={styles.heroSignalLink}
-                  href={item.href}
-                  key={`${item.platform}-${item.href}`}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  {getHeroSocialLabel(item.platform, item.label)}
-                </a>
-              ))}
-            </div>
-            <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
-              Tigerpartners.cn
-            </a>
-          </div>
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <p className={styles.kicker}>Dennis / Yuxuan / Liu</p>
-                <h1 className={styles.heroTitle}>"MAIN TITLE COPY"</h1>
+                <div className={styles.heroTitleGroup}>
+                  <p className={styles.kicker}>{homePage.heroEyebrow}</p>
+                  <h1 className={styles.heroTitle}>{homePage.heroTitle}</h1>
+                </div>
+                <p className={styles.heroIntro}>{homePage.heroIntro}</p>
               </div>
-              <div className={styles.heroVisual}>
+              <div aria-hidden="true" className={styles.heroVisual}>
                 <div className={styles.heroPortraitScene}>
                   <div className={styles.heroPortraitGlow} />
                   <div className={styles.heroFigure} aria-hidden="true">
