@@ -119,31 +119,32 @@ export default async function HomePage() {
     <div className={styles.page}>
       <section className={styles.heroSection}>
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage hero" previewHref="/">
+          {/* Utility row - integrated at top of hero, not floating card */}
+          <div className={styles.heroUtilityRow}>
+            <div className={styles.heroSignals}>
+              {heroSocialLinks.map((item) => (
+                <a
+                  className={styles.heroSignalLink}
+                  href={item.href}
+                  key={`${item.platform}-${item.href}`}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {getHeroSocialLabel(item.platform, item.label)}
+                </a>
+              ))}
+            </div>
+            <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
+              Tigerpartners.cn
+            </a>
+          </div>
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
                 <p className={styles.kicker}>Dennis / Yuxuan / Liu</p>
-                <h1 className={styles.heroTitle}>“MAIN TITLE COPY”</h1>
+                <h1 className={styles.heroTitle}>"MAIN TITLE COPY"</h1>
               </div>
               <div className={styles.heroVisual}>
-                <div className={styles.heroUtilityRow}>
-                  <div className={styles.heroSignals}>
-                    {heroSocialLinks.map((item) => (
-                      <a
-                        className={styles.heroSignalLink}
-                        href={item.href}
-                        key={`${item.platform}-${item.href}`}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        {getHeroSocialLabel(item.platform, item.label)}
-                      </a>
-                    ))}
-                  </div>
-                  <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
-                    Tigerpartners.cn
-                  </a>
-                </div>
                 <div className={styles.heroPortraitScene}>
                   <div className={styles.heroPortraitGlow} />
                   <div className={styles.heroFigure} aria-hidden="true">
@@ -169,9 +170,9 @@ export default async function HomePage() {
           <div className={styles.shell}>
             <div className={styles.statementGrid}>
               <div className={styles.quoteBlock}>
-                <span className={styles.quoteMark}>“</span>
+                <span className={styles.quoteMark}>"</span>
                 <p>{manifestoQuote}</p>
-                <span className={styles.quoteMarkRight}>”</span>
+                <span className={styles.quoteMarkRight}>"</span>
               </div>
               <div className={styles.statementCopy}>
                 <p>Some short self-introduction.</p>

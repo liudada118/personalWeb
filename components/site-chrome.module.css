@@ -1,10 +1,10 @@
 ﻿.homeHeader {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 60;
-  padding-top: 0.78rem;
+  z-index: 50;
+  padding-top: 1.2rem;
   pointer-events: none;
 }
 
@@ -12,18 +12,19 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 1.55rem;
+  gap: 2rem;
   width: min(1452px, calc(100vw - 2px));
   margin: 0 auto;
-  padding: 0 2.8rem 0 12.7rem;
+  padding: 0 2.5rem 0 10rem;
   pointer-events: auto;
 }
 
+/* Lighter header when scrolled - still subtle */
 .homeHeaderScrolled .homeHeaderInner {
-  padding-top: 0.28rem;
-  padding-bottom: 0.28rem;
-  background: linear-gradient(180deg, rgba(3, 8, 4, 0.68) 0%, rgba(3, 8, 4, 0.56) 100%);
-  backdrop-filter: blur(8px);
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  background: linear-gradient(180deg, rgba(3, 8, 4, 0.72) 0%, rgba(3, 8, 4, 0.6) 100%);
+  backdrop-filter: blur(6px);
 }
 
 .homeBrand {
@@ -55,16 +56,16 @@
 .homeNav {
   display: flex;
   justify-content: flex-start;
-  gap: 1.55rem;
-  padding-top: 0.12rem;
+  gap: 1.8rem;
+  padding-top: 0.08rem;
 }
 
 .homeNavLink {
   position: relative;
-  color: rgba(187, 204, 182, 0.68);
-  font-size: 0.78rem;
+  color: rgba(187, 204, 182, 0.6);
+  font-size: 0.72rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -73,9 +74,9 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.24rem;
+  bottom: -0.2rem;
   height: 1px;
-  background: rgba(166, 212, 0, 0.82);
+  background: rgba(166, 212, 0, 0.7);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 180ms ease;
@@ -88,7 +89,7 @@
 }
 
 .homeNavLinkActive {
-  color: rgba(226, 235, 223, 0.92);
+  color: rgba(220, 230, 215, 0.9);
 }
 
 .homeFooter {
