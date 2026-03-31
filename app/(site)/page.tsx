@@ -167,13 +167,15 @@ export default async function HomePage() {
 
       <section className={styles.statementSection}>
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage intro" previewHref="/">
+          {/* Upper: full-width manifesto + intro */}
           <div className={styles.shell}>
             <div className={styles.statementGrid}>
+              {/* Left: declaration manifesto quote */}
               <div className={styles.quoteBlock}>
                 <span className={styles.quoteMark}>"</span>
                 <p>{manifestoQuote}</p>
-                <span className={styles.quoteMarkRight}>"</span>
               </div>
+              {/* Right: brief intro - light and restrained */}
               <div className={styles.statementCopy}>
                 <p>Some short self-introduction.</p>
                 <Link className={styles.inlineLink} href="/about">
@@ -181,10 +183,11 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className={styles.videoPanel}>
-              <div className={styles.videoIcon}>▶</div>
-              <p>Video topic</p>
-            </div>
+          </div>
+          {/* Lower: centered video panel - visual anchor */}
+          <div className={styles.videoPanel}>
+            <div className={styles.videoIcon}>▶</div>
+            <p>Video topic</p>
           </div>
         </VisualEditRegion>
       </section>

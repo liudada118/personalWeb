@@ -275,64 +275,78 @@
     linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.08));
 }
 
+/* Screen 2: Quote + Intro + Video
+ * Upper: left manifesto quote (heavy) + right intro (light)
+ * Lower: large centered video panel
+ * Clear vertical rhythm between upper and lower
+ */
 .statementSection {
-  padding: 0 0 1.75rem;
+  padding: 0 0 2rem;
   background:
-    radial-gradient(circle at left bottom, rgba(38, 137, 255, 0.12), transparent 28%),
+    radial-gradient(ellipse 60% 40% at 15% 80%, rgba(38, 137, 255, 0.1) 0%, transparent 55%),
     linear-gradient(180deg, #050705 0%, #040404 100%);
 }
 
+/* Upper layer: manifesto quote + intro */
 .statementGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 3.5rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 4rem;
   align-items: start;
-  padding: 3.75rem 4rem 2.75rem;
+  padding: 4rem 5rem 3rem;
 }
 
+/* Left: Manifesto quote - editorial, declaration feel */
 .quoteBlock {
   position: relative;
   display: grid;
-  justify-items: center;
-  gap: 0.6rem;
+  justify-items: start;
+  gap: 0.8rem;
+  padding-left: 0.5rem;
+}
+
+/* Large decorative quotation mark */
+.quoteMark {
+  color: rgba(203, 255, 31, 0.4);
+  font-family: var(--font-display);
+  font-size: 5rem;
+  line-height: 0.6;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.quoteMarkRight {
+  display: none;
 }
 
 .quoteBlock p {
   margin: 0;
-  text-align: center;
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  line-height: 1.34;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.45;
   white-space: pre-line;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-.quoteMark,
-.quoteMarkRight {
-  color: #ffffff;
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.quoteMarkRight {
-  justify-self: end;
-}
-
+/* Right: brief intro - light, restrained */
 .statementCopy {
   display: grid;
   justify-items: start;
-  align-content: center;
-  gap: 1.75rem;
-  padding-top: 1.2rem;
+  align-content: start;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 .statementCopy p {
   margin: 0;
-  max-width: 26ch;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  max-width: 30ch;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
 }
 
 .inlineLink,
@@ -345,7 +359,7 @@
   padding: 0 0 0.22rem;
   border-bottom: 1px solid currentColor;
   color: #cbff1f;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -354,30 +368,37 @@
   color: #111713;
 }
 
+/* Lower layer: large centered video - visual anchor of this screen */
 .videoPanel {
   display: grid;
   place-items: center;
-  gap: 1rem;
-  min-height: 19rem;
-  margin: 0 auto 2.25rem;
-  width: min(76%, 44rem);
-  background: #959990;
+  gap: 1.2rem;
+  min-height: 22rem;
+  margin: 1.5rem auto 2.5rem;
+  width: min(72%, 52rem);
+  background:
+    radial-gradient(ellipse 50% 40% at 60% 30%, rgba(180, 160, 80, 0.3), transparent 60%),
+    #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .videoPanel p {
   margin: 0;
-  color: #ffffff;
-  font-size: 1.65rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
+/* Restrained play icon */
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 3.2rem;
-  height: 3.2rem;
-  border: 1px solid #cbff1f;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgba(203, 255, 31, 0.55);
   border-radius: 999px;
-  color: #cbff1f;
+  color: rgba(203, 255, 31, 0.85);
   font-size: 1.1rem;
 }
 
@@ -729,28 +750,30 @@
   }
 
   .heroGrid,
-  .statementGrid,
   .profileGrid,
   .worksGrid {
     grid-template-columns: 1fr;
+  }
+
+  /* Statement section: stack on tablet */
+  .statementGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem 2rem;
   }
 
   .heroCopy {
     padding: 6rem 1.5rem 4rem;
   }
 
-  .statementGrid,
   .episodeFeatureCard {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
-  .heroPortrait {
-    min-height: 28rem;
-  }
-
   .videoPanel {
     width: calc(100% - 3rem);
+    min-height: 16rem;
   }
 
   .episodeGrid {
@@ -790,7 +813,15 @@
     font-size: clamp(3rem, 16vw, 4.8rem);
   }
 
-  .statementGrid,
+  .statementGrid {
+    padding: 2.5rem 1.1rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .quoteBlock p {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+  }
+
   .episodeFeatureIntro {
     padding-left: 1.1rem;
     padding-right: 1.1rem;
@@ -799,6 +830,7 @@
   .videoPanel {
     width: calc(100% - 2.2rem);
     min-height: 14rem;
+    margin: 1rem auto 2rem;
   }
 
   .episodeFeatureIntro,
