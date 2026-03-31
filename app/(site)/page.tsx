@@ -79,6 +79,12 @@ const featuredWorks = [
   },
 ];
 
+const heroUtilityTags = [
+  { label: "Red", ariaLabel: "Xiaohongshu" },
+  { label: "Zh", ariaLabel: "Zhihu" },
+  { label: "in", ariaLabel: "LinkedIn" },
+];
+
 function formatEpisodeDate(value: string) {
   const date = new Date(value);
 
@@ -97,6 +103,7 @@ export default async function HomePage() {
   const { homePage, podcastHighlights } = await getHomePageData();
   const episodes = (podcastHighlights.length ? podcastHighlights : fallbackEpisodes).slice(0, 3);
   const leadEpisode = episodes[0] ?? fallbackEpisodes[0];
+  const heroDisplayTitle = homePage.heroTitle?.trim() ? `“${homePage.heroTitle}”` : "“MAIN TITLE COPY”";
 
   return (
     <div className={styles.page}>
@@ -105,13 +112,19 @@ export default async function HomePage() {
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <div className={styles.heroTitleGroup}>
-                  <p className={styles.kicker}>{homePage.heroEyebrow}</p>
-                  <h1 className={styles.heroTitle}>{homePage.heroTitle}</h1>
-                </div>
-                <p className={styles.heroIntro}>{homePage.heroIntro}</p>
+                <h1 className={styles.heroTitle}>{heroDisplayTitle}</h1>
               </div>
               <div aria-hidden="true" className={styles.heroVisual}>
+                <div className={styles.heroUtilityRow}>
+                  <div className={styles.heroUtilityTags}>
+                    {heroUtilityTags.map((item) => (
+                      <span aria-label={item.ariaLabel} className={styles.heroUtilityTag} key={item.ariaLabel} role="img">
+                        {item.label}
+                      </span>
+                    ))}
+                  </div>
+                  <span className={styles.heroDomainLink}>TIGERPARTNERS.CN</span>
+                </div>
                 <div className={styles.heroPortraitScene}>
                   <div className={styles.heroPortraitGlow} />
                   <div className={styles.heroFigure} aria-hidden="true">
