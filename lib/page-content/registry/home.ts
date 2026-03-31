@@ -1,0 +1,82 @@
+﻿import type { EditablePageDefinition } from "./types";
+
+export const homePageDefinition: EditablePageDefinition = {
+  id: "home",
+  title: "首页",
+  route: "/",
+  description: "用于编辑首页中最设计敏感的固定文案和主行动入口。",
+  fields: [
+    {
+      key: "home.hero.title",
+      label: "Hero 标题",
+      page: "home",
+      section: "Hero",
+      type: "textarea",
+      description: "首页第一屏主标题。",
+      defaultValue: "把复杂法律议题，讲给公众、企业与媒体听明白。",
+    },
+    {
+      key: "home.hero.intro",
+      label: "Hero 导语",
+      page: "home",
+      section: "Hero",
+      type: "richtext",
+      description: "Hero 区下方的简短导语。",
+      defaultValue: "围绕网站、媒体矩阵与播客栏目，建立一套长期可维护的专业内容表达系统。",
+    },
+    {
+      key: "home.hero.ctaText",
+      label: "Hero 按钮文案",
+      page: "home",
+      section: "Hero",
+      type: "text",
+      defaultValue: "进入虎诉官网",
+    },
+    {
+      key: "home.hero.ctaLink",
+      label: "Hero 按钮链接",
+      page: "home",
+      section: "Hero",
+      type: "link",
+      defaultValue: {
+        label: "进入虎诉官网",
+        href: "https://example.com/husu",
+      },
+    },
+    {
+      key: "home.hero.backgroundImage",
+      label: "Hero 背景图",
+      page: "home",
+      section: "Hero",
+      type: "image",
+      defaultValue: {
+        mediaId: "hero-placeholder",
+        alt: "Homepage hero backdrop",
+      },
+    },
+    {
+      key: "home.footerBanner.title",
+      label: "尾部 CTA 标题",
+      page: "home",
+      section: "CTA",
+      type: "textarea",
+      defaultValue: "如果你希望继续沟通，请从一个明确的问题开始。",
+    },
+    {
+      key: "home.footerBanner.text",
+      label: "尾部 CTA 正文",
+      page: "home",
+      section: "CTA",
+      type: "textarea",
+      defaultValue: "在页面收束处保留一个清晰动作，把联系、订阅和外部站点入口组织成稳定的转化区。",
+    },
+    {
+      key: "home.footerBanner.enabled",
+      label: "启用尾部 CTA",
+      page: "home",
+      section: "CTA",
+      type: "boolean",
+      defaultValue: true,
+    },
+  ],
+};

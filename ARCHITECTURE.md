@@ -1,6 +1,6 @@
 ﻿# Architecture
 
-Last updated: `2026-03-31 09:16`  
+Last updated: `2026-03-31 11:15`  
 Git branch: `main`
 
 ## 1. Overview
@@ -65,6 +65,7 @@ Development note:
 | `/cms/admin` | Payload Admin dashboard and nested admin views |
 | `/cms/admin/workbench` | Protected split workbench with editing and draft preview |
 | `/cms/admin/preview-fullscreen` | Protected full-screen draft preview |
+| `/admin/visual-editor` | Protected custom visual-editor shell for fixed pages |
 | `/studio` | Redirect to `/cms/admin` |
 
 ### API routes
@@ -89,6 +90,7 @@ app/
   (cms)/
   (payload)/
   (payload)/cms/admin/
+  admin/visual-editor/
   (studio)/studio/[[...tool]]/
   api/
 components/
@@ -98,6 +100,7 @@ components/
 lib/
   payload/
   payload/admin-session.ts
+  page-content/registry/
   server/
   visual-editing.ts
   demo-data.ts
@@ -107,6 +110,7 @@ payload/
   globals/
   seed.ts
   shared.ts
+  sqlite-compat.ts
 data/
 public/
   media/
@@ -207,6 +211,13 @@ These page globals are intentionally kept as a transition layer. Public page ren
 5. A dedicated `/cms/admin/preview-fullscreen` page renders `components/studio/fullscreen-preview.tsx` for larger visual checks.
 6. `/cms/preview` now exists only as a compatibility redirect into the protected admin workbench.
 
+### Custom visual editor shell
+
+1. `/admin/visual-editor` requires the same Payload admin session used by `/cms/admin`.
+2. `lib/page-content/registry` defines page-level editable metadata, including stable field keys, field types, sections, and default placeholder values.
+3. The shell renders a three-column layout: schema-driven field list, real frontend iframe preview, and a selected-field inspector.
+4. The iframe already loads real public routes with `visualEditor=1` so the shell never relies on a fake preview page.
+5. In STEP 3, Save / Reset / Publish only manage local shell state; iframe messaging and Payload persistence are intentionally deferred to later steps.
 ### Visual edit bridge
 
 1. `PreviewTool` appends `visualEditor=1` to preview URLs whenever the preview is running inside the protected workbench.
@@ -365,6 +376,7 @@ Interaction and visual behavior:
 | 2026-03-24 22:26 | main | Hero display width override fix | Added a stronger homepage-specific selector so later shared `.display-title` rules no longer override the hero H1 width |
 | 2026-03-31 08:59 | main | Hybrid Payload content model foundation | Modularized Payload collections/globals, introduced `media`, `mediaPosts`, `articles`, and `pageContent`, and kept legacy page globals as the fixed-page transition layer for the upcoming visual editor |
 | 2026-03-31 09:16 | main | SQLite compatibility patch for renamed Payload slugs | Added startup repair for legacy `payload_locked_documents_rels` metadata and patched the local database so Payload Admin can query lock state after the `mediaAssets/mediaArticles` to `media/mediaPosts` transition |
+| 2026-03-31 11:15 | main | Visual Editor shell scaffold | Added the protected `/admin/visual-editor` route, schema-driven page registry, three-column editor shell, real iframe page preview, and local placeholder actions for Save / Reset / Publish |
 
 ## 13. Update log
 
@@ -410,6 +422,9 @@ Interaction and visual behavior:
 | 2026-03-24 22:26 | main | Bug fix | Added a homepage-specific width override for `hero-story .display-title.hero-display` after the shared title scale block so the first-screen H1 no longer inherits the later `max-width: 9.5ch` constraint from `.display-title` |
 | 2026-03-31 08:59 | main | Refactor | Split the monolithic Payload config into modular collection/global files, renamed structured content collections to `media`, `mediaPosts`, and `articles`, added the generic `pageContent` collection plus seed data, and updated legacy admin links and data readers to match the new Payload model |
 | 2026-03-31 09:16 | main | Bug fix | Added a SQLite compatibility helper that backfills new locked-document relation columns for renamed Payload collections and repaired the local `data/payload.db` so `/cms/admin` no longer fails on missing `media_id` metadata columns |
+| 2026-03-31 11:15 | main | Feature update | Implemented STEP 3 of the hybrid CMS by adding a protected `/admin/visual-editor` shell, schema-driven editable page registry, a real-route iframe preview, and modular left/center/right editor panels while intentionally leaving live iframe messaging and Payload writeback for later steps |
+
+
 
 
 
