@@ -253,25 +253,27 @@
 }
 
 .statementSection {
-  padding: 0 0 1.75rem;
+  padding: 0 0 2.2rem;
   background:
-    radial-gradient(circle at left bottom, rgba(38, 137, 255, 0.12), transparent 28%),
+    radial-gradient(circle at left bottom, rgba(19, 110, 126, 0.18), transparent 28%),
+    radial-gradient(circle at right bottom, rgba(92, 110, 20, 0.2), transparent 26%),
     linear-gradient(180deg, #050705 0%, #040404 100%);
 }
 
 .statementGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 3.5rem;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 3rem;
   align-items: start;
-  padding: 3.75rem 4rem 2.75rem;
+  padding: 3.4rem 4.3rem 2.35rem;
 }
 
 .quoteBlock {
   position: relative;
   display: grid;
   justify-items: center;
-  gap: 0.6rem;
+  gap: 0.3rem;
+  padding-top: 0.1rem;
 }
 
 .quoteBlock p {
@@ -279,8 +281,10 @@
   text-align: center;
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  line-height: 1.34;
+  font-size: clamp(1rem, 1.7vw, 1.34rem);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
   white-space: pre-line;
   text-transform: uppercase;
 }
@@ -288,28 +292,47 @@
 .quoteMark,
 .quoteMarkRight {
   color: #ffffff;
-  font-size: 3rem;
+  font-family: var(--font-display);
+  font-size: 2.8rem;
   line-height: 1;
+}
+
+.quoteMark {
+  justify-self: start;
+  margin-left: 1.1rem;
 }
 
 .quoteMarkRight {
   justify-self: end;
+  margin-right: 1.25rem;
 }
 
 .statementCopy {
   display: grid;
   justify-items: start;
   align-content: center;
-  gap: 1.75rem;
-  padding-top: 1.2rem;
+  gap: 1.35rem;
+  padding-top: 0.45rem;
 }
 
 .statementCopy p {
   margin: 0;
-  max-width: 26ch;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  max-width: 22ch;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.statementButton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.45rem;
+  padding: 0 0.45rem;
+  border: 1px solid rgba(167, 207, 23, 0.56);
+  color: #a7cf17;
+  font-size: 0.44rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .inlineLink,
@@ -331,42 +354,57 @@
   color: #111713;
 }
 
+.videoStage {
+  display: grid;
+  justify-items: center;
+}
+
 .videoPanel {
   display: grid;
   place-items: center;
-  gap: 1rem;
-  min-height: 19rem;
-  margin: 0 auto 2.25rem;
-  width: min(76%, 44rem);
-  background: #959990;
+  gap: 0.85rem;
+  min-height: 14.5rem;
+  margin: 0 auto;
+  width: min(82%, 46rem);
+  background: #94988e;
 }
 
 .videoPanel p {
   margin: 0;
   color: #ffffff;
-  font-size: 1.65rem;
+  font-size: 1.1rem;
+  font-weight: 400;
 }
 
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border: 1px solid #cbff1f;
   border-radius: 999px;
   color: #cbff1f;
-  font-size: 1.1rem;
+  font-size: 0.82rem;
+}
+
+.videoCaption {
+  justify-self: end;
+  margin-top: 0.5rem;
+  width: min(82%, 46rem);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.38rem;
+  letter-spacing: 0.04em;
 }
 
 .podcastRailSection {
-  padding: 2rem 0 0;
+  padding: 1.8rem 0 0.55rem;
   background: #081008;
 }
 
 .sectionHeaderCenter {
   display: grid;
   justify-items: center;
-  padding: 1.4rem 0 2.6rem;
+  padding: 0.9rem 0 2.1rem;
 }
 
 .sectionHeaderCenter h2,
@@ -376,10 +414,10 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-size: clamp(1.45rem, 1.9vw, 1.82rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -387,83 +425,85 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.9rem;
 }
 
 .railArrow {
-  width: 2.4rem;
-  height: 2.4rem;
-  border: 1px solid rgba(203, 255, 31, 0.6);
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid rgba(167, 207, 23, 0.8);
   border-radius: 999px;
   background: transparent;
-  color: #cbff1f;
-  font-size: 1.4rem;
+  color: #a7cf17;
+  font-size: 0.62rem;
   cursor: pointer;
 }
 
 .episodeGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.2rem;
+  gap: 0.95rem;
 }
 
 .episodeCard {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.55rem;
   align-content: start;
 }
 
 .episodeThumb {
-  aspect-ratio: 0.86;
+  aspect-ratio: 1;
   background:
-    linear-gradient(180deg, rgba(153, 158, 148, 0.76) 0%, rgba(102, 108, 98, 0.9) 100%);
+    linear-gradient(180deg, rgba(128, 133, 123, 0.8) 0%, rgba(104, 109, 100, 0.94) 100%);
 }
 
 .episodeCard strong,
 .workCard strong,
 .episodeFeatureFooter strong {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.84rem;
   font-weight: 500;
 }
 
 .episodeCard span {
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.56rem;
+  line-height: 1.45;
 }
 
 .carouselDots {
   display: flex;
   justify-content: center;
   gap: 0.55rem;
-  padding: 1.7rem 0 2.4rem;
+  padding: 1.55rem 0 1.35rem;
 }
 
 .carouselDots span {
-  width: 0.32rem;
-  height: 0.32rem;
+  width: 0.26rem;
+  height: 0.26rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .carouselDots .dotActive {
-  width: 0.42rem;
-  height: 0.42rem;
-  background: #cbff1f;
+  width: 0.26rem;
+  height: 0.26rem;
+  background: #a7cf17;
 }
 
 .episodeFeatureSection {
-  padding: 3.8rem 0 4rem;
-  background: #f7f7f2;
+  padding: 3.6rem 0 4.1rem;
+  background: #f5f5f2;
 }
 
 .episodeFeatureIntro {
   display: flex;
-  align-items: end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-bottom: 1.8rem;
+  padding-bottom: 1.15rem;
 }
 
 .episodeFeatureIntro h2,
@@ -472,111 +512,165 @@
 }
 
 .episodeFeatureIntro p {
-  margin: 0.4rem 0 0;
-  color: #2b2f2a;
-  font-size: 1rem;
+  margin: 0.3rem 0 0;
+  color: rgba(18, 22, 18, 0.76);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.episodePlatformTag {
+  margin-top: 0.45rem;
+  color: rgba(18, 22, 18, 0.52);
+  font-size: 0.46rem;
+  letter-spacing: 0.08em;
 }
 
 .episodeFeatureCard {
   display: grid;
-  gap: 1rem;
+  gap: 0.18rem;
   width: min(100%, 44rem);
 }
 
-.episodeMetaRows,
-.episodeFeatureFooter {
-  display: flex;
+.episodeFeatureRows {
+  display: grid;
+  gap: 0.16rem;
+}
+
+.episodeFeatureRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  color: #181d18;
+  gap: 0.65rem;
+  min-height: 1.5rem;
+  padding: 0 0.55rem;
+  background: #201c1f;
+  color: #ffffff;
 }
 
-.episodeMetaRows span,
-.episodeFeatureFooter span {
-  color: rgba(24, 29, 24, 0.78);
-  font-size: 0.82rem;
+.episodeFeatureRowActive {
+  background: #2b3b31;
+}
+
+.episodeFeatureRowCode {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1rem;
+  padding: 0 0.28rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.4rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
-.episodeMetaRows strong,
-.episodeFeatureFooter strong {
-  display: block;
-  margin-top: 0.3rem;
-  color: #111713;
+.episodeFeatureRowTitle {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.54rem;
+  font-weight: 500;
+}
+
+.episodeFeatureRowArrow {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
 }
 
 .episodeHeroThumb {
   position: relative;
-  aspect-ratio: 1.72;
+  aspect-ratio: 1.62;
   overflow: hidden;
   background:
-    radial-gradient(circle at 64% 12%, rgba(255, 211, 92, 0.5), transparent 18%),
-    linear-gradient(135deg, #0a0a0a 0%, #4b3010 38%, #9b6b18 100%);
+    radial-gradient(circle at 70% 24%, rgba(255, 186, 39, 0.34), transparent 16%),
+    linear-gradient(135deg, #211916 0%, #3e2d1f 34%, #85612f 100%);
 }
 
 .episodeHeroThumb::before {
   content: "";
   position: absolute;
-  left: 6%;
-  bottom: -8%;
-  width: 34%;
-  height: 92%;
-  border-radius: 36% 36% 12% 12%;
-  background: rgba(17, 17, 17, 0.82);
+  left: 4%;
+  bottom: -9%;
+  width: 31%;
+  height: 94%;
+  border-radius: 34% 34% 10% 10%;
+  background:
+    radial-gradient(circle at 56% 14%, rgba(255, 230, 192, 0.2), transparent 13%),
+    linear-gradient(180deg, rgba(227, 209, 190, 0.86) 0%, rgba(40, 31, 27, 0.96) 30%, rgba(17, 16, 16, 0.92) 100%);
 }
 
 .episodeHeroThumb::after {
   content: "";
   position: absolute;
-  left: 12%;
-  top: 10%;
-  width: 20%;
-  height: 26%;
+  left: 11%;
+  top: 11%;
+  width: 16%;
+  height: 20%;
   border-radius: 50%;
-  background: rgba(46, 33, 19, 0.88);
+  background: rgba(248, 232, 214, 0.84);
 }
 
 .episodeHeroBadge {
   position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  z-index: 1;
+  left: 0.55rem;
+  bottom: 0.5rem;
+  z-index: 2;
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.2rem;
+  height: 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: 999px;
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.56rem;
+}
+
+.episodeHeroHeadline {
+  position: absolute;
+  top: 1rem;
+  left: 40%;
+  z-index: 1;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.episodeHeroHeadline span {
+  color: rgba(255, 255, 255, 0.22);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.episodeHeroHeadline strong {
+  color: #d4a11a;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.05em;
 }
 
 .episodeHeroStats {
   position: absolute;
-  right: 1rem;
-  bottom: 0.9rem;
+  left: 2rem;
+  right: 0.75rem;
+  bottom: 0.48rem;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   color: #ffffff;
-  font-size: 0.86rem;
-  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .profileSection {
-  padding: 3.8rem 0 3.6rem;
+  padding: 2.8rem 0 2.7rem;
   background:
-    radial-gradient(circle at left bottom, rgba(38, 137, 255, 0.16), transparent 28%),
-    radial-gradient(circle at 84% 20%, rgba(184, 255, 0, 0.16), transparent 20%),
-    #06110b;
+    radial-gradient(circle at 6% 100%, rgba(15, 110, 92, 0.34), transparent 26%),
+    radial-gradient(circle at 100% 100%, rgba(68, 92, 138, 0.36), transparent 28%),
+    linear-gradient(90deg, #0b1d24 0%, #081009 44%, #0c1411 100%);
 }
 
 .profileGrid {
   display: grid;
-  grid-template-columns: 12rem minmax(0, 1fr);
-  gap: 2rem;
-  align-items: start;
+  grid-template-columns: 5.7rem minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: center;
 }
 
 .profilePortrait {
@@ -584,69 +678,95 @@
 }
 
 .profilePortraitInner {
-  aspect-ratio: 0.72;
+  position: relative;
+  aspect-ratio: 0.66;
   background:
-    linear-gradient(180deg, rgba(47, 37, 23, 0.9) 0%, rgba(21, 28, 23, 0.95) 100%);
+    radial-gradient(circle at 72% 18%, rgba(255, 194, 95, 0.2), transparent 18%),
+    linear-gradient(180deg, rgba(58, 39, 20, 0.96) 0%, rgba(21, 27, 22, 0.98) 56%, rgba(14, 18, 18, 0.98) 100%);
+  overflow: hidden;
 }
 
 .profilePortraitInner::before {
   content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(circle at 54% 22%, rgba(255, 235, 180, 0.28), transparent 12%),
-    radial-gradient(circle at 34% 56%, rgba(0, 0, 0, 0.22), transparent 18%);
+    radial-gradient(circle at 56% 18%, rgba(255, 232, 192, 0.3), transparent 12%),
+    linear-gradient(180deg, rgba(244, 225, 206, 0.18) 0%, transparent 18%),
+    linear-gradient(0deg, rgba(16, 18, 18, 0.68) 0%, rgba(16, 18, 18, 0) 30%);
+}
+
+.profilePortraitInner::after {
+  content: "";
+  position: absolute;
+  left: 23%;
+  bottom: -4%;
+  width: 54%;
+  height: 82%;
+  border-radius: 30% 30% 12% 12%;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 227, 197, 0.72), transparent 11%),
+    linear-gradient(180deg, rgba(228, 214, 198, 0.72) 0%, rgba(38, 39, 44, 0.9) 24%, rgba(20, 22, 24, 0.98) 100%);
 }
 
 .profilePortraitInner span {
-  position: relative;
-  top: -2rem;
-  left: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  position: absolute;
+  left: 0.4rem;
+  bottom: 0.45rem;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.42rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .profileCopy {
   display: grid;
   align-content: center;
-  gap: 1rem;
-  padding-top: 1rem;
+  gap: 0.55rem;
+  padding-top: 0;
+}
+
+.profileCopy h2 {
+  color: #ffffff;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
 .profileCopy p {
   margin: 0;
-  max-width: 42ch;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 1rem;
-  line-height: 1.82;
+  max-width: 32ch;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.44rem;
+  line-height: 1.85;
 }
 
 .worksSection {
-  padding: 4.5rem 0 5rem;
-  background: #f3f5f1;
+  padding: 3.9rem 0 4.5rem;
+  background: #f4f7f4;
 }
 
 .worksHeader {
-  padding-bottom: 2rem;
+  padding-bottom: 1.4rem;
 }
 
-.worksHeader span {
-  color: rgba(17, 23, 19, 0.5);
+.worksHeader h2 {
+  color: #121612;
+  font-size: 1.12rem;
+  letter-spacing: 0.02em;
 }
 
 .worksGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.72fr));
-  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1.34fr) repeat(2, minmax(0, 0.78fr));
+  gap: 0.55rem 0.7rem;
   align-items: start;
 }
 
 .workCard {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.35rem;
 }
 
 .workCardLarge {
@@ -659,27 +779,28 @@
 
 .workThumb {
   background: #ffffff;
-  box-shadow: inset 0 0 0 1px rgba(17, 23, 19, 0.04);
+  box-shadow: none;
 }
 
 .workCardLarge .workThumb {
-  aspect-ratio: 0.76;
+  aspect-ratio: 0.74;
 }
 
 .workCardSmall .workThumb {
-  aspect-ratio: 1;
+  aspect-ratio: 0.94;
 }
 
 .workCard span,
 .workCard p {
-  color: rgba(17, 23, 19, 0.68);
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
+  color: rgba(17, 23, 19, 0.64);
+  font-size: 0.42rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .workCard strong {
   color: #111713;
+  font-size: 0.76rem;
 }
 
 .workCard p {
@@ -687,8 +808,115 @@
 }
 
 .exploreLink {
+  width: 100%;
   margin-top: 2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.2);
   color: #111713;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.page :global(.homeFooter) {
+  position: relative;
+  padding: 2.2rem 0 2rem;
+  background:
+    radial-gradient(circle at 10% 100%, rgba(16, 117, 88, 0.34), transparent 24%),
+    radial-gradient(circle at 100% 100%, rgba(86, 93, 132, 0.34), transparent 28%),
+    linear-gradient(90deg, #0b1d24 0%, #081009 46%, #0c1411 100%);
+}
+
+.page :global(.homeFooterInner) {
+  align-items: start;
+  width: min(1240px, calc(100vw - 48px));
+  padding: 0 3.6rem;
+}
+
+.page :global(.homeFooterBrand) {
+  color: #a7cf17;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+.page :global(.homeFooterSlash) {
+  color: rgba(167, 207, 23, 0.8);
+  font-size: 0.72rem;
+}
+
+.page :global(.homeFooterMeta) {
+  gap: 0.2rem;
+  margin-top: 0.9rem;
+}
+
+.page :global(.homeFooterMeta p),
+.page :global(.homeFooterMeta a) {
+  font-size: 0;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.page :global(.homeFooterMeta p:first-child)::before {
+  content: "Email address:";
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.34rem;
+  letter-spacing: 0.06em;
+}
+
+.page :global(.homeFooterMeta p:nth-child(2))::before {
+  content: "Contact information: 12345678901";
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.34rem;
+  letter-spacing: 0.06em;
+}
+
+.page :global(.homeFooterMeta a) {
+  display: none;
+}
+
+.page :global(.homeFooterAction) {
+  position: relative;
+  justify-items: end;
+  gap: 1.15rem;
+  padding-top: 0.15rem;
+}
+
+.page :global(.homeFooterAction)::before {
+  content: "TIGER LIU";
+  color: #bf9b50;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.page :global(.homeFooterAction a) {
+  min-height: 1.55rem;
+  padding: 0 0.55rem;
+  border: 1px solid rgba(167, 207, 23, 0.74);
+  color: transparent;
+  font-size: 0;
+}
+
+.page :global(.homeFooterAction a)::before {
+  content: "TIGERPARTNERS.CN";
+  color: #a7cf17;
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+}
+
+.page :global(.homeFooterNote) {
+  position: absolute;
+  left: 50%;
+  bottom: 0.55rem;
+  transform: translateX(-50%);
+  width: max-content;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 0;
+  letter-spacing: 0.06em;
+}
+
+.page :global(.homeFooterNote)::before {
+  content: "COPYRIGHT © 2026 DENNIS YUXUAN LIU. ALL RIGHTS RESERVED";
+  font-size: 0.28rem;
 }
 
 @media (max-width: 960px) {
@@ -710,11 +938,21 @@
     padding-right: 1.5rem;
   }
 
+  .statementGrid {
+    gap: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
   .heroPortrait {
     min-height: 28rem;
   }
 
   .videoPanel {
+    width: calc(100% - 3rem);
+  }
+
+  .videoCaption {
     width: calc(100% - 3rem);
   }
 
@@ -737,6 +975,11 @@
   .workCardLarge {
     grid-row: auto;
   }
+
+  .page :global(.homeFooterInner) {
+    width: min(100vw - 28px, 100%);
+    padding: 0 1.1rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -754,9 +997,19 @@
     padding-right: 1.1rem;
   }
 
+  .statementGrid {
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+  }
+
   .videoPanel {
     width: calc(100% - 2.2rem);
     min-height: 14rem;
+  }
+
+  .videoCaption {
+    width: calc(100% - 2.2rem);
+    font-size: 0.46rem;
   }
 
   .episodeFeatureIntro,
@@ -772,5 +1025,11 @@
 
   .profilePortrait {
     max-width: 11rem;
+  }
+
+  .page :global(.homeFooterNote) {
+    position: static;
+    transform: none;
+    margin-top: 1rem;
   }
 }

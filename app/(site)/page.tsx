@@ -174,15 +174,18 @@ export default async function HomePage() {
                 <span className={styles.quoteMarkRight}>”</span>
               </div>
               <div className={styles.statementCopy}>
-                <p>Some short self-introduction.</p>
-                <Link className={styles.inlineLink} href="/about">
-                  More
+                <p>Some short self-introductions.</p>
+                <Link className={styles.statementButton} href="/about">
+                  个人介绍
                 </Link>
               </div>
             </div>
-            <div className={styles.videoPanel}>
-              <div className={styles.videoIcon}>▶</div>
-              <p>Video topic</p>
+            <div className={styles.videoStage}>
+              <div className={styles.videoPanel}>
+                <div className={styles.videoIcon}>▶</div>
+                <p>Video topic</p>
+              </div>
+              <span className={styles.videoCaption}>Watch Safety Differently, the movie →</span>
             </div>
           </div>
         </VisualEditRegion>
@@ -228,31 +231,34 @@ export default async function HomePage() {
             <div className={styles.episodeFeatureIntro}>
               <div>
                 <h2>LAW, DISRUPTED PODCAST</h2>
-                <p>Representative Program Activity</p>
+                <p>代表性播客及活动</p>
               </div>
-              <Link className={styles.inlineLinkDark} href="/podcast">
-                More
-              </Link>
+              <span className={styles.episodePlatformTag}>小红书</span>
             </div>
             <div className={styles.episodeFeatureCard}>
-              <div className={styles.episodeMetaRows}>
-                <div>
-                  <span>{leadEpisode.episodeCode}</span>
-                  <strong>{leadEpisode.title}</strong>
-                </div>
-                <span>{leadEpisode.duration}</span>
+              <div className={styles.episodeFeatureRows}>
+                {episodes.map((episode, index) => (
+                  <div
+                    className={`${styles.episodeFeatureRow} ${index === 2 ? styles.episodeFeatureRowActive : ""}`}
+                    key={`${episode._id}-feature-row`}
+                  >
+                    <span className={styles.episodeFeatureRowCode}>{episode.episodeCode}</span>
+                    <strong className={styles.episodeFeatureRowTitle}>{episode.title}</strong>
+                    <span className={styles.episodeFeatureRowArrow}>›</span>
+                  </div>
+                ))}
               </div>
               <div className={styles.episodeHeroThumb}>
                 <div className={styles.episodeHeroBadge}>▶</div>
+                <div className={styles.episodeHeroHeadline}>
+                  <span>大喧哥</span>
+                  <strong>做题家的一种人生解法</strong>
+                </div>
                 <div className={styles.episodeHeroStats}>
                   <span>203k</span>
                   <span>2932</span>
                   <span>01:45:06</span>
                 </div>
-              </div>
-              <div className={styles.episodeFeatureFooter}>
-                <strong>{leadEpisode.title}</strong>
-                <span>{formatEpisodeDate(leadEpisode.releasedAt)}</span>
               </div>
             </div>
           </div>
@@ -269,14 +275,11 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className={styles.profileCopy}>
-                <h2>Self introduction</h2>
+                <h2>简单介绍</h2>
                 <p>
-                  Short professional summary text appears here. Keep the block compact, direct,
-                  and aligned with the editorial tone from the reference layout.
+                  以法律叙事为核心，面向内容传播与公众表达建立个人系统化作品，
+                  为下一阶段更完整的品牌展示做准备。
                 </p>
-                <Link className={styles.inlineLink} href="/about">
-                  More
-                </Link>
               </div>
             </div>
           </div>
@@ -287,9 +290,7 @@ export default async function HomePage() {
         <VisualEditRegion adminHref="/cms/admin/collections/mediaPosts" label="Liu homepage featured works" previewHref="/media">
           <div className={styles.shell}>
             <div className={styles.worksHeader}>
-              <h2>
-                FEATURED <span>WORKS</span>
-              </h2>
+              <h2>FEATURED WORKS</h2>
             </div>
             <div className={styles.worksGrid}>
               {featuredWorks.map((work, index) => (
