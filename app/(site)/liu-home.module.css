@@ -62,7 +62,7 @@
 }
 
 .heroTitle {
-  max-width: none;
+  max-width: 8.5ch;
   margin: 0;
   color: #a7d500;
   font-family: var(--font-display);
@@ -71,7 +71,8 @@
   line-height: 0.93;
   letter-spacing: -0.075em;
   text-transform: uppercase;
-  white-space: nowrap;
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .heroVisual {
@@ -424,13 +425,15 @@
 }
 
 .podcastRail {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 0.9rem;
+  position: relative;
+  padding-inline: 2.1rem;
 }
 
 .railArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
   display: grid;
   place-items: center;
   width: 1rem;
@@ -443,6 +446,14 @@
   cursor: pointer;
 }
 
+.railArrow:first-of-type {
+  left: 0;
+}
+
+.railArrow:last-of-type {
+  right: 0;
+}
+
 .episodeGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -451,7 +462,7 @@
 
 .episodeCard {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.35rem;
   align-content: start;
 }
 
@@ -469,7 +480,19 @@
   font-weight: 500;
 }
 
-.episodeCard span {
+.episodeCardCode {
+  color: rgba(167, 207, 23, 0.84);
+  font-size: 0.46rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.episodeCardTitle {
+  line-height: 1.2;
+}
+
+.episodeCardSummary {
+  margin: 0;
   color: rgba(255, 255, 255, 0.72);
   font-size: 0.56rem;
   line-height: 1.45;
@@ -812,7 +835,9 @@
 .exploreLink {
   width: 100%;
   margin-top: 2rem;
+  padding-top: 0.85rem;
   padding-bottom: 0.35rem;
+  border-top: 1px solid rgba(17, 23, 19, 0.12);
   border-bottom: 1px solid rgba(17, 23, 19, 0.2);
   color: #111713;
   font-size: 0.78rem;
@@ -963,7 +988,7 @@
   }
 
   .podcastRail {
-    grid-template-columns: 1fr;
+    padding-inline: 0;
   }
 
   .railArrow {

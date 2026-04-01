@@ -17,34 +17,34 @@ const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE
 const fallbackEpisodes: PodcastEpisode[] = [
   {
     _id: "liu-episode-01",
-    title: "Episode One",
-    slug: "episode-one",
+    title: "Can Law Survive the Attention Economy?",
+    slug: "can-law-survive-the-attention-economy",
     episodeCode: "EP01",
     releasedAt: "2026-03-01",
     duration: "45 min",
-    summary: "Short summary text.",
+    summary: "How legal analysis changes once it has to compete with algorithms, speed, and spectacle.",
     featured: true,
     platformLinks: [],
   },
   {
     _id: "liu-episode-02",
-    title: "Episode Two",
-    slug: "episode-two",
+    title: "From Case File to Public Narrative",
+    slug: "from-case-file-to-public-narrative",
     episodeCode: "EP02",
     releasedAt: "2026-02-16",
     duration: "42 min",
-    summary: "Short summary text.",
+    summary: "Translating dense disputes into responsible commentary without flattening the legal stakes.",
     featured: true,
     platformLinks: [],
   },
   {
     _id: "liu-episode-03",
-    title: "Episode Three",
-    slug: "episode-three",
+    title: "Who Owns the Public Square?",
+    slug: "who-owns-the-public-square",
     episodeCode: "EP03",
     releasedAt: "2026-01-30",
     duration: "39 min",
-    summary: "Short summary text.",
+    summary: "Platform governance, speech norms, and the lawyer's role in contested online discourse.",
     featured: false,
     platformLinks: [],
   },
@@ -123,7 +123,7 @@ export default async function HomePage() {
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
                 <p className={styles.kicker}>Dennis / Yuxuan / Liu</p>
-                <h1 className={styles.heroTitle}>“MAIN TITLE COPY”</h1>
+                <h1 className={styles.heroTitle}>Legal Storytelling for the Public Square</h1>
               </div>
               <div className={styles.heroVisual}>
                 <div className={styles.heroUtilityRow}>
@@ -174,7 +174,10 @@ export default async function HomePage() {
                 <span className={styles.quoteMarkRight}>”</span>
               </div>
               <div className={styles.statementCopy}>
-                <p>Some short self-introductions.</p>
+                <p>
+                  Dennis Yuxuan Liu is a legal professional focused on turning complex legal questions into clear,
+                  public-facing analysis across advisory work, commentary, and long-form editorial projects.
+                </p>
                 <Link className={styles.statementButton} href="/about">
                   个人介绍
                 </Link>
@@ -205,8 +208,9 @@ export default async function HomePage() {
                 {episodes.map((episode) => (
                   <article className={styles.episodeCard} key={episode._id}>
                     <div className={styles.episodeThumb} />
-                    <strong>{episode.title}</strong>
-                    <span>{episode.summary}</span>
+                    <span className={styles.episodeCardCode}>{episode.episodeCode}</span>
+                    <strong className={styles.episodeCardTitle}>{episode.title}</strong>
+                    <p className={styles.episodeCardSummary}>{episode.summary}</p>
                   </article>
                 ))}
               </div>
