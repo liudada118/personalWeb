@@ -761,13 +761,13 @@
 }
 
 .worksSection {
-  padding: 3.2rem 0 3.8rem;
+  padding: 2.4rem 0 3.8rem;
   background: #f5f4f1;
   border-top: 1px solid rgba(17, 23, 19, 0.08);
 }
 
 .worksHeader {
-  padding-bottom: 1.4rem;
+  padding-bottom: 0.9rem;
 }
 
 .worksHeader h2 {
@@ -778,14 +778,14 @@
 
 .worksGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) repeat(2, minmax(0, 0.65fr));
-  gap: 0.5rem 0.85rem;
+  grid-template-columns: minmax(0, 1.7fr) repeat(2, minmax(0, 0.55fr));
+  gap: 0.4rem 0.7rem;
   align-items: start;
 }
 
 .workCard {
   display: grid;
-  gap: 0.38rem;
+  gap: 0.28rem;
 }
 
 .workCardLarge {
@@ -803,11 +803,11 @@
 }
 
 .workCardLarge .workThumb {
-  aspect-ratio: 0.72;
+  aspect-ratio: 0.68;
 }
 
 .workCardSmall .workThumb {
-  aspect-ratio: 0.95;
+  aspect-ratio: 1.05;
 }
 
 .workCard span,
@@ -830,7 +830,7 @@
 .exploreLink {
   width: 100%;
   justify-content: flex-start;
-  margin-top: 1.5rem;
+  margin-top: 1.1rem;
   min-height: 2rem;
   padding-top: 0;
   padding-bottom: 0.18rem;
