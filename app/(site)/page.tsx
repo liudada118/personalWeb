@@ -192,9 +192,7 @@ export default async function HomePage() {
           <div className={styles.shell}>
             <div className={styles.statementGrid}>
               <div className={styles.quoteBlock}>
-                <span className={styles.quoteMark}>“</span>
                 <p>{manifestoQuote}</p>
-                <span className={styles.quoteMarkRight}>”</span>
               </div>
               <div className={styles.statementCopy}>
                 <p>Some short self-introductions.</p>

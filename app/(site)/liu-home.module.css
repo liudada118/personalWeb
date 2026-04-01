@@ -212,26 +212,26 @@
 
 .statementGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.55fr);
-  gap: 2.4rem;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 0.35fr);
+  gap: 2rem;
   align-items: start;
-  padding: 4.5rem 6.5rem 3rem;
+  padding: 3.8rem 6.5rem 2.5rem;
 }
 
 .quoteBlock {
   position: relative;
-  padding-top: 0.08rem;
-  padding-left: 0.55rem;
+  padding-top: 0.05rem;
+  padding-left: 0.6rem;
 }
 
 .quoteBlock::before {
   content: "\201C";
   position: absolute;
-  left: -0.15rem;
-  top: -0.55rem;
-  color: rgba(163, 210, 10, 0.55);
+  left: -0.1rem;
+  top: -0.4rem;
+  color: rgba(163, 210, 10, 0.6);
   font-family: var(--font-body);
-  font-size: clamp(5rem, 9vw, 8.5rem);
+  font-size: clamp(5.5rem, 10vw, 9rem);
   font-weight: 700;
   line-height: 1;
   pointer-events: none;
@@ -241,10 +241,10 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(1.2rem, 1.85vw, 1.62rem);
+  font-size: clamp(1.35rem, 2.1vw, 1.9rem);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   white-space: pre-line;
   text-transform: uppercase;
 }
@@ -258,26 +258,26 @@
   display: grid;
   justify-items: start;
   align-content: start;
-  gap: 1.1rem;
-  padding-top: 0.1rem;
+  gap: 0.9rem;
+  padding-top: 0.2rem;
 }
 
 .statementCopy p {
   margin: 0;
-  max-width: 22ch;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.82rem;
-  line-height: 1.6;
+  max-width: 18ch;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  line-height: 1.65;
 }
 
 .statementButton {
   display: inline-flex;
   align-items: center;
-  min-height: 2.4rem;
-  padding: 0 1.1rem;
-  border: 1px solid rgba(163, 210, 10, 0.45);
+  min-height: 2.1rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(163, 210, 10, 0.4);
   color: #a3d20a;
-  font-size: 0.5rem;
+  font-size: 0.44rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
@@ -314,44 +314,45 @@
 .videoStage {
   display: grid;
   justify-items: center;
-  padding-top: 0.8rem;
+  padding-top: 1.8rem;
 }
 
 .videoPanel {
   display: grid;
   place-items: center;
-  gap: 0.75rem;
-  min-height: 18rem;
+  gap: 0.65rem;
+  min-height: 20rem;
   margin: 0 auto;
-  width: min(90%, 62rem);
-  background: #9a9d94;
+  width: min(88%, 58rem);
+  background: #7a7d74;
 }
 
 .videoPanel p {
   margin: 0;
-  color: #ffffff;
-  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
   font-weight: 400;
+  letter-spacing: 0.04em;
 }
 
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid rgba(163, 210, 10, 0.7);
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid rgba(163, 210, 10, 0.5);
   border-radius: 999px;
-  color: #a3d20a;
-  font-size: 0.88rem;
+  color: rgba(163, 210, 10, 0.75);
+  font-size: 0.8rem;
 }
 
 .videoCaption {
   justify-self: end;
-  margin-top: 0.6rem;
-  width: min(90%, 62rem);
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.42rem;
-  letter-spacing: 0.08em;
+  margin-top: 0.35rem;
+  width: min(88%, 58rem);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.38rem;
+  letter-spacing: 0.1em;
 }
 
 .podcastRailSection {
