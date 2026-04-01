@@ -843,7 +843,7 @@
 }
 
 .page :global(.homeFooter) {
-  padding: 2.6rem 0 2rem;
+  padding: 3.4rem 0 2.4rem;
   background:
     radial-gradient(circle at 0% 100%, rgba(15, 116, 88, 0.36), transparent 24%),
     radial-gradient(circle at 100% 100%, rgba(86, 93, 132, 0.34), transparent 30%),
@@ -851,24 +851,24 @@
 }
 
 .page :global(.homeFooterInner) {
-  align-items: start;
+  align-items: end;
   width: min(1240px, calc(100vw - 48px));
   padding: 0 3.4rem;
 }
 
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
 }
 
 .page :global(.homeFooterSlash) {
   color: rgba(167, 207, 23, 0.8);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
 }
 
 .page :global(.homeFooterMeta) {
-  gap: 0.28rem;
-  margin-top: 0.6rem;
+  gap: 0.38rem;
+  margin-top: 0.72rem;
 }
 
 .page :global(.homeFooterMeta p),
@@ -901,11 +901,15 @@
   align-items: flex-start;
   justify-items: end;
   gap: 0.9rem;
-  padding-top: 0.1rem;
+  padding-top: 0.28rem;
 }
 
 .page :global(.homeFooterAction)::before {
   content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 2.4rem;
   height: 2.15rem;
   background-image: url("../../img/图片7.png");
@@ -930,19 +934,21 @@
 }
 
 .page :global(.homeFooterNote) {
-  position: absolute;
-  left: 50%;
-  bottom: -1.6rem;
-  transform: translateX(-50%);
-  width: max-content;
+  position: static;
+  transform: none;
+  width: auto;
+  margin-top: 1.8rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.36);
   font-size: 0;
   letter-spacing: 0.06em;
+  text-align: center;
 }
 
 .page :global(.homeFooterNote)::before {
-  content: "COPYRIGHT © 2026 DENNIS YUXUAN LIU. ALL RIGHTS RESERVED";
-  font-size: 0.28rem;
+  content: "COPYRIGHT \00A9 2026 DENNIS YUXUAN LIU. ALL RIGHTS RESERVED.";
+  font-size: 0.26rem;
 }
 
 @media (max-width: 960px) {
