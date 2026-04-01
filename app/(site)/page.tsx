@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
-const heroTitle = "DENNIS YUXUAN LIU";
+const heroTitle = "DENNIS\nYUXUAN LIU";
 const heroKicker = "Narrative & Law";
 const heroSub = "Legal Narrative / Public Discourse";
 const podcastCarouselCards = [
@@ -154,6 +154,11 @@ export default async function HomePage() {
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage hero" previewHref="/">
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
+              <div className={styles.heroUtilityRow}>
+                <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
+                  Tigerpartners.cn
+                </a>
+              </div>
               <div className={styles.heroCopy}>
                 <p className={styles.heroKicker}>{heroKicker}</p>
                 <h1 className={styles.heroTitle}>{heroTitle}</h1>
@@ -173,11 +178,6 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className={styles.heroVisual}>
-                <div className={styles.heroUtilityRow}>
-                  <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
-                    Tigerpartners.cn
-                  </a>
-                </div>
                 <div className={styles.heroPortraitScene}>
                   <div
                     aria-hidden="true"

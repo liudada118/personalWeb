@@ -17,6 +17,9 @@
   --shadow: 0 8px 24px rgba(31, 31, 27, 0.04);
   --container: min(1180px, calc(100vw - 48px));
   --home-container: calc(100vw - clamp(12px, 1.8vw, 28px));
+  --home-hero-left-gutter: clamp(4.9rem, 8.4vw, 7.4rem);
+  --home-hero-right-gutter: clamp(1.45rem, 3vw, 2.8rem);
+  --home-hero-top-safe: clamp(0.7rem, 1.5vw, 1rem);
   --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
   --font-body: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }

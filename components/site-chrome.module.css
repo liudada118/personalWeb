@@ -4,7 +4,7 @@
   right: 0;
   left: 0;
   z-index: 60;
-  padding-top: 0.78rem;
+  padding-top: var(--home-hero-top-safe);
   pointer-events: none;
 }
 
@@ -12,10 +12,10 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 1.55rem;
-  width: min(1452px, calc(100vw - 2px));
-  margin: 0 auto;
-  padding: 0 2.8rem 0 12.7rem;
+  gap: 1.2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0 var(--home-hero-right-gutter) 0 var(--home-hero-left-gutter);
   pointer-events: auto;
 }
 
@@ -39,14 +39,14 @@
 }
 
 .homeBrandPrimary {
-  font-size: clamp(1.82rem, 2vw, 2.2rem);
+  font-size: clamp(1.48rem, 1.72vw, 1.84rem);
   line-height: 1;
 }
 
 .homeBrandSlash {
-  margin: 0 0.18rem 0 0.08rem;
+  margin: 0 0.14rem 0 0.04rem;
   color: rgba(197, 230, 57, 0.76);
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   font-style: italic;
   letter-spacing: -0.01em;
   text-transform: none;
@@ -55,16 +55,16 @@
 .homeNav {
   display: flex;
   justify-content: flex-start;
-  gap: 1.55rem;
-  padding-top: 0.12rem;
+  gap: 1.16rem;
+  padding-top: 0.06rem;
 }
 
 .homeNavLink {
   position: relative;
   color: rgba(187, 204, 182, 0.68);
-  font-size: 0.78rem;
+  font-size: 0.64rem;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
