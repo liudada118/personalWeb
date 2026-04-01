@@ -6,6 +6,7 @@ import heroReference from "../../img/图片1.png";
 import profileReference from "../../img/图片5.png";
 
 import { VisualEditRegion } from "@/components/visual-edit-region";
+import { EpisodeFeatureCard } from "./_components/EpisodeFeatureCard";
 import { getHomePageData } from "@/lib/payload/api";
 import type { PodcastEpisode } from "@/lib/types";
 
@@ -256,43 +257,7 @@ export default async function HomePage() {
               </div>
               <span className={styles.episodePlatformTag}>小红书</span>
             </div>
-            <div className={styles.episodeFeatureCard}>
-              <div className={styles.episodeFeatureIndexStrip}>
-                {["播客节目", "媒体活动", "深度内容"].map((label, i) => (
-                  <div
-                    className={`${styles.episodeFeatureIndexItem} ${i === 0 ? styles.episodeFeatureIndexItemActive : ""}`}
-                    key={`index-${label}`}
-                  >
-                    {label}
-                  </div>
-                ))}
-              </div>
-              <div className={styles.episodeFeatureRows}>
-                {featuredEpisodeRows.map((episode, index) => (
-                  <div
-                    className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
-                    key={`${episode.code}-feature-row`}
-                  >
-                    <span className={styles.episodeFeatureRowCode}>{episode.code}</span>
-                    <strong className={styles.episodeFeatureRowTitle}>{episode.title}</strong>
-                    <span className={styles.episodeFeatureRowArrow}>›</span>
-                  </div>
-                ))}
-              </div>
-              <div className={styles.episodeHeroThumb}>
-                <div className={styles.episodeHeroBadge}>▶</div>
-                <div className={styles.episodeHeroHeadline}>
-                  <span>大喧哥</span>
-                  <em>饥饿 欲望 黑暗原力</em>
-                  <strong>做题家的一种人生解法</strong>
-                </div>
-                <div className={styles.episodeHeroStats}>
-                  <span>20.3万</span>
-                  <span>2932</span>
-                  <span>01:45:06</span>
-                </div>
-              </div>
-            </div>
+            <EpisodeFeatureCard />
           </div>
         </VisualEditRegion>
       </section>
