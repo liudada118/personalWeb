@@ -154,11 +154,6 @@ export default async function HomePage() {
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage hero" previewHref="/">
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
-              <div className={styles.heroUtilityRow}>
-                <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
-                  Tigerpartners.cn
-                </a>
-              </div>
               <div className={styles.heroCopy}>
                 <p className={styles.heroKicker}>{heroKicker}</p>
                 <h1 className={styles.heroTitle}>{heroTitle}</h1>

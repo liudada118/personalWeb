@@ -25,7 +25,7 @@
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   min-height: 100svh;
   background: linear-gradient(90deg, #061008 0%, #08110a 48%, #172117 68%, #202920 100%);
 }
@@ -41,17 +41,7 @@
   pointer-events: none;
 }
 
-.heroGrid::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 55.4%;
-  width: 11rem;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, rgba(7, 16, 8, 0) 0%, rgba(13, 22, 14, 0.36) 48%, rgba(31, 42, 31, 0) 100%);
-  pointer-events: none;
-}
+/* divider removed for continuous dark space */
 
 .heroCopy {
   position: relative;
@@ -65,12 +55,12 @@
   padding:
     clamp(8.9rem, 22vh, 11.2rem)
     clamp(2.4rem, 3vw, 3.8rem)
-    clamp(1.35rem, 4vh, 2rem)
+    clamp(4rem, 8vh, 6.5rem)
     var(--home-hero-left-gutter);
 }
 
 .heroKicker {
-  margin: 0 0 0.82rem;
+  margin: 0 0 0.5rem;
   color: rgba(163, 210, 10, 0.44);
   font-family: var(--font-body);
   font-size: 0.4rem;
@@ -94,7 +84,7 @@
 
 .heroSub {
   max-width: 18ch;
-  margin: 1rem 0 0;
+  margin: 0.65rem 0 0;
   color: rgba(255, 255, 255, 0.4);
   font-family: var(--font-body);
   font-size: 0.57rem;
@@ -134,7 +124,7 @@
   position: relative;
   min-height: 100%;
   overflow: hidden;
-  background: linear-gradient(90deg, rgba(7, 16, 8, 0) 0%, rgba(24, 34, 23, 0.32) 15%, #253026 54%, #2b352b 100%);
+  background: linear-gradient(90deg, rgba(10, 18, 12, 0.15) 0%, rgba(24, 34, 23, 0.28) 18%, #253026 56%, #2b352b 100%);
 }
 
 .heroVisual::before {
@@ -189,7 +179,7 @@
 
 .heroPortraitReference {
   position: absolute;
-  left: clamp(-2.2rem, -1.8vw, -0.75rem);
+  left: clamp(-3.5rem, -3vw, -1.2rem);
   bottom: 0;
   width: min(30rem, 82%);
   height: 100%;
