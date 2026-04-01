@@ -31,19 +31,17 @@
   overflow: hidden;
   padding: 0;
   background:
-    radial-gradient(circle at 12% 90%, rgba(96, 132, 24, 0.16), transparent 24%),
-    linear-gradient(90deg, #061008 0%, #040905 55%, #1b251d 55%, #202b22 100%);
+    radial-gradient(circle at 0% 100%, rgba(118, 152, 21, 0.28), transparent 22%),
+    linear-gradient(90deg, #050b05 0%, #050b05 55.2%, #243024 55.2%, #243024 100%);
 }
 
 .heroSection::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 34%;
+  inset: 0;
   background:
-    linear-gradient(90deg, rgba(118, 160, 20, 0.18) 0%, rgba(118, 160, 20, 0.05) 22%, transparent 64%),
-    radial-gradient(circle at 4% 100%, rgba(142, 190, 29, 0.18), transparent 28%);
-  filter: blur(10px);
+    linear-gradient(90deg, rgba(121, 160, 18, 0.24) 0%, rgba(121, 160, 18, 0.06) 8%, transparent 19%),
+    linear-gradient(90deg, transparent 55.1%, rgba(222, 232, 206, 0.08) 55.18%, transparent 55.28%);
   pointer-events: none;
 }
 
@@ -51,25 +49,28 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(3, 8, 5, 0.2) 0%, rgba(3, 8, 5, 0) 24%, transparent 100%);
+  background:
+    radial-gradient(circle at 14% 50%, rgba(7, 12, 8, 0.24) 0%, transparent 42%),
+    linear-gradient(180deg, rgba(3, 8, 5, 0.12) 0%, rgba(3, 8, 5, 0.04) 22%, rgba(0, 0, 0, 0.2) 100%);
   pointer-events: none;
 }
 
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(24rem, 1.23fr) minmax(21rem, 0.97fr);
-  min-height: max(43rem, 100svh);
+  grid-template-columns: minmax(24rem, 1.24fr) minmax(20rem, 0.96fr);
+  min-height: clamp(36rem, 100svh, 54rem);
   align-items: stretch;
 }
 
 .heroGrid::before {
   content: "";
   position: absolute;
-  inset: 0 44.15% 0 auto;
+  top: 0;
+  bottom: 0;
+  left: 55.18%;
   width: 1px;
-  background:
-    linear-gradient(180deg, rgba(180, 205, 114, 0.12) 0%, rgba(180, 205, 114, 0.18) 48%, rgba(180, 205, 114, 0.08) 100%);
+  background: rgba(199, 214, 145, 0.12);
   pointer-events: none;
 }
 
@@ -78,52 +79,53 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  max-width: none;
-  padding: clamp(5.8rem, 8vw, 7.6rem) clamp(2rem, 4vw, 3rem) clamp(3rem, 6vw, 4.4rem) clamp(4.5rem, 8vw, 10rem);
+  padding: clamp(5.4rem, 7vw, 6.7rem) clamp(2rem, 4vw, 3rem) clamp(2.8rem, 5vw, 3.8rem) clamp(4rem, 8vw, 10rem);
 }
 
-.heroTitleGroup {
-  display: grid;
-  gap: 1rem;
+.heroCopy::before {
+  content: "";
+  position: absolute;
+  left: -8%;
+  bottom: -10%;
+  width: 46%;
+  height: 42%;
+  background: radial-gradient(circle, rgba(118, 152, 21, 0.26) 0%, rgba(118, 152, 21, 0.08) 36%, transparent 72%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.heroTitleBlock {
+  position: relative;
+  max-width: 40rem;
+  padding-top: clamp(2rem, 7vh, 4rem);
 }
 
 .heroTitle {
   margin: 0;
-  max-width: none;
-  color: #a7cf17;
-  font-family: var(--font-display);
-  font-size: clamp(3.35rem, 4.9vw, 4.8rem);
-  font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.055em;
+  color: #96ba12;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(3rem, 4.65vw, 4.45rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.065em;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.heroIntro {
-  margin: 0;
-  max-width: 23ch;
-  color: rgba(236, 240, 225, 0.72);
-  font-size: clamp(1rem, 1.35vw, 1.18rem);
-  line-height: 1.82;
-  letter-spacing: 0.01em;
 }
 
 .heroVisual {
   position: relative;
   min-height: 100%;
-  margin-left: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, #212d24 0%, #1f2b22 100%);
+  background: linear-gradient(180deg, #243024 0%, #222d23 100%);
 }
 
 .heroVisual::before {
   content: "";
   position: absolute;
-  inset: -12% -4% 46% 10%;
+  inset: 0;
   background:
-    radial-gradient(circle at 40% 44%, rgba(255, 255, 255, 0.15), transparent 12%),
-    radial-gradient(circle at 56% 30%, rgba(168, 195, 152, 0.14), transparent 22%);
+    radial-gradient(circle at 36% 10%, rgba(255, 255, 255, 0.18), transparent 11%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 22%);
   pointer-events: none;
 }
 
@@ -132,8 +134,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(7, 11, 8, 0.1) 0%, rgba(7, 11, 8, 0.18) 100%),
-    linear-gradient(90deg, rgba(7, 11, 8, 0.05) 0%, rgba(7, 11, 8, 0) 32%, rgba(7, 11, 8, 0.14) 100%);
+    linear-gradient(180deg, rgba(7, 11, 8, 0.06) 0%, rgba(7, 11, 8, 0.16) 100%),
+    linear-gradient(90deg, rgba(7, 11, 8, 0.08) 0%, rgba(7, 11, 8, 0.01) 40%, rgba(7, 11, 8, 0.14) 100%);
   pointer-events: none;
 }
 
@@ -141,8 +143,7 @@
   position: relative;
   min-height: 100%;
   background:
-    radial-gradient(circle at 46% 18%, rgba(255, 255, 255, 0.08), transparent 12%),
-    linear-gradient(180deg, rgba(38, 49, 39, 0.32) 0%, rgba(29, 39, 31, 0.4) 26%, rgba(24, 31, 25, 0.18) 100%);
+    linear-gradient(180deg, rgba(35, 45, 36, 0.42) 0%, rgba(30, 38, 31, 0.22) 100%);
 }
 
 .heroPortraitScene::before {
@@ -150,8 +151,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(8, 14, 11, 0.14) 0%, rgba(8, 14, 11, 0.02) 20%, rgba(8, 14, 11, 0.18) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 18%);
+    linear-gradient(90deg, rgba(8, 14, 11, 0.12) 0%, rgba(8, 14, 11, 0.02) 16%, rgba(8, 14, 11, 0.14) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 17%);
   pointer-events: none;
 }
 
@@ -159,130 +160,83 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 42% 16% at 42% 4%, rgba(255, 255, 255, 0.18) 0%, transparent 72%),
-    radial-gradient(ellipse 28% 22% at 50% 36%, rgba(255, 255, 255, 0.04) 0%, transparent 54%);
-}
-
-.heroUtilityRow {
-  position: absolute;
-  top: 1.1rem;
-  left: 1rem;
-  right: 1.35rem;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.heroUtilityTags {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.heroUtilityTag {
-  display: grid;
-  place-items: center;
-  min-width: 1.7rem;
-  height: 1.7rem;
-  padding: 0 0.38rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  background: rgba(10, 14, 11, 0.18);
-  color: rgba(246, 248, 239, 0.82);
-  font-size: 0.54rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: lowercase;
-}
-
-.heroDomainLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.9rem;
-  padding: 0 0.7rem;
-  border: 1px solid rgba(172, 201, 72, 0.66);
-  color: #a7cf17;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+    radial-gradient(ellipse 38% 16% at 36% 7%, rgba(255, 255, 255, 0.16) 0%, transparent 72%),
+    radial-gradient(ellipse 46% 38% at 58% 72%, rgba(0, 0, 0, 0.12) 0%, transparent 70%);
 }
 
 .heroFigure {
   position: absolute;
-  inset: 0.1rem -5.2rem -2.2rem 0.35rem;
+  inset: -1.6rem -4.4rem -1.8rem -1.1rem;
   z-index: 2;
-  filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.26));
+  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.26));
 }
 
 .heroFigureHead {
   position: absolute;
-  top: 1.45rem;
-  left: 27%;
-  width: 19.5%;
-  height: 17%;
-  border-radius: 44% 44% 42% 46%;
+  top: 1.9rem;
+  left: 24.5%;
+  width: 22.2%;
+  height: 19.2%;
+  border-radius: 44% 44% 43% 45%;
   background:
-    radial-gradient(circle at 61% 34%, rgba(255, 246, 238, 0.94), transparent 15%),
+    radial-gradient(circle at 64% 32%, rgba(255, 246, 238, 0.94), transparent 14%),
     radial-gradient(circle at 48% 48%, rgba(242, 212, 192, 0.98), transparent 47%),
-    linear-gradient(180deg, #f0cfb0 0%, #d7b192 46%, #bb8d72 100%);
-  box-shadow: inset -10px -18px 24px rgba(112, 80, 58, 0.18);
+    linear-gradient(180deg, #efceb0 0%, #d8b294 47%, #bc8d73 100%);
+  box-shadow: inset -12px -20px 28px rgba(112, 80, 58, 0.18);
 }
 
 .heroFigureHair {
   position: absolute;
   top: 0;
-  left: 24.5%;
-  width: 25%;
-  height: 12.6%;
-  border-radius: 42% 58% 24% 28%;
+  left: 21.9%;
+  width: 29%;
+  height: 13.8%;
+  border-radius: 46% 54% 26% 24%;
   background:
-    radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.22), transparent 13%),
-    linear-gradient(180deg, #313335 0%, #596168 42%, #2d3134 100%);
+    radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.18), transparent 13%),
+    linear-gradient(180deg, #2d3031 0%, #5b6168 44%, #2c2f31 100%);
 }
 
 .heroFigureEar {
   position: absolute;
-  top: 8.45rem;
-  left: 27.2%;
+  top: 10.2rem;
+  left: 24.8%;
   width: 1.9%;
-  height: 3%;
+  height: 3.2%;
   border-radius: 50%;
   background: #cf9f7f;
 }
 
 .heroFigureNeck {
   position: absolute;
-  top: 10.45rem;
-  left: 33.6%;
-  width: 4.9%;
-  height: 4.8%;
+  top: 12.4rem;
+  left: 32.4%;
+  width: 5.4%;
+  height: 5.1%;
   background: linear-gradient(180deg, #d8b193 0%, #b98767 100%);
   clip-path: polygon(26% 0%, 76% 0%, 92% 100%, 8% 100%);
 }
 
 .heroFigureJacket {
   position: absolute;
-  bottom: -4.4rem;
-  left: 13.4%;
-  width: 71%;
-  height: 83%;
-  border-radius: 24% 18% 0 0;
+  bottom: -3.8rem;
+  left: 10.8%;
+  width: 76%;
+  height: 81%;
+  border-radius: 20% 18% 0 0;
   background:
-    radial-gradient(circle at 40% 10%, rgba(255, 255, 255, 0.4), transparent 18%),
-    linear-gradient(180deg, #dededf 0%, #afb1b3 28%, #808385 58%, #696c6f 100%);
-  transform: skewX(-7deg);
+    radial-gradient(circle at 40% 10%, rgba(255, 255, 255, 0.38), transparent 18%),
+    linear-gradient(180deg, #e1e1e2 0%, #b5b7b8 28%, #838688 58%, #696c6f 100%);
+  transform: skewX(-6deg);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
 }
 
 .heroFigureShirt {
   position: absolute;
   top: 0;
-  left: 39%;
-  width: 17.6%;
-  height: 49%;
+  left: 39.5%;
+  width: 18.2%;
+  height: 48%;
   background:
     repeating-linear-gradient(90deg, rgba(210, 222, 236, 0.92) 0 2px, rgba(244, 247, 250, 0.96) 2px 7px);
   clip-path: polygon(30% 0%, 72% 0%, 100% 100%, 0% 100%);
@@ -291,8 +245,8 @@
 .heroFigureTie {
   position: absolute;
   top: 7%;
-  left: 44.8%;
-  width: 6.8%;
+  left: 45%;
+  width: 6.5%;
   height: 52%;
   background:
     linear-gradient(180deg, #d5d8dc 0%, #8b8e91 100%);
@@ -304,113 +258,104 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(132deg, transparent 0 31%, rgba(84, 86, 89, 0.8) 31.3% 42%, transparent 42.3%),
-    linear-gradient(48deg, transparent 0 60%, rgba(76, 78, 81, 0.82) 60.3% 70%, transparent 70.3%),
+    linear-gradient(132deg, transparent 0 30%, rgba(84, 86, 89, 0.8) 30.3% 42%, transparent 42.3%),
+    linear-gradient(48deg, transparent 0 60%, rgba(76, 78, 81, 0.82) 60.3% 71%, transparent 71.3%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.08));
 }
 
 .statementSection {
   position: relative;
   overflow: hidden;
-  padding: clamp(5.4rem, 9vw, 7.4rem) 0 clamp(5.6rem, 10vw, 8.4rem);
+  padding: clamp(4.6rem, 7vw, 5.6rem) 0 clamp(2.4rem, 4vw, 3.2rem);
   background:
-    radial-gradient(circle at 22% 18%, rgba(193, 226, 73, 0.08), transparent 28%),
-    radial-gradient(circle at 78% 74%, rgba(112, 154, 255, 0.08), transparent 34%),
-    linear-gradient(180deg, #040705 0%, #060905 42%, #050605 100%);
+    radial-gradient(circle at 0% 100%, rgba(0, 98, 89, 0.28), transparent 28%),
+    radial-gradient(circle at 100% 100%, rgba(96, 122, 24, 0.3), transparent 28%),
+    linear-gradient(180deg, #020403 0%, #010302 100%);
 }
 
 .statementSection::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 14rem;
-  background: linear-gradient(180deg, rgba(236, 240, 225, 0.04) 0%, rgba(236, 240, 225, 0) 100%);
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0) 24%),
+    radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.22), transparent 36%);
   pointer-events: none;
 }
 
 .statementFrame {
   display: grid;
-  gap: clamp(4rem, 7vw, 6.6rem);
+  gap: clamp(2.5rem, 4vw, 3.2rem);
 }
 
 .statementTop {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
-  gap: clamp(2.8rem, 5vw, 6rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(15rem, 0.92fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
   align-items: start;
 }
 
 .quoteBlock {
   position: relative;
   display: grid;
-  gap: 1.2rem;
-  padding: 0 0 0 2.2rem;
-}
-
-.quoteBlock::before {
-  content: "";
-  position: absolute;
-  top: 1.2rem;
-  left: 0;
-  bottom: 0.45rem;
-  width: 1px;
-  background: linear-gradient(180deg, rgba(203, 255, 31, 0.52) 0%, rgba(203, 255, 31, 0.06) 100%);
+  justify-self: start;
+  width: min(100%, 28rem);
+  padding-left: 3.2rem;
 }
 
 .quoteMark {
   position: absolute;
-  top: -0.8rem;
-  left: 0.95rem;
-  color: rgba(203, 255, 31, 0.34);
-  font-family: var(--font-display);
-  font-size: clamp(4.8rem, 7vw, 7rem);
+  top: -0.3rem;
+  left: 0;
+  color: rgba(255, 255, 255, 0.96);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2rem, 3vw, 2.6rem);
   line-height: 1;
-  font-weight: 300;
-  letter-spacing: -0.05em;
+  font-weight: 700;
 }
 
 .quoteBlock p {
   margin: 0;
   color: #ffffff;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.9vw, 3.2rem);
-  font-weight: 500;
-  line-height: 0.98;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.03;
   white-space: pre-line;
-  text-wrap: balance;
   text-transform: uppercase;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.045em;
 }
 
 .statementCopy {
   display: grid;
-  justify-self: end;
+  justify-self: start;
   align-content: start;
-  gap: 1.35rem;
-  max-width: 21rem;
-  padding-top: clamp(1.4rem, 4vw, 3.4rem);
+  gap: 1rem;
+  max-width: 18rem;
+  padding-top: 0.65rem;
 }
 
-.statementEyebrow {
+.statementCopy > p {
   margin: 0;
-  color: rgba(198, 226, 112, 0.66);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.02rem;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
 }
 
-.statementCopy > p:last-of-type {
-  margin: 0;
-  color: rgba(239, 241, 232, 0.7);
-  font-size: 0.98rem;
-  line-height: 1.9;
-  letter-spacing: 0.01em;
-}
-
-.statementLink {
-  min-height: 2rem;
-  color: rgba(203, 255, 31, 0.88);
+.statementButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 1.2rem;
+  padding: 0 0.42rem;
+  border: 1px solid rgba(149, 184, 18, 0.72);
+  color: #96ba12;
+  font-size: 0.42rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: none;
 }
 
 .inlineLink,
@@ -435,129 +380,85 @@
 .videoStage {
   display: grid;
   justify-items: center;
+  gap: 0.55rem;
 }
 
 .videoPanel {
   position: relative;
   overflow: hidden;
-  width: min(100%, 57rem);
-  min-height: clamp(24rem, 44vw, 31rem);
+  width: min(100%, 46rem);
+  aspect-ratio: 1.78;
   margin: 0 auto;
-  padding: clamp(2rem, 3.6vw, 2.8rem);
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.8rem;
-  background:
-    radial-gradient(circle at 68% 30%, rgba(208, 191, 116, 0.28), transparent 22%),
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.1), transparent 24%),
-    linear-gradient(135deg, rgba(31, 40, 34, 0.9) 0%, rgba(18, 23, 20, 0.96) 42%, rgba(8, 11, 9, 0.98) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 24px 70px rgba(0, 0, 0, 0.28);
-}
-
-.videoPanel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 24%),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 44%);
-  pointer-events: none;
-}
-
-.videoPanel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0%, transparent 24%),
-    linear-gradient(0deg, rgba(5, 7, 5, 0.08) 0%, rgba(5, 7, 5, 0.46) 100%);
-  pointer-events: none;
+  background: #939891;
 }
 
 .videoPanelInner {
   position: relative;
-  z-index: 1;
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 5.5rem;
-}
-
-.videoAction {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.videoActionLabel {
-  color: rgba(239, 241, 232, 0.56);
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.videoText {
   display: grid;
-  gap: 0.75rem;
-  max-width: 30rem;
+  min-height: 100%;
+  place-items: center;
 }
 
-.videoEyebrow {
-  margin: 0;
-  color: rgba(239, 241, 232, 0.46);
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+.videoCenter {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
 }
 
 .videoTitle {
   margin: 0;
-  color: #f5f7ef;
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 4.1vw, 3.65rem);
-  font-weight: 500;
-  line-height: 0.94;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-
-.videoSummary {
-  margin: 0;
-  max-width: 33ch;
-  color: rgba(239, 241, 232, 0.7);
-  font-size: 0.95rem;
-  line-height: 1.78;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: none;
 }
 
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 4.15rem;
-  height: 4.15rem;
-  border: 1px solid rgba(203, 255, 31, 0.34);
+  width: 2.45rem;
+  height: 2.45rem;
+  border: 2px solid rgba(150, 186, 18, 0.92);
   border-radius: 999px;
-  background: rgba(5, 8, 5, 0.22);
-  color: rgba(203, 255, 31, 0.84);
-  font-size: 1rem;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  color: rgba(150, 186, 18, 0.96);
+  font-size: 0.95rem;
+}
+
+.videoMetaLinkWrap {
+  width: min(100%, 46rem);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.videoMetaLink {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.42rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.videoMetaLink::after {
+  content: "  ->";
+  color: rgba(255, 255, 255, 0.74);
 }
 
 /* Screen 3: Podcast Carousel
  * Deep dark media rail - editorial podcast carousel
  */
 .podcastRailSection {
-  padding: 2.5rem 0 0;
-  background: #060806;
+  padding: 2.25rem 0 2.3rem;
+  background: #040905;
 }
 
-/* Centered section title - media editorial feel */
 .sectionHeaderCenter {
   display: grid;
   justify-items: center;
-  padding: 1.2rem 0 2.8rem;
+  padding: 0 0 1.9rem;
 }
 
 .sectionHeaderCenter h2,
@@ -574,57 +475,57 @@
   text-transform: uppercase;
 }
 
-/* Three-column podcast rail with flanking arrows */
+.sectionHeaderCenter h2 {
+  color: rgba(255, 255, 255, 0.94);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.55rem, 2vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
 .podcastRail {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-/* Restrained arrow buttons - positioned outside content */
 .railArrow {
   display: grid;
   place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  border: 1px solid rgba(203, 255, 31, 0.35);
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1px solid rgba(150, 186, 18, 0.72);
   border-radius: 999px;
   background: transparent;
-  color: rgba(203, 255, 31, 0.7);
-  font-size: 1.5rem;
-  line-height: 1;
+  color: rgba(150, 186, 18, 0.9);
+  font-size: 0.74rem;
+  line-height: 0;
   cursor: pointer;
   transition: all 160ms ease;
 }
 
 .railArrow:hover {
-  border-color: rgba(203, 255, 31, 0.7);
-  color: #cbff1f;
-  background: rgba(203, 255, 31, 0.06);
+  border-color: rgba(150, 186, 18, 0.92);
+  color: rgba(150, 186, 18, 1);
 }
 
-/* Three podcast content cards */
 .episodeGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 0.95rem;
 }
 
-/* Podcast card: media editorial style */
 .episodeCard {
   display: grid;
-  gap: 0.9rem;
+  gap: 0.55rem;
   align-content: start;
 }
 
-/* Thumbnail - podcast cover art feel */
 .episodeThumb {
   aspect-ratio: 1;
-  background:
-    radial-gradient(ellipse 60% 40% at 50% 30%, rgba(180, 160, 80, 0.25), transparent 65%),
-    linear-gradient(180deg, rgba(80, 90, 75, 0.9) 0%, rgba(50, 58, 48, 0.95) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  margin-bottom: 0.05rem;
+  background: #70756c;
 }
 
 .episodeCard strong,
@@ -636,50 +537,54 @@
   letter-spacing: 0.01em;
 }
 
-.episodeCard span {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.82rem;
-  line-height: 1.55;
+.episodeCard strong {
+  color: rgba(255, 255, 255, 0.96);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
-/* Minimal pagination dots */
+.episodeCard span {
+  max-width: 18ch;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.56rem;
+  line-height: 1.35;
+}
+
 .carouselDots {
   display: flex;
   justify-content: center;
   gap: 0.6rem;
-  padding: 2rem 0 2.5rem;
+  padding: 1.45rem 0 0;
 }
 
 .carouselDots span {
-  width: 0.28rem;
-  height: 0.28rem;
+  width: 0.24rem;
+  height: 0.24rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.82);
   transition: all 200ms ease;
 }
 
 .carouselDots .dotActive {
-  width: 0.36rem;
-  height: 0.36rem;
-  background: rgba(203, 255, 31, 0.75);
+  background: rgba(150, 186, 18, 0.98);
 }
 
 /* Screen 4: Representative Podcast / Events
  * Light background switch - media content index + featured video
  */
 .episodeFeatureSection {
-  padding: 4rem 0 4.5rem;
-  background: #f4f5f0;
+  padding: 3.2rem 0 4rem;
+  background: #f3f1ed;
 }
 
-/* Top: title + platform tag on the right */
 .episodeFeatureIntro {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(17, 23, 19, 0.1);
+  padding-bottom: 1rem;
 }
 
 .episodeFeatureIntro h2,
@@ -693,34 +598,93 @@
   text-transform: uppercase;
 }
 
+.episodeFeatureIntro h2 {
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.45rem, 1.9vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
 .episodeFeatureIntro p {
-  margin: 0.5rem 0 0;
-  color: rgba(43, 47, 42, 0.65);
-  font-size: 0.88rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* Platform tag - small accent top right */
-.episodeFeatureIntro a {
-  color: rgba(17, 23, 19, 0.5);
+  margin: 0.3rem 0 0;
+  color: rgba(17, 23, 19, 0.86);
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(17, 23, 19, 0.2);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
-.episodeFeatureIntro a:hover {
+.episodeFeaturePlatform {
+  color: rgba(17, 23, 19, 0.46);
+  font-size: 0.46rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.episodeFeaturePlatform:hover {
   color: #111713;
 }
 
-/* Featured video card - visual anchor of this screen */
 .episodeFeatureCard {
   display: grid;
-  gap: 1.2rem;
-  width: min(100%, 50rem);
-  margin-top: 0.5rem;
+  gap: 0;
+  width: min(100%, 39rem);
+  margin-top: 0.15rem;
+}
+
+.episodePlayerBar,
+.episodePlayerBarMuted {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 1.45rem;
+  padding: 0 0.55rem;
+  background: #211d1d;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.episodePlayerBarMuted {
+  min-height: 1.3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: #282525;
+}
+
+.episodePlayerTag,
+.episodePlayerTrackLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.episodePlayerTag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1rem;
+  padding: 0 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.45rem;
+  letter-spacing: 0.04em;
+}
+
+.episodePlayerTrackLabel {
+  max-width: calc(100% - 1.8rem);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.44rem;
+  letter-spacing: 0.01em;
+}
+
+.episodePlayerArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.7rem;
+  line-height: 1;
 }
 
 .episodeMetaRows {
@@ -748,60 +712,91 @@
 
 .episodeHeroThumb {
   position: relative;
-  aspect-ratio: 1.72;
+  aspect-ratio: 1.56;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 50% 40% at 65% 25%, rgba(255, 200, 80, 0.35), transparent 55%),
-    linear-gradient(160deg, #141414 0%, #2a1f0e 40%, #7a5a18 100%);
+    radial-gradient(circle at 72% 35%, rgba(212, 148, 19, 0.36), transparent 28%),
+    linear-gradient(120deg, #2d251f 0%, #1a1718 34%, #1f1c19 52%, #6f5220 100%);
 }
 
 .episodeHeroThumb::before {
   content: "";
   position: absolute;
-  left: 5%;
-  bottom: -10%;
-  width: 36%;
-  height: 95%;
-  border-radius: 38% 38% 12% 12%;
-  background: rgba(12, 12, 12, 0.85);
+  left: 3%;
+  bottom: -6%;
+  width: 41%;
+  height: 104%;
+  border-radius: 44% 42% 10% 10%;
+  background:
+    radial-gradient(circle at 47% 13%, rgba(249, 232, 220, 0.92) 0%, transparent 9%),
+    linear-gradient(180deg, #dad4d1 0%, #161313 17%, #d7d0ca 23%, #2a2321 31%, #110f0f 100%);
 }
 
 .episodeHeroThumb::after {
   content: "";
   position: absolute;
-  left: 11%;
-  top: 8%;
-  width: 22%;
-  height: 28%;
-  border-radius: 50%;
-  background: rgba(38, 28, 15, 0.9);
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.28) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+.episodeHeroOverlayCopy {
+  position: absolute;
+  top: 22%;
+  left: 35%;
+  right: 2.5rem;
+  z-index: 1;
+}
+
+.episodeHeroOverlayCopy span {
+  display: -webkit-box;
+  overflow: hidden;
+  color: rgba(214, 164, 29, 0.96);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.45rem, 2.5vw, 2.35rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .episodeHeroBadge {
   position: absolute;
-  left: 1.2rem;
-  bottom: 1.2rem;
+  left: 0.7rem;
+  bottom: 0.65rem;
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 1.55rem;
+  height: 1.55rem;
   border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.3);
   color: #ffffff;
-  font-size: 0.85rem;
+  font-size: 0.62rem;
 }
 
 .episodeHeroStats {
   position: absolute;
-  right: 1.2rem;
-  bottom: 1.1rem;
+  right: 0.8rem;
+  bottom: 0.6rem;
+  z-index: 1;
   display: flex;
-  gap: 1.2rem;
+  gap: 0.7rem;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.episodeHeroArrow {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 1;
 }
 
 .episodeFeatureFooter {
@@ -830,78 +825,84 @@
  * Not a heavy intro, just a gentle character supplement
  */
 .profileSection {
-  padding: 4.5rem 0 4rem;
+  padding: 3.15rem 0 3rem;
   background:
-    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(38, 137, 255, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 80% 30%, rgba(80, 140, 20, 0.1) 0%, transparent 50%),
-    linear-gradient(170deg, #050d07 0%, #070f08 50%, #060c08 100%);
+    radial-gradient(ellipse 70% 80% at 0% 100%, rgba(0, 109, 95, 0.32) 0%, transparent 48%),
+    radial-gradient(ellipse 65% 80% at 100% 100%, rgba(74, 96, 140, 0.32) 0%, transparent 56%),
+    linear-gradient(90deg, #06161a 0%, #071414 42%, #181e2d 100%);
 }
 
-/* Left image + right text - restrained relationship */
 .profileGrid {
   display: grid;
-  grid-template-columns: 11rem minmax(0, 1fr);
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: start;
 }
 
-/* Portrait: focused, not oversized */
 .profilePortrait {
   width: 100%;
 }
 
 .profilePortraitInner {
-  aspect-ratio: 0.7;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 0.74;
   background:
-    radial-gradient(ellipse 50% 40% at 55% 25%, rgba(255, 235, 180, 0.2), transparent 60%),
-    linear-gradient(180deg, rgba(40, 32, 20, 0.88) 0%, rgba(20, 28, 22, 0.95) 100%);
+    radial-gradient(circle at 82% 18%, rgba(245, 185, 88, 0.52) 0%, transparent 18%),
+    linear-gradient(180deg, #1a1815 0%, #25201a 36%, #191b1b 100%);
 }
 
 .profilePortraitInner::before {
   content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(circle at 52% 20%, rgba(255, 240, 180, 0.22), transparent 14%),
-    radial-gradient(circle at 38% 58%, rgba(0, 0, 0, 0.18), transparent 18%);
+    linear-gradient(90deg, transparent 0 16%, rgba(65, 41, 23, 0.78) 16% 28%, transparent 28%),
+    linear-gradient(180deg, transparent 0 72%, rgba(45, 28, 16, 0.96) 72% 100%),
+    radial-gradient(ellipse 34% 44% at 56% 30%, rgba(225, 215, 200, 0.9) 0%, transparent 34%),
+    linear-gradient(180deg, transparent 0 22%, rgba(20, 20, 20, 0.9) 22% 100%);
 }
 
-/* Subtle name tag below image */
+.profilePortraitInner::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  bottom: -5%;
+  width: 50%;
+  height: 88%;
+  background:
+    radial-gradient(circle at 55% 10%, rgba(245, 220, 205, 0.98) 0%, transparent 10%),
+    linear-gradient(180deg, #2b2a2f 0%, #7e7a74 24%, #1d1f24 24.5%, #3e4146 100%);
+  border-radius: 42% 42% 8% 8%;
+}
+
 .profilePortraitInner span {
-  position: relative;
-  top: -1.8rem;
-  left: 0.6rem;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  display: none;
 }
 
-/* Right: brief intro - compact, restrained, bridging */
 .profileCopy {
   display: grid;
-  align-content: center;
-  gap: 1.2rem;
-  padding-top: 0.5rem;
+  align-content: start;
+  gap: 0.6rem;
+  padding-top: 0.3rem;
 }
 
 .profileCopy h2 {
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.94);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: none;
 }
 
 .profileCopy p {
   margin: 0;
-  max-width: 44ch;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.95rem;
-  line-height: 1.85;
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.56rem;
+  line-height: 1.7;
   letter-spacing: 0.01em;
 }
 
@@ -909,25 +910,23 @@
  * Editorial / publishing showcase - asymmetric left-large grid
  */
 .worksSection {
-  padding: 5rem 0 5.5rem;
-  background: #f0f2ed;
+  padding: 2.9rem 0 2.4rem;
+  background: #edf1ee;
 }
 
-/* Module header - clean editorial title */
 .worksHeader {
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(17, 23, 19, 0.1);
-  margin-bottom: 2.5rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .worksHeader h2 {
   margin: 0;
   color: #111713;
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2vw, 1.8rem);
-  font-weight: 500;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.14em;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
 }
 
@@ -935,84 +934,81 @@
   color: rgba(17, 23, 19, 0.35);
 }
 
-/* Asymmetric grid: left large card, right two smaller cards */
 .worksGrid {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.7fr));
-  gap: 1.5rem;
+  gap: 0.8rem;
   align-items: start;
 }
 
 .workCard {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.45rem;
 }
 
-/* Large card spans two rows - editorial feature */
 .workCardLarge {
   grid-row: span 2;
 }
 
 .workCardSmall {
-  padding-top: 0.2rem;
+  padding-top: 0;
 }
 
-/* Work card thumbnail - clean white with subtle shadow */
 .workThumb {
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(17, 23, 19, 0.06);
 }
 
 .workCardLarge .workThumb {
-  aspect-ratio: 0.72;
+  aspect-ratio: 0.82;
 }
 
 .workCardSmall .workThumb {
-  aspect-ratio: 1;
+  aspect-ratio: 1.05;
 }
 
-/* Work card text - restrained hierarchy */
 .workCard span {
-  color: rgba(17, 23, 19, 0.5);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  color: rgba(17, 23, 19, 0.62);
+  font-size: 0.46rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .workCard strong {
   display: block;
   color: #111713;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  margin-top: 0.2rem;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-top: 0;
 }
 
 .workCard p {
   margin: 0;
-  color: rgba(17, 23, 19, 0.62);
-  font-size: 0.82rem;
-  line-height: 1.6;
+  color: rgba(17, 23, 19, 0.68);
+  font-size: 0.44rem;
+  line-height: 1.45;
+  text-transform: uppercase;
 }
 
-/* Explore link with bottom border - closing gesture */
 .exploreLink {
   display: inline-flex;
   align-items: center;
-  margin-top: 2.5rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid rgba(17, 23, 19, 0.3);
-  color: rgba(17, 23, 19, 0.75);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  width: 100%;
+  margin-top: 1.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.28);
+  color: rgba(17, 23, 19, 0.92);
+  font-size: 0.9rem;
+  letter-spacing: -0.03em;
+  text-transform: none;
   text-decoration: none;
-  transition: all 160ms ease;
+  transition: color 160ms ease;
 }
 
 .exploreLink:hover {
   color: #111713;
-  border-bottom-color: #111713;
 }
 
 @media (max-width: 960px) {
@@ -1067,37 +1063,35 @@
 
   .heroCopy {
     align-items: flex-end;
-    padding: 6.6rem 1.5rem 2rem;
+    padding: 6.7rem 1.5rem 2rem;
+  }
+
+  .heroTitleBlock {
+    padding-top: 0;
   }
 
   .heroTitle {
-    font-size: clamp(3.15rem, 9vw, 4.9rem);
+    font-size: clamp(3rem, 9vw, 4.5rem);
     white-space: normal;
   }
 
   .heroVisual {
     min-height: 34rem;
-    margin-left: 0;
   }
 
   .heroFigure {
-    inset: 1.4rem -2.8rem -1.4rem 0.4rem;
-  }
-
-  .heroUtilityRow {
-    left: 1rem;
-    right: 1rem;
+    inset: 0.3rem -2.4rem -1.1rem -0.2rem;
   }
 
   .episodeFeatureCard {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .videoPanel {
     width: 100%;
-    min-height: 21rem;
-    border-radius: 1.45rem;
+    aspect-ratio: 1.68;
   }
 
   .episodeGrid {
@@ -1138,7 +1132,7 @@
   }
 
   .heroTitle {
-    font-size: clamp(2.35rem, 13vw, 3.7rem);
+    font-size: clamp(2.2rem, 13vw, 3.45rem);
     line-height: 0.98;
   }
 
@@ -1147,22 +1141,11 @@
   }
 
   .heroFigure {
-    inset: 1.8rem -3.6rem -1rem 0.1rem;
-  }
-
-  .heroUtilityRow {
-    top: 0.8rem;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .heroDomainLink {
-    min-height: 1.7rem;
-    font-size: 0.6rem;
+    inset: 0.9rem -3rem -0.8rem -0.6rem;
   }
 
   .statementSection {
-    padding: 4rem 0 4.5rem;
+    padding: 4rem 0 2.8rem;
   }
 
   .statementFrame {
@@ -1173,20 +1156,25 @@
     gap: 1.4rem;
   }
 
+  .quoteBlock {
+    padding-left: 2.4rem;
+  }
+
   .quoteBlock p {
-    font-size: clamp(1.45rem, 7.4vw, 2.15rem);
+    font-size: clamp(1.2rem, 7vw, 1.65rem);
   }
 
   .statementCopy {
     max-width: 100%;
   }
 
-  .statementCopy > p:last-of-type {
+  .statementCopy > p {
     font-size: 0.92rem;
   }
 
-  .videoPanelInner {
-    gap: 4rem;
+  .statementButton {
+    min-height: 1.1rem;
+    font-size: 0.4rem;
   }
 
   .episodeFeatureIntro {
@@ -1195,23 +1183,26 @@
   }
 
   .videoPanel {
-    min-height: 18.5rem;
-    padding: 1.4rem;
-    border-radius: 1.2rem;
+    aspect-ratio: 1.45;
   }
 
   .videoIcon {
-    width: 3.4rem;
-    height: 3.4rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.8rem;
   }
 
   .videoTitle {
-    font-size: clamp(1.85rem, 9vw, 2.55rem);
+    font-size: clamp(1.35rem, 8vw, 2rem);
   }
 
-  .videoSummary {
-    max-width: 100%;
-    font-size: 0.88rem;
+  .episodeHeroOverlayCopy {
+    left: 38%;
+    right: 2rem;
+  }
+
+  .episodeHeroStats {
+    gap: 0.5rem;
   }
 
   .episodeFeatureIntro,

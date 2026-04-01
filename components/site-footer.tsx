@@ -18,23 +18,28 @@ export function SiteFooter({ settings }: SiteFooterProps) {
     return (
       <footer className={styles.homeFooter}>
         <div className={styles.homeFooterInner}>
-          <div>
+          <div className={styles.homeFooterBrandBlock}>
             <Link className={styles.homeFooterBrand} href="/">
               <span>DENNIS</span>
-              <span className={styles.homeFooterSlash}>/ yuxuan /</span>
+              <span className={styles.homeFooterSlash}>/ yuxuan</span>
               <span>LIU</span>
             </Link>
             <div className={styles.homeFooterMeta}>
-              <p>Brand videos</p>
-              <p>Case studies and podcast system</p>
-              <a href={`mailto:${settings.contactEmail}`}>{settings.contactEmail}</a>
+              <p>Brand videos.</p>
+              <p>Contact information: {settings.contactPhone}</p>
             </div>
           </div>
           <div className={styles.homeFooterAction}>
-            <Link href="/contact">Telephone English CN</Link>
-            <p className={styles.homeFooterNote}>Liu branch homepage for the Dennis site direction.</p>
+            <div className={styles.homeFooterCrest}>
+              <span className={styles.homeFooterCrestMark}>Tiger x Us</span>
+              <span className={styles.homeFooterCrestSub}>TIGER PARTNERS</span>
+            </div>
+            <Link className={styles.homeFooterCta} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
+              TIGERPARTNERS.CN
+            </Link>
           </div>
         </div>
+        <p className={styles.homeFooterNote}>COPYRIGHT © 2026 DENNIS YUXUAN LIU. ALL RIGHTS RESERVED.</p>
       </footer>
     );
   }

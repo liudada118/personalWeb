@@ -14,9 +14,17 @@ type SiteHeaderProps = {
 
 const homeNavItems = [
   { href: "/about", label: "About" },
+  { href: "/about#awards", label: "Awards" },
+  { href: "/about#events", label: "Event" },
   { href: "/media", label: "Media" },
   { href: "/podcast", label: "Podcast" },
   { href: "/contact", label: "Contact" },
+];
+
+const homeUtilityLinks = [
+  { href: "https://example.com/rednote", label: "hs", platform: "Xiaohongshu" },
+  { href: "https://example.com/zhihu", label: "zh", platform: "Zhihu" },
+  { href: "https://www.linkedin.com", label: "in", platform: "LinkedIn" },
 ];
 
 export function SiteHeader({ settings }: SiteHeaderProps) {
@@ -50,7 +58,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
           </Link>
           <nav aria-label="Primary navigation" className={styles.homeNav}>
             {homeNavItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = pathname === item.href || pathname === item.href.split("#")[0];
               const linkClassName = isActive ? `${styles.homeNavLink} ${styles.homeNavLinkActive}` : styles.homeNavLink;
 
               return (
@@ -60,6 +68,30 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
               );
             })}
           </nav>
+          <div className={styles.homeHeaderActions}>
+            <div className={styles.homeSocials}>
+              {homeUtilityLinks.map((item, index) => {
+                const shapeClassName =
+                  index < 2 ? `${styles.homeSocialLink} ${styles.homeSocialLinkDiamond}` : `${styles.homeSocialLink} ${styles.homeSocialLinkRound}`;
+
+                return (
+                  <Link
+                    aria-label={item.platform}
+                    className={shapeClassName}
+                    href={item.href}
+                    key={`${item.platform}-${item.href}`}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+            <Link className={styles.homeHeaderCta} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
+              TIGERPARTNERS.CN
+            </Link>
+          </div>
         </div>
       </header>
     );

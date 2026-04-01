@@ -4,68 +4,71 @@
   right: 0;
   left: 0;
   z-index: 50;
-  padding-top: 0.95rem;
+  padding-top: 1rem;
   pointer-events: none;
 }
 
 .homeHeaderInner {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: clamp(1.25rem, 3vw, 3rem);
+  gap: clamp(1.1rem, 2.8vw, 2.4rem);
   width: min(1540px, calc(100vw - 2px));
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 4vw, 3rem) 0 clamp(4.5rem, 8vw, 10rem);
+  padding: 0 clamp(1.6rem, 4vw, 3rem) 0 clamp(4rem, 8vw, 10rem);
   pointer-events: auto;
 }
 
 /* Lighter header when scrolled - still subtle */
 .homeHeaderScrolled .homeHeaderInner {
-  padding-top: 0.18rem;
-  padding-bottom: 0.18rem;
-  background: linear-gradient(180deg, rgba(5, 10, 8, 0.44) 0%, rgba(5, 10, 8, 0.18) 100%);
-  backdrop-filter: blur(10px);
+  padding-top: 0.28rem;
+  padding-bottom: 0.28rem;
+  background: linear-gradient(180deg, rgba(6, 10, 7, 0.72) 0%, rgba(6, 10, 7, 0.34) 100%);
+  backdrop-filter: blur(14px);
 }
 
 .homeBrand {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.22rem;
-  color: rgba(190, 222, 92, 0.88);
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  gap: 0.18rem;
+  color: #92b50f;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.075em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .homeBrandPrimary {
-  font-size: clamp(1.5rem, 1.75vw, 1.88rem);
-  line-height: 1;
+  font-size: clamp(1.42rem, 1.62vw, 1.72rem);
+  line-height: 0.92;
 }
 
 .homeBrandSlash {
-  margin: 0 0.1rem 0 0;
-  color: rgba(211, 229, 150, 0.66);
-  font-size: 0.72rem;
-  font-style: italic;
-  letter-spacing: 0.06em;
+  margin: 0 0.18rem 0 0.08rem;
+  padding: 0.05rem 0.32rem 0.1rem;
+  border: 1px solid rgba(146, 181, 15, 0.44);
+  color: rgba(146, 181, 15, 0.78);
+  font-size: 0.62rem;
+  font-style: normal;
+  letter-spacing: 0.02em;
   text-transform: none;
 }
 
 .homeNav {
   display: flex;
-  justify-content: flex-end;
-  gap: clamp(0.85rem, 2vw, 1.55rem);
-  padding-top: 0.08rem;
+  justify-content: center;
+  gap: clamp(1rem, 1.75vw, 1.7rem);
+  padding-top: 0.12rem;
 }
 
 .homeNavLink {
   position: relative;
-  color: rgba(218, 226, 210, 0.54);
-  font-size: 0.64rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  color: rgba(154, 184, 30, 0.88);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
 }
 
@@ -74,9 +77,9 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.2rem;
+  bottom: -0.22rem;
   height: 1px;
-  background: rgba(166, 212, 0, 0.7);
+  background: rgba(166, 212, 0, 0.78);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 180ms ease;
@@ -89,7 +92,66 @@
 }
 
 .homeNavLinkActive {
-  color: rgba(220, 230, 215, 0.9);
+  color: #a1c715;
+}
+
+.homeHeaderActions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.homeSocials {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.44rem;
+}
+
+.homeSocialLink {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid rgba(236, 241, 225, 0.34);
+  color: rgba(245, 248, 238, 0.78);
+  text-decoration: none;
+}
+
+.homeSocialLink span {
+  display: inline-block;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.47rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+.homeSocialLinkDiamond {
+  transform: rotate(45deg);
+}
+
+.homeSocialLinkDiamond span {
+  transform: rotate(-45deg);
+}
+
+.homeSocialLinkRound {
+  border-radius: 999px;
+}
+
+.homeHeaderCta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0 0.72rem;
+  border: 1px solid rgba(146, 181, 15, 0.8);
+  color: #a1c715;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 /* Screen 7: Footer - Brand closing statement
@@ -99,11 +161,11 @@
  * Deep atmospheric gradient closure
  */
 .homeFooter {
-  padding: 4rem 0 2.5rem;
+  padding: 1.4rem 0 0.8rem;
   background:
-    radial-gradient(ellipse 60% 40% at 15% 85%, rgba(80, 140, 20, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 85% 25%, rgba(38, 100, 180, 0.1) 0%, transparent 50%),
-    linear-gradient(180deg, #050c07 0%, #060e08 100%);
+    radial-gradient(ellipse 56% 88% at 0% 100%, rgba(0, 108, 92, 0.34) 0%, transparent 48%),
+    radial-gradient(ellipse 60% 90% at 100% 100%, rgba(93, 95, 146, 0.38) 0%, transparent 58%),
+    linear-gradient(90deg, #07161b 0%, #091311 52%, #10141d 100%);
   color: #eff1e8;
 }
 
@@ -111,88 +173,110 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 3rem;
-  align-items: end;
+  align-items: start;
   width: min(1040px, calc(100vw - 48px));
   margin: 0 auto;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 1.3rem;
 }
 
-/* Left: brand wordmark - the memorable anchor */
+.homeFooterBrandBlock {
+  display: grid;
+  justify-items: start;
+}
+
 .homeFooterBrand {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.35rem;
-  color: #cbff1f;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  gap: 0.18rem;
+  color: #96ba12;
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2rem, 3.3vw, 2.45rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
   text-transform: uppercase;
 }
 
 .homeFooterSlash {
-  color: rgba(203, 255, 31, 0.65);
-  font-size: 0.8rem;
-  font-style: italic;
-  letter-spacing: 0.08em;
+  margin: 0 0.18rem 0 0.08rem;
+  padding: 0.05rem 0.3rem 0.08rem;
+  border: 1px solid rgba(150, 186, 18, 0.44);
+  color: rgba(150, 186, 18, 0.78);
+  font-size: 0.62rem;
+  font-style: normal;
+  letter-spacing: 0.02em;
 }
 
-/* Contact info - restrained, legible */
 .homeFooterMeta {
   display: grid;
-  gap: 0.35rem;
-  margin-top: 1.2rem;
+  gap: 0.4rem;
+  margin-top: 1.15rem;
 }
 
-.homeFooterMeta p,
-.homeFooterMeta a {
+.homeFooterMeta p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: color 160ms ease;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.42rem;
+  letter-spacing: 0.04em;
 }
 
-.homeFooterMeta a:hover {
-  color: rgba(203, 255, 31, 0.8);
-}
-
-/* Right: secondary brand anchor */
 .homeFooterAction {
   display: grid;
-  justify-items: end;
-  gap: 1rem;
-  align-items: end;
+  justify-items: center;
+  gap: 0.8rem;
+  align-items: start;
 }
 
-.homeFooterAction a {
+.homeFooterCrest {
+  display: grid;
+  justify-items: center;
+  gap: 0.12rem;
+}
+
+.homeFooterCrestMark {
+  color: rgba(232, 186, 90, 0.9);
+  font-family: "Times New Roman", serif;
+  font-size: 0.62rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.homeFooterCrestSub {
+  color: rgba(232, 186, 90, 0.82);
+  font-size: 0.42rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.homeFooterCta {
   display: inline-flex;
   align-items: center;
-  min-height: 2.4rem;
-  padding-bottom: 0.2rem;
-  border-bottom: 1px solid rgba(203, 255, 31, 0.5);
-  color: rgba(203, 255, 31, 0.85);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  min-height: 1.45rem;
+  padding: 0 0.62rem;
+  border: 1px solid rgba(150, 186, 18, 0.82);
+  color: rgba(150, 186, 18, 0.94);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-decoration: none;
-  transition: all 160ms ease;
+  transition: color 160ms ease, border-color 160ms ease;
 }
 
-.homeFooterAction a:hover {
-  color: #cbff1f;
-  border-bottom-color: #cbff1f;
+.homeFooterCta:hover {
+  color: #a6cb1a;
+  border-color: #a6cb1a;
 }
 
 .homeFooterNote {
-  display: block;
-  margin-top: 0.5rem;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 0.36rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 @media (max-width: 860px) {
@@ -212,14 +296,20 @@
   }
 
   .homeNav,
-  .homeFooterAction {
+  .homeFooterAction,
+  .homeHeaderActions {
     justify-content: flex-start;
     justify-items: start;
   }
 
   .homeNav {
     flex-wrap: wrap;
-    gap: 0.7rem 1rem;
+    gap: 0.55rem 0.9rem;
+  }
+
+  .homeHeaderActions {
+    flex-wrap: wrap;
+    gap: 0.7rem 0.9rem;
   }
 
   .homeFooterInner {
@@ -229,5 +319,9 @@
 
   .homeFooterBrand {
     font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .homeFooterAction {
+    justify-items: start;
   }
 }

@@ -15,12 +15,11 @@ export const metadata: Metadata = {
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
 
 const statementIntro =
-  "I build a personal platform around law, narrative, and public-facing expression, turning sharp ideas into work people can enter through story, conversation, and point of view.";
+  "Some short self-introductions.";
 
-const statementVideoTitle = "A statement on law, media, and the work behind the voice.";
+const statementVideoTitle = "Video topic";
 
-const statementVideoSummary =
-  "A restrained entry point into the broader body of interviews, podcast clips, and perspective-led content.";
+const statementVideoLinkLabel = "Watch Safety Differently, the movie";
 
 const fallbackEpisodes: PodcastEpisode[] = [
   {
@@ -79,12 +78,6 @@ const featuredWorks = [
   },
 ];
 
-const heroUtilityTags = [
-  { label: "Red", ariaLabel: "Xiaohongshu" },
-  { label: "Zh", ariaLabel: "Zhihu" },
-  { label: "in", ariaLabel: "LinkedIn" },
-];
-
 function formatEpisodeDate(value: string) {
   const date = new Date(value);
 
@@ -112,19 +105,11 @@ export default async function HomePage() {
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <h1 className={styles.heroTitle}>{heroDisplayTitle}</h1>
+                <div className={styles.heroTitleBlock}>
+                  <h1 className={styles.heroTitle}>{heroDisplayTitle}</h1>
+                </div>
               </div>
               <div aria-hidden="true" className={styles.heroVisual}>
-                <div className={styles.heroUtilityRow}>
-                  <div className={styles.heroUtilityTags}>
-                    {heroUtilityTags.map((item) => (
-                      <span aria-label={item.ariaLabel} className={styles.heroUtilityTag} key={item.ariaLabel} role="img">
-                        {item.label}
-                      </span>
-                    ))}
-                  </div>
-                  <span className={styles.heroDomainLink}>TIGERPARTNERS.CN</span>
-                </div>
                 <div className={styles.heroPortraitScene}>
                   <div className={styles.heroPortraitGlow} />
                   <div className={styles.heroFigure} aria-hidden="true">
@@ -155,26 +140,25 @@ export default async function HomePage() {
                   <p>{manifestoQuote}</p>
                 </div>
                 <div className={styles.statementCopy}>
-                  <p className={styles.statementEyebrow}>Brand Narrative</p>
                   <p>{statementIntro}</p>
-                  <Link className={`${styles.inlineLink} ${styles.statementLink}`} href="/about">
-                    More
+                  <Link className={styles.statementButton} href="/about">
+                    个人介绍页
                   </Link>
                 </div>
               </div>
               <div className={styles.videoStage}>
                 <div className={styles.videoPanel}>
                   <div className={styles.videoPanelInner}>
-                    <div className={styles.videoAction}>
+                    <div className={styles.videoCenter}>
                       <div className={styles.videoIcon}>▶</div>
-                      <span className={styles.videoActionLabel}>Statement Film</span>
-                    </div>
-                    <div className={styles.videoText}>
-                      <p className={styles.videoEyebrow}>Selected Entry</p>
                       <h2 className={styles.videoTitle}>{statementVideoTitle}</h2>
-                      <p className={styles.videoSummary}>{statementVideoSummary}</p>
                     </div>
                   </div>
+                </div>
+                <div className={styles.videoMetaLinkWrap}>
+                  <Link className={styles.videoMetaLink} href="/media">
+                    {statementVideoLinkLabel}
+                  </Link>
                 </div>
               </div>
             </div>
@@ -222,31 +206,32 @@ export default async function HomePage() {
             <div className={styles.episodeFeatureIntro}>
               <div>
                 <h2>LAW, DISRUPTED PODCAST</h2>
-                <p>Representative Program Activity</p>
+                <p>代表性播客及活动</p>
               </div>
-              <Link className={styles.inlineLinkDark} href="/podcast">
-                More
+              <Link className={styles.episodeFeaturePlatform} href="/podcast">
+                小宇宙
               </Link>
             </div>
             <div className={styles.episodeFeatureCard}>
-              <div className={styles.episodeMetaRows}>
-                <div>
-                  <span>{leadEpisode.episodeCode}</span>
-                  <strong>{leadEpisode.title}</strong>
-                </div>
-                <span>{leadEpisode.duration}</span>
+              <div className={styles.episodePlayerBar}>
+                <span className={styles.episodePlayerTag}>{leadEpisode.episodeCode}</span>
+                <span className={styles.episodePlayerArrow}>›</span>
+              </div>
+              <div className={styles.episodePlayerBarMuted}>
+                <span className={styles.episodePlayerTrackLabel}>{leadEpisode.title}</span>
+                <span className={styles.episodePlayerArrow}>›</span>
               </div>
               <div className={styles.episodeHeroThumb}>
+                <div className={styles.episodeHeroOverlayCopy}>
+                  <span>{leadEpisode.title}</span>
+                </div>
+                <span className={`${styles.episodePlayerArrow} ${styles.episodeHeroArrow}`}>›</span>
                 <div className={styles.episodeHeroBadge}>▶</div>
                 <div className={styles.episodeHeroStats}>
                   <span>203k</span>
                   <span>2932</span>
                   <span>01:45:06</span>
                 </div>
-              </div>
-              <div className={styles.episodeFeatureFooter}>
-                <strong>{leadEpisode.title}</strong>
-                <span>{formatEpisodeDate(leadEpisode.releasedAt)}</span>
               </div>
             </div>
           </div>
@@ -263,14 +248,10 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className={styles.profileCopy}>
-                <h2>Self introduction</h2>
+                <h2>简单介绍</h2>
                 <p>
-                  Short professional summary text appears here. Keep the block compact, direct,
-                  and aligned with the editorial tone from the reference layout.
+                  这里是简明版本的个人介绍，用于对职业方向、内容定位和表达方式做一个简短但清晰的说明。
                 </p>
-                <Link className={styles.inlineLink} href="/about">
-                  More
-                </Link>
               </div>
             </div>
           </div>
@@ -281,9 +262,7 @@ export default async function HomePage() {
         <VisualEditRegion adminHref="/cms/admin/collections/mediaPosts" label="Liu homepage featured works" previewHref="/media">
           <div className={styles.shell}>
             <div className={styles.worksHeader}>
-              <h2>
-                FEATURED <span>WORKS</span>
-              </h2>
+              <h2>FEATURED WORKS</h2>
             </div>
             <div className={styles.worksGrid}>
               {featuredWorks.map((work, index) => (
