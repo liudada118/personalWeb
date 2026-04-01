@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
 const heroTitle = "DENNIS YUXUAN LIU";
+const heroKicker = "Narrative & Law";
+const heroSub = "Legal Narrative / Public Discourse";
 const podcastCarouselCards = [
   {
     title: "案例一",
@@ -153,23 +155,25 @@ export default async function HomePage() {
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
+                <p className={styles.heroKicker}>{heroKicker}</p>
                 <h1 className={styles.heroTitle}>{heroTitle}</h1>
+                <p className={styles.heroSub}>{heroSub}</p>
+                <div className={styles.heroCopyMeta}>
+                  {heroSocialLinks.map((item) => (
+                    <a
+                      className={styles.heroCopyMetaLink}
+                      href={item.href}
+                      key={`hero-social-${item.platform}`}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {item.platform}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className={styles.heroVisual}>
                 <div className={styles.heroUtilityRow}>
-                  <div className={styles.heroSignals}>
-                    {heroSocialLinks.map((item) => (
-                      <a
-                        className={styles.heroSignalLink}
-                        href={item.href}
-                        key={`${item.platform}-${item.href}`}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        {getHeroSocialLabel(item.platform, item.label)}
-                      </a>
-                    ))}
-                  </div>
                   <a className={styles.heroUtilityBadge} href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
                     Tigerpartners.cn
                   </a>

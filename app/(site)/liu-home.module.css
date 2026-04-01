@@ -16,15 +16,6 @@
   margin: 0 auto;
 }
 
-.kicker {
-  margin: 0;
-  color: rgba(178, 206, 92, 0.46);
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-}
-
 .heroSection {
   position: relative;
   overflow: hidden;
@@ -34,20 +25,22 @@
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.94fr);
-  min-height: clamp(31rem, 38vw, 35rem);
-  background:
-    linear-gradient(90deg, #101b06 0%, #030a06 16%, #030906 54.3%, #30382f 54.45%, #30382f 100%);
+  /* Unbalanced composition — left takes less, right takes more */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  min-height: clamp(31rem, 42vw, 38rem);
+  /* Continuous dark space — no hard vertical dividers */
+  background: #0c140a;
 }
 
+/* Soft ambient glow that bleeds naturally, no hard cuts */
 .heroGrid::before {
   content: "";
   position: absolute;
-  inset: 0 45% 0 0;
+  inset: 0;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 22%),
-    radial-gradient(circle at 0% 50%, rgba(112, 141, 15, 0.2), transparent 22%),
-    radial-gradient(circle at 32% 56%, rgba(12, 27, 18, 0.16), transparent 24%);
+    radial-gradient(circle at 18% 82%, rgba(112, 141, 15, 0.18), transparent 32%),
+    radial-gradient(circle at 8% 28%, rgba(58, 98, 12, 0.12), transparent 24%),
+    radial-gradient(circle at 55% 5%, rgba(255, 255, 255, 0.04), transparent 18%);
   pointer-events: none;
 }
 
@@ -57,34 +50,101 @@
   display: grid;
   align-content: center;
   align-items: start;
-  padding: 8.8rem 3rem 4.4rem 10.4rem;
+  gap: 0;
+  padding: 7rem 2.4rem 4.8rem 7.2rem;
 }
 
+/* Kicker — small label above title */
+.heroKicker {
+  margin: 0 0 1.4rem;
+  color: rgba(163, 210, 10, 0.55);
+  font-family: var(--font-body);
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+}
+
+/* Main title with proper hierarchy */
 .heroTitle {
   max-width: none;
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(3.05rem, 4.45vw, 4.15rem);
+  font-size: clamp(2.6rem, 4.2vw, 4rem);
   font-weight: 700;
-  line-height: 0.94;
-  letter-spacing: -0.06em;
+  line-height: 1;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
+/* Subtitle / descriptor line */
+.heroSub {
+  margin: 1.1rem 0 0;
+  color: rgba(255, 255, 255, 0.42);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Social links row at bottom of copy area */
+.heroCopyMeta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.heroCopyMetaLink {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.44rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.heroCopyMetaLink:hover {
+  color: rgba(163, 210, 10, 0.8);
+}
+
+/* Full-screen visual area — no isolated portrait card, minimal boundary */
 .heroVisual {
   position: relative;
   min-height: 100%;
   overflow: hidden;
-  background: linear-gradient(180deg, #343d34 0%, #30382f 100%);
+  /* Dominant visual background — blends from dark into richer tones */
+  background:
+    linear-gradient(160deg, #1c2a18 0%, #2a3828 28%, #30382f 100%);
 }
 
+/* Soft light source overlay — no hard edges */
+.heroVisual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 62% 18%, rgba(255, 255, 255, 0.08), transparent 22%),
+    radial-gradient(circle at 30% 80%, rgba(112, 141, 15, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(12, 18, 14, 0.2) 0%, rgba(12, 18, 14, 0) 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Utility row — light, minimal, floats softly */
 .heroUtilityRow {
   position: absolute;
-  top: 0.9rem;
-  left: 0.85rem;
-  right: 1.45rem;
+  top: 1.8rem;
+  left: 1.8rem;
+  right: 1.8rem;
   z-index: 3;
   display: flex;
   align-items: center;
@@ -92,174 +152,56 @@
   gap: 1rem;
 }
 
-.heroSignals {
-  display: flex;
-  align-items: center;
-  gap: 0.28rem;
-  flex-wrap: nowrap;
-}
-
-.heroSignalLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.42rem;
-  width: 1.42rem;
-  height: 1.42rem;
-  padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.44);
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.4rem;
-  line-height: 1;
-  letter-spacing: 0;
-  white-space: nowrap;
-  flex: 0 0 auto;
-  clip-path: polygon(18% 0%, 82% 0%, 100% 50%, 82% 100%, 18% 100%, 0% 50%);
-  transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    background-color 160ms ease;
-}
-
-.heroSignalLink:hover,
-.heroSignalLink:focus-visible {
-  border-color: rgba(203, 255, 31, 0.68);
-  color: #edf5df;
-  background: rgba(255, 255, 255, 0.04);
-}
-
+/* Light integrated badge — not heavy white bar */
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
-  min-height: 1.52rem;
-  padding: 0 0.76rem;
-  border: 1px solid rgba(203, 255, 31, 0.44);
-  color: #b3db1f;
-  font-size: 0.56rem;
-  letter-spacing: 0.08em;
+  min-height: 1.4rem;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(203, 255, 31, 0.38);
+  color: rgba(163, 210, 10, 0.85);
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  background: rgba(12, 20, 10, 0.4);
+  backdrop-filter: blur(6px);
+  transition: border-color 160ms ease, color 160ms ease;
 }
 
+.heroUtilityBadge:hover {
+  border-color: rgba(203, 255, 31, 0.7);
+  color: #a3d20a;
+}
+
+/* Portrait scene — bleeds edge to edge, not a framed card */
 .heroPortraitScene {
-  position: relative;
-  min-height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
 .heroPortraitReference {
   position: absolute;
   inset: 0;
-  background-position: 82% 22%;
+  background-position: 72% 18%;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: saturate(0.94) brightness(0.92) contrast(1.04);
+  filter: saturate(0.92) brightness(0.9) contrast(1.02);
 }
 
+/* Soft ambient glow on portrait — no hard glow rings */
 .heroPortraitGlow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 34% 9%, rgba(255, 255, 255, 0.16), transparent 12%),
-    linear-gradient(180deg, rgba(18, 23, 19, 0.14) 0%, rgba(18, 23, 19, 0.02) 18%, rgba(18, 23, 19, 0.06) 100%),
-    linear-gradient(90deg, rgba(35, 43, 36, 0.06) 0%, rgba(35, 43, 36, 0) 20%, rgba(35, 43, 36, 0.12) 100%);
+    radial-gradient(circle at 28% 8%, rgba(255, 255, 255, 0.12), transparent 14%),
+    radial-gradient(circle at 68% 72%, rgba(112, 141, 15, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(12, 18, 14, 0.06) 0%, rgba(12, 18, 14, 0) 50%, rgba(12, 18, 14, 0.18) 100%);
 }
 
-.heroFigure {
-  position: absolute;
-  inset: 0.55rem -4.8rem -1.8rem -0.6rem;
-  z-index: 2;
-}
-
-.heroFigureHead {
-  position: absolute;
-  top: 3.5rem;
-  left: 14.4%;
-  width: 31.8%;
-  height: 24.8%;
-  border-radius: 48% 48% 42% 44%;
-  background:
-    radial-gradient(circle at 57% 38%, rgba(255, 242, 230, 0.92), transparent 17%),
-    radial-gradient(circle at 46% 49%, rgba(242, 206, 182, 0.98), transparent 49%),
-    linear-gradient(180deg, #f4d6ba 0%, #dab59a 44%, #b78768 100%);
-  box-shadow: inset -12px -20px 26px rgba(120, 82, 58, 0.16);
-}
-
-.heroFigureHair {
-  position: absolute;
-  top: 1.48rem;
-  left: 12.5%;
-  width: 33.5%;
-  height: 16.8%;
-  border-radius: 48% 52% 26% 38%;
-  background:
-    radial-gradient(circle at 66% 22%, rgba(255, 255, 255, 0.32), transparent 13%),
-    linear-gradient(180deg, #2a2d2f 0%, #535c61 46%, #2d3336 100%);
-}
-
-.heroFigureEar {
-  position: absolute;
-  top: 11.3rem;
-  left: 12.5%;
-  width: 3.1%;
-  height: 5.1%;
-  border-radius: 50%;
-  background: #d2a485;
-}
-
-.heroFigureNeck {
-  position: absolute;
-  top: 15.8rem;
-  left: 25.2%;
-  width: 9.2%;
-  height: 8.2%;
-  background: linear-gradient(180deg, #dbb496 0%, #b98968 100%);
-  clip-path: polygon(26% 0%, 76% 0%, 92% 100%, 8% 100%);
-}
-
-.heroFigureJacket {
-  position: absolute;
-  bottom: -7.8rem;
-  left: 1.4%;
-  width: 69.2%;
-  height: 77%;
-  border-radius: 22% 20% 0 0;
-  background:
-    radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.38), transparent 18%),
-    linear-gradient(180deg, #d6d6d5 0%, #a3a5a6 28%, #7c7f81 56%, #66696b 100%);
-  transform: skewX(-6deg);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
-}
-
-.heroFigureShirt {
-  position: absolute;
-  top: 0;
-  left: 36.2%;
-  width: 20.8%;
-  height: 52%;
-  background:
-    repeating-linear-gradient(90deg, rgba(208, 220, 234, 0.92) 0 2px, rgba(244, 247, 250, 0.96) 2px 8px);
-  clip-path: polygon(30% 0%, 72% 0%, 100% 100%, 0% 100%);
-}
-
-.heroFigureTie {
-  position: absolute;
-  top: 8%;
-  left: 43.5%;
-  width: 7.6%;
-  height: 56%;
-  background:
-    linear-gradient(180deg, #cfd3d7 0%, #8d8f92 100%);
-  clip-path: polygon(50% 0%, 100% 12%, 72% 100%, 28% 100%, 0% 12%);
-  box-shadow: inset 0 0 0 1px rgba(64, 66, 67, 0.28);
-}
-
-.heroFigureLapels {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(132deg, transparent 0 29%, rgba(84, 86, 89, 0.76) 29.3% 43%, transparent 43.3%),
-    linear-gradient(48deg, transparent 0 57%, rgba(76, 78, 81, 0.8) 57.3% 71%, transparent 71.3%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.08));
-}
+/* Removed: heroFigure, heroFigureHead, heroFigureHair, heroFigureEar,
+   heroFigureNeck, heroFigureJacket, heroFigureShirt, heroFigureTie,
+   heroFigureLapels — these were unrelated floating decorative elements */
 
 .statementSection {
   padding: 0 0 2.8rem;
