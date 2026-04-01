@@ -507,8 +507,23 @@
 }
 
 .episodeFeatureSection {
-  padding: 0 0 2.8rem;
+  /* Tall scroll buffer: (N cards - 1) × 100vh per transition.
+     With 3 cards and 2 transitions, 200vh gives 2 full viewport-heights
+     of scroll distance for the stacked card animations. */
+  padding-top: 0;
+  padding-bottom: 200vh;
   background: #f6f5f2;
+  /* Ensure the section participates in normal page flow */
+  position: relative;
+  /* Force the section to be tall enough for ScrollTrigger scroll distance */
+  min-height: 300vh;
+}
+
+.episodeFeatureSectionInner {
+  position: relative;
+  /* The actual pinned container — GSAP ScrollTrigger will pin this
+     against the outer .episodeFeatureSection scroll distance */
+  will-change: transform;
 }
 
 /* FIX 3 & 8: Title area — bigger text, more presence */

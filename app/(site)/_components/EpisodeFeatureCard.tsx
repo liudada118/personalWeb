@@ -41,134 +41,200 @@ const episodeCards = [
       stats: ["1500+", "48", "00:52:00"],
     },
   },
+  {
+    id: "book",
+    label: "书籍专著",
+    rows: [
+      { code: "BOOK", title: "法的叙事" },
+      { code: "ESSAY", title: "注意力经济中的法律叙事" },
+      { code: "TALK", title: "法律叙事与内容传播" },
+    ],
+    thumb: {
+      badge: "▶",
+      name: "书籍",
+      em: "系统性法律叙事作品",
+      title: "构建个人品牌内容体系",
+      stats: ["3部", "2篇", "5次"],
+    },
+  },
 ];
 
-const ROW_HEIGHT_EXPANDED = 64; // px per row when expanded
-const ROW_HEIGHT_COLLAPSED = 0;  // px when collapsed
-const CARD_GAP = 8;              // px gap between cards
-const STACK_OFFSET = 72;         // px offset per stacked card (collapsed height + gap)
+// Each card transition occupies 100vh of scroll distance
+const SCROLL_PER_TRANSITION = 100; // vh units, converted to px via window.innerHeight
+const STACK_OFFSET_Y = 72;          // px offset per collapsed card below the top
+const COLLAPSED_SCALE = 0.96;       // scale of collapsed cards
+const COLLAPSED_OPACITY = 0.45;     // opacity of collapsed cards
 
 export function EpisodeFeatureCard() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
+  const stackWrapRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
   const heroThumbRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // ---------------------------------------------------------------------------
+  // 1. STATIC STRUCTURE
+  // ---------------------------------------------------------------------------
+  // HTML hierarchy:
+  // <section.episodeFeatureSection>          <-- tall padding, scroll buffer
+  //   <div.episodeFeatureSectionInner>       <-- GSAP pin target
+  //     <div.episodeFeatureCard>
+  //       <div.episodeFeatureStack>           <-- stacked cards container
+  //         <div.episodeFeatureUpperCard /> × N
+  //       <div.episodeFeatureRows />
+  //       <div.episodeHeroThumb />
+  //       <div.episodeFeatureProgress />
+  // ---------------------------------------------------------------------------
+
+  // ---------------------------------------------------------------------------
+  // 2. SCROLLTRIGGER CONFIG
+  // ---------------------------------------------------------------------------
+  // - trigger: sectionRef (outer tall section)
+  // - start: "top top" (section top hits viewport top → pin begins)
+  // - end: "+=N" where N = (totalCards - 1) × 100vh
+  // - pin: stackWrapRef (the inner container stays fixed during scroll)
+  // - scrub: 1 (smooth 1-second lag)
+  // - snap: snap to 1/N per card transition
+  // ---------------------------------------------------------------------------
+
   useEffect(() => {
-    if (!sectionRef.current || !stackRef.current) return;
+    if (!sectionRef.current || !stackWrapRef.current) return;
+
+    const totalCards = episodeCards.length;
+    // Don't run ScrollTrigger if only one card
+    if (totalCards <= 1) return;
+
+    const scrollDistance = (totalCards - 1) * SCROLL_PER_TRANSITION * window.innerHeight;
+
+    // Initialise all cards to their starting states
+    // Card 0: expanded (top, full opacity, scale 1, zIndex = totalCards)
+    // Card i>0: collapsed (stacked below, reduced opacity/scale, lower zIndex)
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return;
+      if (i === 0) {
+        gsap.set(card, {
+          height: "auto",
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          zIndex: totalCards,
+        });
+      } else {
+        gsap.set(card, {
+          height: 0,
+          opacity: COLLAPSED_OPACITY,
+          y: -(i * STACK_OFFSET_Y),
+          scale: COLLAPSED_SCALE,
+          zIndex: totalCards - i,
+        });
+      }
+    });
 
     const ctx = gsap.context(() => {
-      const totalCards = episodeCards.length;
-      // Each card "slot" represents one scroll segment
-      // Total scroll distance = number of cards - 1 (last one is just expanded)
-      const scrollSegments = totalCards - 1;
-
-      // Initial states: first card expanded, rest collapsed/stacked
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return;
-        if (i === 0) {
-          gsap.set(card, { height: "auto", opacity: 1, y: 0, scale: 1, zIndex: totalCards });
-        } else {
-          gsap.set(card, {
-            height: 0,
-            opacity: 0.5,
-            y: -(i * STACK_OFFSET),
-            scale: 1 - i * 0.04,
-            zIndex: totalCards - i,
-          });
-        }
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: `+=${scrollSegments * 400}`,
-          pin: true,
-          scrub: 1,
-          snap: {
-            snapTo: 1 / scrollSegments,
-            duration: { min: 0.2, max: 0.5 },
-            ease: "power2.inOut",
-          },
-          onUpdate: (self) => {
-            // Determine which card is active based on progress
-            const rawIndex = Math.round(self.progress * scrollSegments);
-            const clampedIndex = Math.max(0, Math.min(rawIndex, scrollSegments));
-            if (clampedIndex !== activeIndex) {
-              setActiveIndex(clampedIndex);
-            }
-          },
+      // Create one ScrollTrigger for the whole section
+      const st = ScrollTrigger.create({
+        trigger: sectionRef.current!,
+        start: "top top",
+        end: `+=${scrollDistance}`,
+        pin: stackWrapRef.current,
+        scrub: 1,
+        snap: {
+          snapTo: 1 / (totalCards - 1),
+          duration: { min: 0.2, max: 0.6 },
+          ease: "power2.inOut",
+        },
+        // 3. ACTIVE INDEX MAPPING
+        // Map scroll progress (0→1) to card activeIndex
+        onUpdate: (self) => {
+          const rawIndex = Math.round(self.progress * (totalCards - 1));
+          const clampedIndex = Math.max(0, Math.min(rawIndex, totalCards - 1));
+          if (clampedIndex !== activeIndex) {
+            setActiveIndex(clampedIndex);
+          }
         },
       });
 
-      // Animate each card transition
+      // 4. CARD STATE TRANSITION ANIMATION
+      // For each card transition segment, animate:
+      //   - exiting card: collapse (height→0, y moves down, scale/opacity down)
+      //   - entering card: expand  (height→auto, y→0, scale/opacity up)
+      // We use gsap.to with scrollTrigger-aware timeline markers
       for (let i = 1; i < totalCards; i++) {
-        const prevIndex = i - 1;
+        const exitingCard = cardRefs.current[i - 1];
         const enteringCard = cardRefs.current[i];
-        const exitingCard = cardRefs.current[prevIndex];
+        if (!exitingCard || !enteringCard) continue;
 
-        if (!enteringCard || !exitingCard) continue;
+        // The start of this segment in the overall timeline
+        // segment 0 = [0, 1/N], segment 1 = [1/N, 2/N], etc.
+        const segmentStart = (i - 1) / (totalCards - 1);
+        const segmentEnd = i / (totalCards - 1);
 
-        // When card i becomes active, it expands
-        // Previous card collapses and moves down in stack
-        tl.to(
-          exitingCard,
-          {
-            height: 0,
-            opacity: 0.4,
-            y: -(i * STACK_OFFSET),
-            scale: 1 - i * 0.04,
-            duration: 1,
-            ease: "power2.inOut",
+        // Exiting card collapses: starts at segmentStart, ends at segmentEnd
+        // it "falls back" into the stack
+        gsap.to(exitingCard, {
+          height: 0,
+          opacity: COLLAPSED_OPACITY,
+          y: -(i * STACK_OFFSET_Y),
+          scale: COLLAPSED_SCALE,
+          zIndex: totalCards - i,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: sectionRef.current!,
+            start: "top top",
+            end: `+=${scrollDistance}`,
+            scrub: 1,
           },
-          i - 1
-        );
+          // keyframes: at segmentStart begin, at segmentEnd fully collapsed
+          // We use snap-aware duration via the scrollTrigger scrub
+        });
 
-        tl.to(
-          enteringCard,
-          {
-            height: "auto",
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1,
-            ease: "power2.inOut",
+        // Entering card expands: starts at segmentStart, ends at segmentEnd
+        gsap.to(enteringCard, {
+          height: "auto",
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          zIndex: totalCards,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: sectionRef.current!,
+            start: "top top",
+            end: `+=${scrollDistance}`,
+            scrub: 1,
           },
-          i - 1
-        );
+        });
       }
     }, sectionRef);
 
     return () => ctx.revert();
   }, [activeIndex]);
 
-  // Animate rows and hero thumb on activeIndex change
+  // ---------------------------------------------------------------------------
+  // 5. ROWS + HERO THUMB REACTIVITY
+  // When activeIndex changes (after a card transition completes),
+  // animate rows and hero thumb content swap
+  // ---------------------------------------------------------------------------
   useEffect(() => {
     if (!rowsRef.current.length || !heroThumbRef.current) return;
 
     const currentRows = episodeCards[activeIndex].rows;
 
-    // Animate rows
+    // Animate each row in with a staggered push
     rowsRef.current.forEach((row, i) => {
       if (!row) return;
-      const isActive = i === 1;
-      gsap.to(row, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "power2.out",
-        delay: i * 0.06,
-      });
+      gsap.fromTo(
+        row,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", delay: i * 0.07 }
+      );
     });
 
-    // Animate hero thumb
+    // Fade-swap the hero thumb
     gsap.to(heroThumbRef.current, {
       opacity: 0,
-      y: 10,
-      duration: 0.25,
+      y: 12,
+      duration: 0.2,
       ease: "power2.in",
       onComplete: () => {
         if (heroThumbRef.current) {
@@ -187,8 +253,8 @@ export function EpisodeFeatureCard() {
 
   return (
     <div className={styles.episodeFeatureSectionInner} ref={sectionRef}>
-      <div className={styles.episodeFeatureCard} ref={stackRef}>
-        {/* Stacked Cards */}
+      <div className={styles.episodeFeatureCard} ref={stackWrapRef}>
+        {/* ── Stacked Cards ── */}
         <div className={styles.episodeFeatureStack}>
           {episodeCards.map((card, i) => (
             <div
@@ -205,8 +271,8 @@ export function EpisodeFeatureCard() {
           ))}
         </div>
 
-        {/* Rows — revealed when a card is expanded */}
-        <div className={styles.episodeFeatureRows} ref={(el) => { rowsRef.current = []; }}>
+        {/* ── Episode Rows ── */}
+        <div className={styles.episodeFeatureRows}>
           {current.rows.map((row, index) => (
             <div
               className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
@@ -220,7 +286,7 @@ export function EpisodeFeatureCard() {
           ))}
         </div>
 
-        {/* Hero Thumb */}
+        {/* ── Hero Thumbnail ── */}
         <div
           className={styles.episodeHeroThumb}
           key={`${activeIndex}-thumb`}
@@ -239,7 +305,7 @@ export function EpisodeFeatureCard() {
           </div>
         </div>
 
-        {/* Progress indicator */}
+        {/* ── Progress Dots ── */}
         <div className={styles.episodeFeatureProgress}>
           {episodeCards.map((_, i) => (
             <span
@@ -249,13 +315,6 @@ export function EpisodeFeatureCard() {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes episodeCardPush {
-          0% { opacity: 0; transform: translateY(12px) scale(0.98); }
-          100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </div>
   );
 }
