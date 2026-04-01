@@ -92,20 +92,20 @@ const heroSocialFallbacks = [
 const featuredWorks = [
   {
     kind: "BOOK",
-    title: "BOOK TITLE",
-    subtitle: "BOOK SUBLINE",
+    title: "法的叙事",
+    subtitle: "法律叙事与公共表达",
     size: "large",
   },
   {
-    kind: "KIND",
-    title: "BOOK TITLE",
-    subtitle: "BOOK SUBLINE",
+    kind: "ESSAY",
+    title: "注意力经济中的法律叙事",
+    subtitle: "《南方周末》2025",
     size: "small",
   },
   {
-    kind: "KIND",
-    title: "BOOK TITLE",
-    subtitle: "BOOK SUBLINE",
+    kind: "TALK",
+    title: "法律叙事与内容传播",
+    subtitle: "单向街书店 2025",
     size: "small",
   },
 ];
