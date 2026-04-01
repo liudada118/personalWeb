@@ -830,8 +830,7 @@
 }
 
 .page :global(.homeFooter) {
-  position: relative;
-  padding: 1.8rem 0 1.7rem;
+  padding: 2.6rem 0 2rem;
   background:
     radial-gradient(circle at 0% 100%, rgba(15, 116, 88, 0.36), transparent 24%),
     radial-gradient(circle at 100% 100%, rgba(86, 93, 132, 0.34), transparent 30%),
@@ -846,7 +845,7 @@
 
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
 }
 
 .page :global(.homeFooterSlash) {
@@ -856,7 +855,7 @@
 
 .page :global(.homeFooterMeta) {
   gap: 0.28rem;
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
 }
 
 .page :global(.homeFooterMeta p),
@@ -886,9 +885,10 @@
 
 .page :global(.homeFooterAction) {
   position: relative;
+  align-items: flex-start;
   justify-items: end;
-  gap: 0.82rem;
-  padding-top: 0.05rem;
+  gap: 0.9rem;
+  padding-top: 0.1rem;
 }
 
 .page :global(.homeFooterAction)::before {
@@ -919,7 +919,7 @@
 .page :global(.homeFooterNote) {
   position: absolute;
   left: 50%;
-  bottom: 0.18rem;
+  bottom: -1.6rem;
   transform: translateX(-50%);
   width: max-content;
   color: rgba(255, 255, 255, 0.36);
