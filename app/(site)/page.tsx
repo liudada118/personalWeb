@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 
 import styles from "./liu-home.module.css";
+import heroReference from "../../img/图片1.png";
+import profileReference from "../../img/图片5.png";
 
 import { VisualEditRegion } from "@/components/visual-edit-region";
 import { getHomePageData } from "@/lib/payload/api";
@@ -13,6 +15,35 @@ export const metadata: Metadata = {
 };
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
+const heroTitle = '"MAIN TITLE COPY"';
+const podcastCarouselCards = [
+  {
+    title: "案例一",
+    summary: "短说明文案占位。\n洲洲发布，策略或社交表达。",
+  },
+  {
+    title: "案例二",
+    summary: "说明",
+  },
+  {
+    title: "案例三",
+    summary: "说明",
+  },
+];
+const featuredEpisodeRows = [
+  {
+    code: "法治一",
+    title: "案例标题",
+  },
+  {
+    code: "律师二",
+    title: "案例标题",
+  },
+  {
+    code: "EP03",
+    title: "Winner's Hunger, Desire & Dark Force: A Striver's Way Out",
+  },
+];
 
 const fallbackEpisodes: PodcastEpisode[] = [
   {
@@ -122,8 +153,7 @@ export default async function HomePage() {
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <p className={styles.kicker}>Dennis / Yuxuan / Liu</p>
-                <h1 className={styles.heroTitle}>Legal Storytelling for the Public Square</h1>
+                <h1 className={styles.heroTitle}>{heroTitle}</h1>
               </div>
               <div className={styles.heroVisual}>
                 <div className={styles.heroUtilityRow}>
@@ -145,18 +175,12 @@ export default async function HomePage() {
                   </a>
                 </div>
                 <div className={styles.heroPortraitScene}>
+                  <div
+                    aria-hidden="true"
+                    className={styles.heroPortraitReference}
+                    style={{ backgroundImage: `url(${heroReference.src})` }}
+                  />
                   <div className={styles.heroPortraitGlow} />
-                  <div className={styles.heroFigure} aria-hidden="true">
-                    <div className={styles.heroFigureHead} />
-                    <div className={styles.heroFigureHair} />
-                    <div className={styles.heroFigureEar} />
-                    <div className={styles.heroFigureNeck} />
-                    <div className={styles.heroFigureJacket}>
-                      <div className={styles.heroFigureShirt} />
-                      <div className={styles.heroFigureTie} />
-                      <div className={styles.heroFigureLapels} />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -174,10 +198,7 @@ export default async function HomePage() {
                 <span className={styles.quoteMarkRight}>”</span>
               </div>
               <div className={styles.statementCopy}>
-                <p>
-                  Dennis Yuxuan Liu is a legal professional focused on turning complex legal questions into clear,
-                  public-facing analysis across advisory work, commentary, and long-form editorial projects.
-                </p>
+                <p>Some short self-introductions.</p>
                 <Link className={styles.statementButton} href="/about">
                   个人介绍
                 </Link>
@@ -205,12 +226,11 @@ export default async function HomePage() {
                 ‹
               </button>
               <div className={styles.episodeGrid}>
-                {episodes.map((episode) => (
-                  <article className={styles.episodeCard} key={episode._id}>
+                {podcastCarouselCards.map((card) => (
+                  <article className={styles.episodeCard} key={card.title}>
                     <div className={styles.episodeThumb} />
-                    <span className={styles.episodeCardCode}>{episode.episodeCode}</span>
-                    <strong className={styles.episodeCardTitle}>{episode.title}</strong>
-                    <p className={styles.episodeCardSummary}>{episode.summary}</p>
+                    <strong className={styles.episodeCardTitle}>{card.title}</strong>
+                    <p className={styles.episodeCardSummary}>{card.summary}</p>
                   </article>
                 ))}
               </div>
@@ -241,12 +261,12 @@ export default async function HomePage() {
             </div>
             <div className={styles.episodeFeatureCard}>
               <div className={styles.episodeFeatureRows}>
-                {episodes.map((episode, index) => (
+                {featuredEpisodeRows.map((episode, index) => (
                   <div
-                    className={`${styles.episodeFeatureRow} ${index === 2 ? styles.episodeFeatureRowActive : ""}`}
-                    key={`${episode._id}-feature-row`}
+                    className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
+                    key={`${episode.code}-feature-row`}
                   >
-                    <span className={styles.episodeFeatureRowCode}>{episode.episodeCode}</span>
+                    <span className={styles.episodeFeatureRowCode}>{episode.code}</span>
                     <strong className={styles.episodeFeatureRowTitle}>{episode.title}</strong>
                     <span className={styles.episodeFeatureRowArrow}>›</span>
                   </div>
@@ -256,10 +276,11 @@ export default async function HomePage() {
                 <div className={styles.episodeHeroBadge}>▶</div>
                 <div className={styles.episodeHeroHeadline}>
                   <span>大喧哥</span>
+                  <em>饥饿 欲望 黑暗原力</em>
                   <strong>做题家的一种人生解法</strong>
                 </div>
                 <div className={styles.episodeHeroStats}>
-                  <span>203k</span>
+                  <span>20.3万</span>
                   <span>2932</span>
                   <span>01:45:06</span>
                 </div>
@@ -272,12 +293,17 @@ export default async function HomePage() {
       <section className={styles.profileSection}>
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage profile block" previewHref="/about">
           <div className={styles.shell}>
-            <div className={styles.profileGrid}>
-              <div className={styles.profilePortrait}>
-                <div className={styles.profilePortraitInner}>
-                  <span>Dennis</span>
+              <div className={styles.profileGrid}>
+                <div className={styles.profilePortrait}>
+                  <div className={styles.profilePortraitInner}>
+                    <div
+                      aria-hidden="true"
+                      className={styles.profilePortraitReference}
+                      style={{ backgroundImage: `url(${profileReference.src})` }}
+                    />
+                    <span>DENNIS LIU</span>
+                  </div>
                 </div>
-              </div>
               <div className={styles.profileCopy}>
                 <h2>简单介绍</h2>
                 <p>

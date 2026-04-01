@@ -34,20 +34,20 @@
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.03fr) minmax(0, 0.87fr);
-  min-height: 46.5rem;
+  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.94fr);
+  min-height: clamp(31rem, 38vw, 35rem);
   background:
-    linear-gradient(90deg, rgba(4, 8, 5, 1) 0%, rgba(4, 8, 5, 0.998) 53.6%, rgba(35, 45, 34, 0.985) 53.75%, rgba(35, 45, 34, 0.985) 100%);
+    linear-gradient(90deg, #101b06 0%, #030a06 16%, #030906 54.3%, #30382f 54.45%, #30382f 100%);
 }
 
 .heroGrid::before {
   content: "";
   position: absolute;
-  inset: 0 48% 0 0;
+  inset: 0 45% 0 0;
   background:
-    linear-gradient(180deg, rgba(4, 8, 6, 0.22) 0%, rgba(4, 8, 6, 0) 26%),
-    radial-gradient(circle at 0% 100%, rgba(129, 164, 16, 0.24), transparent 25%),
-    radial-gradient(circle at 32% 56%, rgba(16, 38, 24, 0.11), transparent 22%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 22%),
+    radial-gradient(circle at 0% 50%, rgba(112, 141, 15, 0.2), transparent 22%),
+    radial-gradient(circle at 32% 56%, rgba(12, 27, 18, 0.16), transparent 24%);
   pointer-events: none;
 }
 
@@ -57,37 +57,34 @@
   display: grid;
   align-content: center;
   align-items: start;
-  gap: 1.35rem;
-  padding: 11.9rem 3.4rem 8rem 12.7rem;
+  padding: 8.8rem 3rem 4.4rem 10.4rem;
 }
 
 .heroTitle {
-  max-width: 8.5ch;
+  max-width: none;
   margin: 0;
-  color: #a7d500;
-  font-family: var(--font-display);
-  font-size: clamp(4.35rem, 5.35vw, 5.38rem);
-  font-weight: 600;
-  line-height: 0.93;
-  letter-spacing: -0.075em;
+  color: #a3d20a;
+  font-family: var(--font-body);
+  font-size: clamp(3.05rem, 4.45vw, 4.15rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.06em;
   text-transform: uppercase;
-  white-space: normal;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .heroVisual {
   position: relative;
   min-height: 100%;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(50, 62, 48, 0.99) 0%, rgba(43, 52, 42, 0.99) 100%);
+  background: linear-gradient(180deg, #343d34 0%, #30382f 100%);
 }
 
 .heroUtilityRow {
   position: absolute;
-  top: 1.18rem;
-  left: 6.8rem;
-  right: 1.55rem;
+  top: 0.9rem;
+  left: 0.85rem;
+  right: 1.45rem;
   z-index: 3;
   display: flex;
   align-items: center;
@@ -106,13 +103,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 1.58rem;
-  width: 1.58rem;
-  height: 1.58rem;
+  min-width: 1.42rem;
+  width: 1.42rem;
+  height: 1.42rem;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.54);
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 0.42rem;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.4rem;
   line-height: 1;
   letter-spacing: 0;
   white-space: nowrap;
@@ -134,11 +131,11 @@
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
-  min-height: 1.72rem;
-  padding: 0 0.74rem;
-  border: 1px solid rgba(203, 255, 31, 0.54);
-  color: #b6db1f;
-  font-size: 0.58rem;
+  min-height: 1.52rem;
+  padding: 0 0.76rem;
+  border: 1px solid rgba(203, 255, 31, 0.44);
+  color: #b3db1f;
+  font-size: 0.56rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -148,13 +145,22 @@
   min-height: 100%;
 }
 
+.heroPortraitReference {
+  position: absolute;
+  inset: 0;
+  background-position: 82% 22%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: saturate(0.94) brightness(0.92) contrast(1.04);
+}
+
 .heroPortraitGlow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 34% 10%, rgba(255, 255, 255, 0.28), transparent 10%),
-    radial-gradient(circle at 52% 52%, rgba(255, 255, 255, 0.04), transparent 16%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 30%);
+    radial-gradient(circle at 34% 9%, rgba(255, 255, 255, 0.16), transparent 12%),
+    linear-gradient(180deg, rgba(18, 23, 19, 0.14) 0%, rgba(18, 23, 19, 0.02) 18%, rgba(18, 23, 19, 0.06) 100%),
+    linear-gradient(90deg, rgba(35, 43, 36, 0.06) 0%, rgba(35, 43, 36, 0) 20%, rgba(35, 43, 36, 0.12) 100%);
 }
 
 .heroFigure {
@@ -256,38 +262,38 @@
 }
 
 .statementSection {
-  padding: 0 0 2.2rem;
+  padding: 0 0 2.8rem;
   background:
-    radial-gradient(circle at left bottom, rgba(19, 110, 126, 0.18), transparent 28%),
-    radial-gradient(circle at right bottom, rgba(92, 110, 20, 0.2), transparent 26%),
-    linear-gradient(180deg, #050705 0%, #040404 100%);
+    radial-gradient(circle at left bottom, rgba(6, 107, 112, 0.26), transparent 30%),
+    radial-gradient(circle at right bottom, rgba(112, 133, 20, 0.22), transparent 28%),
+    linear-gradient(180deg, #040606 0%, #020303 100%);
 }
 
 .statementGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.86fr);
+  gap: 3.8rem;
   align-items: start;
-  padding: 3.4rem 4.3rem 2.35rem;
+  padding: 3.3rem 6.2rem 2.8rem;
 }
 
 .quoteBlock {
   position: relative;
   display: grid;
   justify-items: center;
-  gap: 0.3rem;
-  padding-top: 0.1rem;
+  gap: 0.2rem;
+  padding-top: 0.15rem;
 }
 
 .quoteBlock p {
   margin: 0;
   text-align: center;
   color: #ffffff;
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 1.7vw, 1.34rem);
-  font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.01em;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.45vw, 1.24rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
   white-space: pre-line;
   text-transform: uppercase;
 }
@@ -295,46 +301,47 @@
 .quoteMark,
 .quoteMarkRight {
   color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-family: var(--font-body);
+  font-size: 2.2rem;
+  font-weight: 700;
   line-height: 1;
 }
 
 .quoteMark {
   justify-self: start;
-  margin-left: 1.1rem;
+  margin-left: 0.2rem;
 }
 
 .quoteMarkRight {
   justify-self: end;
-  margin-right: 1.25rem;
+  margin-right: 0.35rem;
 }
 
 .statementCopy {
   display: grid;
   justify-items: start;
   align-content: center;
-  gap: 1.35rem;
-  padding-top: 0.45rem;
+  gap: 1.1rem;
+  padding-top: 0.1rem;
 }
 
 .statementCopy p {
   margin: 0;
-  max-width: 22ch;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  max-width: 18ch;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.02rem;
+  line-height: 1.22;
 }
 
 .statementButton {
   display: inline-flex;
   align-items: center;
-  min-height: 1.45rem;
-  padding: 0 0.45rem;
-  border: 1px solid rgba(167, 207, 23, 0.56);
+  min-height: 1rem;
+  padding: 0 0.35rem;
+  border: 1px solid rgba(167, 207, 23, 0.52);
   color: #a7cf17;
-  font-size: 0.44rem;
-  letter-spacing: 0.14em;
+  font-size: 0.32rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -366,16 +373,16 @@
   display: grid;
   place-items: center;
   gap: 0.85rem;
-  min-height: 14.5rem;
+  min-height: 14.8rem;
   margin: 0 auto;
-  width: min(82%, 46rem);
-  background: #94988e;
+  width: min(76%, 46rem);
+  background: #9a9d94;
 }
 
 .videoPanel p {
   margin: 0;
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 400;
 }
 
@@ -387,27 +394,27 @@
   border: 1px solid #cbff1f;
   border-radius: 999px;
   color: #cbff1f;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
 }
 
 .videoCaption {
   justify-self: end;
-  margin-top: 0.5rem;
-  width: min(82%, 46rem);
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 0.38rem;
+  margin-top: 0.42rem;
+  width: min(76%, 46rem);
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.32rem;
   letter-spacing: 0.04em;
 }
 
 .podcastRailSection {
-  padding: 1.8rem 0 0.55rem;
-  background: #081008;
+  padding: 2.05rem 0 0.9rem;
+  background: #061008;
 }
 
 .sectionHeaderCenter {
   display: grid;
   justify-items: center;
-  padding: 0.9rem 0 2.1rem;
+  padding: 0.15rem 0 1.95rem;
 }
 
 .sectionHeaderCenter h2,
@@ -426,7 +433,9 @@
 
 .podcastRail {
   position: relative;
-  padding-inline: 2.1rem;
+  width: min(52rem, 100%);
+  margin: 0 auto;
+  padding-inline: 2.3rem;
 }
 
 .railArrow {
@@ -436,13 +445,13 @@
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 1rem;
-  height: 1rem;
+  width: 1.08rem;
+  height: 1.08rem;
   border: 1px solid rgba(167, 207, 23, 0.8);
   border-radius: 999px;
   background: transparent;
   color: #a7cf17;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   cursor: pointer;
 }
 
@@ -462,14 +471,13 @@
 
 .episodeCard {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.42rem;
   align-content: start;
 }
 
 .episodeThumb {
   aspect-ratio: 1;
-  background:
-    linear-gradient(180deg, rgba(128, 133, 123, 0.8) 0%, rgba(104, 109, 100, 0.94) 100%);
+  background: linear-gradient(180deg, rgba(119, 124, 115, 0.84) 0%, rgba(106, 110, 103, 0.96) 100%);
 }
 
 .episodeCard strong,
@@ -480,29 +488,26 @@
   font-weight: 500;
 }
 
-.episodeCardCode {
-  color: rgba(167, 207, 23, 0.84);
-  font-size: 0.46rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .episodeCardTitle {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
   line-height: 1.2;
 }
 
 .episodeCardSummary {
   margin: 0;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.56rem;
+  font-size: 0.42rem;
   line-height: 1.45;
+  white-space: pre-line;
 }
 
 .carouselDots {
   display: flex;
   justify-content: center;
   gap: 0.55rem;
-  padding: 1.55rem 0 1.35rem;
+  padding: 1.35rem 0 1.15rem;
 }
 
 .carouselDots span {
@@ -519,8 +524,8 @@
 }
 
 .episodeFeatureSection {
-  padding: 3.6rem 0 4.1rem;
-  background: #f5f5f2;
+  padding: 3.35rem 0 3.9rem;
+  background: #f5f4f1;
 }
 
 .episodeFeatureIntro {
@@ -528,7 +533,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-bottom: 1.15rem;
+  padding-bottom: 0.95rem;
 }
 
 .episodeFeatureIntro h2,
@@ -537,28 +542,28 @@
 }
 
 .episodeFeatureIntro p {
-  margin: 0.3rem 0 0;
+  margin: 0.24rem 0 0;
   color: rgba(18, 22, 18, 0.76);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   letter-spacing: 0.06em;
 }
 
 .episodePlatformTag {
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
   color: rgba(18, 22, 18, 0.52);
-  font-size: 0.46rem;
+  font-size: 0.36rem;
   letter-spacing: 0.08em;
 }
 
 .episodeFeatureCard {
   display: grid;
   gap: 0.18rem;
-  width: min(100%, 44rem);
+  width: min(100%, 37rem);
 }
 
 .episodeFeatureRows {
   display: grid;
-  gap: 0.16rem;
+  gap: 0.12rem;
 }
 
 .episodeFeatureRow {
@@ -566,36 +571,36 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.65rem;
-  min-height: 1.5rem;
-  padding: 0 0.55rem;
-  background: #201c1f;
+  min-height: 1.35rem;
+  padding: 0 0.48rem;
+  background: #201d1f;
   color: #ffffff;
 }
 
 .episodeFeatureRowActive {
-  background: #2b3b31;
+  background: #2c3e31;
 }
 
 .episodeFeatureRowCode {
   display: inline-flex;
   align-items: center;
-  min-height: 1rem;
-  padding: 0 0.28rem;
+  min-height: 0.88rem;
+  padding: 0 0.22rem;
   border: 1px solid rgba(255, 255, 255, 0.24);
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.4rem;
+  font-size: 0.34rem;
   letter-spacing: 0.08em;
 }
 
 .episodeFeatureRowTitle {
   color: rgba(255, 255, 255, 0.88);
-  font-size: 0.54rem;
+  font-size: 0.46rem;
   font-weight: 500;
 }
 
 .episodeFeatureRowArrow {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.72rem;
+  font-size: 0.56rem;
 }
 
 .episodeHeroThumb {
@@ -648,26 +653,34 @@
 
 .episodeHeroHeadline {
   position: absolute;
-  top: 1rem;
-  left: 40%;
+  top: 0.84rem;
+  left: 39.5%;
   z-index: 1;
   display: grid;
-  gap: 0.15rem;
+  gap: 0.08rem;
 }
 
 .episodeHeroHeadline span {
   color: rgba(255, 255, 255, 0.22);
-  font-size: 2rem;
+  font-size: 1.86rem;
   font-weight: 600;
   letter-spacing: 0.06em;
 }
 
+.episodeHeroHeadline em {
+  color: #d0a21d;
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 .episodeHeroHeadline strong {
-  color: #d4a11a;
-  font-size: 0.9rem;
+  color: #ffffff;
+  font-size: 0.94rem;
   font-weight: 600;
   line-height: 1.25;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 .episodeHeroStats {
@@ -678,23 +691,23 @@
   display: flex;
   justify-content: space-between;
   color: #ffffff;
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;
 }
 
 .profileSection {
-  padding: 2.8rem 0 2.7rem;
+  padding: 2.2rem 0 2rem;
   background:
-    radial-gradient(circle at 6% 100%, rgba(15, 110, 92, 0.34), transparent 26%),
-    radial-gradient(circle at 100% 100%, rgba(68, 92, 138, 0.36), transparent 28%),
-    linear-gradient(90deg, #0b1d24 0%, #081009 44%, #0c1411 100%);
+    radial-gradient(circle at 0% 100%, rgba(17, 118, 97, 0.36), transparent 26%),
+    radial-gradient(circle at 100% 100%, rgba(83, 101, 156, 0.34), transparent 32%),
+    linear-gradient(90deg, #0a1a22 0%, #070f0c 44%, #0e1412 100%);
 }
 
 .profileGrid {
   display: grid;
-  grid-template-columns: 5.7rem minmax(0, 1fr);
-  gap: 1.15rem;
+  grid-template-columns: 5.55rem minmax(0, 1fr);
+  gap: 1.05rem;
   align-items: center;
 }
 
@@ -705,93 +718,77 @@
 .profilePortraitInner {
   position: relative;
   aspect-ratio: 0.66;
-  background:
-    radial-gradient(circle at 72% 18%, rgba(255, 194, 95, 0.2), transparent 18%),
-    linear-gradient(180deg, rgba(58, 39, 20, 0.96) 0%, rgba(21, 27, 22, 0.98) 56%, rgba(14, 18, 18, 0.98) 100%);
+  background: linear-gradient(180deg, rgba(42, 30, 18, 0.98) 0%, rgba(17, 21, 20, 0.98) 100%);
   overflow: hidden;
 }
 
-.profilePortraitInner::before {
-  content: "";
+.profilePortraitReference {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 56% 18%, rgba(255, 232, 192, 0.3), transparent 12%),
-    linear-gradient(180deg, rgba(244, 225, 206, 0.18) 0%, transparent 18%),
-    linear-gradient(0deg, rgba(16, 18, 18, 0.68) 0%, rgba(16, 18, 18, 0) 30%);
-}
-
-.profilePortraitInner::after {
-  content: "";
-  position: absolute;
-  left: 23%;
-  bottom: -4%;
-  width: 54%;
-  height: 82%;
-  border-radius: 30% 30% 12% 12%;
-  background:
-    radial-gradient(circle at 50% 10%, rgba(255, 227, 197, 0.72), transparent 11%),
-    linear-gradient(180deg, rgba(228, 214, 198, 0.72) 0%, rgba(38, 39, 44, 0.9) 24%, rgba(20, 22, 24, 0.98) 100%);
+  background-position: 18% 20%;
+  background-repeat: no-repeat;
+  background-size: 405% auto;
+  filter: saturate(0.98) brightness(0.92);
 }
 
 .profilePortraitInner span {
   position: absolute;
-  left: 0.4rem;
-  bottom: 0.45rem;
+  left: 0.3rem;
+  bottom: 0.3rem;
   z-index: 1;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.42rem;
-  letter-spacing: 0.16em;
+  font-size: 0.3rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .profileCopy {
   display: grid;
   align-content: center;
-  gap: 0.55rem;
+  gap: 0.45rem;
   padding-top: 0;
 }
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   letter-spacing: 0.02em;
   text-transform: none;
 }
 
 .profileCopy p {
   margin: 0;
-  max-width: 32ch;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.44rem;
-  line-height: 1.85;
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.34rem;
+  line-height: 1.75;
 }
 
 .worksSection {
-  padding: 3.9rem 0 4.5rem;
-  background: #f4f7f4;
+  padding: 3.5rem 0 4.1rem;
+  background: #f5f7f3;
 }
 
 .worksHeader {
-  padding-bottom: 1.4rem;
+  padding-bottom: 1.2rem;
 }
 
 .worksHeader h2 {
   color: #121612;
-  font-size: 1.12rem;
+  font-size: 1rem;
   letter-spacing: 0.02em;
 }
 
 .worksGrid {
   display: grid;
   grid-template-columns: minmax(0, 1.34fr) repeat(2, minmax(0, 0.78fr));
-  gap: 0.55rem 0.7rem;
+  gap: 0.55rem 0.95rem;
   align-items: start;
 }
 
 .workCard {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.28rem;
 }
 
 .workCardLarge {
@@ -804,6 +801,7 @@
 
 .workThumb {
   background: #ffffff;
+  border: 1px solid rgba(17, 23, 19, 0.04);
   box-shadow: none;
 }
 
@@ -818,14 +816,14 @@
 .workCard span,
 .workCard p {
   color: rgba(17, 23, 19, 0.64);
-  font-size: 0.42rem;
-  letter-spacing: 0.06em;
+  font-size: 0.38rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .workCard strong {
   color: #111713;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
 }
 
 .workCard p {
@@ -834,45 +832,47 @@
 
 .exploreLink {
   width: 100%;
-  margin-top: 2rem;
-  padding-top: 0.85rem;
-  padding-bottom: 0.35rem;
-  border-top: 1px solid rgba(17, 23, 19, 0.12);
-  border-bottom: 1px solid rgba(17, 23, 19, 0.2);
+  justify-content: flex-start;
+  margin-top: 1.9rem;
+  min-height: 1.8rem;
+  padding-top: 0;
+  padding-bottom: 0.15rem;
+  border-top: 0;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.22);
   color: #111713;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   letter-spacing: 0;
   text-transform: none;
 }
 
 .page :global(.homeFooter) {
   position: relative;
-  padding: 2.2rem 0 2rem;
+  padding: 1.8rem 0 1.7rem;
   background:
-    radial-gradient(circle at 10% 100%, rgba(16, 117, 88, 0.34), transparent 24%),
-    radial-gradient(circle at 100% 100%, rgba(86, 93, 132, 0.34), transparent 28%),
-    linear-gradient(90deg, #0b1d24 0%, #081009 46%, #0c1411 100%);
+    radial-gradient(circle at 0% 100%, rgba(15, 116, 88, 0.36), transparent 24%),
+    radial-gradient(circle at 100% 100%, rgba(86, 93, 132, 0.34), transparent 30%),
+    linear-gradient(90deg, #0a1b22 0%, #061009 46%, #0d1311 100%);
 }
 
 .page :global(.homeFooterInner) {
   align-items: start;
   width: min(1240px, calc(100vw - 48px));
-  padding: 0 3.6rem;
+  padding: 0 3.4rem;
 }
 
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-size: clamp(2rem, 3vw, 2.6rem);
 }
 
 .page :global(.homeFooterSlash) {
   color: rgba(167, 207, 23, 0.8);
-  font-size: 0.72rem;
+  font-size: 0.62rem;
 }
 
 .page :global(.homeFooterMeta) {
-  gap: 0.2rem;
-  margin-top: 0.9rem;
+  gap: 0.28rem;
+  margin-top: 0.8rem;
 }
 
 .page :global(.homeFooterMeta p),
@@ -885,14 +885,14 @@
 .page :global(.homeFooterMeta p:first-child)::before {
   content: "Email address:";
   color: rgba(255, 255, 255, 0.54);
-  font-size: 0.34rem;
+  font-size: 0.3rem;
   letter-spacing: 0.06em;
 }
 
 .page :global(.homeFooterMeta p:nth-child(2))::before {
   content: "Contact information: 12345678901";
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.34rem;
+  font-size: 0.3rem;
   letter-spacing: 0.06em;
 }
 
@@ -903,16 +903,18 @@
 .page :global(.homeFooterAction) {
   position: relative;
   justify-items: end;
-  gap: 1.15rem;
-  padding-top: 0.15rem;
+  gap: 0.82rem;
+  padding-top: 0.05rem;
 }
 
 .page :global(.homeFooterAction)::before {
-  content: "TIGER LIU";
-  color: #bf9b50;
-  font-size: 0.52rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  content: "";
+  width: 2.4rem;
+  height: 2.15rem;
+  background-image: url("../../img/图片7.png");
+  background-position: 82% 13%;
+  background-repeat: no-repeat;
+  background-size: 505% auto;
 }
 
 .page :global(.homeFooterAction a) {
@@ -926,14 +928,14 @@
 .page :global(.homeFooterAction a)::before {
   content: "TIGERPARTNERS.CN";
   color: #a7cf17;
-  font-size: 0.52rem;
+  font-size: 0.48rem;
   letter-spacing: 0.08em;
 }
 
 .page :global(.homeFooterNote) {
   position: absolute;
   left: 50%;
-  bottom: 0.55rem;
+  bottom: 0.18rem;
   transform: translateX(-50%);
   width: max-content;
   color: rgba(255, 255, 255, 0.36);
