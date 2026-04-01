@@ -17,13 +17,13 @@
     "next": "^15.4.11",
     "payload": "3.79.1",
     "react": "latest",
-    "react-dom": "latest",
-    "sharp": "^0.34.5"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "sharp": "^0.34.5",
     "typescript": "latest"
   }
 }

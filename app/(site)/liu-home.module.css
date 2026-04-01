@@ -19,14 +19,14 @@
 .heroSection {
   position: relative;
   overflow: hidden;
-  padding: 0;
+  padding: 0 0 1.2rem;
 }
 
 .heroGrid {
   position: relative;
   display: grid;
   /* Unbalanced composition — left takes less, right takes more */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 2.6fr);
   min-height: clamp(31rem, 42vw, 38rem);
   /* Continuous dark space — no hard vertical dividers */
   background: #0c140a;
@@ -56,10 +56,10 @@
 
 /* Kicker — small label above title */
 .heroKicker {
-  margin: 0 0 1.4rem;
+  margin: 0 0 0.9rem;
   color: rgba(163, 210, 10, 0.55);
   font-family: var(--font-body);
-  font-size: 0.48rem;
+  font-size: 0.44rem;
   font-weight: 500;
   letter-spacing: 0.48em;
   text-transform: uppercase;
@@ -81,10 +81,10 @@
 
 /* Subtitle / descriptor line */
 .heroSub {
-  margin: 1.1rem 0 0;
+  margin: 0.75rem 0 0;
   color: rgba(255, 255, 255, 0.42);
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0.12em;
@@ -105,7 +105,7 @@
   display: inline-flex;
   align-items: center;
   color: rgba(255, 255, 255, 0.52);
-  font-size: 0.44rem;
+  font-size: 0.4rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -139,12 +139,12 @@
   z-index: 1;
 }
 
-/* Utility row — light, minimal, floats softly */
+/* Utility row — light, minimal, floats softly, compact height */
 .heroUtilityRow {
   position: absolute;
-  top: 1.8rem;
-  left: 1.8rem;
-  right: 1.8rem;
+  top: 1.1rem;
+  left: 1.4rem;
+  right: 1.1rem;
   z-index: 3;
   display: flex;
   align-items: center;
@@ -152,15 +152,15 @@
   gap: 1rem;
 }
 
-/* Light integrated badge — not heavy white bar */
+/* Light integrated badge — not heavy white bar, smaller */
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
-  min-height: 1.4rem;
-  padding: 0 0.85rem;
+  min-height: 1.1rem;
+  padding: 0 0.7rem;
   border: 1px solid rgba(203, 255, 31, 0.38);
   color: rgba(163, 210, 10, 0.85);
-  font-size: 0.52rem;
+  font-size: 0.44rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: rgba(12, 20, 10, 0.4);
@@ -204,7 +204,7 @@
    heroFigureLapels — these were unrelated floating decorative elements */
 
 .statementSection {
-  padding: 0 0 2.8rem;
+  padding: 0 0 2.2rem;
   background:
     radial-gradient(circle at left bottom, rgba(6, 107, 112, 0.26), transparent 30%),
     radial-gradient(circle at right bottom, rgba(112, 133, 20, 0.22), transparent 28%),
@@ -213,78 +213,81 @@
 
 .statementGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.86fr);
-  gap: 3.8rem;
-  align-items: start;
-  padding: 3.3rem 6.2rem 2.8rem;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: 3.2rem;
+  align-items: center;
+  padding: 3.8rem 6.2rem 3rem;
 }
 
 .quoteBlock {
   position: relative;
-  display: grid;
-  justify-items: center;
-  gap: 0.2rem;
-  padding-top: 0.15rem;
+  padding-top: 0.05rem;
+  padding-left: 0.5rem;
+}
+
+.quoteBlock::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.25rem;
+  top: -0.6rem;
+  color: rgba(203, 255, 31, 0.6);
+  font-family: var(--font-body);
+  font-size: clamp(5rem, 9vw, 8.5rem);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
 }
 
 .quoteBlock p {
   margin: 0;
-  text-align: center;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.45vw, 1.24rem);
+  font-size: clamp(1.2rem, 1.85vw, 1.62rem);
   font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: -0.04em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   white-space: pre-line;
   text-transform: uppercase;
 }
 
 .quoteMark,
 .quoteMarkRight {
-  color: #ffffff;
-  font-family: var(--font-body);
-  font-size: 2.2rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.quoteMark {
-  justify-self: start;
-  margin-left: 0.2rem;
-}
-
-.quoteMarkRight {
-  justify-self: end;
-  margin-right: 0.35rem;
+  display: none;
 }
 
 .statementCopy {
   display: grid;
   justify-items: start;
-  align-content: center;
-  gap: 1.1rem;
-  padding-top: 0.1rem;
+  align-content: start;
+  gap: 1rem;
+  padding-top: 0.4rem;
 }
 
 .statementCopy p {
   margin: 0;
-  max-width: 18ch;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.02rem;
-  line-height: 1.22;
+  max-width: 22ch;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.84rem;
+  line-height: 1.55;
 }
 
 .statementButton {
   display: inline-flex;
   align-items: center;
-  min-height: 1rem;
-  padding: 0 0.35rem;
-  border: 1px solid rgba(167, 207, 23, 0.52);
+  min-height: 2.2rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(167, 207, 23, 0.48);
   color: #a7cf17;
-  font-size: 0.32rem;
-  letter-spacing: 0.08em;
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.statementButton:hover {
+  border-color: rgba(203, 255, 31, 0.8);
+  color: #cbff1f;
 }
 
 .inlineLink,
@@ -309,43 +312,44 @@
 .videoStage {
   display: grid;
   justify-items: center;
+  padding-top: 0.6rem;
 }
 
 .videoPanel {
   display: grid;
   place-items: center;
-  gap: 0.85rem;
-  min-height: 14.8rem;
+  gap: 0.75rem;
+  min-height: 16rem;
   margin: 0 auto;
-  width: min(76%, 46rem);
+  width: min(82%, 50rem);
   background: #9a9d94;
 }
 
 .videoPanel p {
   margin: 0;
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 400;
 }
 
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  border: 1px solid #cbff1f;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid rgba(203, 255, 31, 0.7);
   border-radius: 999px;
   color: #cbff1f;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
 }
 
 .videoCaption {
   justify-self: end;
-  margin-top: 0.42rem;
-  width: min(76%, 46rem);
+  margin-top: 0.55rem;
+  width: min(82%, 50rem);
   color: rgba(255, 255, 255, 0.54);
-  font-size: 0.32rem;
-  letter-spacing: 0.04em;
+  font-size: 0.4rem;
+  letter-spacing: 0.06em;
 }
 
 .podcastRailSection {
