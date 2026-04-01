@@ -7,6 +7,7 @@ import profileReference from "../../img/图片5.png";
 
 import { VisualEditRegion } from "@/components/visual-edit-region";
 import { EpisodeFeatureCard } from "./_components/EpisodeFeatureCard";
+import { PodcastCarousel } from "../(site)_components/PodcastCarousel";
 import { getHomePageData } from "@/lib/payload/api";
 import type { PodcastEpisode } from "@/lib/types";
 
@@ -19,16 +20,40 @@ const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE
 const heroTitle = "DENNIS YUXUAN LIU";
 const podcastCarouselCards = [
   {
-    title: "案例一",
-    summary: "短说明文案占位。\n洲洲发布，策略或社交表达。",
+    episodeCode: "EP01",
+    title: "Can Law Survive the Attention Economy?",
+    summary: "How legal analysis changes once it has to compete with algorithms, speed, and spectacle.",
+    duration: "45 min",
   },
   {
-    title: "案例二",
-    summary: "说明",
+    episodeCode: "EP02",
+    title: "From Case File to Public Narrative",
+    summary: "Translating dense disputes into responsible commentary without flattening the legal stakes.",
+    duration: "42 min",
   },
   {
-    title: "案例三",
-    summary: "说明",
+    episodeCode: "EP03",
+    title: "Who Owns the Public Square?",
+    summary: "Platform governance, speech norms, and the lawyer's role in contested online discourse.",
+    duration: "39 min",
+  },
+  {
+    episodeCode: "EP04",
+    title: "Narrative as Legal Strategy",
+    summary: "Why storytelling has become the most powerful tool in modern legal practice.",
+    duration: "51 min",
+  },
+  {
+    episodeCode: "EP05",
+    title: "The Influencer and the Law",
+    summary: "When creators become test cases for regulation — who decides what counts as speech?",
+    duration: "44 min",
+  },
+  {
+    episodeCode: "EP06",
+    title: "Disrupting the Court of Public Opinion",
+    summary: "Litigation PR and the fine line between fair representation and media manipulation.",
+    duration: "48 min",
   },
 ];
 const featuredEpisodeRows = [
@@ -220,29 +245,8 @@ export default async function HomePage() {
             <div className={styles.sectionHeaderCenter}>
               <h2>LAW, DISRUPTED PODCAST</h2>
             </div>
-            <div className={styles.podcastRail}>
-              <button aria-label="Previous episode" className={styles.railArrow} type="button">
-                ‹
-              </button>
-              <div className={styles.episodeGrid}>
-                {podcastCarouselCards.map((card) => (
-                  <article className={styles.episodeCard} key={card.title}>
-                    <div className={styles.episodeThumb} />
-                    <strong className={styles.episodeCardTitle}>{card.title}</strong>
-                    <p className={styles.episodeCardSummary}>{card.summary}</p>
-                  </article>
-                ))}
-              </div>
-              <button aria-label="Next episode" className={styles.railArrow} type="button">
-                ›
-              </button>
-            </div>
-            <div className={styles.carouselDots} aria-hidden="true">
-              <span className={styles.dotActive} />
-              <span />
-              <span />
-              <span />
-              <span />
+              <div className={styles.podcastRailWrap}>
+              <PodcastCarousel cards={podcastCarouselCards} />
             </div>
           </div>
         </VisualEditRegion>

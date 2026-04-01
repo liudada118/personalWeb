@@ -404,11 +404,10 @@
   text-transform: uppercase;
 }
 
-.podcastRail {
-  position: relative;
-  width: min(52rem, 100%);
+.podcastRailWrap {
+  width: min(68rem, 100%);
   margin: 0 auto;
-  padding-inline: 2.0rem;
+  padding-inline: 2.8rem;
 }
 
 .railArrow {
