@@ -7,12 +7,12 @@
 }
 
 .shell {
-  width: min(1040px, calc(100vw - 48px));
+  max-width: 72vw;
   margin: 0 auto;
 }
 
 .heroShell {
-  width: min(72vw, 100%);
+  max-width: 72vw;
   margin: 0 auto;
 }
 
@@ -26,7 +26,7 @@
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.3fr);
   min-height: 100svh;
   background: linear-gradient(90deg, #061008 0%, #08110a 48%, #172117 68%, #202920 100%);
 }
@@ -70,7 +70,6 @@
 }
 
 .heroTitle {
-  max-width: 14ch;
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
@@ -79,7 +78,8 @@
   line-height: 1;
   letter-spacing: -0.04em;
   text-transform: uppercase;
-  white-space: normal;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .heroSub {
