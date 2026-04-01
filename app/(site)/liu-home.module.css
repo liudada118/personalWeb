@@ -513,14 +513,14 @@
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.78rem, 1.05vw, 1.0rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
   letter-spacing: 0.16em;
 }
 
 .episodeFeatureIntro p {
   margin: 0.35rem 0 0;
   color: rgba(18, 22, 18, 0.72);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   letter-spacing: 0.04em;
 }
 
@@ -528,7 +528,7 @@
   margin-top: 0.5rem;
   margin-right: 0.1rem;
   color: rgba(18, 22, 18, 0.4);
-  font-size: 0.3rem;
+  font-size: 0.38rem;
   letter-spacing: 0.1em;
   flex-shrink: 0;
 }
@@ -541,38 +541,36 @@
   width: min(880px, 100%);
 }
 
-/* FIX 3: Upper strip — content cards, not thin tabs */
-.episodeFeatureIndexStrip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.55rem;
+/* FIX 3: Upper strip — two stacked content cards, not thin tabs */
+.episodeFeatureUpperCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.episodeFeatureIndexItem {
-  display: flex;
+.episodeFeatureUpperCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: center;
-  padding: 0.75rem 0.85rem;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0.8rem 1rem;
   background: #1c1c1c;
   color: rgba(255, 255, 255, 0.68);
-  font-size: 0.48rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
-  transition: background 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
   cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
 }
 
-.episodeFeatureIndexItem:hover {
+.episodeFeatureUpperCard:hover {
   background: #252d1e;
   color: rgba(163, 210, 10, 0.85);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.episodeFeatureIndexItemActive {
+.episodeFeatureUpperCardActive {
   background: #2e3828;
   color: #a3d20a;
   border-color: rgba(163, 210, 10, 0.25);
@@ -580,10 +578,67 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
+.episodeFeatureUpperCardLabel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0.82rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.42rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.episodeFeatureUpperCardActive .episodeFeatureUpperCardLabel {
+  background: rgba(163, 210, 10, 0.12);
+  border-color: rgba(163, 210, 10, 0.3);
+  color: #a3d20a;
+}
+
+.episodeFeatureUpperCardTitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.episodeFeatureUpperCardActive .episodeFeatureUpperCardTitle {
+  color: #a3d20a;
+}
+
+.episodeFeatureUpperCardArrow {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.1rem;
+  font-weight: 300;
+  flex-shrink: 0;
+  transition: color 200ms ease;
+}
+
+.episodeFeatureUpperCardActive .episodeFeatureUpperCardArrow {
+  color: rgba(163, 210, 10, 0.75);
+}
+
 /* FIX 9: More space between upper cards and main card */
+/* FIX 6: Layered push — rows animate when switching cards */
 .episodeFeatureRows {
   display: grid;
   gap: 0.2rem;
+  animation: episodeRowsPush 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes episodeRowsPush {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .episodeFeatureRow {
@@ -608,13 +663,13 @@
   padding: 0 0.2rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.34rem;
+  font-size: 0.42rem;
   letter-spacing: 0.08em;
 }
 
 .episodeFeatureRowTitle {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 500;
 }
 
@@ -635,13 +690,13 @@
     linear-gradient(135deg, #211916 0%, #3e2d1f 34%, #85612f 100%);
 }
 
-/* Left shape: was 31% width too big — reduce to 22%, shift left */
+/* Left shape: reduce to 16%, shift to left edge */
 .episodeHeroThumb::before {
   content: "";
   position: absolute;
-  left: 2%;
+  left: 0%;
   bottom: -8%;
-  width: 22%;
+  width: 16%;
   height: 92%;
   border-radius: 38% 38% 10% 10%;
   background:
@@ -653,9 +708,9 @@
 .episodeHeroThumb::after {
   content: "";
   position: absolute;
-  left: 8%;
+  left: 3%;
   top: 12%;
-  width: 12%;
+  width: 9%;
   height: 18%;
   border-radius: 50%;
   background: rgba(248, 232, 214, 0.84);
@@ -680,7 +735,7 @@
 .episodeHeroHeadline {
   position: absolute;
   top: 1rem;
-  left: 36%;
+  left: 28%;
   z-index: 1;
   display: grid;
   gap: 0.1rem;
@@ -688,14 +743,14 @@
 
 .episodeHeroHeadline span {
   color: rgba(255, 255, 255, 0.22);
-  font-size: 2.1rem;
+  font-size: 2.8rem;
   font-weight: 600;
   letter-spacing: 0.06em;
 }
 
 .episodeHeroHeadline em {
   color: #d0a21d;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -703,7 +758,7 @@
 
 .episodeHeroHeadline strong {
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: 0.02em;
@@ -713,12 +768,12 @@
 .episodeHeroStats {
   position: absolute;
   left: 2.2rem;
-  right: 0.9rem;
-  bottom: 0.55rem;
+  right: 1.2rem;
+  bottom: 0.7rem;
   display: flex;
   justify-content: space-between;
   color: #ffffff;
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.04em;
 }

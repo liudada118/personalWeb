@@ -37,22 +37,6 @@ const episodeCards = [
       stats: ["1500+", "48", "00:52:00"],
     },
   },
-  {
-    id: "deep",
-    label: "深度内容",
-    rows: [
-      { code: "长文", title: "注意力经济中的法律叙事" },
-      { code: "论文", title: "平台治理与言论规范研究" },
-      { code: "书摘", title: "法的叙事：核心论点摘录" },
-    ],
-    thumb: {
-      badge: "▶",
-      name: "长文",
-      em: "注意力经济中的法律叙事",
-      title: "《南方周末》2025 年度文章",
-      stats: ["5.2万", "876", "全文"],
-    },
-  },
 ];
 
 type EpisodeCardId = "podcast" | "media" | "deep";
@@ -64,21 +48,25 @@ export function EpisodeFeatureCard() {
 
   return (
     <div className={styles.episodeFeatureCard}>
-      {/* FIX 6: Upper content-card strip with stacked-push animation */}
-      <div className={styles.episodeFeatureIndexStrip}>
+      {/* FIX 6: Two stacked upper content cards — layered push interaction */}
+      <div className={styles.episodeFeatureUpperCards}>
         {episodeCards.map((card) => (
           <button
-            className={`${styles.episodeFeatureIndexItem} ${activeCard === card.id ? styles.episodeFeatureIndexItemActive : ""}`}
+            className={`${styles.episodeFeatureUpperCard} ${activeCard === card.id ? styles.episodeFeatureUpperCardActive : ""}`}
             key={card.id}
             onClick={() => setActiveCard(card.id as EpisodeCardId)}
             type="button"
           >
-            {card.label}
+            <span className={styles.episodeFeatureUpperCardLabel}>{card.label}</span>
+            <strong className={styles.episodeFeatureUpperCardTitle}>
+              {card.rows[1]?.title ?? card.rows[0]?.title}
+            </strong>
+            <span className={styles.episodeFeatureUpperCardArrow}>›</span>
           </button>
         ))}
       </div>
 
-      {/* FIX 6: Rows animate in as active card pushes forward */}
+      {/* FIX 6: Rows animate in as active card pushes forward into main card */}
       <div className={styles.episodeFeatureRows}>
         {current.rows.map((row, index) => (
           <div
@@ -92,8 +80,14 @@ export function EpisodeFeatureCard() {
         ))}
       </div>
 
-      {/* FIX 4 & 5: Main card — bigger title, better composition */}
-      <div className={styles.episodeHeroThumb}>
+      {/* FIX 4 & 5: Main card — bigger title, better composition, layered push */}
+      <div
+        className={styles.episodeHeroThumb}
+        key={activeCard}
+        style={{
+          animation: "episodeCardPush 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        }}
+      >
         <div className={styles.episodeHeroBadge}>{current.thumb.badge}</div>
         <div className={styles.episodeHeroHeadline}>
           <span>{current.thumb.name}</span>
@@ -106,6 +100,19 @@ export function EpisodeFeatureCard() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes episodeCardPush {
+          0% {
+            opacity: 0;
+            transform: translateY(12px) scale(0.98);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `}</style>
     </div>
   );
 }
