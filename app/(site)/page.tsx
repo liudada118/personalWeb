@@ -170,7 +170,7 @@ export default async function HomePage() {
                       rel="noreferrer"
                       target="_blank"
                     >
-                      {item.platform}
+                      <span>{item.platform}</span>
                     </a>
                   ))}
                 </div>

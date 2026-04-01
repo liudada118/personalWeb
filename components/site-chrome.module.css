@@ -61,11 +61,16 @@
 
 .homeNavLink {
   position: relative;
-  color: rgba(187, 204, 182, 0.68);
+  color: rgba(163, 210, 10, 0.72);
   font-size: 0.64rem;
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: color 200ms ease;
+}
+
+.homeNavLink:hover {
+  color: #a3d20a;
 }
 
 .homeNavLink::after {
@@ -88,7 +93,7 @@
 }
 
 .homeNavLinkActive {
-  color: rgba(226, 235, 223, 0.92);
+  color: #a3d20a;
 }
 
 .homeFooter {
