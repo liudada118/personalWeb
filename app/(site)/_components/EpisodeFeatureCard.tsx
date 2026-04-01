@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import styles from "../liu-home.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const episodeCards = [
   {
@@ -39,78 +43,217 @@ const episodeCards = [
   },
 ];
 
-type EpisodeCardId = "podcast" | "media" | "deep";
+const ROW_HEIGHT_EXPANDED = 64; // px per row when expanded
+const ROW_HEIGHT_COLLAPSED = 0;  // px when collapsed
+const CARD_GAP = 8;              // px gap between cards
+const STACK_OFFSET = 72;         // px offset per stacked card (collapsed height + gap)
 
 export function EpisodeFeatureCard() {
-  const [activeCard, setActiveCard] = useState<EpisodeCardId>("podcast");
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const heroThumbRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const current = episodeCards.find((c) => c.id === activeCard)!;
+  useEffect(() => {
+    if (!sectionRef.current || !stackRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const totalCards = episodeCards.length;
+      // Each card "slot" represents one scroll segment
+      // Total scroll distance = number of cards - 1 (last one is just expanded)
+      const scrollSegments = totalCards - 1;
+
+      // Initial states: first card expanded, rest collapsed/stacked
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        if (i === 0) {
+          gsap.set(card, { height: "auto", opacity: 1, y: 0, scale: 1, zIndex: totalCards });
+        } else {
+          gsap.set(card, {
+            height: 0,
+            opacity: 0.5,
+            y: -(i * STACK_OFFSET),
+            scale: 1 - i * 0.04,
+            zIndex: totalCards - i,
+          });
+        }
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${scrollSegments * 400}`,
+          pin: true,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / scrollSegments,
+            duration: { min: 0.2, max: 0.5 },
+            ease: "power2.inOut",
+          },
+          onUpdate: (self) => {
+            // Determine which card is active based on progress
+            const rawIndex = Math.round(self.progress * scrollSegments);
+            const clampedIndex = Math.max(0, Math.min(rawIndex, scrollSegments));
+            if (clampedIndex !== activeIndex) {
+              setActiveIndex(clampedIndex);
+            }
+          },
+        },
+      });
+
+      // Animate each card transition
+      for (let i = 1; i < totalCards; i++) {
+        const prevIndex = i - 1;
+        const enteringCard = cardRefs.current[i];
+        const exitingCard = cardRefs.current[prevIndex];
+
+        if (!enteringCard || !exitingCard) continue;
+
+        // When card i becomes active, it expands
+        // Previous card collapses and moves down in stack
+        tl.to(
+          exitingCard,
+          {
+            height: 0,
+            opacity: 0.4,
+            y: -(i * STACK_OFFSET),
+            scale: 1 - i * 0.04,
+            duration: 1,
+            ease: "power2.inOut",
+          },
+          i - 1
+        );
+
+        tl.to(
+          enteringCard,
+          {
+            height: "auto",
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "power2.inOut",
+          },
+          i - 1
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeIndex]);
+
+  // Animate rows and hero thumb on activeIndex change
+  useEffect(() => {
+    if (!rowsRef.current.length || !heroThumbRef.current) return;
+
+    const currentRows = episodeCards[activeIndex].rows;
+
+    // Animate rows
+    rowsRef.current.forEach((row, i) => {
+      if (!row) return;
+      const isActive = i === 1;
+      gsap.to(row, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out",
+        delay: i * 0.06,
+      });
+    });
+
+    // Animate hero thumb
+    gsap.to(heroThumbRef.current, {
+      opacity: 0,
+      y: 10,
+      duration: 0.25,
+      ease: "power2.in",
+      onComplete: () => {
+        if (heroThumbRef.current) {
+          gsap.to(heroThumbRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+        }
+      },
+    });
+  }, [activeIndex]);
+
+  const current = episodeCards[activeIndex];
 
   return (
-    <div className={styles.episodeFeatureCard}>
-      {/* FIX 6: Two stacked upper content cards — layered push interaction */}
-      <div className={styles.episodeFeatureUpperCards}>
-        {episodeCards.map((card) => (
-          <button
-            className={`${styles.episodeFeatureUpperCard} ${activeCard === card.id ? styles.episodeFeatureUpperCardActive : ""}`}
-            key={card.id}
-            onClick={() => setActiveCard(card.id as EpisodeCardId)}
-            type="button"
-          >
-            <span className={styles.episodeFeatureUpperCardLabel}>{card.label}</span>
-            <strong className={styles.episodeFeatureUpperCardTitle}>
-              {card.rows[1]?.title ?? card.rows[0]?.title}
-            </strong>
-            <span className={styles.episodeFeatureUpperCardArrow}>›</span>
-          </button>
-        ))}
-      </div>
-
-      {/* FIX 6: Rows animate in as active card pushes forward into main card */}
-      <div className={styles.episodeFeatureRows}>
-        {current.rows.map((row, index) => (
-          <div
-            className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
-            key={`${row.code}-${activeCard}`}
-          >
-            <span className={styles.episodeFeatureRowCode}>{row.code}</span>
-            <strong className={styles.episodeFeatureRowTitle}>{row.title}</strong>
-            <span className={styles.episodeFeatureRowArrow}>›</span>
-          </div>
-        ))}
-      </div>
-
-      {/* FIX 4 & 5: Main card — bigger title, better composition, layered push */}
-      <div
-        className={styles.episodeHeroThumb}
-        key={activeCard}
-        style={{
-          animation: "episodeCardPush 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards",
-        }}
-      >
-        <div className={styles.episodeHeroBadge}>{current.thumb.badge}</div>
-        <div className={styles.episodeHeroHeadline}>
-          <span>{current.thumb.name}</span>
-          <em>{current.thumb.em}</em>
-          <strong>{current.thumb.title}</strong>
+    <div className={styles.episodeFeatureSectionInner} ref={sectionRef}>
+      <div className={styles.episodeFeatureCard} ref={stackRef}>
+        {/* Stacked Cards */}
+        <div className={styles.episodeFeatureStack}>
+          {episodeCards.map((card, i) => (
+            <div
+              className={`${styles.episodeFeatureUpperCard} ${activeIndex === i ? styles.episodeFeatureUpperCardActive : ""}`}
+              key={card.id}
+              ref={(el) => { cardRefs.current[i] = el; }}
+            >
+              <span className={styles.episodeFeatureUpperCardLabel}>{card.label}</span>
+              <strong className={styles.episodeFeatureUpperCardTitle}>
+                {card.rows[1]?.title ?? card.rows[0]?.title}
+              </strong>
+              <span className={styles.episodeFeatureUpperCardArrow}>›</span>
+            </div>
+          ))}
         </div>
-        <div className={styles.episodeHeroStats}>
-          {current.thumb.stats.map((s, i) => (
-            <span key={`stat-${i}`}>{s}</span>
+
+        {/* Rows — revealed when a card is expanded */}
+        <div className={styles.episodeFeatureRows} ref={(el) => { rowsRef.current = []; }}>
+          {current.rows.map((row, index) => (
+            <div
+              className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
+              key={`${row.code}-${activeIndex}`}
+              ref={(el) => { if (el) rowsRef.current[index] = el; }}
+            >
+              <span className={styles.episodeFeatureRowCode}>{row.code}</span>
+              <strong className={styles.episodeFeatureRowTitle}>{row.title}</strong>
+              <span className={styles.episodeFeatureRowArrow}>›</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Hero Thumb */}
+        <div
+          className={styles.episodeHeroThumb}
+          key={`${activeIndex}-thumb`}
+          ref={heroThumbRef}
+        >
+          <div className={styles.episodeHeroBadge}>{current.thumb.badge}</div>
+          <div className={styles.episodeHeroHeadline}>
+            <span>{current.thumb.name}</span>
+            <em>{current.thumb.em}</em>
+            <strong>{current.thumb.title}</strong>
+          </div>
+          <div className={styles.episodeHeroStats}>
+            {current.thumb.stats.map((s, i) => (
+              <span key={`stat-${i}`}>{s}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Progress indicator */}
+        <div className={styles.episodeFeatureProgress}>
+          {episodeCards.map((_, i) => (
+            <span
+              key={i}
+              className={`${styles.episodeFeatureDot} ${activeIndex === i ? styles.episodeFeatureDotActive : ""}`}
+            />
           ))}
         </div>
       </div>
 
       <style>{`
         @keyframes episodeCardPush {
-          0% {
-            opacity: 0;
-            transform: translateY(12px) scale(0.98);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
+          0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
         }
       `}</style>
     </div>

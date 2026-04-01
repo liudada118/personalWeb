@@ -17,8 +17,6 @@ export const metadata: Metadata = {
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
 const heroTitle = "DENNIS YUXUAN LIU";
-const heroKicker = "Narrative & Law";
-const heroSub = "Legal Narrative / Public Discourse";
 const podcastCarouselCards = [
   {
     title: "案例一",
@@ -156,9 +154,7 @@ export default async function HomePage() {
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <p className={styles.heroKicker}>{heroKicker}</p>
                 <h1 className={styles.heroTitle}>{heroTitle}</h1>
-                <p className={styles.heroSub}>{heroSub}</p>
               </div>
               <div className={styles.heroUtilityRow}>
                 <div className={styles.heroSocialLinks}>
