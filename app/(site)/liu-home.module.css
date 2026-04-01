@@ -12,20 +12,21 @@
 }
 
 .heroShell {
-  width: 100%;
-  margin: 0;
+  width: min(72vw, 100%);
+  margin: 0 auto;
 }
 
 .heroSection {
   position: relative;
   overflow: hidden;
   padding: 0;
+  min-height: 100svh;
 }
 
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
   min-height: 100svh;
   background: linear-gradient(90deg, #061008 0%, #08110a 48%, #172117 68%, #202920 100%);
 }
@@ -46,83 +47,78 @@
 .heroCopy {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-rows: auto auto auto 1fr auto;
-  align-content: stretch;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 0;
-  min-height: 100%;
+  min-height: 100svh;
   padding:
-    clamp(8.9rem, 22vh, 11.2rem)
-    clamp(2.4rem, 3vw, 3.8rem)
+    clamp(6.5rem, 14vh, 9.5rem)
+    0
     clamp(4rem, 8vh, 6.5rem)
     var(--home-hero-left-gutter);
 }
 
 .heroKicker {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.9rem;
   color: rgba(163, 210, 10, 0.44);
   font-family: var(--font-body);
-  font-size: 0.4rem;
+  font-size: clamp(0.5rem, 0.8vw, 0.72rem);
   font-weight: 500;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
 }
 
 .heroTitle {
-  max-width: 9.5ch;
+  max-width: 14ch;
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(2.02rem, 2.95vw, 3.02rem);
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
   font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.052em;
+  line-height: 1;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
-  white-space: pre-line;
+  white-space: normal;
 }
 
 .heroSub {
-  max-width: 18ch;
-  margin: 0.65rem 0 0;
+  max-width: 22ch;
+  margin: 1rem 0 0;
   color: rgba(255, 255, 255, 0.4);
   font-family: var(--font-body);
-  font-size: 0.57rem;
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.heroCopyMeta {
+.heroSocialLinks {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.94rem;
-  width: min(18.25rem, 100%);
-  margin-top: auto;
-  padding-top: 0.76rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 0.75rem;
 }
 
-.heroCopyMetaLink {
+.heroSocialLink {
   display: inline-flex;
   align-items: center;
   color: rgba(255, 255, 255, 0.42);
-  font-size: 0.34rem;
-  letter-spacing: 0.16em;
+  font-size: 0.42rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
   transition: color 200ms ease;
 }
 
-.heroCopyMetaLink:hover {
+.heroSocialLink:hover {
   color: rgba(163, 210, 10, 0.85);
 }
 
 .heroVisual {
   position: relative;
-  min-height: 100%;
+  min-height: 100svh;
   overflow: hidden;
   background: linear-gradient(90deg, rgba(10, 18, 12, 0.15) 0%, rgba(24, 34, 23, 0.28) 18%, #253026 56%, #2b352b 100%);
 }
@@ -147,28 +143,30 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 0.9rem;
 }
 
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 1.32rem;
-  padding: 0 0.72rem;
-  border: 1px solid rgba(163, 210, 10, 0.42);
-  color: rgba(163, 210, 10, 0.82);
-  font-size: 0.42rem;
-  letter-spacing: 0.12em;
+  min-height: 2rem;
+  padding: 0 1.2rem;
+  border: 1px solid rgba(163, 210, 10, 0.5);
+  color: #a3d20a;
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: rgba(10, 18, 10, 0.28);
-  backdrop-filter: blur(6px);
+  background: rgba(10, 18, 10, 0.42);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 
 .heroUtilityBadge:hover {
-  border-color: rgba(163, 210, 10, 0.72);
+  border-color: rgba(163, 210, 10, 0.85);
   color: #a3d20a;
-  background: rgba(12, 24, 10, 0.6);
+  background: rgba(12, 24, 10, 0.7);
 }
 
 .heroPortraitScene {
@@ -179,9 +177,9 @@
 
 .heroPortraitReference {
   position: absolute;
-  left: clamp(-3.5rem, -3vw, -1.2rem);
+  left: clamp(-6rem, -8vw, -2rem);
   bottom: 0;
-  width: min(30rem, 82%);
+  width: min(52rem, 100%);
   height: 100%;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -1054,6 +1052,10 @@
     width: min(100vw - 28px, 100%);
   }
 
+  .heroShell {
+    width: 100%;
+  }
+
   .heroGrid,
   .statementGrid,
   .profileGrid,
@@ -1066,6 +1068,10 @@
   .episodeFeatureCard {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .heroSection {
+    min-height: auto;
   }
 
   .heroGrid {
@@ -1084,6 +1090,13 @@
 
   .heroUtilityRow {
     right: 1rem;
+    top: 0.75rem;
+    flex-direction: row-reverse;
+    gap: 0.6rem;
+  }
+
+  .heroSocialLinks {
+    gap: 0.5rem;
   }
 
   .statementGrid {
