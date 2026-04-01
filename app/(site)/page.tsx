@@ -108,9 +108,9 @@ const fallbackEpisodes: PodcastEpisode[] = [
 ];
 
 const heroSocialFallbacks = [
-  { platform: "???", label: "???", href: "https://example.com/rednote" },
-  { platform: "Bilibili", label: "????", href: "https://example.com/bilibili" },
-  { platform: "LinkedIn", label: "LinkedIn", href: "https://example.com/linkedin" },
+  { platform: "Xiaohongshu", label: "小红书", href: "https://example.com/rednote" },
+  { platform: "Bilibili", label: "bilibili", href: "https://example.com/bilibili" },
+  { platform: "LinkedIn", label: "in", href: "https://example.com/linkedin" },
 ];
 
 const featuredWorks = [
@@ -155,15 +155,15 @@ function getHeroSocialLabel(platform: string, label: string) {
     return "in";
   }
 
-  if (source.includes("bilibili") || source.includes("??") || source.includes("b?")) {
-    return "B";
+  if (source.includes("bilibili")) {
+    return "bilibili";
   }
 
-  if (source.includes("???") || source.includes("rednote") || source.includes("xiaohongshu")) {
-    return "?";
+  if (source.includes("rednote") || source.includes("xiaohongshu") || source.includes("小红书")) {
+    return "小红书";
   }
 
-  return (platform || label).slice(0, 2);
+  return label || platform;
 }
 
 export default async function HomePage() {
@@ -186,17 +186,19 @@ export default async function HomePage() {
                   {heroSocialLinks.map((item) => (
                     <a
                       className={styles.heroSocialLink}
+                      aria-label={`${item.platform} ${item.label}`}
                       href={item.href}
-                      key={`hero-social-${item.platform}`}
+                      key={`hero-social-${item.platform}-${item.href}`}
                       rel="noreferrer"
                       target="_blank"
+                      title={item.label || item.platform}
                     >
-                      <span>{item.platform}</span>
+                      <span>{getHeroSocialLabel(item.platform, item.label)}</span>
                     </a>
                   ))}
                 </div>
                 <a className={styles.heroUtilityBadge} href="/about">
-                  VIEW WORK
+                  TIGERPARTNERS.CN
                 </a>
               </div>
               <div className={styles.heroVisual}>

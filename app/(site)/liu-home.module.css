@@ -28,7 +28,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.3fr);
   min-height: 100svh;
-  background: linear-gradient(90deg, #061008 0%, #08110a 48%, #172117 68%, #202920 100%);
+  background: linear-gradient(90deg, #040905 0%, #08100a 47%, #182119 73%, #212a21 100%);
 }
 
 .heroGrid::before {
@@ -36,9 +36,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 7% 58%, rgba(120, 154, 17, 0.2), transparent 24%),
-    radial-gradient(circle at 24% 70%, rgba(48, 84, 10, 0.14), transparent 28%),
-    radial-gradient(circle at 62% 10%, rgba(255, 255, 255, 0.03), transparent 18%);
+    radial-gradient(circle at 10% 61%, rgba(109, 140, 23, 0.14), transparent 23%),
+    radial-gradient(circle at 27% 69%, rgba(29, 57, 18, 0.12), transparent 29%),
+    radial-gradient(circle at 62% 12%, rgba(255, 255, 255, 0.025), transparent 17%);
   pointer-events: none;
 }
 
@@ -49,13 +49,14 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0;
+  max-width: 58%;
   min-height: 100svh;
   padding:
-    clamp(6.5rem, 14vh, 9.5rem)
+    clamp(15.2rem, 27vh, 18.6rem)
     0
-    clamp(4rem, 8vh, 6.5rem)
+    clamp(4.2rem, 8vh, 6rem)
     var(--home-hero-left-gutter);
 }
 
@@ -73,10 +74,10 @@
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(1.45rem, 2.33vw, 2.49rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(2.18rem, 3.62vw, 3.82rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.072em;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: visible;
@@ -98,43 +99,44 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.72rem;
 }
 
 .heroSocialLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  border: 1px solid rgba(163, 210, 10, 0.55);
-  color: rgba(163, 210, 10, 0.75);
-  font-size: 0.38rem;
+  width: 2.15rem;
+  height: 2.15rem;
+  border: 1px solid rgba(170, 205, 78, 0.68);
+  color: rgba(210, 232, 151, 0.84);
+  font-size: 0.34rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   transform: rotate(45deg);
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
-  background: rgba(10, 18, 10, 0.35);
+  background: rgba(8, 15, 9, 0.22);
 }
 
 .heroSocialLink span {
   display: inline-block;
   transform: rotate(-45deg);
+  white-space: nowrap;
 }
 
 .heroSocialLink:hover {
-  border-color: rgba(163, 210, 10, 0.9);
-  color: #a3d20a;
-  background: rgba(12, 24, 10, 0.6);
+  border-color: rgba(212, 240, 106, 0.9);
+  color: #d8f06a;
+  background: rgba(12, 24, 10, 0.48);
 }
 
 .heroVisual {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  background: linear-gradient(90deg, rgba(10, 18, 12, 0.15) 0%, rgba(24, 34, 23, 0.28) 18%, #253026 56%, #2b352b 100%);
+  background: linear-gradient(90deg, rgba(9, 17, 11, 0.08) 0%, rgba(21, 30, 22, 0.18) 17%, #253026 58%, #2a352b 100%);
 }
 
 .heroVisual::before {
@@ -142,45 +144,45 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 42% 18%, rgba(255, 255, 255, 0.06), transparent 18%),
-    radial-gradient(circle at 80% 70%, rgba(94, 122, 22, 0.08), transparent 26%),
-    linear-gradient(90deg, rgba(8, 18, 10, 0.32) 0%, rgba(8, 18, 10, 0) 18%);
+    radial-gradient(circle at 42% 18%, rgba(255, 255, 255, 0.045), transparent 18%),
+    radial-gradient(circle at 80% 70%, rgba(94, 122, 22, 0.06), transparent 26%),
+    linear-gradient(90deg, rgba(8, 18, 10, 0.22) 0%, rgba(8, 18, 10, 0) 18%);
   pointer-events: none;
   z-index: 1;
 }
 
 .heroUtilityRow {
   position: absolute;
-  top: calc(var(--home-hero-top-safe) + 0.02rem);
+  top: calc(var(--home-hero-top-safe) + 0.44rem);
   right: var(--home-hero-right-gutter);
   z-index: 65;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.9rem;
+  gap: 1.15rem;
 }
 
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.1rem;
-  padding: 0 1.1rem;
-  border: 1px solid rgba(163, 210, 10, 0.5);
-  color: #a3d20a;
-  font-size: 0.55rem;
-  letter-spacing: 0.14em;
+  min-height: 2.28rem;
+  padding: 0 1.34rem;
+  border: 1px solid rgba(170, 205, 78, 0.58);
+  color: #d6ef76;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: rgba(10, 18, 10, 0.42);
+  background: rgba(8, 15, 9, 0.28);
   backdrop-filter: blur(8px);
   text-decoration: none;
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 
 .heroUtilityBadge:hover {
-  border-color: rgba(163, 210, 10, 0.85);
-  color: #a3d20a;
-  background: rgba(12, 24, 10, 0.7);
+  border-color: rgba(212, 240, 106, 0.86);
+  color: #d8f06a;
+  background: rgba(12, 24, 10, 0.46);
 }
 
 .heroPortraitScene {
@@ -205,8 +207,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.08), transparent 15%),
-    radial-gradient(circle at 72% 74%, rgba(112, 141, 15, 0.06), transparent 28%),
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.06), transparent 15%),
+    radial-gradient(circle at 72% 74%, rgba(112, 141, 15, 0.05), transparent 28%),
     linear-gradient(180deg, rgba(12, 18, 14, 0.04) 0%, rgba(12, 18, 14, 0) 42%, rgba(12, 18, 14, 0.18) 100%);
 }
 

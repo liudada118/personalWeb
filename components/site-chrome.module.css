@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.4rem;
   width: 100%;
   margin: 0;
   padding: 0 var(--home-hero-right-gutter) 0 var(--home-hero-left-gutter);
@@ -55,22 +55,22 @@
 .homeNav {
   display: flex;
   justify-content: flex-start;
-  gap: 1.16rem;
-  padding-top: 0.06rem;
+  gap: 1.4rem;
+  padding-top: 0.08rem;
 }
 
 .homeNavLink {
   position: relative;
-  color: rgba(163, 210, 10, 0.72);
-  font-size: 0.64rem;
+  color: rgba(186, 221, 92, 0.82);
+  font-size: 0.58rem;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: color 200ms ease;
 }
 
 .homeNavLink:hover {
-  color: #a3d20a;
+  color: #d8f06a;
 }
 
 .homeNavLink::after {
@@ -78,9 +78,9 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.24rem;
-  height: 1px;
-  background: rgba(166, 212, 0, 0.82);
+  bottom: -0.18rem;
+  height: 0.5px;
+  background: rgba(216, 240, 106, 0.78);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 180ms ease;
@@ -93,7 +93,7 @@
 }
 
 .homeNavLinkActive {
-  color: #a3d20a;
+  color: #d8f06a;
 }
 
 .homeFooter {
