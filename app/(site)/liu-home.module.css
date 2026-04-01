@@ -477,7 +477,7 @@
 }
 
 .episodeFeatureSection {
-  padding: 3.35rem 0 3.9rem;
+  padding: 2.2rem 0 3.6rem;
   background: #f5f4f1;
 }
 
@@ -485,8 +485,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding-bottom: 0.95rem;
+  gap: 1.2rem;
+  padding-bottom: 0.7rem;
 }
 
 .episodeFeatureIntro h2,
@@ -495,38 +495,67 @@
 }
 
 .episodeFeatureIntro p {
-  margin: 0.24rem 0 0;
-  color: rgba(18, 22, 18, 0.76);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  margin: 0.3rem 0 0;
+  color: rgba(18, 22, 18, 0.72);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
 }
 
 .episodePlatformTag {
-  margin-top: 0.4rem;
-  color: rgba(18, 22, 18, 0.52);
-  font-size: 0.36rem;
-  letter-spacing: 0.08em;
+  margin-top: 0.55rem;
+  color: rgba(18, 22, 18, 0.48);
+  font-size: 0.32rem;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
 }
 
 .episodeFeatureCard {
   display: grid;
-  gap: 0.18rem;
-  width: min(100%, 37rem);
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.episodeFeatureIndexStrip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.episodeFeatureIndexItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.6rem;
+  background: #1c1c1c;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.4rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background 160ms ease, color 160ms ease;
+  cursor: pointer;
+}
+
+.episodeFeatureIndexItem:hover,
+.episodeFeatureIndexItemActive {
+  background: #2e3828;
+  color: #a3d20a;
 }
 
 .episodeFeatureRows {
   display: grid;
-  gap: 0.12rem;
+  gap: 0.1rem;
 }
 
 .episodeFeatureRow {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.65rem;
-  min-height: 1.35rem;
-  padding: 0 0.48rem;
-  background: #201d1f;
+  gap: 0.6rem;
+  min-height: 1.3rem;
+  padding: 0 0.5rem;
+  background: #1e1c1f;
   color: #ffffff;
 }
 
@@ -537,28 +566,28 @@
 .episodeFeatureRowCode {
   display: inline-flex;
   align-items: center;
-  min-height: 0.88rem;
-  padding: 0 0.22rem;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.34rem;
+  min-height: 0.82rem;
+  padding: 0 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.32rem;
   letter-spacing: 0.08em;
 }
 
 .episodeFeatureRowTitle {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.46rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.44rem;
   font-weight: 500;
 }
 
 .episodeFeatureRowArrow {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.56rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.52rem;
 }
 
 .episodeHeroThumb {
   position: relative;
-  aspect-ratio: 1.62;
+  aspect-ratio: 1.72;
   overflow: hidden;
   background:
     radial-gradient(circle at 70% 24%, rgba(255, 186, 39, 0.34), transparent 16%),

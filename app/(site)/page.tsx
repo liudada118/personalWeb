@@ -264,6 +264,16 @@ export default async function HomePage() {
               <span className={styles.episodePlatformTag}>小红书</span>
             </div>
             <div className={styles.episodeFeatureCard}>
+              <div className={styles.episodeFeatureIndexStrip}>
+                {["播客节目", "媒体活动", "深度内容"].map((label, i) => (
+                  <div
+                    className={`${styles.episodeFeatureIndexItem} ${i === 0 ? styles.episodeFeatureIndexItemActive : ""}`}
+                    key={`index-${label}`}
+                  >
+                    {label}
+                  </div>
+                ))}
+              </div>
               <div className={styles.episodeFeatureRows}>
                 {featuredEpisodeRows.map((episode, index) => (
                   <div
