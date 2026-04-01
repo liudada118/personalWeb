@@ -73,7 +73,7 @@
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(2.016rem, 3.24vw, 3.456rem);
+  font-size: clamp(1.45rem, 2.33vw, 2.49rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -164,11 +164,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2rem;
-  padding: 0 1.2rem;
+  min-height: 2.1rem;
+  padding: 0 1.1rem;
   border: 1px solid rgba(163, 210, 10, 0.5);
   color: #a3d20a;
-  font-size: 0.52rem;
+  font-size: 0.55rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   background: rgba(10, 18, 10, 0.42);
@@ -265,7 +265,7 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(0.972rem, 1.512vw, 1.368rem);
+  font-size: clamp(0.7rem, 1.09vw, 0.98rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.025em;
@@ -397,7 +397,7 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.82);
   font-family: var(--font-display);
-  font-size: clamp(0.4896rem, 0.684vw, 0.6336rem);
+  font-size: clamp(0.352rem, 0.49vw, 0.456rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.2em;
@@ -539,7 +539,7 @@
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.648rem, 0.864vw, 0.864rem);
+  font-size: clamp(0.47rem, 0.62vw, 0.62rem);
   letter-spacing: 0.16em;
 }
 
@@ -908,7 +908,7 @@
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: clamp(1.08rem, 1.584vw, 1.44rem);
+  font-size: clamp(0.78rem, 1.14vw, 1.04rem);
   letter-spacing: 0.04em;
   text-transform: none;
   font-weight: 600;
@@ -935,7 +935,7 @@
 
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.684rem, 0.792vw, 0.9rem);
+  font-size: clamp(0.49rem, 0.57vw, 0.65rem);
   letter-spacing: 0.06em;
 }
 

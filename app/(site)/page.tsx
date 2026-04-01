@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
-const heroTitle = "DENNIS YUXUAN LIU";
+const heroTitle = "\u201CDENNIS YUXUAN LIU\u201D";
 const podcastCarouselCards = [
   {
     episodeCode: "EP01",
@@ -196,7 +196,7 @@ export default async function HomePage() {
                   ))}
                 </div>
                 <a className={styles.heroUtilityBadge} href="/about">
-                  个人介绍
+                  VIEW WORK
                 </a>
               </div>
               <div className={styles.heroVisual}>
