@@ -1,7 +1,7 @@
 ﻿.page {
   background:
-    radial-gradient(circle at 79% 12%, rgba(83, 111, 96, 0.18), transparent 18%),
-    radial-gradient(circle at 12% 86%, rgba(116, 151, 18, 0.14), transparent 20%),
+    radial-gradient(circle at 79% 12%, rgba(83, 111, 96, 0.16), transparent 18%),
+    radial-gradient(circle at 12% 86%, rgba(116, 151, 18, 0.12), transparent 20%),
     linear-gradient(180deg, #020503 0%, #040806 100%);
   color: #eff1e8;
 }
@@ -25,8 +25,8 @@
 .heroGrid {
   position: relative;
   display: grid;
-  /* Unbalanced composition — left takes less, right takes more */
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 2.6fr);
+  /* Text ~60%, portrait ~40% — matching reference proportions */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
   min-height: clamp(31rem, 42vw, 38rem);
   /* Continuous dark space — no hard vertical dividers */
   background: #0c140a;
@@ -38,9 +38,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 82%, rgba(112, 141, 15, 0.18), transparent 32%),
-    radial-gradient(circle at 8% 28%, rgba(58, 98, 12, 0.12), transparent 24%),
-    radial-gradient(circle at 55% 5%, rgba(255, 255, 255, 0.04), transparent 18%);
+    radial-gradient(circle at 18% 82%, rgba(112, 141, 15, 0.16), transparent 32%),
+    radial-gradient(circle at 8% 28%, rgba(58, 98, 12, 0.1), transparent 24%),
+    radial-gradient(circle at 55% 5%, rgba(255, 255, 255, 0.035), transparent 18%);
   pointer-events: none;
 }
 
@@ -51,17 +51,17 @@
   align-content: center;
   align-items: start;
   gap: 0;
-  padding: 7rem 2.4rem 4.8rem 7.2rem;
+  padding: 7.5rem 3rem 5rem 8rem;
 }
 
 /* Kicker — small label above title */
 .heroKicker {
-  margin: 0 0 0.9rem;
-  color: rgba(163, 210, 10, 0.55);
+  margin: 0 0 1rem;
+  color: rgba(163, 210, 10, 0.5);
   font-family: var(--font-body);
   font-size: 0.44rem;
   font-weight: 500;
-  letter-spacing: 0.48em;
+  letter-spacing: 0.52em;
   text-transform: uppercase;
 }
 
@@ -71,23 +71,23 @@
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(2.6rem, 4.2vw, 4rem);
+  font-size: clamp(2.5rem, 4.2vw, 3.9rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 /* Subtitle / descriptor line */
 .heroSub {
-  margin: 0.75rem 0 0;
-  color: rgba(255, 255, 255, 0.42);
+  margin: 0.8rem 0 0;
+  color: rgba(255, 255, 255, 0.4);
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 400;
   line-height: 1.4;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -95,25 +95,25 @@
 .heroCopyMeta {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-top: 2.8rem;
-  padding-top: 1.4rem;
+  gap: 1.4rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .heroCopyMetaLink {
   display: inline-flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.4rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: color 160ms ease;
+  transition: color 200ms ease;
 }
 
 .heroCopyMetaLink:hover {
-  color: rgba(163, 210, 10, 0.8);
+  color: rgba(163, 210, 10, 0.85);
 }
 
 /* Full-screen visual area — no isolated portrait card, minimal boundary */
@@ -123,7 +123,7 @@
   overflow: hidden;
   /* Dominant visual background — blends from dark into richer tones */
   background:
-    linear-gradient(160deg, #1c2a18 0%, #2a3828 28%, #30382f 100%);
+    linear-gradient(160deg, #1c2a18 0%, #263520 28%, #2e3828 100%);
 }
 
 /* Soft light source overlay — no hard edges */
@@ -132,9 +132,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 62% 18%, rgba(255, 255, 255, 0.08), transparent 22%),
-    radial-gradient(circle at 30% 80%, rgba(112, 141, 15, 0.14), transparent 30%),
-    linear-gradient(180deg, rgba(12, 18, 14, 0.2) 0%, rgba(12, 18, 14, 0) 40%);
+    radial-gradient(circle at 62% 18%, rgba(255, 255, 255, 0.07), transparent 22%),
+    radial-gradient(circle at 30% 80%, rgba(112, 141, 15, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(12, 18, 14, 0.18) 0%, rgba(12, 18, 14, 0) 40%);
   pointer-events: none;
   z-index: 1;
 }
@@ -156,21 +156,22 @@
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
-  min-height: 1.1rem;
-  padding: 0 0.7rem;
-  border: 1px solid rgba(203, 255, 31, 0.38);
-  color: rgba(163, 210, 10, 0.85);
+  min-height: 1.15rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(163, 210, 10, 0.35);
+  color: rgba(163, 210, 10, 0.82);
   font-size: 0.44rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: rgba(12, 20, 10, 0.4);
-  backdrop-filter: blur(6px);
-  transition: border-color 160ms ease, color 160ms ease;
+  background: rgba(12, 20, 10, 0.42);
+  backdrop-filter: blur(8px);
+  transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 
 .heroUtilityBadge:hover {
-  border-color: rgba(203, 255, 31, 0.7);
+  border-color: rgba(163, 210, 10, 0.72);
   color: #a3d20a;
+  background: rgba(12, 24, 10, 0.6);
 }
 
 /* Portrait scene — bleeds edge to edge, not a framed card */
@@ -186,7 +187,7 @@
   background-position: 72% 18%;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: saturate(0.92) brightness(0.9) contrast(1.02);
+  filter: saturate(0.88) brightness(0.92) contrast(1.04);
 }
 
 /* Soft ambient glow on portrait — no hard glow rings */
@@ -194,9 +195,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 28% 8%, rgba(255, 255, 255, 0.12), transparent 14%),
-    radial-gradient(circle at 68% 72%, rgba(112, 141, 15, 0.1), transparent 28%),
-    linear-gradient(180deg, rgba(12, 18, 14, 0.06) 0%, rgba(12, 18, 14, 0) 50%, rgba(12, 18, 14, 0.18) 100%);
+    radial-gradient(circle at 28% 8%, rgba(255, 255, 255, 0.1), transparent 14%),
+    radial-gradient(circle at 68% 72%, rgba(112, 141, 15, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(12, 18, 14, 0.08) 0%, rgba(12, 18, 14, 0) 50%, rgba(12, 18, 14, 0.22) 100%);
 }
 
 /* Removed: heroFigure, heroFigureHead, heroFigureHair, heroFigureEar,
@@ -213,24 +214,24 @@
 
 .statementGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-  gap: 3.2rem;
-  align-items: center;
-  padding: 3.8rem 6.2rem 3rem;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.55fr);
+  gap: 2.4rem;
+  align-items: start;
+  padding: 4.5rem 6.5rem 3rem;
 }
 
 .quoteBlock {
   position: relative;
-  padding-top: 0.05rem;
-  padding-left: 0.5rem;
+  padding-top: 0.08rem;
+  padding-left: 0.55rem;
 }
 
 .quoteBlock::before {
   content: "\201C";
   position: absolute;
-  left: -0.25rem;
-  top: -0.6rem;
-  color: rgba(203, 255, 31, 0.6);
+  left: -0.15rem;
+  top: -0.55rem;
+  color: rgba(163, 210, 10, 0.55);
   font-family: var(--font-body);
   font-size: clamp(5rem, 9vw, 8.5rem);
   font-weight: 700;
@@ -259,35 +260,38 @@
   display: grid;
   justify-items: start;
   align-content: start;
-  gap: 1rem;
-  padding-top: 0.4rem;
+  gap: 1.1rem;
+  padding-top: 0.1rem;
 }
 
 .statementCopy p {
   margin: 0;
   max-width: 22ch;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.84rem;
-  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.82rem;
+  line-height: 1.6;
 }
 
 .statementButton {
   display: inline-flex;
   align-items: center;
-  min-height: 2.2rem;
-  padding: 0 1rem;
-  border: 1px solid rgba(167, 207, 23, 0.48);
-  color: #a7cf17;
-  font-size: 0.52rem;
-  letter-spacing: 0.12em;
+  min-height: 2.4rem;
+  padding: 0 1.1rem;
+  border: 1px solid rgba(163, 210, 10, 0.45);
+  color: #a3d20a;
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: border-color 160ms ease, color 160ms ease;
+  transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
+  background: rgba(10, 20, 8, 0.3);
+  backdrop-filter: blur(4px);
 }
 
 .statementButton:hover {
-  border-color: rgba(203, 255, 31, 0.8);
-  color: #cbff1f;
+  border-color: rgba(163, 210, 10, 0.85);
+  color: #a3d20a;
+  background: rgba(20, 36, 12, 0.5);
 }
 
 .inlineLink,
@@ -299,8 +303,8 @@
   min-height: 2.4rem;
   padding: 0 0 0.22rem;
   border-bottom: 1px solid currentColor;
-  color: #cbff1f;
-  font-size: 0.74rem;
+  color: #a3d20a;
+  font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -312,16 +316,16 @@
 .videoStage {
   display: grid;
   justify-items: center;
-  padding-top: 0.6rem;
+  padding-top: 0.8rem;
 }
 
 .videoPanel {
   display: grid;
   place-items: center;
   gap: 0.75rem;
-  min-height: 16rem;
+  min-height: 18rem;
   margin: 0 auto;
-  width: min(82%, 50rem);
+  width: min(90%, 62rem);
   background: #9a9d94;
 }
 
@@ -335,21 +339,21 @@
 .videoIcon {
   display: grid;
   place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  border: 1px solid rgba(203, 255, 31, 0.7);
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(163, 210, 10, 0.7);
   border-radius: 999px;
-  color: #cbff1f;
-  font-size: 0.82rem;
+  color: #a3d20a;
+  font-size: 0.88rem;
 }
 
 .videoCaption {
   justify-self: end;
-  margin-top: 0.55rem;
-  width: min(82%, 50rem);
-  color: rgba(255, 255, 255, 0.54);
-  font-size: 0.4rem;
-  letter-spacing: 0.06em;
+  margin-top: 0.6rem;
+  width: min(90%, 62rem);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.42rem;
+  letter-spacing: 0.08em;
 }
 
 .podcastRailSection {
@@ -360,7 +364,7 @@
 .sectionHeaderCenter {
   display: grid;
   justify-items: center;
-  padding: 0.15rem 0 1.1rem;
+  padding: 0.2rem 0 1.3rem;
 }
 
 .sectionHeaderCenter h2,
@@ -368,12 +372,12 @@
 .profileCopy h2,
 .worksHeader h2 {
   margin: 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.68);
   font-family: var(--font-display);
-  font-size: clamp(0.78rem, 1.1vw, 1rem);
+  font-size: clamp(0.72rem, 1vw, 0.95rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
@@ -391,20 +395,22 @@
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 0.92rem;
-  height: 0.92rem;
-  border: 1px solid rgba(167, 207, 23, 0.55);
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid rgba(163, 210, 10, 0.45);
   border-radius: 999px;
-  background: transparent;
-  color: rgba(167, 207, 23, 0.8);
-  font-size: 0.52rem;
+  background: rgba(6, 16, 8, 0.6);
+  backdrop-filter: blur(4px);
+  color: rgba(163, 210, 10, 0.75);
+  font-size: 0.58rem;
   cursor: pointer;
-  transition: border-color 200ms ease, color 200ms ease;
+  transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 
 .railArrow:hover {
-  border-color: rgba(167, 207, 23, 0.9);
-  color: #cbff1f;
+  border-color: rgba(163, 210, 10, 0.85);
+  color: #a3d20a;
+  background: rgba(10, 24, 12, 0.8);
 }
 
 .railArrow:first-of-type {
@@ -418,7 +424,7 @@
 .episodeGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
+  gap: 0.55rem;
 }
 
 .episodeCard {
@@ -429,22 +435,22 @@
 
 .episodeThumb {
   aspect-ratio: 4 / 3;
-  background: linear-gradient(180deg, rgba(119, 124, 115, 0.84) 0%, rgba(106, 110, 103, 0.96) 100%);
+  background: linear-gradient(160deg, rgba(119, 124, 115, 0.82) 0%, rgba(100, 104, 96) 100%);
 }
 
 .episodeCard strong,
 .workCard strong,
 .episodeFeatureFooter strong {
   color: #ffffff;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 500;
 }
 
 .episodeCardTitle {
   color: #ffffff;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.28;
   letter-spacing: 0.01em;
 }
 
@@ -459,21 +465,23 @@
 .carouselDots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 0 0.5rem;
+  gap: 0.6rem;
+  padding: 0.85rem 0 0.6rem;
 }
 
 .carouselDots span {
-  width: 0.2rem;
-  height: 0.2rem;
+  width: 0.22rem;
+  height: 0.22rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.32);
+  transition: background 200ms ease, transform 200ms ease;
 }
 
 .carouselDots .dotActive {
-  width: 0.2rem;
-  height: 0.2rem;
-  background: rgba(167, 207, 23, 0.85);
+  width: 0.22rem;
+  height: 0.22rem;
+  background: #a3d20a;
+  transform: scale(1.15);
 }
 
 .episodeFeatureSection {
@@ -486,7 +494,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1.2rem;
-  padding-bottom: 0.7rem;
+  padding-bottom: 0.8rem;
 }
 
 .episodeFeatureIntro h2,
@@ -495,9 +503,9 @@
 }
 
 .episodeFeatureIntro p {
-  margin: 0.3rem 0 0;
-  color: rgba(18, 22, 18, 0.72);
-  font-size: 0.68rem;
+  margin: 0.35rem 0 0;
+  color: rgba(18, 22, 18, 0.7);
+  font-size: 0.66rem;
   letter-spacing: 0.05em;
 }
 
@@ -587,10 +595,10 @@
 
 .episodeHeroThumb {
   position: relative;
-  aspect-ratio: 1.72;
+  aspect-ratio: 1.5;
   overflow: hidden;
   background:
-    radial-gradient(circle at 70% 24%, rgba(255, 186, 39, 0.34), transparent 16%),
+    radial-gradient(circle at 68% 22%, rgba(255, 186, 39, 0.3), transparent 15%),
     linear-gradient(135deg, #211916 0%, #3e2d1f 34%, #85612f 100%);
 }
 
@@ -733,24 +741,24 @@
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: 0.96rem;
-  letter-spacing: 0.04em;
+  font-size: 0.94rem;
+  letter-spacing: 0.06em;
   text-transform: none;
   font-weight: 500;
 }
 
 .profileCopy p {
   margin: 0;
-  max-width: 40ch;
-  color: rgba(255, 255, 255, 0.72);
+  max-width: 42ch;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.72rem;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .worksSection {
-  padding: 2.8rem 0 2.6rem;
-  background: #f5f7f3;
-  border-top: 1px solid rgba(17, 23, 19, 0.1);
+  padding: 3.2rem 0 3.8rem;
+  background: #f5f4f1;
+  border-top: 1px solid rgba(17, 23, 19, 0.08);
 }
 
 .worksHeader {
@@ -759,8 +767,8 @@
 
 .worksHeader h2 {
   color: #121612;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
 }
 
 .worksGrid {
@@ -785,7 +793,7 @@
 
 .workThumb {
   background: #ffffff;
-  border: 1px solid rgba(17, 23, 19, 0.04);
+  border: 1px solid rgba(17, 23, 19, 0.06);
   box-shadow: none;
 }
 
@@ -794,7 +802,7 @@
 }
 
 .workCardSmall .workThumb {
-  aspect-ratio: 1;
+  aspect-ratio: 0.95;
 }
 
 .workCard span,
@@ -817,15 +825,15 @@
 .exploreLink {
   width: 100%;
   justify-content: flex-start;
-  margin-top: 1.35rem;
-  min-height: 1.8rem;
+  margin-top: 1.5rem;
+  min-height: 2rem;
   padding-top: 0;
-  padding-bottom: 0.15rem;
+  padding-bottom: 0.18rem;
   border-top: 0;
-  border-bottom: 1px solid rgba(17, 23, 19, 0.22);
+  border-bottom: 1px solid rgba(17, 23, 19, 0.2);
   color: #111713;
-  font-size: 0.7rem;
-  letter-spacing: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
   text-transform: none;
 }
 
