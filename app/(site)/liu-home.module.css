@@ -73,7 +73,7 @@
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  font-size: clamp(2.016rem, 3.24vw, 3.456rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -193,7 +193,7 @@
   position: absolute;
   left: clamp(-6rem, -8vw, -2rem);
   bottom: 0;
-  width: min(52rem, 100%);
+  width: 30%;
   height: 100%;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -265,7 +265,7 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(1.35rem, 2.1vw, 1.9rem);
+  font-size: clamp(0.972rem, 1.512vw, 1.368rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.025em;
@@ -397,7 +397,7 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.82);
   font-family: var(--font-display);
-  font-size: clamp(0.68rem, 0.95vw, 0.88rem);
+  font-size: clamp(0.4896rem, 0.684vw, 0.6336rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.2em;
@@ -525,7 +525,7 @@
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  font-size: clamp(0.648rem, 0.864vw, 0.864rem);
   letter-spacing: 0.16em;
 }
 
@@ -553,6 +553,20 @@
   width: min(880px, 100%);
 }
 
+/* GSAP ScrollTrigger stacked cards section */
+.episodeFeatureSectionInner {
+  position: relative;
+  will-change: transform;
+}
+
+/* Stack container — holds all stacked cards */
+.episodeFeatureStack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 /* FIX 3: Upper strip — two stacked content cards, not thin tabs */
 .episodeFeatureUpperCards {
   display: flex;
@@ -560,7 +574,9 @@
   gap: 0.5rem;
 }
 
+/* Individual stacked card — GSAP animates height/opacity/y/scale */
 .episodeFeatureUpperCard {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
@@ -572,13 +588,14 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
   cursor: pointer;
-  transition: background 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  overflow: hidden;
+  transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease;
+  will-change: height, opacity, transform;
 }
 
 .episodeFeatureUpperCard:hover {
   background: #252d1e;
   color: rgba(163, 210, 10, 0.85);
-  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -586,7 +603,6 @@
   background: #2e3828;
   color: #a3d20a;
   border-color: rgba(163, 210, 10, 0.25);
-  transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
@@ -692,11 +708,34 @@
   font-weight: 300;
 }
 
+/* GSAP ScrollTrigger progress dots */
+.episodeFeatureProgress {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.episodeFeatureDot {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(18, 22, 18, 0.2);
+  transition: background 300ms ease, transform 300ms ease;
+}
+
+.episodeFeatureDotActive {
+  background: #a3d20a;
+  transform: scale(1.3);
+}
+
 /* FIX 5: Main card composition — left shape smaller, card more balanced */
 .episodeHeroThumb {
   position: relative;
   aspect-ratio: 1.5;
   overflow: hidden;
+  will-change: opacity, transform;
+
   background:
     radial-gradient(circle at 68% 22%, rgba(255, 186, 39, 0.3), transparent 15%),
     linear-gradient(135deg, #211916 0%, #3e2d1f 34%, #85612f 100%);
@@ -855,7 +894,7 @@
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: clamp(1.08rem, 1.584vw, 1.44rem);
   letter-spacing: 0.04em;
   text-transform: none;
   font-weight: 600;
@@ -882,7 +921,7 @@
 
 .worksHeader h2 {
   color: #121612;
-  font-size: 0.95rem;
+  font-size: clamp(0.684rem, 0.792vw, 0.9rem);
   letter-spacing: 0.06em;
 }
 
@@ -968,7 +1007,7 @@
 
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-size: clamp(1.728rem, 3.024vw, 2.592rem);
 }
 
 .page :global(.homeFooterSlash) {
@@ -1063,11 +1102,11 @@
 
 @media (max-width: 960px) {
   .shell {
-    width: min(100vw - 28px, 100%);
+    max-width: 100vw;
   }
 
   .heroShell {
-    width: 100%;
+    max-width: 100vw;
   }
 
   .heroGrid,
