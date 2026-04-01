@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
-const heroTitle = "\u201CDENNIS YUXUAN LIU\u201D";
+const heroTitle = "THE ADOLESCENT \u201CCHUUNIBYOU\u201D SPIRIT TAUGHT ME TO FACE LIFE\u2019S CHALLENGES WITHOUT FEAR";
 const podcastCarouselCards = [
   {
     episodeCode: "EP01",

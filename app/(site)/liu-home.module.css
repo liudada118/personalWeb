@@ -51,7 +51,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0;
-  max-width: 58%;
+  max-width: 41.76%;
   min-height: 100svh;
   padding:
     clamp(15.2rem, 27vh, 18.6rem)
@@ -74,12 +74,12 @@
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(2.18rem, 3.62vw, 3.82rem);
+  font-size: clamp(1.1304rem, 1.8792vw, 1.98rem);
   font-weight: 500;
   line-height: 0.92;
   letter-spacing: -0.072em;
   text-transform: uppercase;
-  white-space: nowrap;
+  white-space: normal;
   overflow: visible;
 }
 
@@ -123,7 +123,7 @@
 .heroSocialLink span {
   display: inline-block;
   transform: rotate(-45deg);
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .heroSocialLink:hover {
@@ -193,13 +193,14 @@
 
 .heroPortraitReference {
   position: absolute;
-  left: clamp(-6rem, -8vw, -2rem);
+  right: 0;
+  left: auto;
   bottom: 0;
   width: 30%;
   height: 100%;
-  background-position: center bottom;
+  background-position: right bottom;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% auto;
   filter: saturate(0.9) brightness(0.92) contrast(1.02);
 }
 
@@ -244,7 +245,7 @@
   top: -0.4rem;
   color: rgba(163, 210, 10, 0.6);
   font-family: var(--font-body);
-  font-size: clamp(5.5rem, 10vw, 9rem);
+  font-size: clamp(3.96rem, 7.2vw, 6.48rem);
   font-weight: 700;
   line-height: 1;
   pointer-events: none;
@@ -257,7 +258,7 @@
   bottom: -0.4rem;
   color: rgba(163, 210, 10, 0.6);
   font-family: var(--font-body);
-  font-size: clamp(5.5rem, 10vw, 9rem);
+  font-size: clamp(3.96rem, 7.2vw, 6.48rem);
   font-weight: 700;
   line-height: 1;
   pointer-events: none;
@@ -267,7 +268,7 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(0.7rem, 1.09vw, 0.98rem);
+  font-size: clamp(0.36288rem, 0.56506vw, 0.50803rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.025em;
@@ -399,7 +400,7 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.82);
   font-family: var(--font-display);
-  font-size: clamp(0.352rem, 0.49vw, 0.456rem);
+  font-size: clamp(0.18248rem, 0.25402vw, 0.23639rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.2em;
@@ -541,14 +542,14 @@
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.47rem, 0.62vw, 0.62rem);
+  font-size: clamp(0.24365rem, 0.32141vw, 0.32141rem);
   letter-spacing: 0.16em;
 }
 
 .episodeFeatureIntro p {
   margin: 0.35rem 0 0;
   color: rgba(18, 22, 18, 0.72);
-  font-size: 0.85rem;
+  font-size: 0.612rem;
   letter-spacing: 0.04em;
 }
 
@@ -910,7 +911,7 @@
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: clamp(0.78rem, 1.14vw, 1.04rem);
+  font-size: clamp(0.40435rem, 0.5910vw, 0.53914rem);
   letter-spacing: 0.04em;
   text-transform: none;
   font-weight: 600;
@@ -937,7 +938,7 @@
 
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.49rem, 0.57vw, 0.65rem);
+  font-size: clamp(0.25402rem, 0.29549vw, 0.33696rem);
   letter-spacing: 0.06em;
 }
 
@@ -1023,7 +1024,7 @@
 
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(1.728rem, 3.024vw, 2.592rem);
+  font-size: clamp(0.8958rem, 1.5676vw, 1.3437rem);
 }
 
 .page :global(.homeFooterSlash) {
@@ -1218,7 +1219,7 @@
   }
 
   .heroTitle {
-    font-size: clamp(2.6rem, 13vw, 3.2rem);
+    font-size: clamp(1.872rem, 9.36vw, 2.304rem);
   }
 
   .statementGrid,

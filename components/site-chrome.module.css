@@ -39,7 +39,7 @@
 }
 
 .homeBrandPrimary {
-  font-size: clamp(1.48rem, 1.72vw, 1.84rem);
+  font-size: clamp(1.0656rem, 1.2384vw, 1.3248rem);
   line-height: 1;
 }
 
@@ -61,7 +61,7 @@
 
 .homeNavLink {
   position: relative;
-  color: rgba(186, 221, 92, 0.82);
+  color: #a3d20a;
   font-size: 0.58rem;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -80,12 +80,11 @@
   right: 0;
   bottom: -0.18rem;
   height: 0.5px;
-  background: rgba(216, 240, 106, 0.78);
+  background: rgba(163, 210, 10, 0.78);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 180ms ease;
 }
-
 .homeNavLink:hover::after,
 .homeNavLink:focus-visible::after,
 .homeNavLinkActive::after {
