@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
-const heroTitle = "DENNIS\nYUXUAN LIU";
+const heroTitle = "DENNIS YUXUAN LIU";
 const heroKicker = "Narrative & Law";
 const heroSub = "Legal Narrative / Public Discourse";
 const podcastCarouselCards = [
@@ -159,10 +159,12 @@ export default async function HomePage() {
                 <p className={styles.heroKicker}>{heroKicker}</p>
                 <h1 className={styles.heroTitle}>{heroTitle}</h1>
                 <p className={styles.heroSub}>{heroSub}</p>
-                <div className={styles.heroCopyMeta}>
+              </div>
+              <div className={styles.heroUtilityRow}>
+                <div className={styles.heroSocialLinks}>
                   {heroSocialLinks.map((item) => (
                     <a
-                      className={styles.heroCopyMetaLink}
+                      className={styles.heroSocialLink}
                       href={item.href}
                       key={`hero-social-${item.platform}`}
                       rel="noreferrer"
@@ -172,6 +174,9 @@ export default async function HomePage() {
                     </a>
                   ))}
                 </div>
+                <a className={styles.heroUtilityBadge} href="/about">
+                  个人介绍
+                </a>
               </div>
               <div className={styles.heroVisual}>
                 <div className={styles.heroPortraitScene}>
