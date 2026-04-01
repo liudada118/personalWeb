@@ -99,14 +99,14 @@ function getHeroSocialLabel(platform: string, label: string) {
   }
 
   if (source.includes("bilibili") || source.includes("??") || source.includes("b?")) {
-    return "B?";
+    return "B";
   }
 
   if (source.includes("???") || source.includes("rednote") || source.includes("xiaohongshu")) {
-    return "???";
+    return "?";
   }
 
-  return platform || label;
+  return (platform || label).slice(0, 2);
 }
 
 export default async function HomePage() {

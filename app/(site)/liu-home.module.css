@@ -84,9 +84,9 @@
 
 .heroUtilityRow {
   position: absolute;
-  top: 1.28rem;
-  left: 3.2rem;
-  right: 1.85rem;
+  top: 1.18rem;
+  left: 6.8rem;
+  right: 1.55rem;
   z-index: 3;
   display: flex;
   align-items: center;
@@ -97,7 +97,7 @@
 .heroSignals {
   display: flex;
   align-items: center;
-  gap: 0.34rem;
+  gap: 0.28rem;
   flex-wrap: nowrap;
 }
 
@@ -105,15 +105,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 1.92rem;
+  min-width: 1.58rem;
+  width: 1.58rem;
   height: 1.58rem;
-  padding: 0 0.36rem;
-  border: 1px solid rgba(255, 255, 255, 0.58);
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.54);
   color: rgba(255, 255, 255, 0.84);
-  font-size: 0.46rem;
+  font-size: 0.42rem;
   line-height: 1;
   letter-spacing: 0;
   white-space: nowrap;
+  flex: 0 0 auto;
   clip-path: polygon(18% 0%, 82% 0%, 100% 50%, 82% 100%, 18% 100%, 0% 50%);
   transition:
     border-color 160ms ease,
@@ -131,11 +133,11 @@
 .heroUtilityBadge {
   display: inline-flex;
   align-items: center;
-  min-height: 1.78rem;
-  padding: 0 0.82rem;
+  min-height: 1.72rem;
+  padding: 0 0.74rem;
   border: 1px solid rgba(203, 255, 31, 0.54);
   color: #b6db1f;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }

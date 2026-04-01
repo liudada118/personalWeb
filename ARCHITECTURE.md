@@ -1,6 +1,6 @@
 ﻿# Architecture
 
-Last updated: `2026-03-31 23:49`  
+Last updated: `2026-04-01 09:53`  
 Git branch: `liu`
 
 ## 1. Overview
@@ -323,6 +323,7 @@ Visual behavior:
 - a second first-screen refinement pass pushed the hero closer to the reference by turning the headline into a single-line declaration, reducing nav/logo weight, and enlarging the right portrait zone so the visual center sits more decisively on the right side
 - the hero utility links were then converted from decorative placeholders into actual outbound social links, with dedicated non-overlapping pill geometry so the homepage top-right social cluster stays readable and clickable
 - the hero social pills now intentionally render short platform tags rather than long backend labels, preventing the first-screen utility row from colliding with the main navigation when Chinese labels are verbose
+- that social cluster was then reduced one step further to icon-scale short tags and moved deeper into the portrait area so it no longer visually competes with the primary top navigation band
 
 
 ## 12. Project status
@@ -379,6 +380,8 @@ Visual behavior:
 
 | 2026-03-31 23:45 | liu | Homepage social-link overlap fix | Replaced the decorative top-right hero placeholders with real outbound social links and widened their geometry so ??? / B? / LinkedIn no longer overlap |
 
+| 2026-04-01 09:53 | codex | Hero social cluster compression | Reduced the homepage hero social links to icon-scale tags and pushed the utility cluster farther right so it stays inside the portrait zone instead of colliding with the main navigation |
+
 ## 13. Update log
 
 | Time | Branch | Change type | Description |
@@ -428,4 +431,5 @@ Visual behavior:
 | 2026-03-31 23:13 | liu | UX refinement | Tightened the Dennis/Liu homepage first screen toward the supplied reference by converting the top navigation into a transparent overlay, reducing the left-side panel feeling, re-spacing the headline block, and rebuilding the right-side portrait area as a fuller hero visual composition |
 | 2026-03-31 23:32 | liu | UX refinement | Performed a second Dennis/Liu first-screen fidelity pass by reducing the logo/nav weight, increasing the headline?s horizontal statement feel, and enlarging the right-side figure so the hero reads less like a split module and more like an editorial portrait-led opening |
 | 2026-03-31 23:45 | liu | Bug fix | Fixed the Dennis/Liu homepage hero utility cluster by wiring the social pills to real site settings links and giving the top-right social icons enough width / no-wrap layout so they no longer overlap |
-| 2026-03-31 23:49 | liu | Bug fix | Fixed the remaining homepage hero social overlap by rendering shortened platform tags like ??? / B? / in instead of full backend link labels, and by shifting the utility row farther right within the portrait panel |
+| 2026-03-31 23:49 | liu | Bug fix | Fixed the remaining homepage hero social overlap by rendering shortened platform tags like ? / B / in instead of full backend link labels, and by shifting the utility row farther right within the portrait panel |
+| 2026-04-01 09:53 | codex | Bug fix | Compressed the homepage hero social links down to fixed-width short tags like ? / B / in and shifted the utility row deeper into the right visual area so the social links no longer overlap the primary navigation band |
