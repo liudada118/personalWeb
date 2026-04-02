@@ -211,7 +211,7 @@
 
 /* Removed: heroFigure, heroFigureHead, heroFigureHair, heroFigureEar,
    heroFigureNeck, heroFigureJacket, heroFigureShirt, heroFigureTie,
-   heroFigureLapels — these were unrelated floating decorative elements */
+   heroFigureLapels - these were unrelated floating decorative elements */
 
 .statementSection {
   padding: 0 0 2.2rem;
@@ -543,7 +543,7 @@
 }
 
 .episodeFeatureSection {
-  /* Clean light background section — white/off-white, ample breathing room */
+  /* Clean light background section - white/off-white, ample breathing room */
   padding-top: 0;
   padding-bottom: 200vh;
   background: #f8f7f4;
@@ -555,12 +555,12 @@
 
 .episodeFeatureSectionInner {
   position: relative;
-  /* The actual pinned container — GSAP ScrollTrigger will pin this
+  /* The actual pinned container - GSAP ScrollTrigger will pin this
      against the outer .episodeFeatureSection scroll distance */
   will-change: transform;
 }
 
-/* FIX 3 & 8: Title area — cleaner hierarchy: main title bold + large, subtitle lighter, platform tag small accent */
+/* FIX 3 & 8: Title area - cleaner hierarchy: main title bold + large, subtitle lighter, platform tag small accent */
 .episodeFeatureIntro {
   display: flex;
   align-items: flex-end;
@@ -616,7 +616,7 @@
   will-change: transform;
 }
 
-/* Stack container — dark index bars at the top of the section */
+/* Stack container - dark index bars at the top of the section */
 .episodeFeatureStack {
   position: relative;
   display: flex;
@@ -624,14 +624,14 @@
   gap: 0.35rem;
 }
 
-/* FIX 3: Upper strip — two stacked dark bars acting as index entries */
+/* FIX 3: Upper strip - two stacked dark bars acting as index entries */
 .episodeFeatureUpperCards {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-/* Individual stacked card — GSAP animates height/opacity/y/scale */
+/* Individual stacked card - GSAP animates height/opacity/y/scale */
 /* Dark index bars with order indicator */
 .episodeFeatureUpperCard {
   position: relative;
@@ -666,7 +666,7 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
-/* Order number — shows the position in the index */
+/* Order number - shows the position in the index */
 .episodeFeatureUpperCardOrder {
   font-size: 0.62rem;
   font-weight: 700;
@@ -730,7 +730,7 @@
 }
 
 /* FIX 9: More space between upper cards and main card */
-/* FIX 6: Layered push — rows animate when switching cards */
+/* FIX 6: Layered push - rows animate when switching cards */
 .episodeFeatureRows {
   display: grid;
   gap: 0.18rem;
@@ -798,7 +798,7 @@
   color: #ffffff;
 }
 
-/* FIX 7: Right arrow button — stronger, more visible */
+/* FIX 7: Right arrow button - stronger, more visible */
 .episodeFeatureRowArrow {
   color: rgba(255, 255, 255, 0.5);
   font-size: 1rem;
@@ -830,10 +830,10 @@
   transform: scale(1.05);
 }
 
-/* FIX 5: Main card — larger, wider video cover as dominant visual anchor */
+/* FIX 5: Main card - larger, wider video cover as dominant visual anchor */
 .episodeHeroThumb {
   position: relative;
-  /* Wider cinematic ratio — this is the main visual of the screen */
+  /* Wider cinematic ratio - this is the main visual of the screen */
   aspect-ratio: 16 / 9;
   overflow: hidden;
   will-change: opacity, transform;
@@ -845,7 +845,7 @@
     linear-gradient(135deg, #211916 0%, #3e2d1f 34%, #85612f 100%);
 }
 
-/* Left shape: human silhouette — keep as accent */
+/* Left shape: human silhouette - keep as accent */
 .episodeHeroThumb::before {
   content: "";
   position: absolute;
@@ -886,7 +886,7 @@
   font-size: 0.65rem;
 }
 
-/* FIX 4: Main card headline — bigger, more presence */
+/* FIX 4: Main card headline - bigger, more presence */
 .episodeHeroHeadline {
   position: absolute;
   top: 1rem;
@@ -919,7 +919,7 @@
   letter-spacing: 0.02em;
 }
 
-/* FIX 4: Main card stats — also bigger */
+/* FIX 4: Main card stats - also bigger */
 .episodeHeroStats {
   position: absolute;
   left: 2.2rem;
@@ -1017,7 +1017,7 @@
 .worksSection {
   padding: 3.2rem 0 4.2rem;
   background: #f5f4f1;
-  /* no border-top — the section breathes on its own */
+  /* no border-top - the section breathes on its own */
 }
 
 .worksHeader {
@@ -1055,7 +1055,7 @@
   padding-top: 0;
 }
 
-/* Cover image fills the top of the card — dominant editorial publishing feel */
+/* Cover image fills the top of the card - dominant editorial publishing feel */
 .workThumb {
   background: #e8e6e0;
   border: 1px solid rgba(17, 23, 19, 0.06);
@@ -1071,7 +1071,7 @@
   aspect-ratio: 3 / 2;
 }
 
-/* Category tag ABOVE the cover image — editorial publishing hierarchy */
+/* Category tag ABOVE the cover image - editorial publishing hierarchy */
 .workCardKind {
   order: -1;
   margin-bottom: 0.55rem;
@@ -1147,45 +1147,43 @@
 }
 
 .page :global(.homeFooterInner) {
-  align-items: end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   width: min(1240px, calc(100vw - 48px));
   padding: 0 3.4rem;
 }
 
+.page :global(.homeFooterLeft) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(0.644976rem, 1.128672vw, 0.967464rem);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .page :global(.homeFooterSlash) {
-  color: rgba(167, 207, 23, 0.8);
-  font-size: 0.72rem;
+  display: none;
 }
 
 .page :global(.homeFooterMeta) {
-  gap: 0.38rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   margin-top: 0.72rem;
 }
 
-.page :global(.homeFooterMeta p),
-.page :global(.homeFooterMeta a) {
-  font-size: 0;
-  letter-spacing: 0;
+.page :global(.homeFooterMeta p) {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.3rem;
+  letter-spacing: 0.06em;
   text-transform: none;
-}
-
-.page :global(.homeFooterMeta p:first-child)::before {
-  content: "Email address:";
-  color: rgba(255, 255, 255, 0.54);
-  font-size: 0.3rem;
-  letter-spacing: 0.06em;
-}
-
-.page :global(.homeFooterMeta p:nth-child(2))::before {
-  content: "Contact information: 12345678901";
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.3rem;
-  letter-spacing: 0.06em;
 }
 
 .page :global(.homeFooterMeta a) {
@@ -1194,8 +1192,9 @@
 
 .page :global(.homeFooterAction) {
   position: relative;
-  align-items: flex-start;
-  justify-items: end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
   gap: 0.9rem;
   padding-top: 0.28rem;
 }
@@ -1218,33 +1217,24 @@
   min-height: 1.55rem;
   padding: 0 0.55rem;
   border: 1px solid rgba(167, 207, 23, 0.74);
-  color: transparent;
-  font-size: 0;
-}
-
-.page :global(.homeFooterAction a)::before {
-  content: "TIGERPARTNERS.CN";
   color: #a7cf17;
   font-size: 0.48rem;
   letter-spacing: 0.08em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .page :global(.homeFooterNote) {
-  position: static;
-  transform: none;
-  width: auto;
-  margin-top: 1.8rem;
-  padding-top: 0.9rem;
+  width: min(1240px, calc(100vw - 48px));
+  margin: 1.8rem auto 0;
+  padding: 0.9rem 3.4rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.36);
-  font-size: 0;
+  font-size: 0.26rem;
   letter-spacing: 0.06em;
   text-align: center;
-}
-
-.page :global(.homeFooterNote)::before {
-  content: "COPYRIGHT \00A9 2026 DENNIS YUXUAN LIU. ALL RIGHTS RESERVED.";
-  font-size: 0.26rem;
+  text-transform: uppercase;
 }
 
 @media (min-width: 1600px) {
@@ -1375,8 +1365,21 @@
   }
 
   .page :global(.homeFooterInner) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
     width: min(100vw - 28px, 100%);
     padding: 0 1.1rem;
+  }
+
+  .page :global(.homeFooterAction)::before {
+    display: none;
+  }
+
+  .page :global(.homeFooterNote) {
+    width: min(100vw - 28px, 100%);
+    margin: 1.5rem auto 0;
+    padding: 0.9rem 1.1rem 0;
   }
 }
 
@@ -1460,6 +1463,12 @@
   .page :global(.homeFooterNote) {
     position: static;
     transform: none;
-    margin-top: 1rem;
+    margin: 1.5rem auto 0;
+    text-align: left;
+    padding: 0.9rem 1.1rem 0;
+  }
+
+  .page :global(.homeFooterAction)::before {
+    display: none;
   }
 }

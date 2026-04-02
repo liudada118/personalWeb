@@ -328,6 +328,26 @@ export default async function HomePage() {
           </div>
         </VisualEditRegion>
       </section>
+
+      <footer className={styles.homeFooter}>
+        <div className={styles.homeFooterInner}>
+          <div className={styles.homeFooterLeft}>
+            <p className={styles.homeFooterBrand}>DENNIS YUXUAN LIU</p>
+            <div className={styles.homeFooterMeta}>
+              <p>Email address: dennis@liu-yuxuan.com</p>
+              <p>Contact information: +86 138-0000-1234</p>
+            </div>
+          </div>
+          <div className={styles.homeFooterAction}>
+            <a aria-label="Tiger Partners domain" href="https://tigerpartners.cn" rel="noreferrer" target="_blank">
+              TIGERPARTNERS.CN
+            </a>
+          </div>
+        </div>
+        <div className={styles.homeFooterNote}>
+          COPYRIGHT © 2026 DENNIS YUXUAN LIU. ALL RIGHTS RESERVED.
+        </div>
+      </footer>
     </div>
   );
 }
