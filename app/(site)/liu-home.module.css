@@ -74,7 +74,7 @@
   margin: 0;
   color: #a3d20a;
   font-family: var(--font-body);
-  font-size: clamp(1.1304rem, 1.8792vw, 1.98rem);
+  font-size: clamp(0.813888rem, 1.353024vw, 1.4256rem);
   font-weight: 500;
   line-height: 0.92;
   letter-spacing: -0.072em;
@@ -268,7 +268,7 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(0.36288rem, 0.56506vw, 0.50803rem);
+  font-size: clamp(0.261274rem, 0.406843vw, 0.365782rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.025em;
@@ -400,7 +400,7 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.82);
   font-family: var(--font-display);
-  font-size: clamp(0.18248rem, 0.25402vw, 0.23639rem);
+  font-size: clamp(0.131386rem, 0.182894vw, 0.170201rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.2em;
@@ -542,7 +542,7 @@
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.24365rem, 0.32141vw, 0.32141rem);
+  font-size: clamp(0.175428rem, 0.231415vw, 0.231415rem);
   letter-spacing: 0.16em;
 }
 
@@ -911,7 +911,7 @@
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: clamp(0.40435rem, 0.5910vw, 0.53914rem);
+  font-size: clamp(0.291132rem, 0.42552vw, 0.388181rem);
   letter-spacing: 0.04em;
   text-transform: none;
   font-weight: 600;
@@ -938,7 +938,7 @@
 
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.25402rem, 0.29549vw, 0.33696rem);
+  font-size: clamp(0.182894rem, 0.212753vw, 0.242611rem);
   letter-spacing: 0.06em;
 }
 
@@ -1024,7 +1024,7 @@
 
 .page :global(.homeFooterBrand) {
   color: #a7cf17;
-  font-size: clamp(0.8958rem, 1.5676vw, 1.3437rem);
+  font-size: clamp(0.644976rem, 1.128672vw, 0.967464rem);
 }
 
 .page :global(.homeFooterSlash) {
@@ -1219,7 +1219,7 @@
   }
 
   .heroTitle {
-    font-size: clamp(1.872rem, 9.36vw, 2.304rem);
+    font-size: clamp(1.34784rem, 6.7392vw, 1.65888rem);
   }
 
   .statementGrid,
