@@ -17,6 +17,7 @@ interface PodcastCarouselProps {
 }
 
 export function PodcastCarousel({ cards }: PodcastCarouselProps) {
+  const cardToneClasses = [styles.cardToneLead, styles.cardToneCore, styles.cardToneEcho];
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
@@ -67,15 +68,24 @@ export function PodcastCarousel({ cards }: PodcastCarouselProps) {
           <div className={styles.track}>
             {cards.map((card, index) => (
               <div className={styles.slide} key={`${card.episodeCode}-${index}`}>
-                <article className={styles.card}>
-                  <div className={styles.cardThumb} />
+                <article className={`${styles.card} ${cardToneClasses[index % cardToneClasses.length]}`}>
+                  <div className={styles.cardThumb}>
+                    <div className={styles.cardThumbInner}>
+                      <span className={styles.cardThumbLabel}>Featured Audio</span>
+                      <span aria-hidden="true" className={styles.cardThumbIndex}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                  </div>
                   <div className={styles.cardBody}>
-                    <span className={styles.cardCode}>{card.episodeCode}</span>
+                    <div className={styles.cardMeta}>
+                      <span className={styles.cardCode}>{card.episodeCode}</span>
+                      {card.duration && (
+                        <span className={styles.cardDuration}>{card.duration}</span>
+                      )}
+                    </div>
                     <strong className={styles.cardTitle}>{card.title}</strong>
                     <p className={styles.cardSummary}>{card.summary}</p>
-                    {card.duration && (
-                      <span className={styles.cardDuration}>{card.duration}</span>
-                    )}
                   </div>
                 </article>
               </div>

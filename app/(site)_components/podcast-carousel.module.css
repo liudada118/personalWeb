@@ -1,63 +1,105 @@
-/* Podcast Carousel — 5-card horizontal slider */
-
 .carouselRoot {
   position: relative;
   width: 100%;
 }
 
-/* ── Viewport wrapper — holds arrows + viewport ── */
 .viewportWrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0;
+  padding-inline: clamp(1.45rem, 4vw, 3rem);
 }
 
-/* ── Embla viewport ── */
 .viewport {
   overflow: hidden;
   width: 100%;
 }
 
-/* ── Track — flex row of slides ── */
 .track {
   display: flex;
-  gap: 0.7rem;
-  /* No extra padding — arrows sit outside the track boundary */
+  align-items: stretch;
+  gap: 0.68rem;
 }
 
-/* ── Individual slide ── */
 .slide {
-  flex: 0 0 calc((100% - 4 * 0.7rem) / 5);
+  flex: 0 0 calc((100% - 2 * 0.68rem) / 3);
   min-width: 0;
 }
 
-/* ── Card ── */
 .card {
+  position: relative;
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 0;
   height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.22rem;
+  background: linear-gradient(180deg, rgba(10, 14, 11, 0.98) 0%, rgba(4, 7, 5, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0.36rem 0.8rem rgba(0, 0, 0, 0.28);
   cursor: pointer;
 }
 
 .cardThumb {
-  aspect-ratio: 1 / 1;
+  position: relative;
+  aspect-ratio: 1.08 / 1;
+  padding: 0.26rem;
   background:
-    linear-gradient(160deg, rgba(119, 124, 115, 0.82) 0%, rgba(100, 104, 96) 100%);
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 38%),
+    linear-gradient(160deg, rgba(32, 39, 35, 0.96) 0%, rgba(11, 14, 12, 0.98) 100%);
+}
+
+.cardThumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.14) 48%, rgba(0, 0, 0, 0.44) 100%);
+}
+
+.cardThumbInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.24rem;
+}
+
+.cardThumbLabel {
+  max-width: 7ch;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.12rem;
+  letter-spacing: 0.16em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.cardThumbIndex {
+  color: rgba(255, 255, 255, 0.84);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  line-height: 0.82;
 }
 
 .cardBody {
   display: grid;
-  gap: 0.28rem;
-  padding: 0.55rem 0.25rem 0.1rem;
+  gap: 0.22rem;
+  padding: 0.28rem 0.3rem 0.32rem;
   align-content: start;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.24rem;
 }
 
 .cardCode {
   display: inline-block;
   color: rgba(163, 210, 10, 0.75);
-  font-size: 0.38rem;
+  font-size: 0.12rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -65,134 +107,157 @@
 
 .cardTitle {
   color: #ffffff;
+  font-family: var(--font-display);
   font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.3;
+  font-weight: 500;
+  line-height: 1.18;
   letter-spacing: 0.01em;
 }
 
 .cardSummary {
   margin: 0;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.58);
   font-size: 0.44rem;
-  line-height: 1.5;
-  white-space: pre-line;
+  line-height: 1.48;
+  white-space: normal;
 }
 
 .cardDuration {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 0.36rem;
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 0.12rem;
   letter-spacing: 0.06em;
-  margin-top: 0.1rem;
 }
 
-/* ── Arrows — outside the viewport, vertically centered ── */
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 2;
   display: grid;
   place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border: 2px solid rgba(163, 210, 10, 0.55);
+  width: 1.52rem;
+  height: 1.52rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
-  background: rgba(6, 16, 8, 0.82);
-  backdrop-filter: blur(8px);
-  color: rgba(163, 210, 10, 0.9);
-  font-size: 1.3rem;
+  background: rgba(6, 10, 8, 0.82);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.9rem;
   line-height: 1;
   cursor: pointer;
-  transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
-  flex-shrink: 0;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease;
 }
 
 .arrow:hover {
-  border-color: rgba(163, 210, 10, 0.95);
-  color: #a3d20a;
-  background: rgba(10, 24, 12, 0.92);
+  border-color: rgba(163, 210, 10, 0.34);
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(8, 13, 10, 0.96);
 }
 
 .arrowPrev {
-  left: -1.05rem;
+  left: 0;
 }
 
 .arrowNext {
-  right: -1.05rem;
+  right: 0;
 }
 
-/* ── Dots ── */
 .dots {
   display: flex;
   justify-content: center;
-  gap: 0.72rem;
-  padding: 0.7rem 0 0.4rem;
+  gap: 0.2rem;
+  padding: 0.64rem 0 0.12rem;
 }
 
 .dot {
-  width: 0.35rem;
-  height: 0.35rem;
+  width: 0.24rem;
+  height: 0.24rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.18);
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: background 200ms ease, transform 200ms ease;
+  transition: background 200ms ease, width 200ms ease;
 }
 
 .dot:hover {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.34);
 }
 
 .dotActive {
-  background: rgba(163, 210, 10, 1) !important;
-  transform: scale(1.25);
+  width: 0.72rem;
+  background: rgba(163, 210, 10, 0.78);
 }
 
-/* ── Responsive breakpoints ── */
+.cardToneLead .cardThumb {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(163, 210, 10, 0.16), transparent 34%),
+    linear-gradient(155deg, #2a3429 0%, #151b16 52%, #090d0a 100%);
+}
+
+.cardToneCore .cardThumb {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(120, 138, 188, 0.18), transparent 38%),
+    linear-gradient(155deg, #212932 0%, #13181d 50%, #090c10 100%);
+}
+
+.cardToneEcho .cardThumb {
+  background:
+    radial-gradient(circle at 24% 78%, rgba(119, 97, 70, 0.24), transparent 38%),
+    linear-gradient(155deg, #31271f 0%, #18130f 50%, #0a0806 100%);
+}
+
 @media (max-width: 1200px) {
+  .viewportWrapper {
+    padding-inline: 2.45rem;
+  }
+
+  .track {
+    gap: 0.54rem;
+  }
+
   .slide {
-    flex: 0 0 calc((100% - 3 * 0.7rem) / 4);
+    flex: 0 0 calc((100% - 2 * 0.54rem) / 3);
   }
 }
 
 @media (max-width: 960px) {
+  .viewportWrapper {
+    padding-inline: 2rem;
+  }
+
   .slide {
-    flex: 0 0 calc((100% - 2 * 0.7rem) / 3);
+    flex: 0 0 calc((100% - 0.54rem) / 2);
   }
 
   .arrow {
-    width: 1.8rem;
-    height: 1.8rem;
-    font-size: 1.1rem;
-  }
-
-  .arrowPrev {
-    left: 0.4rem;
-  }
-
-  .arrowNext {
-    right: 0.4rem;
+    width: 1.38rem;
+    height: 1.38rem;
   }
 }
 
 @media (max-width: 640px) {
+  .viewportWrapper {
+    padding-inline: 0;
+  }
+
   .slide {
-    flex: 0 0 calc((100% - 1 * 0.7rem) / 2);
+    flex: 0 0 100%;
   }
 
   .arrow {
     display: none;
   }
-}
 
-@media (max-width: 400px) {
-  .slide {
-    flex: 0 0 calc(100% - 0rem);
+  .cardThumb {
+    aspect-ratio: 1.18 / 1;
   }
 
-  .track {
-    gap: 0.5rem;
+  .dots {
+    padding-top: 0.46rem;
   }
 }

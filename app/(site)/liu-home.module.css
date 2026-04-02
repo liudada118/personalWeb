@@ -382,8 +382,10 @@
 }
 
 .podcastRailSection {
-  padding: 2.4rem 0 1.6rem;
-  background: #061008;
+  padding: 2.7rem 0 1.8rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(65, 89, 54, 0.2), transparent 34%),
+    linear-gradient(180deg, #061008 0%, #040906 100%);
 }
 
 .sectionHeaderCenter {
@@ -407,9 +409,40 @@
 }
 
 .podcastRailWrap {
-  width: min(68rem, 100%);
+  width: min(72rem, 100%);
   margin: 0 auto;
-  padding-inline: 2.8rem;
+  padding-inline: 0;
+}
+
+.podcastRailHeader {
+  gap: 0.18rem;
+  padding: 0 0 1.55rem;
+}
+
+.podcastRailHeader::after {
+  content: "";
+  width: 2.4rem;
+  height: 1px;
+  margin-top: 0.08rem;
+  background: linear-gradient(90deg, transparent 0%, rgba(163, 210, 10, 0.72) 50%, transparent 100%);
+}
+
+.podcastRailEyebrow {
+  margin: 0;
+  color: rgba(163, 210, 10, 0.6);
+  font-size: clamp(0.11rem, 0.14vw, 0.13rem);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.podcastRailTitle {
+  max-width: 16ch;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(0.15rem, 0.22vw, 0.2rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.26em !important;
+  line-height: 1.15 !important;
+  text-align: center;
 }
 
 .railArrow {

@@ -247,10 +247,11 @@ export default async function HomePage() {
       <section className={styles.podcastRailSection}>
         <VisualEditRegion adminHref="/cms/admin/collections/podcastEpisodes" label="Liu homepage podcast rail" previewHref="/podcast">
           <div className={styles.shell}>
-            <div className={styles.sectionHeaderCenter}>
-              <h2>LAW, DISRUPTED PODCAST</h2>
+            <div className={`${styles.sectionHeaderCenter} ${styles.podcastRailHeader}`}>
+              <p className={styles.podcastRailEyebrow}>Featured Audio Column</p>
+              <h2 className={styles.podcastRailTitle}>LAW, DISRUPTED PODCAST</h2>
             </div>
-              <div className={styles.podcastRailWrap}>
+            <div className={styles.podcastRailWrap}>
               <PodcastCarousel cards={podcastCarouselCards} />
             </div>
           </div>
