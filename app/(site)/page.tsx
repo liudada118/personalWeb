@@ -237,8 +237,8 @@ export default async function HomePage() {
               <div className={styles.videoPanel}>
                 <div className={styles.videoIcon}>▶</div>
                 <p>Video topic</p>
+                <span className={styles.videoCaption}>Watch Safety Differently, the movie →</span>
               </div>
-              <span className={styles.videoCaption}>Watch Safety Differently, the movie →</span>
             </div>
           </div>
         </VisualEditRegion>
