@@ -12,6 +12,7 @@
 }
 
 .heroShell {
+  position: relative;
   width: 100%;
   max-width: none;
   margin: 0 auto;

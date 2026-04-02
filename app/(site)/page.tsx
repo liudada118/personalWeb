@@ -178,32 +178,32 @@ export default async function HomePage() {
       <section className={styles.heroSection}>
         <VisualEditRegion adminHref="/admin/visual-editor?page=home" label="Liu homepage hero" previewHref="/">
           <div className={styles.heroShell}>
+            <div className={styles.heroUtilityRow}>
+              <div className={styles.heroSocialLinks}>
+                {heroSocialLinks.map((item) => (
+                  <a
+                    className={styles.heroSocialLink}
+                    aria-label={`${item.platform} ${item.label}`}
+                    href={item.href}
+                    key={`hero-social-${item.platform}-${item.href}`}
+                    rel="noreferrer"
+                    target="_blank"
+                    title={item.label || item.platform}
+                  >
+                    <span>{getHeroSocialLabel(item.platform, item.label)}</span>
+                  </a>
+                ))}
+              </div>
+              <a className={styles.heroUtilityBadge} href="/about">
+                TIGERPARTNERS.CN
+              </a>
+            </div>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
                 <div className={styles.heroTitleBlock}>
                   <p className={styles.heroEyebrow}>{heroEyebrow}</p>
                   <h1 className={styles.heroTitle}>{heroTitle}</h1>
                 </div>
-              </div>
-              <div className={styles.heroUtilityRow}>
-                <div className={styles.heroSocialLinks}>
-                  {heroSocialLinks.map((item) => (
-                    <a
-                      className={styles.heroSocialLink}
-                      aria-label={`${item.platform} ${item.label}`}
-                      href={item.href}
-                      key={`hero-social-${item.platform}-${item.href}`}
-                      rel="noreferrer"
-                      target="_blank"
-                      title={item.label || item.platform}
-                    >
-                      <span>{getHeroSocialLabel(item.platform, item.label)}</span>
-                    </a>
-                  ))}
-                </div>
-                <a className={styles.heroUtilityBadge} href="/about">
-                  TIGERPARTNERS.CN
-                </a>
               </div>
               <div className={styles.heroVisual}>
                 <div className={styles.heroPortraitScene}>
