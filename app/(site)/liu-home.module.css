@@ -935,10 +935,11 @@
 .profileSection {
   padding: 0;
   background:
-    radial-gradient(ellipse at 0% 100%, rgba(12, 95, 88, 0.5) 0%, transparent 40%),
-    radial-gradient(ellipse at 100% 0%, rgba(32, 72, 112, 0.42) 0%, transparent 42%),
-    radial-gradient(ellipse at 50% 50%, rgba(20, 60, 50, 0.18) 0%, transparent 60%),
-    linear-gradient(160deg, #070e12 0%, #081210 36%, #0c1718 100%);
+    radial-gradient(ellipse at 0% 100%, rgba(8, 80, 72, 0.55) 0%, transparent 38%),
+    radial-gradient(ellipse at 100% 0%, rgba(20, 65, 110, 0.48) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(12, 48, 40, 0.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(6, 50, 44, 0.3) 0%, transparent 35%),
+    linear-gradient(160deg, #050c0e 0%, #060f10 36%, #081418 100%);
 }
 
 .profileSection > .shell {
@@ -948,10 +949,10 @@
 
 .profileGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
-  gap: 3.5rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 2.5rem;
   align-items: center;
-  padding: 5rem 0;
+  padding: 6rem 0 5.5rem;
 }
 
 .profilePortrait {
@@ -960,12 +961,12 @@
 
 .profilePortraitInner {
   position: relative;
-  aspect-ratio: 0.62 / 1;
+  aspect-ratio: 0.56 / 1;
   background:
-    radial-gradient(ellipse at 80% 20%, rgba(30, 55, 46, 0.6) 0%, transparent 60%),
-    linear-gradient(160deg, rgba(22, 38, 32, 0.9) 0%, rgba(14, 22, 20, 0.88) 100%);
+    radial-gradient(ellipse at 78% 22%, rgba(28, 52, 44, 0.7) 0%, transparent 62%),
+    linear-gradient(160deg, rgba(20, 35, 30, 0.92) 0%, rgba(12, 20, 18, 0.9) 100%);
   overflow: hidden;
-  box-shadow: inset -2px 0 12px rgba(8, 18, 14, 0.4);
+  box-shadow: inset -3px 0 14px rgba(6, 16, 12, 0.5);
 }
 
 .profilePortraitReference {
@@ -991,16 +992,16 @@
 .profileCopy {
   display: grid;
   align-content: center;
-  gap: 1.2rem;
+  gap: 1.4rem;
   padding-top: 0.15rem;
 }
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: clamp(0.291132rem, 0.42552vw, 0.388181rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(0.5rem, 0.75vw, 0.82rem);
+  letter-spacing: 0.06em;
   text-transform: none;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.1;
 }
 
@@ -1008,8 +1009,8 @@
   margin: 0;
   max-width: 50ch;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.82rem;
-  line-height: 1.9;
+  font-size: 0.88rem;
+  line-height: 1.88;
 }
 
 .worksSection {
