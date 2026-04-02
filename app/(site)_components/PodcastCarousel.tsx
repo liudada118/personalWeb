@@ -52,18 +52,12 @@ export function PodcastCarousel({ cards }: PodcastCarouselProps) {
     };
   }, [emblaApi]);
 
+  // Dots represent scroll snap pages; each snap may show 1 or more cards
+  const totalDots = emblaApi ? emblaApi.scrollSnapList().length : cards.length;
+
   return (
     <div className={styles.carouselRoot}>
       <div className={styles.viewportWrapper}>
-        <button
-          aria-label="Previous episode"
-          className={`${styles.arrow} ${styles.arrowPrev}`}
-          onClick={scrollPrev}
-          type="button"
-        >
-          ‹
-        </button>
-
         <div className={styles.viewport} ref={emblaRef}>
           <div className={styles.track}>
             {cards.map((card, index) => (
@@ -94,6 +88,15 @@ export function PodcastCarousel({ cards }: PodcastCarouselProps) {
         </div>
 
         <button
+          aria-label="Previous episode"
+          className={`${styles.arrow} ${styles.arrowPrev}`}
+          onClick={scrollPrev}
+          type="button"
+        >
+          ‹
+        </button>
+
+        <button
           aria-label="Next episode"
           className={`${styles.arrow} ${styles.arrowNext}`}
           onClick={scrollNext}
@@ -104,9 +107,9 @@ export function PodcastCarousel({ cards }: PodcastCarouselProps) {
       </div>
 
       <div className={styles.dots} aria-hidden="true">
-        {cards.map((_, index) => (
+        {Array.from({ length: totalDots }).map((_, index) => (
           <button
-            aria-label={`Go to episode ${index + 1}`}
+            aria-label={`Go to episode group ${index + 1}`}
             className={`${styles.dot} ${index === selectedIndex ? styles.dotActive : ""}`}
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}

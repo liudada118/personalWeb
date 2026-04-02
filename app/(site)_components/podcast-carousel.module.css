@@ -5,12 +5,13 @@
 
 .viewportWrapper {
   position: relative;
-  padding-inline: clamp(1.45rem, 4vw, 3rem);
+  /* No horizontal padding here — arrows live outside the viewport */
 }
 
 .viewport {
   overflow: hidden;
   width: 100%;
+  padding-inline: 0.08rem;
 }
 
 .track {
@@ -20,7 +21,7 @@
 }
 
 .slide {
-  flex: 0 0 calc((100% - 2 * 0.68rem) / 3);
+  flex: 0 0 calc((100% - 4 * 0.68rem) / 5);
   min-width: 0;
 }
 
@@ -159,11 +160,13 @@
 }
 
 .arrowPrev {
-  left: 0;
+  /* Outside the left edge of the viewport */
+  left: -0.8rem;
 }
 
 .arrowNext {
-  right: 0;
+  /* Outside the right edge of the viewport */
+  right: -0.8rem;
 }
 
 .dots {
@@ -212,39 +215,43 @@
 }
 
 @media (max-width: 1200px) {
-  .viewportWrapper {
-    padding-inline: 2.45rem;
-  }
-
   .track {
     gap: 0.54rem;
   }
 
   .slide {
-    flex: 0 0 calc((100% - 2 * 0.54rem) / 3);
+    flex: 0 0 calc((100% - 3 * 0.54rem) / 4);
+  }
+
+  .arrowPrev {
+    left: 0.4rem;
+  }
+
+  .arrowNext {
+    right: 0.4rem;
   }
 }
 
 @media (max-width: 960px) {
-  .viewportWrapper {
-    padding-inline: 2rem;
-  }
-
   .slide {
-    flex: 0 0 calc((100% - 0.54rem) / 2);
+    flex: 0 0 calc((100% - 2 * 0.54rem) / 3);
   }
 
   .arrow {
     width: 1.38rem;
     height: 1.38rem;
   }
+
+  .arrowPrev {
+    left: 0.3rem;
+  }
+
+  .arrowNext {
+    right: 0.3rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .viewportWrapper {
-    padding-inline: 0;
-  }
-
   .slide {
     flex: 0 0 100%;
   }

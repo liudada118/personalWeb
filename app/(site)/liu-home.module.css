@@ -30,7 +30,7 @@
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
   min-height: 100svh;
   background:
     linear-gradient(90deg, rgba(3, 6, 4, 0.96) 0%, rgba(6, 9, 7, 0.97) 36%, rgba(10, 14, 10, 0.96) 64%, rgba(18, 22, 18, 0.98) 100%);
@@ -69,17 +69,18 @@
 }
 
 .heroTitleBlock {
-  display: grid;
-  gap: clamp(0.75rem, 1.1vw, 1.2rem);
-  width: min(46rem, 44vw);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.55rem, 0.8vw, 0.86rem);
+  width: min(33.12rem, 31.68vw);
 }
 
 .heroEyebrow {
   margin: 0;
-  color: rgba(180, 210, 100, 0.48);
-  font-size: clamp(0.42rem, 0.5vw, 0.58rem);
+  color: rgba(163, 210, 10, 0.55);
+  font-size: clamp(0.3rem, 0.36vw, 0.42rem);
   font-weight: 500;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
 }
 
@@ -89,10 +90,10 @@
   max-width: 100%;
   color: #e8eddf;
   font-family: var(--font-display);
-  font-size: clamp(3.8rem, 6.6vw, 6.4rem);
+  font-size: clamp(2.74rem, 4.75vw, 4.61rem);
   font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
   text-wrap: balance;
   white-space: normal;
@@ -102,10 +103,10 @@
 .heroTitle::after {
   content: "\201C";
   position: absolute;
-  top: -0.2em;
-  left: -0.6em;
-  color: rgba(163, 210, 10, 0.35);
-  font-size: 1.4em;
+  top: -0.18em;
+  left: -0.5em;
+  color: rgba(163, 210, 10, 0.4);
+  font-size: 1.35em;
   font-weight: 400;
   line-height: 1;
   pointer-events: none;
@@ -115,8 +116,8 @@
   content: "\201D";
   top: auto;
   left: auto;
-  right: -0.5em;
-  bottom: -0.3em;
+  right: -0.45em;
+  bottom: -0.28em;
 }
 
 .heroSocialLinks {
@@ -132,8 +133,8 @@
   justify-content: center;
   width: 1.6rem;
   height: 1.6rem;
-  border: 1px solid rgba(184, 210, 111, 0.3);
-  color: rgba(200, 225, 155, 0.6);
+  border: 1.5px solid rgba(163, 210, 10, 0.45);
+  color: rgba(163, 210, 10, 0.7);
   font-size: 0.25rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -141,7 +142,7 @@
   text-decoration: none;
   transform: rotate(45deg);
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
-  background: rgba(4, 8, 5, 0.1);
+  background: rgba(4, 8, 5, 0.15);
   backdrop-filter: blur(6px);
 }
 
@@ -152,9 +153,9 @@
 }
 
 .heroSocialLink:hover {
-  border-color: rgba(212, 240, 106, 0.7);
-  color: #d8f06a;
-  background: rgba(12, 24, 10, 0.2);
+  border-color: rgba(163, 210, 10, 0.85);
+  color: #a3d20a;
+  background: rgba(12, 24, 10, 0.25);
 }
 
 .heroVisual {
@@ -162,6 +163,9 @@
   min-height: 100svh;
   overflow: hidden;
   background: transparent;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .heroVisual::before {
@@ -191,27 +195,30 @@
   justify-content: center;
   min-height: 1.6rem;
   padding: 0 0.85rem;
-  border: 1px solid rgba(184, 210, 111, 0.3);
-  color: rgba(200, 225, 155, 0.65);
+  border: 1.5px solid rgba(163, 210, 10, 0.4);
+  color: rgba(163, 210, 10, 0.75);
   font-size: 0.38rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: rgba(4, 8, 5, 0.08);
+  background: rgba(4, 8, 5, 0.12);
   backdrop-filter: blur(6px);
   text-decoration: none;
   transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
 }
 
 .heroUtilityBadge:hover {
-  border-color: rgba(212, 240, 106, 0.6);
-  color: #d8f06a;
-  background: rgba(12, 24, 10, 0.2);
+  border-color: rgba(163, 210, 10, 0.7);
+  color: #a3d20a;
+  background: rgba(12, 24, 10, 0.25);
 }
 
 .heroPortraitScene {
   position: absolute;
   inset: 0;
   z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .heroPortraitReference {
@@ -219,9 +226,9 @@
   right: 0;
   left: auto;
   bottom: 0;
-  width: clamp(26rem, 84%, 40rem);
-  height: 100%;
-  background-position: 62% bottom;
+  width: 30%;
+  height: 92%;
+  background-position: 60% bottom;
   background-repeat: no-repeat;
   background-size: cover;
   filter: saturate(0.88) brightness(0.97) contrast(1.04);
@@ -282,7 +289,7 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: clamp(0.261274rem, 0.406843vw, 0.365782rem);
+  font-size: clamp(0.188rem, 0.293vw, 0.263rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.025em;
@@ -457,7 +464,7 @@
 .podcastRailTitle {
   max-width: 16ch;
   color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(0.15rem, 0.22vw, 0.2rem) !important;
+  font-size: clamp(0.108rem, 0.158vw, 0.144rem) !important;
   font-weight: 500 !important;
   letter-spacing: 0.26em !important;
   line-height: 1.15 !important;
@@ -593,7 +600,7 @@
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.65rem, 1.1vw, 1.05rem);
+  font-size: clamp(0.468rem, 0.792vw, 0.756rem);
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -1017,7 +1024,7 @@
 
 .profileCopy h2 {
   color: #ffffff;
-  font-size: clamp(0.5rem, 0.75vw, 0.82rem);
+  font-size: clamp(0.36rem, 0.54rem, 0.59rem);
   letter-spacing: 0.06em;
   text-transform: none;
   font-weight: 700;
@@ -1046,7 +1053,7 @@
 
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.28rem, 0.32vw, 0.38rem);
+  font-size: clamp(0.202rem, 0.23vw, 0.274rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1257,16 +1264,16 @@
 
 @media (min-width: 1600px) {
   .heroTitleBlock {
-    width: min(46rem, 40vw);
+    width: min(33.12rem, 28.8vw);
   }
 
   .heroTitle {
     max-width: 9.8ch;
-    font-size: clamp(5rem, 6.7vw, 7.7rem);
+    font-size: clamp(3.6rem, 4.82vw, 5.54rem);
   }
 
   .heroPortraitReference {
-    width: clamp(28rem, 80%, 42rem);
+    width: 30%;
   }
 }
 
