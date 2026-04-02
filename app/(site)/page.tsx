@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 
 const manifestoQuote = `THE ADOLESCENT\n\"CHUUNIBYOU\" SPIRIT TAUGHT\nME TO FACE LIFE'S CHALLENGES\nWITHOUT FEAR.`;
 const heroTitle = "THE ADOLESCENT \u201CCHUUNIBYOU\u201D SPIRIT TAUGHT ME TO FACE LIFE\u2019S CHALLENGES WITHOUT FEAR";
+const heroEyebrow = "DENNIS YUXUAN LIU";
 const podcastCarouselCards = [
   {
     episodeCode: "EP01",
@@ -179,7 +180,10 @@ export default async function HomePage() {
           <div className={styles.heroShell}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <h1 className={styles.heroTitle}>{heroTitle}</h1>
+                <div className={styles.heroTitleBlock}>
+                  <p className={styles.heroEyebrow}>{heroEyebrow}</p>
+                  <h1 className={styles.heroTitle}>{heroTitle}</h1>
+                </div>
               </div>
               <div className={styles.heroUtilityRow}>
                 <div className={styles.heroSocialLinks}>
@@ -208,7 +212,6 @@ export default async function HomePage() {
                     className={styles.heroPortraitReference}
                     style={{ backgroundImage: `url(${heroReference.src})` }}
                   />
-                  <div className={styles.heroPortraitGlow} />
                 </div>
               </div>
             </div>
