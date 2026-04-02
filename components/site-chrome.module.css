@@ -22,8 +22,8 @@
 .homeHeaderScrolled .homeHeaderInner {
   padding-top: 0.42rem;
   padding-bottom: 0.42rem;
-  background: linear-gradient(180deg, rgba(4, 8, 5, 0.78) 0%, rgba(4, 8, 5, 0.64) 100%);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(4, 8, 5, 0.32) 0%, rgba(4, 8, 5, 0.18) 100%);
+  backdrop-filter: blur(8px);
 }
 
 .homeBrand {
@@ -61,7 +61,7 @@
 
 .homeNavLink {
   position: relative;
-  color: rgba(206, 224, 144, 0.76);
+  color: rgba(180, 215, 130, 0.7);
   font-size: 0.5rem;
   font-weight: 450;
   letter-spacing: 0.16em;
@@ -70,7 +70,7 @@
 }
 
 .homeNavLink:hover {
-  color: #d8f06a;
+  color: #d4f06a;
 }
 
 .homeNavLink::after {
@@ -93,7 +93,7 @@
 }
 
 .homeNavLinkActive {
-  color: rgba(230, 242, 170, 0.92);
+  color: rgba(210, 235, 155, 0.9);
 }
 
 .homeFooter {
