@@ -194,7 +194,7 @@ export function EpisodeFeatureCard() {
   return (
     <div className={styles.episodeFeatureSectionInner} ref={sectionRef}>
       <div className={styles.episodeFeatureCard} ref={stackRef}>
-        {/* Stacked Cards */}
+        {/* Stacked Cards — dark index bars with order */}
         <div className={styles.episodeFeatureStack}>
           {episodeCards.map((card, i) => (
             <div
@@ -202,6 +202,7 @@ export function EpisodeFeatureCard() {
               key={card.id}
               ref={(el) => { cardRefs.current[i] = el; }}
             >
+              <span className={styles.episodeFeatureUpperCardOrder}>0{i + 1}</span>
               <span className={styles.episodeFeatureUpperCardLabel}>{card.label}</span>
               <strong className={styles.episodeFeatureUpperCardTitle}>
                 {card.rows[1]?.title ?? card.rows[0]?.title}
@@ -211,22 +212,7 @@ export function EpisodeFeatureCard() {
           ))}
         </div>
 
-        {/* Rows — revealed when a card is expanded */}
-        <div className={styles.episodeFeatureRows}>
-          {current.rows.map((row, index) => (
-            <div
-              className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
-              key={`${row.code}-${activeIndex}`}
-              ref={(el) => { if (el) rowsRef.current[index] = el; }}
-            >
-              <span className={styles.episodeFeatureRowCode}>{row.code}</span>
-              <strong className={styles.episodeFeatureRowTitle}>{row.title}</strong>
-              <span className={styles.episodeFeatureRowArrow}>→</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Hero Thumb */}
+        {/* Hero Thumb — large video cover as the main visual anchor */}
         <div
           className={styles.episodeHeroThumb}
           key={`${activeIndex}-thumb`}
@@ -243,6 +229,21 @@ export function EpisodeFeatureCard() {
               <span key={`stat-${i}`}>{s}</span>
             ))}
           </div>
+        </div>
+
+        {/* Rows — revealed when a card is expanded */}
+        <div className={styles.episodeFeatureRows}>
+          {current.rows.map((row, index) => (
+            <div
+              className={`${styles.episodeFeatureRow} ${index === 1 ? styles.episodeFeatureRowActive : ""}`}
+              key={`${row.code}-${activeIndex}`}
+              ref={(el) => { if (el) rowsRef.current[index] = el; }}
+            >
+              <span className={styles.episodeFeatureRowCode}>{row.code}</span>
+              <strong className={styles.episodeFeatureRowTitle}>{row.title}</strong>
+              <span className={styles.episodeFeatureRowArrow}>→</span>
+            </div>
+          ))}
         </div>
 
         {/* Progress indicator */}

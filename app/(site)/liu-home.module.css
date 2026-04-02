@@ -542,12 +542,10 @@
 }
 
 .episodeFeatureSection {
-  /* Tall scroll buffer: (N cards - 1) × 100vh per transition.
-     With 3 cards and 2 transitions, 200vh gives 2 full viewport-heights
-     of scroll distance for the stacked card animations. */
+  /* Clean light background section — white/off-white, ample breathing room */
   padding-top: 0;
   padding-bottom: 200vh;
-  background: #f6f5f2;
+  background: #f8f7f4;
   /* Ensure the section participates in normal page flow */
   position: relative;
   /* Force the section to be tall enough for ScrollTrigger scroll distance */
@@ -561,36 +559,41 @@
   will-change: transform;
 }
 
-/* FIX 3 & 8: Title area — bigger text, more presence */
+/* FIX 3 & 8: Title area — cleaner hierarchy: main title bold + large, subtitle lighter, platform tag small accent */
 .episodeFeatureIntro {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1.2rem;
-  padding-top: 1.6rem;
-  padding-bottom: 0.85rem;
+  padding-top: 2.2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(18, 22, 18, 0.08);
+  margin-bottom: 1.2rem;
 }
 
 .episodeFeatureIntro h2,
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.175428rem, 0.231415vw, 0.231415rem);
-  letter-spacing: 0.16em;
-}
-
-.episodeFeatureIntro p {
-  margin: 0.35rem 0 0;
-  color: rgba(18, 22, 18, 0.72);
-  font-size: 0.612rem;
+  font-size: clamp(0.65rem, 1.1vw, 1.05rem);
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
+.episodeFeatureIntro p {
+  margin: 0.5rem 0 0;
+  color: rgba(18, 22, 18, 0.52);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
 .episodePlatformTag {
-  margin-top: 0.5rem;
   margin-right: 0.1rem;
-  color: rgba(18, 22, 18, 0.4);
-  font-size: 0.38rem;
-  letter-spacing: 0.1em;
+  margin-bottom: 0.55rem;
+  color: rgba(18, 22, 18, 0.35);
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   flex-shrink: 0;
 }
 
@@ -599,8 +602,9 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.7rem;
-  width: min(880px, 100%);
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 1100px;
   /* GSAP ScrollTrigger pins this element while sectionRef scrolls */
   z-index: 1;
 }
@@ -611,83 +615,105 @@
   will-change: transform;
 }
 
-/* Stack container — holds all stacked cards */
+/* Stack container — dark index bars at the top of the section */
 .episodeFeatureStack {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
-/* FIX 3: Upper strip — two stacked content cards, not thin tabs */
+/* FIX 3: Upper strip — two stacked dark bars acting as index entries */
 .episodeFeatureUpperCards {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 /* Individual stacked card — GSAP animates height/opacity/y/scale */
+/* Dark index bars with order indicator */
 .episodeFeatureUpperCard {
   position: relative;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: 2.2rem auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 1rem;
-  min-height: 3.5rem;
-  padding: 0.8rem 1rem;
-  background: #1c1c1c;
-  color: rgba(255, 255, 255, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  gap: 0.9rem;
+  min-height: 3.2rem;
+  padding: 0.7rem 1rem;
+  background: #181b18;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 3px solid rgba(163, 210, 10, 0.15);
+  border-radius: 6px;
   cursor: pointer;
   overflow: hidden;
-  transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease;
+  transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   will-change: height, opacity, transform;
 }
 
 .episodeFeatureUpperCard:hover {
-  background: #252d1e;
+  background: #1e2520;
+  border-left-color: rgba(163, 210, 10, 0.4);
   color: rgba(163, 210, 10, 0.85);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .episodeFeatureUpperCardActive {
-  background: #2e3828;
+  background: #242d20;
   color: #a3d20a;
-  border-color: rgba(163, 210, 10, 0.25);
+  border-left-color: rgba(163, 210, 10, 0.65);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Order number — shows the position in the index */
+.episodeFeatureUpperCardOrder {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: rgba(163, 210, 10, 0.4);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  min-width: 1rem;
+  text-align: center;
+  transition: color 200ms ease;
+}
+
+.episodeFeatureUpperCardActive .episodeFeatureUpperCardOrder {
+  color: rgba(163, 210, 10, 0.85);
 }
 
 .episodeFeatureUpperCardLabel {
   display: inline-flex;
   align-items: center;
   min-height: 0.82rem;
-  padding: 0.2rem 0.5rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.42rem;
+  padding: 0.18rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.38rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  border-radius: 4px;
+  border-radius: 3px;
   flex-shrink: 0;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 .episodeFeatureUpperCardActive .episodeFeatureUpperCardLabel {
-  background: rgba(163, 210, 10, 0.12);
-  border-color: rgba(163, 210, 10, 0.3);
+  background: rgba(163, 210, 10, 0.1);
+  border-color: rgba(163, 210, 10, 0.28);
   color: #a3d20a;
 }
 
 .episodeFeatureUpperCardTitle {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
   font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 200ms ease;
 }
 
 .episodeFeatureUpperCardActive .episodeFeatureUpperCardTitle {
-  color: #a3d20a;
+  color: #ffffff;
 }
 
 .episodeFeatureUpperCardArrow {
@@ -706,7 +732,7 @@
 /* FIX 6: Layered push — rows animate when switching cards */
 .episodeFeatureRows {
   display: grid;
-  gap: 0.2rem;
+  gap: 0.18rem;
   animation: episodeRowsPush 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -721,43 +747,65 @@
   }
 }
 
+/* FIX: Dark index bars with order number, media index feel */
 .episodeFeatureRow {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: 2.2rem minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.8rem;
-  min-height: 1.9rem;
-  padding: 0 0.75rem;
-  background: #1e1c1f;
+  min-height: 2.4rem;
+  padding: 0 1rem;
+  background: #1a1c1a;
   color: #ffffff;
+  border-left: 2px solid rgba(163, 210, 10, 0.18);
+  transition: background 200ms ease, border-color 200ms ease;
 }
 
 .episodeFeatureRowActive {
-  background: #2c3e31;
+  background: #242a20;
+  border-left-color: rgba(163, 210, 10, 0.6);
 }
 
 .episodeFeatureRowCode {
   display: inline-flex;
   align-items: center;
-  min-height: 0.82rem;
+  justify-content: center;
+  min-height: 1.1rem;
   padding: 0 0.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.42rem;
+  background: rgba(163, 210, 10, 0.08);
+  border: 1px solid rgba(163, 210, 10, 0.15);
+  color: rgba(163, 210, 10, 0.75);
+  font-size: 0.38rem;
   letter-spacing: 0.08em;
+  border-radius: 3px;
+}
+
+.episodeFeatureRowActive .episodeFeatureRowCode {
+  background: rgba(163, 210, 10, 0.15);
+  border-color: rgba(163, 210, 10, 0.35);
+  color: #a3d20a;
 }
 
 .episodeFeatureRowTitle {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
   font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.episodeFeatureRowActive .episodeFeatureRowTitle {
+  color: #ffffff;
 }
 
 /* FIX 7: Right arrow button — stronger, more visible */
 .episodeFeatureRowArrow {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
   font-weight: 300;
+}
+
+.episodeFeatureRowActive .episodeFeatureRowArrow {
+  color: rgba(163, 210, 10, 0.7);
 }
 
 /* GSAP ScrollTrigger progress dots */
@@ -765,35 +813,38 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
 }
 
 .episodeFeatureDot {
-  width: 0.35rem;
-  height: 0.35rem;
-  border-radius: 999px;
-  background: rgba(18, 22, 18, 0.2);
+  width: 1.6rem;
+  height: 0.28rem;
+  border-radius: 2px;
+  background: rgba(18, 22, 18, 0.12);
   transition: background 300ms ease, transform 300ms ease;
 }
 
 .episodeFeatureDotActive {
-  background: #a3d20a;
-  transform: scale(1.3);
+  background: #121612;
+  transform: scale(1.05);
 }
 
-/* FIX 5: Main card composition — left shape smaller, card more balanced */
+/* FIX 5: Main card — larger, wider video cover as dominant visual anchor */
 .episodeHeroThumb {
   position: relative;
-  aspect-ratio: 1.5;
+  /* Wider cinematic ratio — this is the main visual of the screen */
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   will-change: opacity, transform;
+  width: 100%;
+  border-radius: 6px;
 
   background:
-    radial-gradient(circle at 68% 22%, rgba(255, 186, 39, 0.3), transparent 15%),
+    radial-gradient(circle at 68% 22%, rgba(255, 186, 39, 0.28), transparent 15%),
     linear-gradient(135deg, #211916 0%, #3e2d1f 34%, #85612f 100%);
 }
 
-/* Left shape: reduce to 16%, shift to left edge */
+/* Left shape: human silhouette — keep as accent */
 .episodeHeroThumb::before {
   content: "";
   position: absolute;
