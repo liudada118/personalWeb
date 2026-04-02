@@ -1014,31 +1014,36 @@
 }
 
 .worksSection {
-  padding: 2.4rem 0 3.8rem;
+  padding: 3.2rem 0 4.2rem;
   background: #f5f4f1;
-  border-top: 1px solid rgba(17, 23, 19, 0.08);
+  /* no border-top — the section breathes on its own */
 }
 
 .worksHeader {
-  padding-bottom: 0.9rem;
+  padding-bottom: 1.2rem;
+  margin-bottom: 0.2rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.12);
 }
 
 .worksHeader h2 {
   color: #121612;
-  font-size: clamp(0.182894rem, 0.212753vw, 0.242611rem);
-  letter-spacing: 0.06em;
+  font-size: clamp(0.28rem, 0.32vw, 0.38rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 .worksGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) repeat(2, minmax(0, 0.55fr));
-  gap: 0.4rem 0.7rem;
+  grid-template-columns: minmax(0, 2.1fr) repeat(2, minmax(0, 0.42fr));
+  gap: 0.5rem 0.65rem;
   align-items: start;
 }
 
 .workCard {
-  display: grid;
-  gap: 0.28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .workCardLarge {
@@ -1046,53 +1051,90 @@
 }
 
 .workCardSmall {
-  padding-top: 0.18rem;
+  padding-top: 0;
 }
 
+/* Cover image fills the top of the card — dominant editorial publishing feel */
 .workThumb {
-  background: #ffffff;
+  background: #e8e6e0;
   border: 1px solid rgba(17, 23, 19, 0.06);
   box-shadow: none;
+  flex-shrink: 0;
 }
 
 .workCardLarge .workThumb {
-  aspect-ratio: 0.68;
+  aspect-ratio: 3 / 2;
 }
 
 .workCardSmall .workThumb {
-  aspect-ratio: 1.05;
+  aspect-ratio: 3 / 2;
 }
 
-.workCard span,
-.workCard p {
-  color: rgba(17, 23, 19, 0.64);
-  font-size: 0.38rem;
-  letter-spacing: 0.08em;
+/* Category tag ABOVE the cover image — editorial publishing hierarchy */
+.workCardKind {
+  order: -1;
+  margin-bottom: 0.55rem;
+  color: rgba(17, 23, 19, 0.52);
+  font-size: 0.32rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+/* Text block below the cover image */
+.workCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  padding-top: 0.6rem;
 }
 
 .workCard strong {
   color: #111713;
-  font-size: 0.72rem;
+  font-size: clamp(0.7rem, 0.88vw, 0.96rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.workCardSmall strong {
+  font-size: clamp(0.58rem, 0.72vw, 0.8rem);
 }
 
 .workCard p {
   margin: 0;
+  color: rgba(17, 23, 19, 0.5);
+  font-size: 0.36rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+/* Full-width editorial bottom line above Explore link */
+.exploreLinkWrap {
+  display: block;
+  margin-top: 1.4rem;
+  border-top: 1px solid rgba(17, 23, 19, 0.14);
+  padding-top: 0;
 }
 
 .exploreLink {
-  width: 100%;
-  justify-content: flex-start;
-  margin-top: 1.1rem;
-  min-height: 2rem;
-  padding-top: 0;
-  padding-bottom: 0.18rem;
-  border-top: 0;
-  border-bottom: 1px solid rgba(17, 23, 19, 0.2);
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: 0 0 0.18rem;
+  border-bottom: 1px solid rgba(17, 23, 19, 0.3);
   color: #111713;
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: none;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.exploreLink:hover {
+  color: #3a5c14;
+  border-bottom-color: #3a5c14;
 }
 
 .page :global(.homeFooter) {

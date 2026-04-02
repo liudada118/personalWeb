@@ -312,15 +312,19 @@ export default async function HomePage() {
                   key={`${work.title}-${index}`}
                 >
                   <div className={styles.workThumb} />
-                  <span>{work.kind}</span>
-                  <strong>{work.title}</strong>
-                  <p>{work.subtitle}</p>
+                  <div className={styles.workCardBody}>
+                    <span className={styles.workCardKind}>{work.kind}</span>
+                    <strong>{work.title}</strong>
+                    <p>{work.subtitle}</p>
+                  </div>
                 </article>
               ))}
             </div>
-            <Link className={styles.exploreLink} href="/media">
-              Explore all books
-            </Link>
+            <div className={styles.exploreLinkWrap}>
+              <Link className={styles.exploreLink} href="/media">
+                Explore all books
+              </Link>
+            </div>
           </div>
         </VisualEditRegion>
       </section>
