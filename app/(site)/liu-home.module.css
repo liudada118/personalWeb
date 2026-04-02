@@ -542,10 +542,13 @@
 
 /* FIX 9: Gap between title area and cards */
 .episodeFeatureCard {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.7rem;
   width: min(880px, 100%);
+  /* GSAP ScrollTrigger pins this element while sectionRef scrolls */
+  z-index: 1;
 }
 
 /* GSAP ScrollTrigger stacked cards section */
